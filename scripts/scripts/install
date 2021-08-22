@@ -12,8 +12,14 @@ sudo apt remove thunderbird
 # Install packages
 sudo apt install bspwm, sxhkd, nitrogren, compton, rofi, neofetch, telegram-desktop
 
-# Get Chrome
+cd ~/Downloads
+
+# Google Chrome
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install ./google-chrome-stable_current_amd64.deb
 
+# Bitwarden
 
+wget https://github.com/bitwarden/cli/releases/download/v1.18.0/bw-linux-1.18.0.zip
+unzip bw-linux-1.18.0.zip
+sudo install bw /usr/local/bin/

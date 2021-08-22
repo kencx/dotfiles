@@ -1,3 +1,4 @@
 configuration {
 	modi: "window,run,drun,ssh";
+	theme: "gruvbox";
 }

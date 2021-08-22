@@ -79,9 +79,11 @@ zstyle ':vcs_info:*' enable git
 # Global variables
 export TERMINAL="alacritty"
 export BROWSER="google-chrome"
-export EDITOR="nvim"
 export PATH=$HOME/bin:$HOME/scripts:$PATH
-# export MANPATH="/usr/local/man:$MANPATH"
+export EDITOR="nvim"
+export MANPAGER="nvim +Man!;"
+export MANWIDTH=999;
+
 
 
 # Aliases
@@ -89,6 +91,7 @@ export PATH=$HOME/bin:$HOME/scripts:$PATH
 # Configs
 alias termconfig="nvim ~/.config/alacritty/alacritty.yml"
 alias zshconfig="nvim ~/.config/zsh/.zshrc"
+
 alias bconfig="nvim ~/.config/bspwm/bspwmrc"
 alias sconfig="nvim ~/.config/sxhkd/sxhkdrc"
 
