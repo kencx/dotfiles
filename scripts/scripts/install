@@ -1,0 +1,19 @@
+#! /bin/bash
+
+# Run this setup script on a new env to configure env
+
+sudo apt update && sudo apt upgrade && sudo apt autoremove
+
+# Remove bloat, unused apps
+sudo apt remove thunderbird
+
+# Remove games
+
+# Install packages
+sudo apt install bspwm, sxhkd, nitrogren, compton, rofi, neofetch, telegram-desktop
+
+# Get Chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install ./google-chrome-stable_current_amd64.deb
+
+

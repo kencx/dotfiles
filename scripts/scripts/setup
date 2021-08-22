@@ -1,0 +1,8 @@
+#! /bin/bash
+
+# Run setup to handle all configuration files into home directory
+
+cd ~/dotfiles
+stow zsh
+# stow nvim
+# stow tmux
