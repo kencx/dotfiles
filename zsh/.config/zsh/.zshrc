@@ -38,10 +38,12 @@ export MANWIDTH=999;
 
 # Aliases
 
+alias lh="ls -ld .*"
+
 # Configs
 alias termconfig="nvim ~/.config/alacritty/alacritty.yml"
 alias zshconfig="nvim ~/.config/zsh/.zshrc"
-
+alias tmuxconfig="nvim ~/.tmux.conf"
 alias bconfig="nvim ~/.config/bspwm/bspwmrc"
 alias sconfig="nvim ~/.config/sxhkd/sxhkdrc"
 
