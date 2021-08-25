@@ -1,18 +1,19 @@
-#
-# wm independent hotkeys
-#
 
-# terminal emulator
+# terminal
 super + Return
 	alacritty
 
-# program launcher
+# rofi
 super + space
 	rofi -show drun
 
-# make sxhkd reload its configuration files:
+# reload sxhkd
 super + Escape
 	pkill -USR1 -x sxhkd
+
+# keybindings
+super + @slash
+	~/scripts/keybindings | rofi -dmenu -i -p "hotkeys"
 
 #
 # bspwm hotkeys
