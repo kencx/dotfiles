@@ -358,12 +358,9 @@ window:
 # Live config reload (changes require restart)
 #live_config_reload: true
 
-shell:
-  program: /bin/zsh
-  args:
-    - -c
-    - -l
-    - "tmux attach || tmux"
+  # shell:
+  #program: /bin/zsh
+  # args:
 
 
 # Send ESC (\x1b) before characters when alt is pressed.

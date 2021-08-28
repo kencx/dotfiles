@@ -10,9 +10,9 @@ plugins=(git docker docker-compose)
 
 
 # User configuration
+export HISTFILE="$XDG_CONFIG_HOME/zsh/.zsh_history"
 export ZSH="/home/ken/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
-
 
 # Prompts
 PROMPT='%F{yellow}%1~%f :: '
@@ -46,6 +46,7 @@ alias zshconfig="nvim ~/.config/zsh/.zshrc"
 alias tmuxconfig="nvim ~/.tmux.conf"
 alias bconfig="nvim ~/.config/bspwm/bspwmrc"
 alias sconfig="nvim ~/.config/sxhkd/sxhkdrc"
+alias pconfig="nvim ~/.config/polybar/config"
 
 alias showpath="echo $PATH | tr ':' '\n'"
 

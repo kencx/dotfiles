@@ -1,25 +1,24 @@
 #! /bin/bash
 
-# Run this setup script on a new env to configure env
+# Run this setup script on a new env to configure
 
-sudo apt update && sudo apt upgrade && sudo apt autoremove
-
-# Remove bloat, unused apps
-sudo apt remove thunderbird
-
-# Remove games
+sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get autoremove
 
 # Install packages
-sudo apt install bspwm, sxhkd, nitrogren, compton, rofi, neofetch, telegram-desktop
+sudo apt-get -y install \
+  git \
+  bspwm \
+  sxhkd \
+  feh \
+  rofi \
+  polybar \
+  neovim \
+  > /dev/null
 
+
+# Install further apps
 cd ~/Downloads
+# pfetch, gotop, picom, alacritty, bonsai
 
-# Google Chrome
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo apt install ./google-chrome-stable_current_amd64.deb
-
-# Bitwarden
-
-wget https://github.com/bitwarden/cli/releases/download/v1.18.0/bw-linux-1.18.0.zip
-unzip bw-linux-1.18.0.zip
-sudo install bw /usr/local/bin/
+# Remove xfce from session startup
+# Add bspwm sxhkd to session startup

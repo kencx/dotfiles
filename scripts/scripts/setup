@@ -1,8 +1,12 @@
 #! /bin/bash
 
 # Run setup to handle all configuration files into home directory
+# Ensure all files have appropriate permissions
 
-cd ~/dotfiles
-stow zsh
-# stow nvim
-# stow tmux
+if [ -d $HOME/dotfiles ]; then
+  mkdir $HOME/dotfiles && cd $HOME/dotfiles
+
+for d in */ ;
+do
+  stow $d
+done

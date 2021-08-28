@@ -1,0 +1,8 @@
+!# /bin/bash
+
+# Fixes corrupt .zsh_history file
+
+mv ~/.zsh_history ~/.zsh_history_temp
+strings -eS ~/.zsh_history_temp > ~/.zsh_history
+fc -R ~/.zsh_history
+rm ~/.zsh_history_temp
