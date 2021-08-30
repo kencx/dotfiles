@@ -5,7 +5,7 @@ sxhkd &
 picom &
 
 ~/.fehbg
-$HOME/.config/polybar/launch.sh
+$XDG_CONFIG_HOME/polybar/launch.sh
 
 
 # bspwm
@@ -25,10 +25,11 @@ bspc config pointer_action1 resize_side
 bspc config pointer action1 resize_corner
 bspc config pointer_action3 move
 
-bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Chromium desktop='^2'
-bspc rule -a mplayer2 state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
+# bspc rule -a Gimp desktop='^8' state=floating follow=on
+# bspc rule -a Chromium desktop='^2'
+# bspc rule -a mplayer2 state=floating
+# bspc rule -a Kupfer.py focus=on
+# bspc rule -a Screenkey manage=off
 
 
+bspc rule -a firefox desktop='^2' focus=on follow=on

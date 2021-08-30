@@ -15,6 +15,10 @@ super + Escape
 super + @slash
 	~/scripts/keybindings | rofi -dmenu -i -p "hotkeys"
 
+# todo tasks
+alt + t
+       todofi.sh
+
 #
 # bspwm hotkeys
 #

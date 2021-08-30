@@ -17,10 +17,10 @@
 ;==========================================================
 
 [colors]
-background = #282828
-foreground = #EADBB2
-primary = #ffb52a
-secondary = #e60053
+background = ${xrdb:color0}
+foreground = ${xrdb:color1}
+primary = ${xrdb:color2}
+secondary = ${xrdb:color3}
 alert = #bd2c40
 
 [bar/bar]
@@ -30,9 +30,10 @@ padding = 0
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+font-0 = FiraCode Nerd Font:pixelsize=10;1
+font-1 = FiraCode Nerd Font:size=10;1
+font-2 = Hack:size=10;1
+font-4 = Hack:pixelsize=10;1
 
 modules-left = bspwm
 modules-center = time
@@ -68,7 +69,7 @@ index-sort = true
 enable-click=true
 reverse-scroll=false
 
-label-focused = ⬤
+label-focused = 
 label-focused-padding = 1
 
 label-occupied = ⦿
@@ -186,9 +187,9 @@ label-volume-foreground = ${root.foreground}
 use-ui-max = false
 interval = 5
 
-ramp-volume-0 = "🔈"
-ramp-volume-1 = "🔉"
-ramp-volume-2 = "🔊"
+ramp-volume-0 = "奄"
+ramp-volume-1 = "奔"
+ramp-volume-2 = "墳"
 ramp-volume-background = ${root.foreground}
 
 

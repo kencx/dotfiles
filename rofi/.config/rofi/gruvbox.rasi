@@ -3,18 +3,18 @@ configuration {
   display-drun: "  ";
   display-window: "  ";
   drun-display-format: "{name}";
-  font: "JetBrainsMono Nerd Font Medium 10";
+  font: "FiraCode Nerd Font 10";
   modi: "window,run,drun";
-  // show-icons: true;
+ // show-icons: true;
 }
 
 * {
   bg: #282828;
   bg-alt: #3c3836;
 
-  fg: #fbf1c7;
+  fg: #EADBB2;
 
-  blue: #83a598;
+  blue: #5DA399;
 
   background-color: @bg;
   
@@ -56,7 +56,7 @@ mainbox {
 prompt {
   background-color: @bg-alt;
   enabled: true;
-  font: "FontAwesome 12";
+  font: "FiraCode Nerd Font 12";
   padding: 12 0 0 12;
   text-color: @fg;
 }

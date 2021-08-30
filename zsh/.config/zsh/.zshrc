@@ -30,15 +30,15 @@ zstyle ':vcs_info:*' enable git
 # Global variables
 export TERMINAL="alacritty"
 export EDITOR="nvim"
-export BROWSER="google-chrome"
+export BROWSER="firefox"
 export PATH=$HOME/bin:$HOME/scripts:$PATH
 
 export MANPAGER="nvim +Man!;"
 export MANWIDTH=999;
 
 # Aliases
-
 alias lh="ls -ld .*"
+alias td="todo.sh"
 
 # Configs
 alias termconfig="nvim ~/.config/alacritty/alacritty.yml"
