@@ -22,3 +22,4 @@ cd ~/Downloads
 
 # Remove xfce from session startup
 # Add bspwm sxhkd to session startup
+# Add ~/.fehbg
