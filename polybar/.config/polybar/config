@@ -19,25 +19,28 @@
 [colors]
 background = ${xrdb:color0}
 foreground = ${xrdb:color1}
-primary = ${xrdb:color2}
-secondary = ${xrdb:color3}
-alert = #bd2c40
+alternate-background = #3d3d3d
+alternate-foreground = #807C72
+alert = ${xrdb:color2}
+
 
 [bar/bar]
-height = 45
-padding = 0
+height = 30
+padding-left = 1
+padding-right = 3
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-font-0 = FiraCode Nerd Font:pixelsize=10;1
-font-1 = FiraCode Nerd Font:size=10;1
-font-2 = Hack:size=10;1
-font-4 = Hack:pixelsize=10;1
+; font-N = <fontconfig pattern>;<vertical offset>
+font-0 = FiraCode Nerd Font:pixelsize=10;4
+font-1 = FiraCode Nerd Font:size=10;4
 
 modules-left = bspwm
 modules-center = time
-modules-right = wlan pulseaudio powermenu
+modules-right = cpu filesystem eth pulseaudio line powermenu
+
+module-margin = 1
 
 ;wm-restack = bspwm
 
@@ -53,7 +56,8 @@ enable-ipc = true
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:40:...%
+format = <label>
+label = %title:0:30:...%
 
 label-color1 = ${colors.foreground}
 label-background = ${colors.background}
@@ -69,15 +73,29 @@ index-sort = true
 enable-click=true
 reverse-scroll=false
 
-label-focused = 
-label-focused-padding = 1
+ws-icon-0 = I;
+ws-icon-1 = II;
+ws-icon-2 = III;
+ws-icon-3 = IV;切
+ws-icon-4 = V;
+ws-icon-default = ○
 
-label-occupied = ⦿
-label-occupied-padding = 1
+label-focused = %icon%
+label-focused-padding = 2
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.alternate-background}
 
-label-empty = ○
-label-empty-padding = 1
+label-occupied = %icon%
+label-occupied-padding = 2
 
+label-empty = %icon%
+label-empty-padding = 2
+label-empty-foreground = ${colors.alternate-foreground}
+
+label-urgent = %icon%
+label-urgent-padding = 2
+label-urgent-foreground = ${colors.alert}
+label-urgent-underline = ${colors.foreground}
 
 [module/mpd]
 type = internal/mpd
@@ -107,14 +125,14 @@ bar-fill-font = 2
 bar-fill-foreground = #9f78e1
 bar-empty = ─
 bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
+bar-empty-foreground = ${colors.foreground}
 
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix =  
+format-prefix-foreground = ${colors.foreground}
 format-underline = #f90000
 label = %percentage:2%%
 
@@ -122,7 +140,7 @@ label = %percentage:2%%
 type = internal/memory
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.foreground}
 format-underline = #4bffdc
 label = %percentage_used%%
 
@@ -147,23 +165,20 @@ ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
+ramp-signal-foreground = ${colors.foreground}
 
 [module/eth]
 type = internal/network
 interface = enp0s3
 interval = 3.0
 
-format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
+label-connected = 直
 
-format-disconnected =
+format-disconnected = 睊
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+;label-disconnected-foreground = ${colors.foreground}
 
 [module/time]
 type = internal/date
@@ -179,18 +194,22 @@ label-padding = 2
 
 [module/pulseaudio]
 type = internal/pulseaudio
-
-format-volume-padding = 3
-format-volume = <ramp-volume> <label-volume>
-label-volume = %percentage:4:4%%
-label-volume-foreground = ${root.foreground}
 use-ui-max = false
 interval = 5
+click-right = pavucontrol
 
-ramp-volume-0 = "奄"
-ramp-volume-1 = "奔"
-ramp-volume-2 = "墳"
-ramp-volume-background = ${root.foreground}
+format-muted = <label-muted> <label-volume>
+label-muted = ﱝ
+label-muted-foreground = ${colors.foreground}
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%
+label-volume-foreground = ${colors.foreground}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 墳
+ramp-volume-foreground = ${colors.foreground}
 
 
 [module/alsa]
@@ -219,7 +238,7 @@ bar-volume-fill = ─
 bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-empty-foreground = ${colors.foreground}
 
 [module/battery]
 type = internal/battery
@@ -234,24 +253,24 @@ format-discharging = <animation-discharging> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-prefix-foreground = ${colors.foreground}
 format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-foreground = ${colors.foreground}
 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-foreground = ${colors.foreground}
 animation-charging-framerate = 750
 
 animation-discharging-0 = 
 animation-discharging-1 = 
 animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-foreground = ${colors.foreground}
 animation-discharging-framerate = 750
 
 [module/temperature]
@@ -271,7 +290,7 @@ label-warn-foreground = ${colors.secondary}
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-foreground = ${colors.foreground}
 
 [module/powermenu]
 type = custom/menu
@@ -280,27 +299,35 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = ☰
-label-open-foreground = ${colors.secondary}
-label-close = x cancel
-label-close-foreground = ${colors.secondary}
+label-open = 
+label-open-foreground = ${colors.foreground}
+label-close = 
+label-close-foreground = ${colors.foreground}
 label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
+label-separator-foreground = ${colors.foreground}
 
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
+menu-0-0 = logout
+menu-0-0-exec = systemctl suspend
+menu-0-1 = reboot
+menu-0-1-exec = reboot
+menu-0-2 = power off
+menu-0-2-exec = shutdown "Shutting down now..." 
 
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
+[module/filesystem]
+type = internal/fs
+mount-0 = /
 
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
+interval = 10
+fixed-values = true
+
+format-mounted = <label-mounted>
+label-mounted =   %free%
+
+
+[module/line]
+type = custom/text
+content = |
+
 
 [settings]
 screenchange-reload = true

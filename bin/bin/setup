@@ -1,7 +1,7 @@
 #! /bin/bash
 
-# Run setup to handle all configuration files into home directory
-# Ensure all files have appropriate permissions
+# Initializes all configuration files
+# TODO: Ensure all files have appropriate permissions
 
 if [ -d $HOME/dotfiles ]; then
   mkdir $HOME/dotfiles && cd $HOME/dotfiles

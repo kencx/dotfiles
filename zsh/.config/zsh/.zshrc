@@ -31,7 +31,7 @@ zstyle ':vcs_info:*' enable git
 export TERMINAL="alacritty"
 export EDITOR="nvim"
 export BROWSER="firefox"
-export PATH=$HOME/bin:$HOME/scripts:$PATH
+export PATH=$HOME/bin:$HOME/bin:$PATH:/usr/local/go/bin
 
 export MANPAGER="nvim +Man!;"
 export MANWIDTH=999;

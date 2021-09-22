@@ -13,7 +13,7 @@ super + Escape
 
 # keybindings
 super + @slash
-	~/scripts/keybindings | rofi -dmenu -i -p "hotkeys"
+	~/bin/keybindings | rofi -dmenu -i -p "hotkeys"
 
 # todo tasks
 alt + t
