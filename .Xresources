@@ -31,27 +31,34 @@ xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y
 
 ! colors
 
-! Black
-*color0:  #282828
-*color8:  
-! White
-*color1:  #EADBB2
-*color9:  
-! Orange
+! black
+*color0:  #272727
+*color8:  #928373  
+
+! white
+*color1:  #ebdbb2
+*color9:  #a89983 
+
+! orange/yellow
 *color2:  #FA7921
-*color10: 
-! Green 
-*color3:  #668F8B
-*color11: 
-! Blue
-*color4:  #5DA399
-*color12: 
-! Magenta
-!*color5:  #ce5c00
-!*color13: #f57900
-!DarkCyan + Cyan (both not tango)
-!*color6:  #89b6e2
-!*color14: #46a4ff
-! LightGrey + White
-!*color7:  #cccccc
-!*color15: #ffffff
+*color10: #fabc2e
+
+! green 
+*color3:  #989719
+*color11: #b8ba25
+
+! blue
+*color4:  #448488
+*color12: #83a597
+
+! magenta
+*color5:  #b16185
+*color13: #d3859a
+
+! cyan
+*color6:  #689d69
+*color14: #8ec07b
+!
+! red
+*color7:  #cc231c
+*color15: #fb4833

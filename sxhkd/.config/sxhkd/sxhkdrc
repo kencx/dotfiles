@@ -1,7 +1,7 @@
 
 # terminal
 super + Return
-	alacritty
+	~/.local/kitty.app/bin/kitty
 
 # rofi
 super + space
