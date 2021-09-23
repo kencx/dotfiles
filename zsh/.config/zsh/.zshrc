@@ -4,10 +4,8 @@ autoload -Uz compinit
 zstyle ':completion:*' menu select
 compinit
 
-
 # plugins
 plugins=(git docker docker-compose)
-
 
 # User configuration
 export HISTFILE="$XDG_CONFIG_HOME/zsh/.zsh_history"
@@ -41,12 +39,12 @@ alias lh="ls -ld .*"
 alias td="todo.sh"
 
 # Configs
-alias termconfig="nvim ~/.config/kitty/kitty.conf"
-alias zshconfig="nvim ~/.config/zsh/.zshrc"
-alias tmuxconfig="nvim ~/.tmux.conf"
-alias bconfig="nvim ~/.config/bspwm/bspwmrc"
-alias sconfig="nvim ~/.config/sxhkd/sxhkdrc"
-alias pconfig="nvim ~/.config/polybar/config"
+alias termcfg="nvim ~/.config/kitty/kitty.conf"
+alias zshcfg="nvim ~/.config/zsh/.zshrc"
+alias tmuxcfg="nvim ~/.tmux.conf"
+alias bcfg="nvim ~/.config/bspwm/bspwmrc"
+alias scfg="nvim ~/.config/sxhkd/sxhkdrc"
+alias pcfg="nvim ~/.config/polybar/config"
 
 alias showpath="echo $PATH | tr ':' '\n'"
 
