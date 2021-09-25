@@ -1,17 +1,25 @@
 # dotfiles
 
+Terminal: kitty
+Editor: nvim
+WM: bspwm
+bar: polybar
+
 ## Install
+
+Configured and tested on Xubuntu 20.04.
+
 For a minimal installation, run `install-min.sh`
 
-For a full workplace installation, run `install.sh`
+For a full customized installation, run `install.sh`
 
 Add debian packages to `apps.list` for installation.
 
 ## Folder Structure
-The folder structure is set up for [stow](https://www.gnu.org/software/stow/) as the dotfiles manager. Refer to
+Dotfiles managed by [stow](https://www.gnu.org/software/stow/). Refer to
 [this](https://www.gnu.org/software/stow/) guide for how it works.
 
-Config file structure in `/home/username/`
+Config file structure
 
 ```
 ~
@@ -33,5 +41,5 @@ Config file structure in `/home/username/`
 
 ## TODO
 - Lock screen
-- nvim config
-- Firefox CSS
+- nvim config & plugins
+- Clean `.Xresources`

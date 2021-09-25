@@ -131,7 +131,7 @@ bar-empty-foreground = ${colors.foreground}
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix =  
+format-prefix =  
 format-prefix-foreground = ${colors.foreground}
 format-underline = #f90000
 label = %percentage:2%%
@@ -309,9 +309,9 @@ label-separator-foreground = ${colors.foreground}
 menu-0-0 = logout
 menu-0-0-exec = systemctl suspend
 menu-0-1 = reboot
-menu-0-1-exec = reboot
+menu-0-1-exec = systemctl reboot
 menu-0-2 = power off
-menu-0-2-exec = shutdown "Shutting down now..." 
+menu-0-2-exec = systemctl shutdown "Shutting down now..." 
 
 [module/filesystem]
 type = internal/fs
@@ -321,7 +321,7 @@ interval = 10
 fixed-values = true
 
 format-mounted = <label-mounted>
-label-mounted =   %free%
+label-mounted =  %free%
 
 
 [module/line]

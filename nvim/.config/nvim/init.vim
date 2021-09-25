@@ -2,7 +2,7 @@ syntax on
 set number 	" show line numbers
 set linebreak 
 set textwidth=100
-set wrap 	" enable line wrapping
+set wrap			" enable line wrapping
 set showmatch
 set spell
 set noswapfile
@@ -19,11 +19,11 @@ set smarttab
 set softtabstop=2
 
 set relativenumber
-set ruler	" show cursor position
+set ruler			" show cursor position
 set undolevels=1000
 set backspace=indent,eol,start  " make backspace behave normally
 
-set cursorline	" set cursorline
+set cursorline			" set cursorline
 
 " theme
 set background=dark
