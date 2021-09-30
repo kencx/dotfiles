@@ -60,6 +60,7 @@ echo "Copying Configurations..."
 
 if [ -d $HOME/dotfiles ]; then
   mkdir $HOME/dotfiles && cd $HOME/dotfiles # TODO: ignore install & bin
+fi
 
 for d in */ ;
 do

@@ -1,9 +1,16 @@
 # dotfiles
 
 Terminal: kitty
+
 Editor: nvim
+
 WM: bspwm
+
 bar: polybar
+
+browser: firefox
+
+launcher: rofi
 
 ## Install
 
@@ -43,3 +50,4 @@ Config file structure
 - Lock screen
 - nvim config & plugins
 - Clean `.Xresources`
+- Add bspwm, sxhkd to autostart
