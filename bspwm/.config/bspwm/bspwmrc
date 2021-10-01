@@ -29,6 +29,7 @@ bspc rule -a kitty desktop='I' focus=on follow=on state=floating
 bspc rule -a Code desktop='II' focus=on follow=on  
 bspc rule -a Firefox desktop='III' focus=on follow=on
 bspc rule -a TelegramDesktop desktop='IV' focus=on follow=on state=floating rectangle=640x880+20+45
+bspc rule -a kitty:Ranger desktop="V" focus=on follow=on state=floating
 
-# bspc rule -a kitty:gotop desktop='V' state=floating
-# bspc rule -a kitty:pfetch desktop='V' state=floating rectangle=200x200+20+45
+bspc rule -a kitty:Gotop desktop='V' state=floating
+bspc rule -a kitty:pfetch desktop='V' state=floating rectangle=200x200+20+45

@@ -12,6 +12,8 @@ browser: firefox
 
 launcher: rofi
 
+File Manager: ranger
+
 ## Install
 
 Configured and tested on Xubuntu 20.04.
@@ -43,6 +45,7 @@ Config file structure
      |-- kitty
      |-- rofi
      |-- polybar
+     |-- ranger 
 ```
 
 
