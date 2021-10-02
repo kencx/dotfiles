@@ -1,29 +1,41 @@
-syntax on 
-set number 	" show line numbers
+" Vim settings
+
+syntax on			" turn on syntax highlighting
+set number			" show line numbers
+set backspace=indent,eol,start  " allow backspace in insert mode
+set history=1000
+set undolevels=1000
+set mouse=a
+
+set showcmd     " show command 
+set showmode	" show mode
+set showmatch	" show matching bracket 
+set visualbell
+
+set wrap	" enable line wrapping
 set linebreak 
 set textwidth=100
-set wrap			" enable line wrapping
-set showmatch
-set spell
+
+set lazyredraw
 set noswapfile
 
-set hlsearch
-set smartcase
-set ignorecase
+" search
+set hlsearch	" enable search highlighting
 set incsearch
+set smartcase	" switch to case-sensitive when typing uppercase letter
+set ignorecase	" ignore case
 
+" indentation
 set autoindent
-set shiftwidth=2
 set smartindent
 set smarttab
+set shiftwidth=2
 set softtabstop=2
 
-set relativenumber
+" cursor
 set ruler			" show cursor position
-set undolevels=1000
-set backspace=indent,eol,start  " make backspace behave normally
-
 set cursorline			" set cursorline
+set relativenumber
 
 " theme
 set background=dark
