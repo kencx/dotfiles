@@ -1,7 +1,6 @@
 # to add:
 # vs code
 # shellcheck
-# stow
 # docker-ce docker-ce-cli
 # docker-compose
 # tmux
@@ -24,3 +23,4 @@ git
 curl
 openssh-server
 vim
+stow

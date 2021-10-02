@@ -1,8 +1,12 @@
 ZSH_THEME="cypher"
 
+# completion
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 compinit
+
+# updates
+DISABLE_UPDATE_PROMPT=true
 
 # plugins
 plugins=(git docker docker-compose)
@@ -11,6 +15,7 @@ plugins=(git docker docker-compose)
 export HISTFILE="$XDG_CONFIG_HOME/zsh/.zsh_history"
 export ZSH="/home/ken/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
+ZSH_THEME_TERM_TITLE_IDLE="zsh"
 
 # Prompts
 PROMPT='%F{yellow}%1~%f :: '
@@ -29,7 +34,7 @@ zstyle ':vcs_info:*' enable git
 export TERMINAL="kitty"
 export EDITOR="nvim"
 export BROWSER="firefox"
-export PATH=$HOME/bin:$HOME/bin:$PATH:/usr/local/go/bin
+export PATH=$HOME/bin:$PATH:/usr/local/go/bin
 
 export MANPAGER="nvim +Man!;"
 export MANWIDTH=999;
