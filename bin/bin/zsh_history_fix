@@ -1,8 +1,13 @@
-!# /bin/bash
+#!/usr/bin/env zsh
 
 # Fixes corrupt .zsh_history file
 
-mv ~/.zsh_history ~/.zsh_history_temp
-strings -eS ~/.zsh_history_temp > ~/.zsh_history
-fc -R ~/.zsh_history
-rm ~/.zsh_history_temp
+ORIGINAL_FILE=.zsh_history
+TEMP_FILE=.zsh_history_temp
+
+cd ~/.config/zsh/ || exit
+
+mv $ORIGINAL_FILE $TEMP_FILE 
+strings -eS $TEMP_FILE > $ORIGINAL_FILE 
+fc -R $ORIGINAL_FILE
+rm $TEMP_FILE 

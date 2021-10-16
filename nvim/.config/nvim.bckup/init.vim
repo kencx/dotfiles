@@ -10,7 +10,6 @@ filetype on			                " enable filetype detection
 set modelines=0			            " turn off modelines
 set history=1000
 set undolevels=1000
-set hidden
 
 set showcmd			                " show command
 set showmode			            " show mode
@@ -59,11 +58,25 @@ colorscheme gruvbox8
 let g:gruvbox_italics = 0
 let g:gruvbox_italicize_strings = 0
 
+" >> keybindings
+let mapleader = ","
+nnoremap ; :
+
+" unbind arrow keys
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
+
+" shift lines up and down with alt-{j,k}
+nnoremap <a-j> :<c-u>execute 'move +'. v:count1<cr>
+nnoremap <a-k> :<c-u>execute 'move -1-'. v:count1<cr>
+
 " >> auto commands
 
 " remove trailing whitespace on save
 autocmd! BufWrite * mark ' | silent! %s/\s\+$// | norm ''
 
 " plugins
-lua require('plugins')
-lua require('mappings')
+":lua require('plugins')
+

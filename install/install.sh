@@ -4,6 +4,8 @@ set -euo pipefail
 
 # Personal workstation installation
 
+mkdir temp && cd temp
+
 # Install apt packages
 echo "Installing packages from apps.list"
 sudo apt -q install -y $(grep -vE "^s*#" apps.list | tr "\n" " ")
@@ -17,6 +19,9 @@ sudo apt -q install -y $(grep -vE "^s*#" apps.list | tr "\n" " ")
 # FETCH: pfetch
 ./install-fetch.sh
 
+# fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 
 # TODO: install picom, polybar, gotop
 

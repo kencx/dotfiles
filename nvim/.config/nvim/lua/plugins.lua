@@ -1,33 +1,48 @@
 local fn = vim.fn
-local execute = vim.api.nvim_command
-
--- ensure that packer is installed
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-    execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
-    execute 'packadd packer.nvim'
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
-vim.cmd('packadd packer.nvim')
-vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
+return require('packer').startup(function(use)
 
-local packer = require'packer'
-local util = require'packer.util'
+    use {'wbthomason/packer.nvim', opt = true}
 
-packer.init({
-  package_root = util.join_paths(vim.fn.stdpath('data'), 'site', 'pack')
-})
+    use {'nvim-lua/plenary.nvim'}
 
---- startup and add configure plugins
-packer.startup(function()
-  local use = use
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = { {
+            'nvim-telescope/telescope-fzf-native.nvim',
+            run = 'make'
+        } }
+    }
 
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    -- lsp support
 
-  
-  require("tree-sitter")
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    }
+    use {'neovim/nvim-lspconfig'}
 
-  
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = 'kyazdani42/nvim-web-devicons',
+        config = function() require'nvim-tree'.setup {} end
+    }
+
+    use {
+        "terrortylor/nvim-comment",
+        config = function()
+            require('nvim_comment').setup()
+        end
+    }
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  if packer_bootstrap then
+    require('packer').sync()
   end
-)
+end)
+

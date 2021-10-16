@@ -5,6 +5,12 @@ autoload -Uz compinit
 zstyle ':completion:*' menu select
 compinit
 
+autoload -U bashcompinit
+bashcompinit
+eval "$(register-python-argcomplete pipx)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # updates
 DISABLE_UPDATE_PROMPT=true
 
@@ -34,7 +40,8 @@ zstyle ':vcs_info:*' enable git
 export TERMINAL="kitty"
 export EDITOR="nvim"
 export BROWSER="firefox"
-export PATH=$HOME/bin:$PATH:/usr/local/go/bin
+export PATH=$HOME/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
 
 export MANPAGER="nvim +Man!;"
 export MANWIDTH=999;
@@ -56,3 +63,5 @@ alias showpath="echo $PATH | tr ':' '\n'"
 # Debian
 alias updatable="sudo apt list --upgradeable"
 alias autoupdate="sudo apt update && sudo apt full-upgrade && sudo apt autoremove;"
+
+alias vimgolf="docker run --rm -it -e "key=867337c104fb5b765b5ef4ade2a535e0" hettomei/vimgolf"

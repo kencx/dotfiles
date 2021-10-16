@@ -1,28 +1,17 @@
 # dotfiles
 
-Terminal: kitty
-
-Editor: nvim
-
-WM: bspwm
-
-bar: polybar
-
-browser: firefox
-
-launcher: rofi
-
-File Manager: ranger
+- Terminal: kitty
+- Editor: nvim
+- WM: bspwm
+- bar: polybar
+- browser: firefox
+- launcher: rofi
+- file manager: ranger
 
 ## Install
 
 Configured and tested on Xubuntu 20.04.
 
-For a minimal installation, run `install-min.sh`
-
-For a full customized installation, run `install.sh`
-
-Add debian packages to `apps.list` for installation.
 
 ## Folder Structure
 Dotfiles managed by [stow](https://www.gnu.org/software/stow/). Refer to
