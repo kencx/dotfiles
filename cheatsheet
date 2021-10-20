@@ -1,0 +1,67 @@
+>> basic vim syntax
+> verbs
+d - delete
+c - change
+y - yank
+>,< - indent/de-indent
+v - visual
+
+> nouns
+w,b - forward, back
+{verb}iw - inner word
+{verb}i{(,[,{,',"} - inner bracket/quote
+{verb}it - inner tag
+{verb}ip - inner paragraph
+f,F - next/prev char
+t,T - next/prev char (not incl.)
+/ - search
+
+
+>> vim-sandwich
+sa{motion}{text-obj} - saiw( : foo -> (foo)
+sd{deletion} - sd( : (foo) -> foo
+sr{deletion}{addition} - sr([ : (foo) -> [foo]
+
+>> telescope
+
+> default (normal-mode)
+jk - next/previous
+H/M/L - high/middle/low
+gg/G - first/last item
+tab - move to next
+shift-tab - move to prev
+Ctrl-v - select file as vsplit
+Ctrl-t - select file in new tab
+Ctrl-u - scroll up preview window
+Ctrl-d - scroll down preview window
+Esc - close telescope
+? - show hotkeys
+
+>> nvim-tree
+tab - open as preview (keeps cursor in tree)
+backspace - close current directory
+Ctrl - ] - change the directory under cursor to root
+>,< - next/prev sibling
+P - goto parent dir
+a - add file
+r - rename file
+d - delete file
+x,c - cut/copy file/dir to clipboard
+p - paste from clipboard
+Ctrl-v - open in vsplit
+Ctrl-x - open in hsplit
+Ctrl-t - open in new tab
+H - toggle visibility of hidden files/dir
+R - refresh tree
+q - quit tree
+g? - toggle mappings UI
+
+>> barbar-nvim
+Alt-,/. - prev/next
+Alt-</> - reorder prev/next
+Alt-{1..9,0} - move to buffer pos
+Alt-w - close buffer
+Alt-p - pin/unpin
+space-bb - sort by buffer no.
+space-bd - sort by directory
+space-bl - sort by language

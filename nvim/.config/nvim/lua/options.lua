@@ -1,7 +1,7 @@
 local set = vim.opt
 
-set.nocompatible = true		        -- turn off vi compatability
-set.backspace = indent,eol,start    -- enable backspace in insert mode
+vim.cmd 'set nocompatible'		        -- turn off vi compatability
+set.backspace = 'indent,eol,start'  -- enable backspace in insert mode
 set.mouse = 'a'			            -- enable mouse support
 
 set.syntax = "on"
@@ -12,7 +12,7 @@ set.history = 1000
 set.undolevels = 1000
 
 set.showcmd = true		            -- show command
-set.showmode = true			        -- show mode
+set.showmode = false			    -- show mode
 set.showmatch = true			    -- show matching bracket
 
 set.visualbell = true			    -- turn off sound
@@ -25,7 +25,7 @@ set.textwidth = 88
 set.listchars = { trail = '.' }     -- show trailing whitespace chars
 
 set.lazyredraw = true
-set.noswapfile = true
+set.swapfile = false
 set.backup = false
 set.writebackup = false
 
@@ -56,3 +56,8 @@ set.cursorline = true			    -- set cursorline
 set.number = true		            -- show line numbers
 set.relativenumber = true
 set.scrolloff = 4			        -- number of lines above and below cursor when scrolling
+
+-- theme
+vim.o.termguicolors = true
+vim.o.background = "dark"
+vim.cmd [[colorscheme gruvbox8]]

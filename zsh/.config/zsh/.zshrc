@@ -49,6 +49,7 @@ export MANWIDTH=999;
 # Aliases
 alias lh="ls -ld .*"
 alias td="todo.sh"
+alias nv="nvim"
 
 # Configs
 alias termcfg="nvim ~/.config/kitty/kitty.conf"
@@ -57,6 +58,7 @@ alias tmuxcfg="nvim ~/.tmux.conf"
 alias bcfg="nvim ~/.config/bspwm/bspwmrc"
 alias scfg="nvim ~/.config/sxhkd/sxhkdrc"
 alias pcfg="nvim ~/.config/polybar/config"
+alias nvcfg="nvim ~/dotfiles/nvim/.config/nvim/"
 
 alias showpath="echo $PATH | tr ':' '\n'"
 
