@@ -60,4 +60,4 @@ set.scrolloff = 4			        -- number of lines above and below cursor when scrol
 -- theme
 vim.o.termguicolors = true
 vim.o.background = "dark"
-vim.cmd [[colorscheme gruvbox8]]
+vim.cmd [[colorscheme gruvbox]]

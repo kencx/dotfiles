@@ -45,7 +45,7 @@ nvim_lsp.jedi_language_server.setup {
         jedi = {
             enable = true,
             startupMessage = true,
-            markupKindPreffered = "markdown",
+            markupKindPreferred = "markdown",
             jediSettings = {
                 autoImportModules = {},
                 diagnostics = { enable = true, didSave = true, didChange = true, didOpen = true },
@@ -56,8 +56,8 @@ nvim_lsp.jedi_language_server.setup {
 }
 
 -- setup efm
-nvim_lsp.efm.setup {
-    
+--[[nvim_lsp.efm.setup {
+
     cmd = {'emf-langserver'},
     on_attach = on_attach,
     init_options = {documentFormatting = true},
@@ -65,10 +65,10 @@ nvim_lsp.efm.setup {
     settings = {
         rootMarkers = {'.git/'},
         languages = {
-            python = {flake8, mypy}, 
+            python = {flake8, mypy},
         }
     },
-}
+}]]
 
 
 -- setup

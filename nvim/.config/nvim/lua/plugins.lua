@@ -5,27 +5,36 @@ if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
-return require('packer').startup(function(use)
-     
+return require('packer').startup({function(use)
+
+    -- caches lua modules
+    use {'lewis6991/impatient.nvim',
+        config = function()
+            require'impatient'.enable_profile()
+        end,
+    }
+
     use {'wbthomason/packer.nvim'}
     use {'nvim-lua/plenary.nvim'}
 
-    -- lsp support
+    -- lsp and completion support
     use {
         'nvim-treesitter/nvim-treesitter',
         config = function()
             require('config.treesitter')
         end,
         run = ':TSUpdate',
-        event = 'BufEnter',
+        event = 'BufRead',
     }
- 
+
     use {'hrsh7th/nvim-cmp',
         config = function()         -- todo: lazy load
             require('config.cmp')
         end,
+        event = 'InsertEnter',
     }
-    use {'hrsh7th/cmp-nvim-lsp'}
+    use {'hrsh7th/cmp-nvim-lsp',
+    }
     use {'neovim/nvim-lspconfig',   -- todo: configs, lazy load
         config = function()
             require('config.lsp')
@@ -37,12 +46,13 @@ return require('packer').startup(function(use)
         'kyazdani42/nvim-tree.lua',
         config = function()
             require('config.nvim_tree')         -- todo: lazy load
-        end
+        end,
+        -- cmd = { 'NvimTreeToggle', 'NvimTreeFocus' },
     }
 
     use {
         'romgrk/barbar.nvim',
-        event = 'BufRead',
+        event = 'BufEnter',
         --[[config = function()
             require('configs.barbar_nvim')     -- todo: configs
         end]]
@@ -52,9 +62,10 @@ return require('packer').startup(function(use)
         'hoob3rt/lualine.nvim',
         config = function()
             require('lualine').setup()          -- todo: configs
-        end
+        end,
+        -- after = 'gruvbox.nvim',
     }
-    
+
     --[[use {
         'lukas-reineke/indent-blankline.nvim',
         event = 'BufRead',
@@ -62,7 +73,7 @@ return require('packer').startup(function(use)
     use {'lewis6991/gitsigns.nvim'}
     use {'kyazdani42/nvim-web-devicons'}
 
-    -- qol support
+    -- Quality of Life support
     -- TODO: project, which-key, dashboard, DAP, toggleterm
     use {
         'nvim-telescope/telescope.nvim',        -- todo: configs
@@ -77,15 +88,25 @@ return require('packer').startup(function(use)
             require('nvim_comment').setup()
         end
     }
-
-    use {'lewis6991/impatient.nvim'}
     use {'machakann/vim-sandwich'}
-    use {'dstein64/vim-startuptime'}
 
     -- colorscheme
-    -- use {'ellisonleao/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
-    use {'lifepillar/vim-gruvbox8'}
+    use {'ellisonleao/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
 
-end)
+end,
 
+    config = {
+        -- floating window for command outputs
+        display = {
+            open_fn = function()
+                return require('packer.util').float({ border = 'single' })
+            end
+        },
+        compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
+        profile = {
+            enable = true,
+            threshold = 1
+        },
+    }
+})
 

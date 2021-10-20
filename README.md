@@ -1,7 +1,7 @@
 # dotfiles
 
 - Terminal: kitty
-- Editor: nvim
+- Editor: neovim
 - WM: bspwm
 - bar: polybar
 - browser: firefox
@@ -11,6 +11,8 @@
 ## Install
 
 Configured and tested on Xubuntu 20.04.
+- Font: Fira Code
+- Theme: gruvbox dark
 
 
 ## Folder Structure
@@ -34,12 +36,13 @@ Config file structure
      |-- kitty
      |-- rofi
      |-- polybar
-     |-- ranger 
+     |-- ranger
 ```
 
+## neovim
+Refer to nvim README.md for more details
 
 ## TODO
 - Lock screen
-- nvim config & plugins
 - Clean `.Xresources`
 - Add bspwm, sxhkd to autostart

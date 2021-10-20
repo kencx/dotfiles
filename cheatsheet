@@ -6,6 +6,7 @@ y - yank
 >,< - indent/de-indent
 v - visual
 
+
 > nouns
 w,b - forward, back
 {verb}iw - inner word
@@ -15,7 +16,12 @@ w,b - forward, back
 f,F - next/prev char
 t,T - next/prev char (not incl.)
 / - search
+gu, gU - change to lower/upper case
 
+> tips
+K - go to manual entry of word under cursor
+:cd %:h - change pwd to current file's directory
+:vsp - open vertical terminal
 
 >> vim-sandwich
 sa{motion}{text-obj} - saiw( : foo -> (foo)
