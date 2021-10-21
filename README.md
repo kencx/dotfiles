@@ -1,10 +1,10 @@
 # dotfiles
-<p align="center">
-bspwm, polybar, kitty
-neovim - Refer to nvim README.md for more details
+
+- bspwm, polybar, kitty
+- neovim with LSP, completion and IDE-like features
+  - Refer to nvim README.md for more info
 - Font: Fira Code
 - Theme: gruvbox dark
-</p>
 
 ## Install
 - Configured and tested on Xubuntu 20.04.
