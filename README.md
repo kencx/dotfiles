@@ -1,7 +1,9 @@
 # dotfiles
 <p align="center">
 bspwm, polybar, kitty
+
 neovim - Refer to nvim README.md for more details
+
 - Font: Fira Code
 - Theme: gruvbox dark
 </p>
