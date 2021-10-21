@@ -72,6 +72,11 @@ return require('packer').startup({function(use)
     }]]
     use {'lewis6991/gitsigns.nvim'}
     use {'kyazdani42/nvim-web-devicons'}
+    use {'glepnir/dashboard-nvim',
+        config = function()
+            require('config.dashboard')
+        end,
+    }
 
     -- Quality of Life support
     -- TODO: project, which-key, dashboard, DAP, toggleterm
