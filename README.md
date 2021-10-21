@@ -1,47 +1,23 @@
 # dotfiles
-
-- Terminal: kitty
-- Editor: neovim
-- WM: bspwm
-- bar: polybar
-- browser: firefox
-- launcher: rofi
-- file manager: ranger
-
-## Install
-
-Configured and tested on Xubuntu 20.04.
+<p align="center">
+bspwm, polybar, kitty
+neovim - Refer to nvim README.md for more details
 - Font: Fira Code
 - Theme: gruvbox dark
+</p>
 
+## Install
+- Configured and tested on Xubuntu 20.04.
+- Automated and idempotent installation with Ansible
 
 ## Folder Structure
 Dotfiles managed by [stow](https://www.gnu.org/software/stow/). Refer to
-[this](https://www.gnu.org/software/stow/) guide for how it works.
-
-Config file structure
-
+[this](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html) guide for how it works.
 ```
-~
-|-- .zshenv
-|-- .Xresources
-|-- bin
-|-- .mozilla
-|-- .config
-     |-- zsh
-     |-- bspwm
-     |-- sxhkd
-     |-- picom
-     |-- nvim
-     |-- kitty
-     |-- rofi
-     |-- polybar
-     |-- ranger
+$ stow $file --target="/home/$USER"
 ```
 
-## neovim
-Refer to nvim README.md for more details
-
+---
 ## TODO
 - Lock screen
 - Clean `.Xresources`
