@@ -1,0 +1,78 @@
+---
+- hosts: localhost
+  become: true
+
+  vars:
+    - download_dir: "/tmp/polybar"
+
+  tasks:
+    - name: Check if polybar installed
+      stat:
+        path: "/usr/local/bin/polybar"
+      register: polybar_exists
+
+    - block:
+      - name: end playbook if polybar exists
+        debug:
+          msg: "polybar exists, ending play"
+      - meta: end_host
+      when: polybar_exists.stat.exists
+
+    - name: Install build dependencies
+      apt:
+        pkg:
+          - build-essential
+          - cmake
+          - cmake-data
+          - pkg-config
+          - python3-sphinx
+          - python3-packaging
+
+    - name: Install hard dependencies
+      apt:
+        pkg:
+          - libuv1-dev
+          - libcairo2-dev
+          - libxcb1-dev
+          - libxcb-util0-dev
+          - libxcb-randr0-dev
+          - libxcb-composite0-dev
+          - python3-xcbgen
+          - xcb-proto
+          - libxcb-image0-dev
+          - libxcb-ewmh-dev
+          - libxcb-icccm4-dev
+
+    - name: Install optional dependencies
+      apt:
+        pkg:
+          - libxcb-xkb-dev
+          - libxcb-xrm-dev
+          - libxcb-cursor-dev
+          - libasound2-dev
+          - libpulse-dev
+          - libmpdclient-dev
+          - libcurl4-openssl-dev
+          - libnl-genl-3-dev
+
+    - name: Get latest release
+      uri:
+        url: "https://api.github.com/repos/polybar/polybar/releases/latest"
+        return_content: true
+      register: json_response
+
+    - name: "Install and extract polybar {{ json_response.json.tag_name }}"
+      unarchive:
+        src: "{{ json_response.json.tarball_url }}"
+        dest: "{{ download_dir }}"
+        remote_src: true
+        keep_newer: yes
+
+    - name: Compile and build polybar
+      command:
+        cmd: "cmake .. && make -j$(nproc) && sudo make install"
+        chdir: "{{ download_dir }}/polybar/build"
+        creates: "build"
+
+
+

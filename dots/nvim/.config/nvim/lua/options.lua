@@ -42,7 +42,7 @@ set.wrapscan = true			        -- wrap searches around end-of-file
 
 -- indentation
 set.expandtab = true
-set.tabstop = 4                     -- print tabs as 2 space
+set.tabstop = 4                     -- print tabs as 4 space
 set.softtabstop = 4
 set.shiftwidth = 4
 set.autoindent = true

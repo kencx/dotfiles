@@ -23,6 +23,14 @@ K - go to manual entry of word under cursor
 :cd %:h - change pwd to current file's directory
 :vsp - open vertical terminal
 
+
+>> nvim-lsp
+gd - go to definition under cursor
+Ctrl-O - go back to last cursor position
+
+
+
+
 >> vim-sandwich
 sa{motion}{text-obj} - saiw( : foo -> (foo)
 sd{deletion} - sd( : (foo) -> foo

@@ -18,10 +18,12 @@ DISABLE_UPDATE_PROMPT=true
 plugins=(git docker docker-compose)
 
 # User configuration
-export HISTFILE="$XDG_CONFIG_HOME/zsh/.zsh_history"
+export HISTFILE="/home/ken/.config/zsh/.zsh_history"
 export ZSH="/home/ken/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 ZSH_THEME_TERM_TITLE_IDLE="zsh"
+HISTSIZE=10000
+SAVEHIST=10000
 
 # Prompts
 PROMPT='%F{yellow}%1~%f :: '
