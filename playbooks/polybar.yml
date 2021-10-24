@@ -16,7 +16,7 @@
         debug:
           msg: "polybar exists, ending play"
       - meta: end_host
-      when: not polybar_exists.stat.exists
+      when: polybar_exists.stat.exists
 
     - name: Install build dependencies
       apt:
@@ -70,7 +70,7 @@
 
         - name: "Install and extract polybar {{ json_response.json.tag_name }}"
           unarchive:
-            src: "{{ json_response.json.tarball_url }}"
+            src: "{{ json_response.json.assets.0.browser_download_url }}"
             dest: "{{ download_dir }}"
             remote_src: true
             keep_newer: yes
@@ -79,16 +79,26 @@
     - block:
         - name: Ensure build directory exists
           file:
-            path: "{{ download_dir }}/polybar/build"
+            path: "{{ download_dir }}/build"
             state: directory
 
-        - name: Compile and build polybar
-          command:
-            cmd: <
-              cmake ..
-              && make -j$(nproc)
-              && sudo make install
-            chdir: "{{ download_dir }}/polybar/build"
+        - name: Build and compile
+          shell: "{{ item }}"
+          args:
+            chdir: "{{ download_dir }}/build"
+          with_items:
+            - cmake ..
+            - make -j$(nproc)
+            - sudo make install
 
-
-
+    - name: Remove build dependencies
+      apt:
+        pkg:
+          - build-essential
+          - cmake
+          - cmake-data
+          - pkg-config
+          - python3-sphinx
+          - python3-packaging
+        autoremove: yes
+        state: absent
