@@ -5,6 +5,7 @@ autoload -Uz compinit
 zstyle ':completion:*' menu select
 compinit
 
+# add pipx autocomplete
 autoload -U bashcompinit
 bashcompinit
 eval "$(register-python-argcomplete pipx)"
@@ -15,35 +16,48 @@ eval "$(register-python-argcomplete pipx)"
 DISABLE_UPDATE_PROMPT=true
 
 # plugins
-plugins=(git docker docker-compose)
+plugins=(
+    git
+    ansible
+    docker
+    docker-compose
+    sudo                # press esc twice to add sudo to current line
+    systemd
+    ufw
+    tmux
+    command-not-found   # provide suggested packages
+    pip
+    python
+    vi-mode             # esc to enter vim mode
+)
 
 # User configuration
-export HISTFILE="/home/ken/.config/zsh/.zsh_history"
-export ZSH="/home/ken/.oh-my-zsh"
+export HISTFILE="$HOME/.config/zsh/.zsh_history"
+export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 ZSH_THEME_TERM_TITLE_IDLE="zsh"
 HISTSIZE=10000
 SAVEHIST=10000
 
 # Prompts
-PROMPT='%F{yellow}%1~%f :: '
+# PROMPT='%F{yellow}%1~%f :: '
 
 # Git Right Prompt
-autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
-RPROMPT=\$vcs_info_msg_0_
-zstyle ':vcs_info:git:*' formats '%F{yellow}(%b) %r%f'
-zstyle ':vcs_info:*' enable git
-
+# autoload -Uz vcs_info
+# precmd_vcs_info() { vcs_info }
+# precmd_functions+=( precmd_vcs_info )
+# setopt prompt_subst
+# RPROMPT=\$vcs_info_msg_0_
+# zstyle ':vcs_info:git:*' formats '%F{yellow}(%b) %r%f'
+# zstyle ':vcs_info:*' enable git
+# recmd_vcs
 
 # Global variables
 export TERMINAL="kitty"
 export EDITOR="nvim"
 export BROWSER="firefox"
-export PATH=$HOME/bin:$PATH
-export PATH=$PATH:/usr/local/go/bin
+export PATH="$HOME/bin:$PATH"
+export PATH="$PATH:/usr/local/go/bin"
 
 export MANPAGER="nvim +Man!;"
 export MANWIDTH=999;
@@ -63,9 +77,8 @@ alias pcfg="nvim ~/.config/polybar/config"
 alias nvcfg="nvim ~/dotfiles/nvim/.config/nvim/"
 
 alias showpath="echo $PATH | tr ':' '\n'"
-
-# Debian
-alias updatable="sudo apt list --upgradeable"
-alias autoupdate="sudo apt update && sudo apt full-upgrade && sudo apt autoremove;"
-
 alias vimgolf="docker run --rm -it -e "key=867337c104fb5b765b5ef4ade2a535e0" hettomei/vimgolf"
+
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
+eval "$(starship init zsh)"
+
