@@ -11,7 +11,7 @@ $HOME/.config/polybar/launch.sh
 # bspwm
 bspc monitor -d I II III IV V
 
-bspc config window_gap      12 
+bspc config window_gap      12
 bspc config top_padding	    24
 bspc config border_width    0
 
@@ -26,10 +26,13 @@ bspc config pointer action2 resize_corner
 bspc config pointer_action1 move
 
 bspc rule -a kitty desktop='I' focus=on follow=on state=floating
-bspc rule -a Code desktop='II' focus=on follow=on  
-bspc rule -a Firefox desktop='III' focus=on follow=on
-bspc rule -a TelegramDesktop desktop='IV' focus=on follow=on state=floating rectangle=640x880+20+45
-bspc rule -a kitty:Ranger desktop="V" focus=on follow=on state=floating
+bspc rule -a Firefox desktop='II' focus=on follow=on state=tiled
+bspc rule -a Obsidian desktop='III' focus=on follow=on state=tiled
+bspc rule -a TelegramDesktop desktop='IV' focus=on follow=on state=floating rectangle=640x880+35+60
 
 bspc rule -a kitty:Gotop desktop='V' state=floating
 bspc rule -a kitty:pfetch desktop='V' state=floating rectangle=200x200+20+45
+
+# bspc rule -a Code desktop='II' focus=on follow=on
+# bspc rule -a kitty:Ranger desktop="V" focus=on follow=on state=floating
+# bspc rule -a zathura desktop="" focus=on follow=on
