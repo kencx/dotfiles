@@ -39,27 +39,15 @@ ZSH_THEME_TERM_TITLE_IDLE="zsh"
 HISTSIZE=10000
 SAVEHIST=10000
 
-# Prompts
-# PROMPT='%F{yellow}%1~%f :: '
-
-# Git Right Prompt
-# autoload -Uz vcs_info
-# precmd_vcs_info() { vcs_info }
-# precmd_functions+=( precmd_vcs_info )
-# setopt prompt_subst
-# RPROMPT=\$vcs_info_msg_0_
-# zstyle ':vcs_info:git:*' formats '%F{yellow}(%b) %r%f'
-# zstyle ':vcs_info:*' enable git
-# recmd_vcs
-
 # Global variables
-export TERMINAL="kitty"
+export TERM="xterm-kitty"
+export TERMINFO="$HOME/.terminfo"
 export EDITOR="nvim"
 export BROWSER="firefox"
 export PATH="$HOME/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin"
 
-export MANPAGER="nvim +Man!;"
+# export MANPAGER="nvim +Man!;"
 export MANWIDTH=999;
 
 # Aliases
@@ -74,7 +62,7 @@ alias tmuxcfg="nvim ~/.tmux.conf"
 alias bcfg="nvim ~/.config/bspwm/bspwmrc"
 alias scfg="nvim ~/.config/sxhkd/sxhkdrc"
 alias pcfg="nvim ~/.config/polybar/config"
-alias nvcfg="nvim ~/dotfiles/nvim/.config/nvim/"
+# alias nvcfg="nvim ~/dotfiles/nvim/.config/nvim/"
 
 alias showpath="echo $PATH | tr ':' '\n'"
 alias vimgolf="docker run --rm -it -e "key=867337c104fb5b765b5ef4ade2a535e0" hettomei/vimgolf"

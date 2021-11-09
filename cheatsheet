@@ -1,4 +1,34 @@
->> basic vim syntax
+## bspwm sxhkd
+super + {Return, d, space, Escape, @slash, u} - {kitty, neovim, rofi, restart sxhkd, keybinds, scratchpad}
+super + {_,shift+}w - close/kill window
+super + alt + w - close all windows except focused one
+super + alt + {q,r} - quit/restart bspwm
+
+# nodes
+super + g - swap current and biggest node
+
+super + n - turn on window manipulation
+    super + {l,s,p} - toggle node to {locked, sticky, private}
+    super + f - toggle all focused windows between tiled and floating state
+    {_, super + } {1-5} - {focus,send to} desktop {1-5}
+
+super + {t, shift+t, s, f} - set window to {tiled, pseudo_tiled, floating, fullscreen}
+super + {_,shift+} {h,j,k,l} - {focus,swap} node in given direction
+super + {[,]} - focus {prev,next} desktop
+super + {grave,tab} - focus last {node, desktop}
+
+# move, resize
+super + r - turn on move mode
+    {h,j,k,l} - expand {left,bottom,top,right}
+    {h,j,k,l} - contract {left,bottom,top,right}
+    {left,down,up,right} - move {left,down,up,right}
+super + e - equalize side
+
+# preselection
+super + ctrl + {h,j,k,l, space} - preselect {west,south,north,east, cancel}
+
+
+## basic vim syntax
 > verbs
 d - delete
 c - change
@@ -7,7 +37,7 @@ y - yank
 v - visual
 
 
-> nouns
+# nouns
 w,b - forward, back
 {verb}iw - inner word
 {verb}i{(,[,{,',"} - inner bracket/quote
@@ -18,27 +48,27 @@ t,T - next/prev char (not incl.)
 / - search
 gu, gU - change to lower/upper case
 
-> tips
+# tips
 K - go to manual entry of word under cursor
 :cd %:h - change pwd to current file's directory
 :vsp - open vertical terminal
 
 
->> nvim-lsp
+## nvim-lsp
 gd - go to definition under cursor
 Ctrl-O - go back to last cursor position
 
 
 
 
->> vim-sandwich
+## vim-sandwich
 sa{motion}{text-obj} - saiw( : foo -> (foo)
 sd{deletion} - sd( : (foo) -> foo
 sr{deletion}{addition} - sr([ : (foo) -> [foo]
 
->> telescope
+## telescope
 
-> default (normal-mode)
+# default (normal-mode)
 jk - next/previous
 H/M/L - high/middle/low
 gg/G - first/last item
@@ -51,7 +81,7 @@ Ctrl-d - scroll down preview window
 Esc - close telescope
 ? - show hotkeys
 
->> nvim-tree
+## nvim-tree
 tab - open as preview (keeps cursor in tree)
 backspace - close current directory
 Ctrl - ] - change the directory under cursor to root
@@ -70,7 +100,7 @@ R - refresh tree
 q - quit tree
 g? - toggle mappings UI
 
->> barbar-nvim
+## barbar-nvim
 Alt-,/. - prev/next
 Alt-</> - reorder prev/next
 Alt-{1..9,0} - move to buffer pos

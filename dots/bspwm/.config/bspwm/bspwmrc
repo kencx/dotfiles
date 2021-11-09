@@ -1,12 +1,13 @@
 #! /bin/sh
 
-# Autostart applications
-sxhkd &
-picom &
-$HOME/.config/polybar/launch.sh
-
-# Set wallpaper
+# autostart applications
+pgrep -x sxhkd > /dev/null || sxhkd &
+pgrep -x picom > /dev/null || picom &
+while pgrep -x polybar > /dev/null; do sleep 1; done || \
+$HOME/.config/polybar/launch.sh &
+pgrep -x redshift > /dev/null || redshift -c ~/.config/redshift/redshift.conf &
 ~/.fehbg &
+pgrep -x dunst > /dev/null || dunst &
 
 # bspwm
 bspc monitor -d I II III IV V
@@ -16,7 +17,7 @@ bspc config top_padding	    24
 bspc config border_width    0
 
 bspc config automatic_scheme     longest_side
-bspc config split_ratio          0.6
+bspc config split_ratio          0.5
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
@@ -25,14 +26,23 @@ bspc config pointer_action2 resize_side
 bspc config pointer action2 resize_corner
 bspc config pointer_action1 move
 
-bspc rule -a kitty desktop='I' focus=on follow=on state=floating
+bspc rule -a dev -o desktop='I' state=tiled
 bspc rule -a Firefox desktop='II' focus=on follow=on state=tiled
-bspc rule -a Obsidian desktop='III' focus=on follow=on state=tiled
-bspc rule -a TelegramDesktop desktop='IV' focus=on follow=on state=floating rectangle=640x880+35+60
+bspc rule -a obsidian desktop='III' focus=on follow=on state=tiled
+bspc rule -a TelegramDesktop desktop='V' state=floating \
+    rectangle=680x920+35+60 && telegram-desktop &
 
-bspc rule -a kitty:Gotop desktop='V' state=floating
-bspc rule -a kitty:pfetch desktop='V' state=floating rectangle=200x200+20+45
+# scratchpad
+bspc rule -a scratchpad sticky=on state=floating locked=on hidden=on rectangle=600x400+660+340
+xdotool search --class scratchpad windowkill
+kitty --class scratchpad &
 
-# bspc rule -a Code desktop='II' focus=on follow=on
-# bspc rule -a kitty:Ranger desktop="V" focus=on follow=on state=floating
-# bspc rule -a zathura desktop="" focus=on follow=on
+bspc rule -a feh state=floating
+bspc rule -a kitty focus=on state=floating rectangle=600x400+660+340
+
+# debian GUI
+bspc rule -a Pavucontrol state=floating
+bspc rule -a Blueman-manager state=floating
+bspc rule -a Power-manager state=floating
+bspc rule -a Thunar state=floating
+

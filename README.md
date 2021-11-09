@@ -1,23 +1,23 @@
 # dotfiles
-- bspwm, polybar, kitty
-- neovim with LSP, completion and IDE-like features
-  - Refer to nvim README.md for more info
-- Font: Fira Code
+
+## Applications
+- bspwm, sxhkd - heavily opinionated hotkeys
+- ohmyzsh, neovim - plugins galore
+- kitty, polybar, dunst
+- picom, feh, starship, zathura, rofi
+- custom [startpage](https://github.com/kennethcheo/startpage)
 - Theme: gruvbox dark
+- Font: Fira Code Nerd Font
 
 ## Install
-- Configured and tested on Xubuntu 20.04.
-- Automated and idempotent installation with Ansible
+- Tested on Xubuntu
 
-## Folder Structure
+## Management
 Dotfiles managed by [stow](https://www.gnu.org/software/stow/). Refer to
 [this](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html) guide for how it works.
 ```
-$ stow $file --target="/home/$USER"
+$ stow $file --target="$HOME"
 ```
 
----
-## TODO
-- Lock screen
-- Clean `.Xresources`
-- Add bspwm, sxhkd to autostart
+## Future
+- tmux, alacritty

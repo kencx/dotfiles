@@ -38,11 +38,14 @@ font-1 = FiraCode Nerd Font:size=10;4
 
 modules-left = bspwm
 modules-center = time
-modules-right = cpu filesystem eth pulseaudio line powermenu
+modules-right = cpu filesystem bluetooth eth pulseaudio line powermenu
 
 module-margin = 1
 
-;wm-restack = bspwm
+tray-position = left
+tray-detached = false
+
+wm-restack = bspwm
 
 scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
@@ -74,10 +77,10 @@ enable-click=true
 reverse-scroll=false
 
 ws-icon-0 = I;
-ws-icon-1 = II;
-ws-icon-2 = III;
-ws-icon-3 = IV;切
-ws-icon-4 = V;
+ws-icon-1 = II;
+ws-icon-2 = III;
+ws-icon-3 = IV;
+ws-icon-4 = V;切
 ws-icon-default = ○
 
 label-focused = %icon%
@@ -131,10 +134,11 @@ bar-empty-foreground = ${colors.foreground}
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix =  
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 format-underline = #f90000
 label = %percentage:2%%
+
 
 [module/memory]
 type = internal/memory
@@ -167,9 +171,10 @@ ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground}
 
+
 [module/eth]
 type = internal/network
-interface = enp0s3
+interface = wlx983f9f060451
 interval = 3.0
 
 label-connected = 直
@@ -179,6 +184,7 @@ format-disconnected = 睊
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground}
+
 
 [module/time]
 type = internal/date
@@ -198,7 +204,7 @@ use-ui-max = false
 interval = 5
 click-right = pavucontrol
 
-format-muted = <label-muted> <label-volume>
+format-muted = <label-muted>
 label-muted = ﱝ
 label-muted-foreground = ${colors.foreground}
 
@@ -240,6 +246,7 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground}
 
+
 [module/battery]
 type = internal/battery
 battery = BAT0
@@ -273,10 +280,19 @@ animation-discharging-2 = 
 animation-discharging-foreground = ${colors.foreground}
 animation-discharging-framerate = 750
 
+
+[module/bluetooth]
+type = custom/script
+exec = ~/bin/polybar-bluetooth.sh
+tail = true
+click-left = ~/bin/polybar-bluetooth.sh --toggle &
+click-right = blueman-manager
+
+
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 60
+warn-temperature = 70
 
 format = <ramp> <label>
 format-underline = #f50a4d
@@ -291,6 +307,7 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground}
+
 
 [module/powermenu]
 type = custom/menu
@@ -307,11 +324,12 @@ label-separator = |
 label-separator-foreground = ${colors.foreground}
 
 menu-0-0 = logout
-menu-0-0-exec = systemctl suspend
+menu-0-0-exec = logout
 menu-0-1 = reboot
-menu-0-1-exec = systemctl reboot
+menu-0-1-exec = reboot now
 menu-0-2 = power off
-menu-0-2-exec = systemctl shutdown "Shutting down now..." 
+menu-0-2-exec = shutdown "Shutting down now..."
+
 
 [module/filesystem]
 type = internal/fs
