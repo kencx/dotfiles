@@ -17,7 +17,7 @@ configuration {
   blue: #5DA399;
 
   background-color: @bg;
-  
+
   border: 0;
   margin: 0;
   padding: 0;
@@ -56,7 +56,7 @@ mainbox {
 prompt {
   background-color: @bg-alt;
   enabled: true;
-  font: "FiraCode Nerd Font 12";
+  font: "FiraCode Nerd Font 10";
   padding: 12 0 0 12;
   text-color: @fg;
 }

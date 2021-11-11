@@ -36,14 +36,17 @@ foreground = ${colors.foreground}
 font-0 = FiraCode Nerd Font:pixelsize=10;4
 font-1 = FiraCode Nerd Font:size=10;4
 
-modules-left = bspwm
+modules-left = bspwm spotify
 modules-center = time
 modules-right = cpu filesystem bluetooth eth pulseaudio line powermenu
 
 module-margin = 1
 
-tray-position = left
+tray-position = right
 tray-detached = false
+tray-maxsize = 10
+tray-background=${colors.background}
+tray-x-offset = 3
 
 wm-restack = bspwm
 
@@ -99,6 +102,15 @@ label-urgent = %icon%
 label-urgent-padding = 2
 label-urgent-foreground = ${colors.alert}
 label-urgent-underline = ${colors.foreground}
+
+[module/spotify]
+type= custom/script
+exec = $HOME/bin/sptctl
+tail = true
+interval = 5
+
+label = %output%
+click-left = playerctl play-pause -p spotifyd
 
 [module/mpd]
 type = internal/mpd
@@ -178,6 +190,7 @@ interface = wlx983f9f060451
 interval = 3.0
 
 label-connected = 直
+format-connected = %{A1:$HOME/bin/nmcli-rofi:}<label-connected>%{A}
 
 format-disconnected = 睊
 ;format-disconnected = <label-disconnected>
@@ -283,10 +296,9 @@ animation-discharging-framerate = 750
 
 [module/bluetooth]
 type = custom/script
-exec = ~/bin/polybar-bluetooth.sh
-tail = true
-click-left = ~/bin/polybar-bluetooth.sh --toggle &
-click-right = blueman-manager
+exec = $HOME/bin/rofi-bluetooth --status
+interval = 1
+click-right = $HOME/bin/rofi-bluetooth &
 
 
 [module/temperature]
@@ -313,7 +325,6 @@ ramp-foreground = ${colors.foreground}
 type = custom/menu
 
 expand-right = true
-
 format-spacing = 1
 
 label-open = 
@@ -324,11 +335,11 @@ label-separator = |
 label-separator-foreground = ${colors.foreground}
 
 menu-0-0 = logout
-menu-0-0-exec = logout
+menu-0-0-exec = xfce4-session-logout
 menu-0-1 = reboot
-menu-0-1-exec = reboot now
+menu-0-1-exec = systemctl reboot
 menu-0-2 = power off
-menu-0-2-exec = shutdown "Shutting down now..."
+menu-0-2-exec = systemctl shutdown
 
 
 [module/filesystem]

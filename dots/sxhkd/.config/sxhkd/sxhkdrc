@@ -1,7 +1,11 @@
 
-# terminal
+# floating terminal
 super + Return
 	kitty
+
+# tiled terminal
+super + v
+    kitty --class tiled
 
 # neovim
 super + d
@@ -11,21 +15,33 @@ super + d
 super + space
 	rofi -show drun
 
-# reload sxhkd
-super + Escape
-	pkill -USR1 -x sxhkd
-
 # keybindings
 super + @slash
-	~/bin/keybindings | rofi -dmenu -i -p "hotkeys"
+	$HOME/bin/keybindings | rofi -dmenu -i -p "hotkeys"
+
+# configs
+super + shift + z
+    kitty --class configs $HOME/bin/configs
+
+# toggle bluetooth
+super + b
+    $HOME/bin/rofi-bluetooth
+
+# wifi menu
+super + shift + c
+    $HOME/bin/nmcli-rofi
+
+# toggle scratchpad
+super + u
+    $HOME/bin/scratchpad scratchpad
 
 # todo tasks
 alt + t
        todofi.sh
 
-# toggle scratchpad
-super + u
-    ~/bin/scratchpad.sh scratchpad
+# reload sxhkd
+super + Escape
+	pkill -USR1 -x sxhkd
 
 #
 # bspwm hotkeys
@@ -38,10 +54,6 @@ super + alt + {q,r}
 # close and kill
 super + {_,shift + }w
 	bspc node -{c,k}
-
-# swap the current node and the biggest node
-super + g
-	bspc node -s biggest.local
 
 #
 # state/flags
@@ -69,21 +81,35 @@ super + n : super + shift + h
 
 # toggle all focused windows between floating and tiled state
 super + n : super + f
-    bspc query -N -d focused | xargs -I node_id bspc node node_id -t {floating,tiled}
+    bspc query -N -d focused | xargs -I node_id bspc node node_id -t {tiled,pseudo_tiled}
 
 #
 # focus/swap
 #
 
-# move window to chosen node
+# swap the current node and the biggest node
+super + g
+	bspc node -s biggest.local
 
 # {focus, swap} the node in the given direction
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
+# focus {next, prev} node
+super +
+    bspc node -{f,s} {next,prev}.local.!hidden.window
+
 # rotate nodes {clockwise, anti-clockwise}
 super + shift + {d,a}
     bspc node @/ -C {forward,backward}
+
+# flip nodes vertically, horizontally
+super + n : super + {_,shift + } f
+    bspc node @/ -F {vertical, horizontal}
+
+# move window to chosen preselection
+super + shift + m
+    bspc node -n last.!automatic
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
@@ -110,6 +136,7 @@ super + ctrl + {h,j,k,l}
 # cancel the preselection for the focused node
 super + ctrl + space
 	bspc node -p cancel
+
 
 #
 # move/resize

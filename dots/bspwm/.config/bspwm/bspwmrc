@@ -3,8 +3,7 @@
 # autostart applications
 pgrep -x sxhkd > /dev/null || sxhkd &
 pgrep -x picom > /dev/null || picom &
-while pgrep -x polybar > /dev/null; do sleep 1; done || \
-$HOME/.config/polybar/launch.sh &
+$HOME/.config/polybar/launch.sh
 pgrep -x redshift > /dev/null || redshift -c ~/.config/redshift/redshift.conf &
 ~/.fehbg &
 pgrep -x dunst > /dev/null || dunst &
@@ -26,11 +25,19 @@ bspc config pointer_action2 resize_side
 bspc config pointer action2 resize_corner
 bspc config pointer_action1 move
 
+bspc rule -a kitty focus=on state=floating rectangle=600x400+660+340
+bspc rule -a tiled state=tiled focus=on
+bspc rule -a configs state=floating focus=on rectangle=760x700+620+200
 bspc rule -a dev -o desktop='I' state=tiled
+
 bspc rule -a Firefox desktop='II' focus=on follow=on state=tiled
 bspc rule -a obsidian desktop='III' focus=on follow=on state=tiled
-bspc rule -a TelegramDesktop desktop='V' state=floating \
+bspc rule -a TelegramDesktop desktop='V' state=floating follow=off focus=off \
     rectangle=680x920+35+60 && telegram-desktop &
+bspc rule -a gotop -o desktop='V' state=floating follow=off focus=off \
+    rectangle=680x920+900+60
+
+kitty --class gotop gotop --nvidia &
 
 # scratchpad
 bspc rule -a scratchpad sticky=on state=floating locked=on hidden=on rectangle=600x400+660+340
@@ -38,7 +45,6 @@ xdotool search --class scratchpad windowkill
 kitty --class scratchpad &
 
 bspc rule -a feh state=floating
-bspc rule -a kitty focus=on state=floating rectangle=600x400+660+340
 
 # debian GUI
 bspc rule -a Pavucontrol state=floating

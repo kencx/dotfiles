@@ -1,0 +1,18 @@
+export DOTFILES="$HOME/dotfiles/dots"
+
+alias lh="ls -ld .*"
+alias td="todo.sh"
+alias nv="nvim"
+
+alias aliases="nvim $DOTFILES/zsh/.config/zsh/.zsh_alias"
+alias zshcfg="nvim $DOTFILES/zsh/.config/zsh/.zshrc"
+alias bcfg="nvim $DOTFILES/bspwm/.config/bspwm/bspwmrc"
+alias scfg="nvim $DOTFILES/sxhkd/.config/sxhkd/sxhkdrc"
+alias pcfg="nvim $DOTFILES/polybar/.config/polybar/config"
+
+alias pf="ps aux | fzf"
+
+
+alias showpath="echo $PATH | tr ':' '\n'"
+alias vimgolf="docker run --rm --it -e key="867337c104fb5b765b5ef4ade2a535e0" hettomei/vimgolf"
+

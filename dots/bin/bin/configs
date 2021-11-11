@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# easy access to config files
+
+CONFIGS='(zsh|bspwm|sxhkd|polybar|kitty|starship|rofi|dunst|config)'
+EXCLUDE='{autostart,bin}'
+
+FILE=$(fd $CONFIGS --exclude $EXCLUDE --type f --hidden ~/dotfiles/dots | \
+    fzf --ansi --cycle \
+    --delimiter='/' \
+    --with-nth=-2,-1 \
+    --layout=reverse \
+    --margin=5% \
+    --prompt="config >" \
+    --preview-window 'right:70%' \
+    --preview 'cat {}'
+) \
+    && nvim $FILE
+
+
