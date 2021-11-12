@@ -1,32 +1,57 @@
-## bspwm sxhkd
-super + {Return, d, space, Escape, @slash, u} - {kitty, neovim, rofi, restart sxhkd, keybinds, scratchpad}
+# HOTKEYS
+
+############
+# WM, apps #
+############
+
+## applicaitons
+super + {Return, v, d} - kitty, kitty (tiled), nvim
+super + {space, @slash, ;, shift+b, shift+c} - app launcher, keybindings, bluetooth, wifi
+super + u - scratchpad
+super + z - configs
+
+## bspwm, sxhkd
 super + {_,shift+}w - close/kill window
-super + alt + w - close all windows except focused one
 super + alt + {q,r} - quit/restart bspwm
+super + Escape - reload sxhkd
 
-# nodes
-super + g - swap current and biggest node
+## flags, states
+super + {t, shift + t, s, f} - set window to {tiled, pseudo_tiled, floating, fullscreen}
+super + \ - toggle between tiled and pseudo-tiled
+super + ctrl + {l,s,p} - toggle {locked, sticky, private}
 
-super + n - turn on window manipulation
-    super + {l,s,p} - toggle node to {locked, sticky, private}
-    super + f - toggle all focused windows between tiled and floating state
-    {_, super + } {1-5} - {focus,send to} desktop {1-5}
+super + q - hide mode # not implemented yet
+    super + j - hide current window
+    super + shift + j - hide all windows
 
-super + {t, shift+t, s, f} - set window to {tiled, pseudo_tiled, floating, fullscreen}
+## nodes/desktops
 super + {_,shift+} {h,j,k,l} - {focus,swap} node in given direction
+super + n - node mode
+    super + g - swap current and biggest node
+    super + {p, n} - focus {next, prev} node
+    super + {d,a} - rotate nodes
+    super + {_, shift + f} - flip nodes
+    {1-5} - focus desktop {1-5}
+    super + {1-5} - send to desktop {1-5}
+    super + ctrl + {1-5} - send all windows in current desktop to chosen desktop # not implemented yet
 super + {[,]} - focus {prev,next} desktop
-super + {grave,tab} - focus last {node, desktop}
+super + tab - focus last desktop
 
 # move, resize
-super + r - turn on move mode
+super + e - turn on move mode
     {h,j,k,l} - expand {left,bottom,top,right}
     {h,j,k,l} - contract {left,bottom,top,right}
     {left,down,up,right} - move {left,down,up,right}
-super + e - equalize side
+    super + e - equalize side
 
 # preselection
-super + ctrl + {h,j,k,l, space} - preselect {west,south,north,east, cancel}
+super + p - preselect mode
+    super + {h,j,k,l, space} - preselect {west,south,north,east, cancel}
+super + shift + m - move/open window in chosen pre-selection
 
+###############
+# VIM, NEOVIM #
+###############
 
 ## basic vim syntax
 > verbs

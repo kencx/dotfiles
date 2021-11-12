@@ -4,7 +4,7 @@
 pgrep -x sxhkd > /dev/null || sxhkd &
 pgrep -x picom > /dev/null || picom &
 $HOME/.config/polybar/launch.sh
-pgrep -x redshift > /dev/null || redshift -c ~/.config/redshift/redshift.conf &
+# pgrep -x redshift > /dev/null || redshift -c ~/.config/redshift/redshift.conf &
 ~/.fehbg &
 pgrep -x dunst > /dev/null || dunst &
 
@@ -28,16 +28,19 @@ bspc config pointer_action1 move
 bspc rule -a kitty focus=on state=floating rectangle=600x400+660+340
 bspc rule -a tiled state=tiled focus=on
 bspc rule -a configs state=floating focus=on rectangle=760x700+620+200
+bspc rule -a keys state=floating focus=on rectangle=1100x700+480+180
 bspc rule -a dev -o desktop='I' state=tiled
 
 bspc rule -a Firefox desktop='II' focus=on follow=on state=tiled
 bspc rule -a obsidian desktop='III' focus=on follow=on state=tiled
-bspc rule -a TelegramDesktop desktop='V' state=floating follow=off focus=off \
+bspc rule -a TelegramDesktop desktop='V' state=floating follow=off \
     rectangle=680x920+35+60 && telegram-desktop &
-bspc rule -a gotop -o desktop='V' state=floating follow=off focus=off \
-    rectangle=680x920+900+60
 
+# tui apps
+bspc rule -a spt -o desktop='V' state=floating rectangle=680x500+500+60 follow=off
+bspc rule -a gotop -o desktop='V' state=floating rectangle=680x920+1200+60 follow=off
 kitty --class gotop gotop --nvidia &
+kitty --class spt spt &
 
 # scratchpad
 bspc rule -a scratchpad sticky=on state=floating locked=on hidden=on rectangle=600x400+660+340

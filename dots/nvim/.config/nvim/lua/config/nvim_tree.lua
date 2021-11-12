@@ -1,6 +1,4 @@
 
-vim.g.nvim_tree_ignore = { '.git', 'node_modules', '.cache' }
-vim.g.nvim_tree_hide_dotfiles = 0
 vim.g.nvim_tree_git_h1 = 0
 vim.g.nvim_tree_group_empty = 1 -- compact folders that contain only a single folder
 vim.g.nvim_tree_highlight_opened_files = 0
@@ -36,7 +34,7 @@ require('nvim-tree').setup {
     open_on_setup = false,
     open_on_tab = false,
 
-    -- update the focused file on `BufEnter`, 
+    -- update the focused file on `BufEnter`,
     -- un-collapses the folders recursively until it finds the file
     update_focus_file = {
         enable = true,

@@ -187,7 +187,7 @@ ramp-signal-foreground = ${colors.foreground}
 [module/eth]
 type = internal/network
 interface = wlx983f9f060451
-interval = 3.0
+interval = 3
 
 label-connected = 直
 format-connected = %{A1:$HOME/bin/nmcli-rofi:}<label-connected>%{A}
@@ -298,7 +298,7 @@ animation-discharging-framerate = 750
 type = custom/script
 exec = $HOME/bin/rofi-bluetooth --status
 interval = 1
-click-right = $HOME/bin/rofi-bluetooth &
+click-left = $HOME/bin/rofi-bluetooth &
 
 
 [module/temperature]

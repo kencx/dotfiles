@@ -4,14 +4,22 @@ alias lh="ls -ld .*"
 alias td="todo.sh"
 alias nv="nvim"
 
-alias aliases="nvim $DOTFILES/zsh/.config/zsh/.zsh_alias"
-alias zshcfg="nvim $DOTFILES/zsh/.config/zsh/.zshrc"
-alias bcfg="nvim $DOTFILES/bspwm/.config/bspwm/bspwmrc"
-alias scfg="nvim $DOTFILES/sxhkd/.config/sxhkd/sxhkdrc"
-alias pcfg="nvim $DOTFILES/polybar/.config/polybar/config"
-
 alias pf="ps aux | fzf"
 
+# git
+unalias gd; unalias gl; unalias gb;
+
+gd() {
+    git diff --name-only | fzf --ansi --prompt='diff > ' --preview='git diff --color $@ -- {-1}'
+}
+
+gl() {
+    git show "$(git log --pretty='%h %s' | fzf --prompt='log > ' --preview='git show --color {1}' | cut -d ' ' -f1)"
+}
+
+gb() {
+    git checkout "$(git branch | fzf)"
+}
 
 alias showpath="echo $PATH | tr ':' '\n'"
 alias vimgolf="docker run --rm --it -e key="867337c104fb5b765b5ef4ade2a535e0" hettomei/vimgolf"

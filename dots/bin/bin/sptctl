@@ -1,14 +1,21 @@
 #!/bin/bash
 
-if [ "$(playerctl status)" == "No player is running" ]; then
-    echo "no player running"
-elif [ "$(playerctl status)" == "Stopped" ]; then
-    echo "spotify stopped"
-elif [ "$(playerctl status)" == "Paused" ]; then
-    playerctl -p spotifyd metadata \
+# displays music player status
+
+PLAYER="spotifyd"
+
+if [ -z $(playerctl -l | grep $PLAYER) ]; then
+    echo "spotify not running"
+
+elif [ "$(playerctl -p $PLAYER status)" == "Paused" ]; then
+    playerctl -p $PLAYER metadata \
         --format ' {{ title }} - {{ artist }}'
-else
-    playerctl -p spotifyd metadata \
+
+elif [ "$(playerctl -p $PLAYER status)" == "Playing" ]; then
+    playerctl -p $PLAYER metadata \
         --format '契 {{ title }} - {{ artist }}'
+
+else
+    echo "spotify stopped"
 fi
 

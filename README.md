@@ -3,14 +3,16 @@
 ## Applications
 - bspwm, sxhkd - heavily opinionated hotkeys
 - ohmyzsh, neovim - plugins galore
-- kitty, polybar, dunst
-- picom, feh, starship, zathura, rofi
+- polybar, dunst, rofi, fzf
+- kitty, starship, feh, picom
+- spotifyd, zathura
 - custom [startpage](https://github.com/kennethcheo/startpage)
+- repository of custom scripts
 - Theme: gruvbox dark
 - Font: Fira Code Nerd Font
 
 ## Install
-- Tested on Xubuntu
+- Xubuntu 21.04
 
 ## Management
 Dotfiles managed by [stow](https://www.gnu.org/software/stow/). Refer to

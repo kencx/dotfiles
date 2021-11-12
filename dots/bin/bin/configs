@@ -2,7 +2,7 @@
 
 # easy access to config files
 
-CONFIGS='(zsh|bspwm|sxhkd|polybar|kitty|starship|rofi|dunst|config)'
+CONFIGS='(zsh|bspwm|sxhkd|polybar|kitty|starship|rofi|dunst|config|.Xresources)'
 EXCLUDE='{autostart,bin}'
 
 FILE=$(fd $CONFIGS --exclude $EXCLUDE --type f --hidden ~/dotfiles/dots | \
@@ -11,9 +11,9 @@ FILE=$(fd $CONFIGS --exclude $EXCLUDE --type f --hidden ~/dotfiles/dots | \
     --with-nth=-2,-1 \
     --layout=reverse \
     --margin=5% \
-    --prompt="config >" \
+    --prompt="config > " \
     --preview-window 'right:70%' \
-    --preview 'cat {}'
+    --preview 'bat {}'
 ) \
     && nvim $FILE
 

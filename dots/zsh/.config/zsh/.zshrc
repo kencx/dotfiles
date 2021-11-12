@@ -1,22 +1,23 @@
 ZSH_THEME="cypher"
 
 # completion
-autoload -Uz compinit
+autoload -Uz compinit; compinit
 zstyle ':completion:*' menu select
-compinit
-
-# add pipx autocomplete
-autoload -U bashcompinit
-bashcompinit
-eval "$(register-python-argcomplete pipx)"
-
-export _ZO_DATA_DIR="$HOME/syncthing/sync/env"
-export _ZO_EXCLUDE_DIR="$HOME/syncthing/sync/env/*"
-eval "$(zoxide init zsh)"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # updates
 DISABLE_UPDATE_PROMPT=true
+
+# add pipx autocomplete
+autoload -U bashcompinit; bashcompinit
+eval "$(register-python-argcomplete pipx)"
+
+# zoxide
+export _ZO_DATA_DIR="$HOME/syncthing/sync/env"
+export _ZO_EXCLUDE_DIR="$HOME/syncthing/sync/env/*"
+eval "$(zoxide init zsh)"
+
+# fzf
+export FZF_DEFAULT_OPTS="--cycle --reverse --border=rounded --margin=1 --padding=1 --ansi --height=90%"
 
 # plugins
 plugins=(
@@ -43,21 +44,18 @@ ZSH_THEME_TERM_TITLE_IDLE="zsh"
 HISTSIZE=10000
 SAVEHIST=10000
 
-# export MANPAGER="nvim +Man!;"
-export MANWIDTH=999;
-
 export TERM="xterm-kitty"
 export TERMINFO="$HOME/.terminfo"
 export EDITOR="nvim"
 export BROWSER="firefox"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export PATH="$HOME/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin"
 
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
-eval "$(starship init zsh)"
-
 # aliases
 [ -f $HOME/.config/zsh/.zsh_alias ] && source $HOME/.config/zsh/.zsh_alias
 
-
+# starship
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
+eval "$(starship init zsh)"

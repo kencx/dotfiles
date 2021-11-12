@@ -9,12 +9,13 @@ configuration {
 }
 
 * {
-  bg: #282828;
+  bg: #272727;
   bg-alt: #3c3836;
 
-  fg: #EADBB2;
+  fg: #ebdbb2;
 
-  blue: #5DA399;
+  blue: #448488;
+  orange: #fa7921;
 
   background-color: @bg;
 
@@ -31,7 +32,7 @@ element {
 }
 
 element selected {
-  text-color: @blue;
+  text-color: @orange;
 }
 
 entry {
