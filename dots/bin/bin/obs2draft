@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# usage: obs2draft [obs-post-name] [draft-name]
+
+OBS_DIR="$HOME/syncthing/sync/obsidian/Blog"
+BLOG_DIR="$HOME/dev/blog"
+
+cd "$BLOG_DIR" && hugo new posts/$2 > /dev/null
+cat "$OBS_DIR/$1" >> "$BLOG_DIR/content/posts/$2"
+echo "Blog post $1 created"
+

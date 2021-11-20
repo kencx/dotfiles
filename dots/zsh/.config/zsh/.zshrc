@@ -41,8 +41,9 @@ export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 ZSH_THEME_TERM_TITLE_IDLE="zsh"
 
-HISTSIZE=10000
-SAVEHIST=10000
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTORY_IGNORE="(ls*|cd*|z*|clear|omz reload)"
 
 export TERM="xterm-kitty"
 export TERMINFO="$HOME/.terminfo"
@@ -52,6 +53,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export PATH="$HOME/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:$HOME/go/bin"
 
 # aliases
 [ -f $HOME/.config/zsh/.zsh_alias ] && source $HOME/.config/zsh/.zsh_alias

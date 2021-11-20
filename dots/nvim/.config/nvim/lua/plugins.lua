@@ -45,10 +45,7 @@ return require('packer').startup({function(use)
     use {
         'kyazdani42/nvim-tree.lua',
         config = function()
-            require('config.nvim_tree').setup {         -- todo: lazy load
-                nvim_tree_ignore = { '.git', 'node_modules', '.cache'},
-                nvim_tree_hide_dotfiles = 0
-            }
+            require('config.nvim_tree')         -- todo: lazy load
         end,
         -- cmd = { 'NvimTreeToggle', 'NvimTreeFocus' },
     }

@@ -71,4 +71,16 @@ nvim_lsp.jedi_language_server.setup {
 }]]
 
 
--- setup
+-- setup go pls
+nvim_lsp.gopls.setup {
+    cmd = { "gopls", "--remote=auto" },
+    filetypes = { "go", "gomod" },
+    settings = {
+        gopls = {
+            analyses = {
+                unusedparams = true,
+            },
+            staticcheck = true,
+        },
+    },
+}

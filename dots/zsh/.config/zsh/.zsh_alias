@@ -1,10 +1,11 @@
-export DOTFILES="$HOME/dotfiles/dots"
-
 alias lh="ls -ld .*"
-alias td="todo.sh"
 alias nv="nvim"
 
 alias pf="ps aux | fzf"
+alias scrot="scrot $HOME/Pictures/Screenshots/%b%d-%H:%M:%S.png"
+alias td="todo.sh -d $HOME/.config/todo-txt/todo.cfg"
+alias showpath="echo $PATH | tr ':' '\n'"
+alias vimgolf="docker run --rm --it -e key="867337c104fb5b765b5ef4ade2a535e0" hettomei/vimgolf"
 
 # git
 unalias gd; unalias gl; unalias gb;
@@ -21,6 +22,4 @@ gb() {
     git checkout "$(git branch | fzf)"
 }
 
-alias showpath="echo $PATH | tr ':' '\n'"
-alias vimgolf="docker run --rm --it -e key="867337c104fb5b765b5ef4ade2a535e0" hettomei/vimgolf"
 

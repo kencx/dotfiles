@@ -2,7 +2,7 @@
 
 # easy access to config files
 
-CONFIGS='(zsh|bspwm|sxhkd|polybar|kitty|starship|rofi|dunst|config|.Xresources)'
+CONFIGS='(zsh|bspwm|sxhkd|polybar|kitty|starship|rofi|dunst|config|nvim|lua|init.lua)'
 EXCLUDE='{autostart,bin}'
 
 FILE=$(fd $CONFIGS --exclude $EXCLUDE --type f --hidden ~/dotfiles/dots | \

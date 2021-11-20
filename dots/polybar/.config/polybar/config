@@ -107,9 +107,9 @@ label-urgent-underline = ${colors.foreground}
 type= custom/script
 exec = $HOME/bin/sptctl
 tail = true
-interval = 5
+interval = 3
 
-label = %output%
+label = %output:0:40:...%
 click-left = playerctl play-pause -p spotifyd
 
 [module/mpd]

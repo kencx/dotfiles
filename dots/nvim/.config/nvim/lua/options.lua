@@ -3,6 +3,7 @@ local set = vim.opt
 vim.cmd 'set nocompatible'		        -- turn off vi compatability
 set.backspace = 'indent,eol,start'  -- enable backspace in insert mode
 set.mouse = 'a'			            -- enable mouse support
+vim.cmd 'set clipboard^=unnamed,unnamedplus'
 
 set.syntax = "on"
 set.hidden = true

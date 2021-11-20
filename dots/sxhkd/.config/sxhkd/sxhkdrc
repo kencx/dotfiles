@@ -17,7 +17,7 @@ super + space
 
 # keybindings
 super + slash
-    kitty --class keys $HOME/bin/keys
+    kitty --class keys $HOME/bin/keybinds
 
 # windows
 super + semicolon
@@ -51,8 +51,8 @@ super + u
     $HOME/bin/scratchpad scratchpad
 
 # todo tasks
-# super + apostrophe
-
+super + apostrophe
+    todofi.sh
 #
 # bspwm hotkeys
 #
