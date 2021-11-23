@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# easy access to config files
+# easy access to config files with fzf preview
 
-CONFIGS='(zsh|bspwm|sxhkd|polybar|kitty|starship|rofi|dunst|config|nvim|lua|init.lua)'
+CONFIGS='(zsh|bspwm|sxhkd|polybar|kitty|starship|rofi|dunst|config|nvim|lua|init.lua|tmux)'
 EXCLUDE='{autostart,bin}'
 
 FILE=$(fd $CONFIGS --exclude $EXCLUDE --type f --hidden ~/dotfiles/dots | \
@@ -13,8 +13,8 @@ FILE=$(fd $CONFIGS --exclude $EXCLUDE --type f --hidden ~/dotfiles/dots | \
     --margin=5% \
     --prompt="config > " \
     --preview-window 'right:70%' \
-    --preview 'bat {}'
-) \
+    --preview 'bat --color=always --style=numbers --line-range=:500 {}'
+        ) \
     && nvim "$FILE"
 
 

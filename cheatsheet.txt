@@ -1,30 +1,28 @@
-# HOTKEYS
+#################
+WM - bspwm, sxhkd
+#################
 
-############
-# WM, apps #
-############
-
-## applicaitons
-super + {Return, v, d} - kitty, kitty (tiled), nvim
+# applications
+super + {Return, shift+Return} - kitty, kitty (tiled)
 super + {space, @slash, ;, shift+b, shift+c} - app launcher, keybindings, bluetooth, wifi
 super + u - scratchpad
 super + z - configs
 
-## bspwm, sxhkd
+# bspwm, sxhkd
 super + {_,shift+}w - close/kill window
 super + alt + {q,r} - quit/restart bspwm
 super + Escape - reload sxhkd
 
-## flags, states
+# flags, states
 super + {t, shift + t, s, f} - set window to {tiled, pseudo_tiled, floating, fullscreen}
 super + \ - toggle between tiled and pseudo-tiled
 super + ctrl + {l,s,p} - toggle {locked, sticky, private}
 
-super + q - hide mode # not implemented yet
+super + q - hide mode # TODO not implemented yet
     super + j - hide current window
     super + shift + j - hide all windows
 
-## nodes/desktops
+#nodes/desktops
 super + {_,shift+} {h,j,k,l} - {focus,swap} node in given direction
 super + n - node mode
     super + g - swap current and biggest node
@@ -49,20 +47,42 @@ super + p - preselect mode
     super + {h,j,k,l, space} - preselect {west,south,north,east, cancel}
 super + shift + m - move/open window in chosen pre-selection
 
-###############
-# VIM, NEOVIM #
-###############
+####
+tmux
+####
+# all commands are prefixed with the prefix
+prefix - Ctrl - a
 
-## basic vim syntax
-> verbs
+Ctrl + w - close pane/window
+X - kill session
+d - detach from session
+
+# navigation
+Ctrl + h,j,k,l - navigate panes
+shift + left,right - navigate windows
+w - navigate session
+
+# panes
+- split horizontal
+| split vertical
+z - maximize current pane
+Ctrl + o - rotate panes
+
+# windows
+c - create window
+
+###
+vim
+###
+
+# vim verbs
 d - delete
 c - change
 y - yank
 >,< - indent/de-indent
 v - visual
 
-
-# nouns
+# vim nouns
 w,b - forward, back
 {verb}iw - inner word
 {verb}i{(,[,{,',"} - inner bracket/quote
@@ -76,24 +96,18 @@ gu, gU - change to lower/upper case
 # tips
 K - go to manual entry of word under cursor
 :cd %:h - change pwd to current file's directory
-:vsp - open vertical terminal
+:vsp - vertical split
 
+######
+neovim
+######
 
-## nvim-lsp
-gd - go to definition under cursor
-Ctrl-O - go back to last cursor position
+# vim-sandwich
+sa{motion}{text-obj} - saiw(    # foo -> (foo)
+sd{deletion} - sd(              # (foo) -> foo
+sr{deletion}{addition} - sr([   # (foo) -> [foo]
 
-
-
-
-## vim-sandwich
-sa{motion}{text-obj} - saiw( : foo -> (foo)
-sd{deletion} - sd( : (foo) -> foo
-sr{deletion}{addition} - sr([ : (foo) -> [foo]
-
-## telescope
-
-# default (normal-mode)
+# telescope
 jk - next/previous
 H/M/L - high/middle/low
 gg/G - first/last item
@@ -106,7 +120,7 @@ Ctrl-d - scroll down preview window
 Esc - close telescope
 ? - show hotkeys
 
-## nvim-tree
+# nvim-tree
 tab - open as preview (keeps cursor in tree)
 backspace - close current directory
 Ctrl - ] - change the directory under cursor to root
@@ -125,12 +139,19 @@ R - refresh tree
 q - quit tree
 g? - toggle mappings UI
 
-## barbar-nvim
+# barbar-nvim
 Alt-,/. - prev/next
 Alt-</> - reorder prev/next
 Alt-{1..9,0} - move to buffer pos
 Alt-w - close buffer
 Alt-p - pin/unpin
 space-bb - sort by buffer no.
-space-bd - sort by directory
 space-bl - sort by language
+space-bd - sort by directory
+
+# nvim-lsp
+gd - go to definition under cursor
+Ctrl-O - go back to last cursor position
+
+
+

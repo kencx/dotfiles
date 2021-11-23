@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# polybar script to toggle audio
+
 set -e
 
 SINK=@DEFAULT_SINK@

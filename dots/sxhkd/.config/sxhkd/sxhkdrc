@@ -4,12 +4,8 @@ super + Return
 	kitty
 
 # tiled terminal
-super + v
+super + shift + Return
     kitty --class tiled
-
-# neovim
-super + d
-    kitty --class dev nvim
 
 # rofi
 super + space

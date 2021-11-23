@@ -29,7 +29,6 @@ bspc rule -a kitty focus=on state=floating rectangle=600x400+660+340
 bspc rule -a tiled state=tiled focus=on
 bspc rule -a configs state=floating focus=on rectangle=760x700+620+200
 bspc rule -a keys state=floating focus=on rectangle=1100x700+480+180
-bspc rule -a dev -o desktop='I' state=tiled
 
 bspc rule -a Firefox focus=on follow=on state=tiled
 bspc rule -a Firefox -o desktop='II' state=tiled
