@@ -15,6 +15,6 @@ FILE=$(fd $CONFIGS --exclude $EXCLUDE --type f --hidden ~/dotfiles/dots | \
     --preview-window 'right:70%' \
     --preview 'bat {}'
 ) \
-    && nvim $FILE
+    && nvim "$FILE"
 
 

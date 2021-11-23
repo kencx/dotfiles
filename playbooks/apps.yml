@@ -1,3 +1,4 @@
+---
 - hosts: localhost
   become: true
 
@@ -34,4 +35,3 @@
         pkg:
           - telegram-desktop
           - tmux
-

@@ -37,10 +37,27 @@ vim.cmd [[
     augroup END
 ]]
 
+-- remove trailing whitespace on save
+vim.cmd [[
+    augroup remove_whitespace
+    autocmd!
+    autocmd BufWrite * mark ' | silent! %s/\s\+$// | norm ''
+    augroup END
+]]
+
+-- skeleton templates
+vim.cmd [[
+    augroup skeleton
+    autocmd!
+    autocmd BufNewFile *.sh 0r ~/bin/templates/skeleton.sh
+    augroup END
+]]
+
+-- local options
 vim.cmd [[augroup vimrc]]
     vim.cmd [[autocmd!]]
-    vim.cmd [[autocmd BufWrite * mark ' | silent! %s/\s\+$// | norm '']] -- remove trailing whitespace on save
     -- vim.cmd [[autocmd FileType markdown setlocal spell]]
     vim.cmd [[autocmd FileType text,markdown,tex setlocal textwidth=80]]
     vim.cmd [[autocmd TermOpen * setlocal nonumber norelativenumber]]
 vim.cmd [[augroup END]]
+

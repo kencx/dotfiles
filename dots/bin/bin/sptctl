@@ -4,7 +4,7 @@
 
 PLAYER="spotifyd"
 
-if [ -z $(playerctl -l | grep $PLAYER) ]; then
+if [ -z "$(playerctl -l | grep $PLAYER)" ]; then
     echo "spotify offline"
 
 elif [ "$(playerctl -p $PLAYER status)" == "Paused" ]; then
