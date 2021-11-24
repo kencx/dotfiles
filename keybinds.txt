@@ -1,0 +1,150 @@
+##############
+# NAVIGATION #
+##############
+
+# WM navigation
+super + h,j,k,l                             focus node in direction
+super + shift + h,j,k,l                     swap node in direction
+
+super + (,)                                 prev, next node
+super + [,]                                 prev, next desktop
+
+# tmux, vim pane navigation
+ctrl + h,j,k,l                              navigate panes
+
+# tmux only navigation (no modifier needed)
+shift + left,right                          navigate windows
+w   # rebind to ctrl+w                      navigate sessions
+
+
+###############
+# WM keybinds #
+###############
+
+MODIFIER: super
+
+# Applications
+super + Return                              floating terminal
+super + shift + Return                      tiled terminal
+
+super + space                               app launcher
+super + /                                   keybindings
+super + ;                                   window finder
+super + '                                   todo.sh
+
+super + u                                   scratchpad
+super + z                                   configs
+
+super + shift + b                           bluetooth menu
+super + shift + c                           wifi menu
+
+# bspwm, sxhkd settings
+super + alt + r                             restart bspwm
+super + Escape                              restart sxhkd
+
+super + w                                   close window
+
+super + q   # not implemented               hide mode
+
+# control flags, states
+super + t                                   set to tiled
+super + shift + t                           set to pseudo-tiled
+super + s                                   set to floating
+super + f                                   set to fullscreen
+
+super + \   # not working                   toggle between tiled and pseudo-tiled
+
+super + ctrl + l                            toggle locked state
+super + ctrl + s                            toggle sticky state
+super + ctrl + p                            toggle private state
+
+# control nodes, desktops
+FLAG: super + n                             node mode
+super + f                                   flip nodes vertically
+super + shift + f                           flip nodes horizontally
+super + d,a                                 rotate nodes
+
+1-5                                         focus desktop
+super + 1-5                                 send to desktop
+super + ctrl + 1-5  # not implemented
+
+# move, resize nodes
+FLAG: super + e                             move mode
+h,j,k,l                                     expand window in direction
+shift + h,j,k,l                             contract window in direction
+left,down,up,right                          move window in direction (for floating only)
+super + e                                   equalize windows
+
+# node preselection
+FLAG: super + p                             preselect mode
+super + h,j,k,l                             preselect space in direction
+super + space                               cancel preselection
+super + shift + m                           move window into preselection
+
+
+#################
+# TMUX keybinds #
+#################
+
+MODIFIER: ctrl + a
+
+# exit
+ctrl + w                                    close pane/window
+shift + x                                   kill session
+d                                           detach from session
+
+# panes
+-                                           split horizontal
+|                                           split vertical
+z                                           maximize current pane
+ctrl + o                                    rotate panes
+
+# windows
+c                                           create window
+
+#####################
+# (NEO)VIM keybinds #
+#####################
+
+MODIFIER: leader key
+
+
+
+
+###############
+# VIM grammar #
+###############
+
+# verbs
+d - delete
+c - change
+r - replace
+y - yank
+>,< - indent
+v - visual
+
+J - join line with
+
+# nouns
+^,$                                         beginning, end of line
+w,b                                         forward, back word
+f,F                                         next,prev character
+t,T                                         next,prev character (not including)
+;,,                                         repeat f,F,t,T movement forward,backwards
+gu,gU                                       lower/upper case
+
+{verb}iw                                    action on inner word
+{verb}i{bracket,quote}                      action on inner bracket/quote
+{verb}it                                    action on inner tag
+{verb}ip                                    action on inner paragraph
+
+# others
+:cd %:h                                     change pwd to current file directory
+K                                           manual entry of word under cursor
+zz                                          center cursor
+
+# vim sandwich
+sa {motion} {text-obj} {bracket}            surround text with bracket  saiw(   foo -> (foo)
+sd {bracket}                                delete surrounding bracket  sd(     (foo) -> foo
+sr {deletion} {bracket}                     replace bracket             sr([    (foo) -> [foo]
+

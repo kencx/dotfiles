@@ -1,20 +1,20 @@
+#########
+# NOTES #
+#########
+
+1. Swap ctrl and alt key
+2. tap dance backspace for delete
+3. layer for wm shortcuts? instead of chords
+
+Find out:
+- Use global modifier key for navigation in wm, tmux and vim
+
+
 #################
 WM - bspwm, sxhkd
 #################
 
-# applications
-super + {Return, shift+Return} - kitty, kitty (tiled)
-super + {space, @slash, ;, shift+b, shift+c} - app launcher, keybindings, bluetooth, wifi
-super + u - scratchpad
-super + z - configs
-
-# bspwm, sxhkd
-super + {_,shift+}w - close/kill window
-super + alt + {q,r} - quit/restart bspwm
-super + Escape - reload sxhkd
-
 # flags, states
-super + {t, shift + t, s, f} - set window to {tiled, pseudo_tiled, floating, fullscreen}
 super + \ - toggle between tiled and pseudo-tiled
 super + ctrl + {l,s,p} - toggle {locked, sticky, private}
 
@@ -23,89 +23,14 @@ super + q - hide mode # TODO not implemented yet
     super + shift + j - hide all windows
 
 #nodes/desktops
-super + {_,shift+} {h,j,k,l} - {focus,swap} node in given direction
 super + n - node mode
     super + g - swap current and biggest node
-    super + {p, n} - focus {next, prev} node
-    super + {d,a} - rotate nodes
-    super + {_, shift + f} - flip nodes
-    {1-5} - focus desktop {1-5}
-    super + {1-5} - send to desktop {1-5}
     super + ctrl + {1-5} - send all windows in current desktop to chosen desktop # not implemented yet
-super + {[,]} - focus {prev,next} desktop
-super + tab - focus last desktop
 
-# move, resize
-super + e - turn on move mode
-    {h,j,k,l} - expand {left,bottom,top,right}
-    {h,j,k,l} - contract {left,bottom,top,right}
-    {left,down,up,right} - move {left,down,up,right}
-    super + e - equalize side
-
-# preselection
-super + p - preselect mode
-    super + {h,j,k,l, space} - preselect {west,south,north,east, cancel}
-super + shift + m - move/open window in chosen pre-selection
-
-####
-tmux
-####
-# all commands are prefixed with the prefix
-prefix - Ctrl - a
-
-Ctrl + w - close pane/window
-X - kill session
-d - detach from session
-
-# navigation
-Ctrl + h,j,k,l - navigate panes
-shift + left,right - navigate windows
-w - navigate session
-
-# panes
-- split horizontal
-| split vertical
-z - maximize current pane
-Ctrl + o - rotate panes
-
-# windows
-c - create window
-
-###
-vim
-###
-
-# vim verbs
-d - delete
-c - change
-y - yank
->,< - indent/de-indent
-v - visual
-
-# vim nouns
-w,b - forward, back
-{verb}iw - inner word
-{verb}i{(,[,{,',"} - inner bracket/quote
-{verb}it - inner tag
-{verb}ip - inner paragraph
-f,F - next/prev char
-t,T - next/prev char (not incl.)
-/ - search
-gu, gU - change to lower/upper case
-
-# tips
-K - go to manual entry of word under cursor
-:cd %:h - change pwd to current file's directory
-:vsp - vertical split
 
 ######
 neovim
 ######
-
-# vim-sandwich
-sa{motion}{text-obj} - saiw(    # foo -> (foo)
-sd{deletion} - sd(              # (foo) -> foo
-sr{deletion}{addition} - sr([   # (foo) -> [foo]
 
 # telescope
 jk - next/previous
@@ -152,6 +77,4 @@ space-bd - sort by directory
 # nvim-lsp
 gd - go to definition under cursor
 Ctrl-O - go back to last cursor position
-
-
 

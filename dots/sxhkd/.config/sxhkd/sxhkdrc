@@ -104,9 +104,9 @@ super + {_,shift + }{h,j,k,l}
 super + n : super + g
 	bspc node -s biggest.local
 
-# focus {next, prev} node
-super + n : super + {n,p}
-    bspc node -f {next,prev}.local.!hidden.window
+# focus previous/next node
+super + paren{left,right}
+    bspc node -f {prev,next}.local.!hidden.window
 
 # rotate nodes {clockwise, anti-clockwise}
 super + n : super + {q,e}
@@ -123,13 +123,13 @@ super + n : {_, super + } KP_{End,Down,Next,Left,Begin}
 # send all windows in current desktop to chosen desktop
 ####
 
-# focus the next/previous desktop in the current monitor
+# focus the previous/next desktop in the current monitor
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
 # focus the last desktop
-super + Tab
-	bspc desktop -f last
+# super + Tab
+#	bspc desktop -f last
 
 #
 # preselect

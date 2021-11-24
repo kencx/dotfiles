@@ -13,18 +13,19 @@
 
 ## Install
 - Xubuntu 21.04
-Ensure all packages are installed.
+
+Ensure all required packages are installed.
 
 Dotfiles are managed by [stow](https://www.gnu.org/software/stow/). Refer to
 [this](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html) guide for how it works.
 
-This symlinks all dotfiles
+To symlink all dotfiles
 ```
 $ make dev-test     # dry-run, does not perform changes
-$ make dev          #
+$ make dev
 ```
 
-Or manually,
+To manually select a dir,
 ```
 $ cd dots
 $ stow [dir] --target="$HOME"

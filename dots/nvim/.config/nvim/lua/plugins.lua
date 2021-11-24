@@ -112,6 +112,7 @@ return require("packer").startup({
 			end,
 		})
 		use({ "machakann/vim-sandwich" })
+		use({ "christoomey/vim-tmux-navigator" })
 
 		-- colorscheme
 		use({ "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } })

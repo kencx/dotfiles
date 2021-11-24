@@ -1,20 +1,26 @@
 ZSH_THEME="cypher"
 
+# updates
+DISABLE_UPDATE_PROMPT=true
+
 # completion
 autoload -Uz compinit; compinit
 zstyle ':completion:*' menu select
 
-# updates
-DISABLE_UPDATE_PROMPT=true
-
-# add pipx autocomplete
+# pipx autocomplete
 autoload -U bashcompinit; bashcompinit
 eval "$(register-python-argcomplete pipx)"
+
+# qmk autocomplete
+if [ -d "$HOME/dev/qmk" ]; then
+    source "$HOME/dev/qmk/qmk_firmware/util/qmk_tab_complete.sh"
+fi
 
 # zoxide
 export _ZO_DATA_DIR="$HOME/syncthing/sync/env"
 export _ZO_EXCLUDE_DIR="$HOME/syncthing/sync/env/*"
 eval "$(zoxide init zsh)"
+
 
 # fzf
 export FZF_DEFAULT_OPTS="--cycle --reverse --border=rounded --margin=1 --padding=1 --ansi --height=90%"

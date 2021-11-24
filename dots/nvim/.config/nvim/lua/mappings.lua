@@ -11,19 +11,34 @@ bind("n", "<down>", "<NOP>", opts)
 bind("n", "<left>", "<NOP>", opts)
 bind("n", "<right>", "<NOP>", opts)
 
---> window movement
-bind("n", "<C-h>", "<C-w>h", opts)
-bind("n", "<C-j>", "<C-w>j", opts)
-bind("n", "<C-k>", "<C-w>k", opts)
-bind("n", "<C-l>", "<C-w>l", opts)
+--> unbind esc
+bind("i", "jj", "<Esc>", opts)
+bind("i", "jk", "<Esc>", opts)
+bind("i", "kk", "<Esc>", opts)
+
+--> vim-tmux-navigator (pane navigation)
+-- https://github.com/christoomey/vim-tmux-navigator
+vim.cmd([[let g:tmux_navigator_no_mappings = 1]])
+
+bind("n", "<C-h>", ":TmuxNavigateLeft<cr>", opts)
+bind("n", "<C-j>", ":TmuxNavigateDown<cr>", opts)
+bind("n", "<C-k>", ":TmuxNavigateUp<cr>", opts)
+bind("n", "<C-l>", ":TmuxNavigateRight<cr>", opts)
+
+-- autosave when moving from vim to tmux
+vim.cmd([[let g:tmux_navigator_save_on_switch = 1]])
 
 --> better indent
 bind("v", "<", "<gv", opts)
 bind("v", ">", ">gv", opts)
 
 --> shift lines up and down with alt-{j,k}
-bind("n", "<a-j>", ':<c-u>execute "move +". v:count1<cr>', opts)
-bind("n", "<a-k>", ':<c-u>execute "move -1-". v:count1<cr>', opts)
+bind("n", "<a-j>", ":m .+1<CR>==", opts)
+bind("n", "<a-k>", ":m .-2<CR>==", opts)
+bind("i", "<a-j>", "<Esc>:m .+1<CR>==gi", opts)
+bind("i", "<a-k>", "<Esc>:m .-2<CR>==gi", opts)
+bind("v", "<a-j>", ":m \'>+1<CR>gv=gv", opts)
+bind("v", "<a-k>", ":m \'<-2<CR>gv=gv", opts)
 
 --> turn off search highlighting
 bind("n", "<Leader>h", ":set hlsearch!<CR>", opts)
