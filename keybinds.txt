@@ -31,6 +31,7 @@ super + space                               app launcher
 super + /                                   keybindings
 super + ;                                   window finder
 super + '                                   todo.sh
+super + t                                   telegram
 
 super + u                                   scratchpad
 super + z                                   configs
@@ -39,27 +40,26 @@ super + shift + b                           bluetooth menu
 super + shift + c                           wifi menu
 
 # bspwm, sxhkd settings
-super + alt + r                             restart bspwm
-super + Escape                              restart sxhkd
+hyper + alt + r                             restart bspwm
+hyper + Escape                              restart sxhkd
 
 super + w                                   close window
 
-super + q   # not implemented               hide mode
-
 # control flags, states
-super + t                                   set to tiled
-super + shift + t                           set to pseudo-tiled
-super + s                                   set to floating
-super + f                                   set to fullscreen
+FLAG: super + n                             node mode
 
-super + \   # not working                   toggle between tiled and pseudo-tiled
+super + s                                   toggle between tiled and floating
+super + shift + t                           set to pseudo-tiled
+super + f                                   set to fullscreen
 
 super + ctrl + l                            toggle locked state
 super + ctrl + s                            toggle sticky state
-super + ctrl + p                            toggle private state
+
+super + h                                   hide focused window
+super + shift + h                           select windows to unhide
+super + ctrl + h                            toggle hide for all windows in focused desktop
 
 # control nodes, desktops
-FLAG: super + n                             node mode
 super + f                                   flip nodes vertically
 super + shift + f                           flip nodes horizontally
 super + d,a                                 rotate nodes

@@ -2,12 +2,13 @@
 # NOTES #
 #########
 
-1. Swap ctrl and alt key
-2. tap dance backspace for delete
-3. layer for wm shortcuts? instead of chords
-
 Find out:
 - Use global modifier key for navigation in wm, tmux and vim
+
+# firefox
+shift + alt + u - open bitwarden popup
+shift + alt + m - autofill last-used login
+shift + alt + l - open linkding popup
 
 
 #################

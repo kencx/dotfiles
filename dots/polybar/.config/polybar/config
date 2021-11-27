@@ -36,7 +36,7 @@ foreground = ${colors.foreground}
 font-0 = FiraCode Nerd Font:pixelsize=10;4
 font-1 = FiraCode Nerd Font:size=10;4
 
-modules-left = bspwm spotify
+modules-left = bspwm
 modules-center = time
 modules-right = cpu filesystem bluetooth eth pulseaudio line powermenu
 

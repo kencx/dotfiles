@@ -49,6 +49,11 @@ super + u
 # todo tasks
 super + apostrophe
     todofi.sh
+
+# telegram
+super + t
+    xdo activate -N TelegramDesktop || TelegramDesktop
+
 #
 # bspwm hotkeys
 #
@@ -69,28 +74,36 @@ super + {_,shift + }w
 # state/flags
 #
 
-# set the window state
-super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+# toggle floating and tiled state
+super + s
+    if [ -z "$(bspc query -N -n focused.floating)" ]; then \
+        bspc node focused -t floating; \
+    else \
+        bspc node focused -t tiled; \
+    fi
 
-# toggle all windows between tiled and pseudo-tiled state
-super + \
-    bspc query -N -d focused | xargs -I node_id bspc node node_id -t {tiled,pseudo_tiled}
+# set the window state
+super + {shift + t,f}
+	bspc node -t {pseudo_tiled,fullscreen}
 
 # toggle locked, sticky, private node flag
-super + ctrl + {l,s,p}
-	bspc node -g {locked,sticky,private} || \
-    bspc node -g {locked=off,sticky=off,private=off}
+super + ctrl + {l,s}
+	bspc node -g {locked,sticky} || \
+    bspc node -g {locked=off,sticky=off}
 
-# {hide, unhide} current window
-# super + n : super + h
-#    bspc node focused -g hidden=on
+# hide current window
+super + n : super + h
+    bspc node focused.window -g hidden=on
 
-# super + n : super + shift + h
-#    bspc node $(bspc query -N -d focused -n .hidden) -g hidden=off
+# select windows to unhide
+super + n : super + shift + h
+    $HOME/bin/rofi_hidden_windows
 
-# {hide, unhide} all windows
-####
+# toggle {hide,unhide} all windows in focused desktop
+super + n : super + ctrl + h
+    while bspc node any.local.hidden.window -g hidden=off; do false; done \
+        && while bspc node 'any.local.!hidden.window' -g hidden=on; do :; done
+
 
 #
 # focus/swap
@@ -121,15 +134,10 @@ super + n : {_, super + } KP_{End,Down,Next,Left,Begin}
 	bspc {desktop -f, node -d} '^{1-5}' --follow
 
 # send all windows in current desktop to chosen desktop
-####
 
 # focus the previous/next desktop in the current monitor
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
-
-# focus the last desktop
-# super + Tab
-#	bspc desktop -f last
 
 #
 # preselect

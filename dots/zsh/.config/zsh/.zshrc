@@ -67,3 +67,8 @@ export PATH="$PATH:$HOME/go/bin"
 # starship
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
+
+# pfetch
+export PF_INFO="ascii title os shell wm editor pkgs uptime"
+export PF_SEP=""
+export PF_ASCII="ubuntu"

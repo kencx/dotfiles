@@ -1,5 +1,6 @@
 alias lh="ls -ld .*"
 alias nv="nvim"
+alias lf="lf-ueberzug"
 
 alias pf="ps aux | fzf"
 alias scrot="scrot $HOME/Pictures/Screenshots/%b%d-%H:%M:%S.png"

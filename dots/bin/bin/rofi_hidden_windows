@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# rofi window with list of hidden windows
+# selecting a window unhides it
+
+set -euo pipefail
+
+hidden_windows=$(bspc query -N -n .hidden.window)
+
+id=$(echo "$hidden_windows" | \
+    xargs -I{} sh -c \
+    'printf "%s: %s\n" {} "$(xprop -id {} WM_NAME | cut -d \" -f2)"')
+
+echo "$id" | rofi -dmenu -multi-select | \
+    cut -d ':' -f1 | \
+    xargs -I node_id bspc node node_id -g hidden
+

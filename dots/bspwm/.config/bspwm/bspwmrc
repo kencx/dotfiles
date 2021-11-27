@@ -44,8 +44,7 @@ kitty --class scratchpad &
 # tui
 bspc rule -a spt -o desktop='V' state=floating rectangle=680x500+500+60 follow=off
 bspc rule -a gotop -o desktop='V' state=floating rectangle=680x920+1200+60 follow=off
-kitty --class gotop gotop --nvidia &
-kitty --class spt spt &
+xdo activate -N gotop || kitty --class gotop gotop --nvidia &
 
 bspc rule -a feh state=floating
 
