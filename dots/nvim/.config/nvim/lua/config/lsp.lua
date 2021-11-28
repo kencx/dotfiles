@@ -38,8 +38,7 @@ on_attach = function(client, bufnr)
 	end
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- setup jedi language
 nvim_lsp.jedi_language_server.setup({
@@ -113,18 +112,3 @@ function goimports(timeout_ms)
 end
 
 vim.cmd([[ autocmd BufWritePre *.go lua goimports(1000) ]])
-
--- setup efm
---[[nvim_lsp.efm.setup {
-
-    cmd = {'emf-langserver'},
-    on_attach = on_attach,
-    init_options = {documentFormatting = true},
-    filetypes = {'python'},
-    settings = {
-        rootMarkers = {'.git/'},
-        languages = {
-            python = {flake8, mypy},
-        }
-    },
-}]]

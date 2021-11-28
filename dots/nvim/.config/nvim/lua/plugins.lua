@@ -37,25 +37,47 @@ return require("packer").startup({
 
 		use({
 			"hrsh7th/nvim-cmp",
+			requires = {
+				"hrsh7th/cmp-nvim-lsp",
+				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-path",
+			},
 			config = function() -- todo: lazy load
 				require("config.cmp")
 			end,
 			event = "InsertEnter",
 		})
-		use({ "hrsh7th/cmp-nvim-lsp" })
+
 		use({
-			"neovim/nvim-lspconfig", -- todo: configs, lazy load
+			"SirVer/ultisnips",
+			requires = { { "honza/vim-snippets", rtp = "." } },
+			config = function()
+				vim.g.UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
+				vim.g.UltiSnipsJumpForwardTrigger = "<Plug>(ultisnips_jump_forward)"
+				vim.g.UltiSnipsJumpBackwardTrigger = "<Plug>(ultisnips_jump_backward)"
+				vim.g.UltiSnipsListSnippets = "<c-x><c-s>"
+				vim.g.UltiSnipsRemoveSelectModeMappings = 0
+			end,
+			after = { "nvim-cmp" },
+		})
+
+		use({
+			"neovim/nvim-lspconfig", -- todo: lazy load
 			config = function()
 				require("config.lsp")
 			end,
 		})
+
 		use({
 			"jose-elias-alvarez/null-ls.nvim",
 			config = function()
 				require("config.null-ls")
 				require("lspconfig")["null-ls"].setup({ on_attach = on_attach })
 			end,
-			after = { "plenary.nvim", "nvim-lspconfig" },
+			after = {
+				"plenary.nvim",
+				"nvim-lspconfig",
+			},
 		})
 
 		-- UI
@@ -97,7 +119,7 @@ return require("packer").startup({
 		})
 
 		-- Quality of Life support
-		-- TODO: project, which-key, dashboard, DAP, toggleterm
+		-- TODO: project, which-key
 		use({
 			"nvim-telescope/telescope.nvim", -- todo: configs
 			module = "telescope",
@@ -105,13 +127,15 @@ return require("packer").startup({
 		})
 
 		use({
-			"terrortylor/nvim-comment",
-			cmd = "CommentToggle",
+			"numToStr/Comment.nvim",
 			config = function()
-				require("nvim_comment").setup()
+				require("Comment").setup()
 			end,
 		})
-		use({ "machakann/vim-sandwich" })
+
+		use({ "tpope/vim-surround" })
+		use({ "jiangmiao/auto-pairs" })
+
 		use({ "christoomey/vim-tmux-navigator" })
 
 		-- colorscheme

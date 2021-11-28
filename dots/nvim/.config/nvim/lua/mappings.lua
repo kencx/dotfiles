@@ -35,10 +35,8 @@ bind("v", ">", ">gv", opts)
 --> shift lines up and down with alt-{j,k}
 bind("n", "<a-j>", ":m .+1<CR>==", opts)
 bind("n", "<a-k>", ":m .-2<CR>==", opts)
-bind("i", "<a-j>", "<Esc>:m .+1<CR>==gi", opts)
-bind("i", "<a-k>", "<Esc>:m .-2<CR>==gi", opts)
-bind("v", "<a-j>", ":m \'>+1<CR>gv=gv", opts)
-bind("v", "<a-k>", ":m \'<-2<CR>gv=gv", opts)
+bind("v", "<a-j>", ":m '>+1<CR>gv=gv", opts)
+bind("v", "<a-k>", ":m '<-2<CR>gv=gv", opts)
 
 --> turn off search highlighting
 bind("n", "<Leader>h", ":set hlsearch!<CR>", opts)
