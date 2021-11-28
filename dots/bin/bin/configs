@@ -2,7 +2,7 @@
 
 # easy access to config files with fzf preview
 
-CONFIGS='(zsh|bspwm|sxhkd|polybar|kitty|starship|rofi|dunst|config|nvim|lua|init.lua|tmux)'
+CONFIGS='(zsh|bspwm|sxhkd|polybar|kitty|starship|rofi|dunst|config|nvim|lua|init.lua|tmux|picom)'
 EXCLUDE='{autostart,bin}'
 
 FILE=$(fd $CONFIGS --exclude $EXCLUDE --type f --hidden ~/dotfiles/dots | \

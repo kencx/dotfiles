@@ -1,12 +1,12 @@
 #! /bin/sh
 
 # autostart
-pgrep -x sxhkd > /dev/null || sxhkd &
+pgrep -x sxhkd > /dev/null && sxhkd &
 pgrep -x picom > /dev/null || picom &
-$HOME/.config/polybar/launch.sh
-# pgrep -x redshift > /dev/null || redshift -c ~/.config/redshift/redshift.conf &
+"$HOME"/.config/polybar/launch.sh
 ~/.fehbg &
-pgrep -x dunst > /dev/null || dunst &
+pgrep -x dunst > /dev/null && dunst -config "$HOME"/.config/dunst/dunstrc &
+# pgrep -x redshift > /dev/null || redshift -c ~/.config/redshift/redshift.conf &
 
 # bspwm
 bspc monitor -d I II III IV V
