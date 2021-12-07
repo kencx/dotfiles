@@ -1,11 +1,11 @@
 
 # floating terminal
 super + Return
-	kitty
+	st
 
 # tiled terminal
 super + shift + Return
-    kitty --class tiled
+    st -c tiled
 
 # rofi
 super + space
@@ -13,7 +13,7 @@ super + space
 
 # keybindings
 super + slash
-    kitty --class keys $HOME/bin/keybinds
+    st -c keys $HOME/bin/keybinds
 
 # windows
 super + semicolon
@@ -40,7 +40,7 @@ XF86Audio{Raise,Lower}Volume
 
 # configs
 super + z
-    kitty --class configs $HOME/bin/configs
+    st -c configs $HOME/bin/configs
 
 # toggle scratchpad
 super + u

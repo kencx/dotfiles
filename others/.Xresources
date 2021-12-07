@@ -1,0 +1,33 @@
+! colors
+
+! black
+*color0:  #272727
+*color8:  #928373
+
+! white
+*color1:  #ebdbb2
+*color9:  #a89983
+
+! orange/yellow
+*color2:  #FA7921
+*color10: #fabc2e
+
+! green
+*color3:  #989719
+*color11: #b8ba25
+
+! blue
+*color4:  #448488
+*color12: #83a597
+
+! magenta
+*color5:  #b16185
+*color13: #d3859a
+
+! cyan
+*color6:  #689d69
+*color14: #8ec07b
+!
+! red
+*color7:  #cc231c
+*color15: #fb4833

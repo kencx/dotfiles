@@ -25,7 +25,7 @@ bspc config pointer_action2 resize_side
 bspc config pointer action2 resize_corner
 bspc config pointer_action1 move
 
-bspc rule -a kitty focus=on state=floating rectangle=600x400+660+340
+bspc rule -a St focus=on state=floating rectangle=600x400+660+340
 bspc rule -a tiled state=tiled focus=on
 bspc rule -a configs state=floating focus=on rectangle=760x700+620+200
 bspc rule -a keys state=floating focus=on rectangle=1100x700+480+180
@@ -39,12 +39,12 @@ bspc rule -a TelegramDesktop desktop='V' state=floating follow=off \
 # scratchpad
 bspc rule -a scratchpad sticky=on state=floating locked=on hidden=on rectangle=600x400+660+340
 xdotool search --class scratchpad windowkill
-kitty --class scratchpad &
+st -c scratchpad &
 
 # tui
 bspc rule -a spt -o desktop='V' state=floating rectangle=680x500+500+60 follow=off
 bspc rule -a gotop -o desktop='V' state=floating rectangle=680x920+1200+60 follow=off
-xdo activate -N gotop || kitty --class gotop gotop --nvidia &
+xdo activate -N gotop || st --class gotop gotop --nvidia &
 
 bspc rule -a feh state=floating
 

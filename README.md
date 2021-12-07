@@ -4,7 +4,7 @@
 - bspwm, sxhkd - heavily opinionated hotkeys
 - ohmyzsh, neovim, tmux - plugins galore
 - polybar, dunst, rofi, fzf
-- kitty, starship, feh, picom
+- st, starship, feh, picom
 - spotifyd, zathura
 - custom browser [startpage](https://github.com/kennethcheo/startpage)
 - repository of custom scripts
@@ -31,5 +31,10 @@ $ cd dots
 $ stow [dir] --target="$HOME"
 ```
 
-## Future
-- alacritty
+## st
+[Luke's](https://github.com/LukeSmithxyz/st) fork of st for an easy experience.
+
+Copy `config.h` into your local `st` source dir. Compile and build with `sudo make install`.
+
+Uses colors from `.Xresources` in `others/.Xresources`
+

@@ -15,7 +15,9 @@ local sources = {
 	diagnostics.ansiblelint,
 	diagnostics.shellcheck,
 
-	formatters.codespell,
+	formatters.codespell.with({
+		filetypes = { "markdown" },
+	}),
 	-- hover.dictionary,
 }
 

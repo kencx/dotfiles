@@ -51,8 +51,7 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 export HISTORY_IGNORE="(ls*|cd*|z*|clear|omz reload)"
 
-export TERM="xterm-kitty"
-export TERMINFO="$HOME/.terminfo"
+export TERM="st-256color"
 export EDITOR="nvim"
 export BROWSER="firefox"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
