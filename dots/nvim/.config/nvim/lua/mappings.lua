@@ -41,6 +41,9 @@ bind("v", "<a-k>", ":m '<-2<CR>gv=gv", opts)
 --> turn off search highlighting
 bind("n", "<Leader>h", ":set hlsearch!<CR>", opts)
 
+--> new tab
+bind("n", "<Leader>n", ":tabnew<CR>", opts)
+
 --> nvim-tree
 bind("n", "<Leader>t", ":NvimTreeToggle<CR>", opts)
 bind("n", "<Leader>r", ":NvimTreeRefresh<CR>", opts) -- consider remove
@@ -67,18 +70,15 @@ bind("n", "<A-0>", ":BufferLast <CR>", opts)
 bind("n", "<A-p>", ":BufferPin<CR>", opts)
 -- close buffer
 bind("n", "<A-w>", ":BufferClose<CR>", opts)
--- Magic buffer-picking mode
--- bind('n', '<C-p>', ':BufferPick<CR>', opts)
 -- Sort automatically by
 bind("n", "<Space>bb", ":BufferOrderByBufferNumber<CR>", opts)
--- bind('n', '<Space>bd', ':BufferOrderByDirectory<CR>', opts)
--- bind('n', '<Space>bl', ':BufferOrderByLanguage<CR>', opts)
 
 --> telescope
-bind("n", "<Leader>ff", ":Telescope find_files<CR>", opts)
+bind("n", "<Leader>ff", ":Telescope find_files hidden=true <CR>", opts)
 bind("n", "<Leader>fg", ":Telescope live_grep<CR>", opts)
 bind("n", "<Leader>fb", ":Telescope buffers<CR>", opts)
-bind("n", "<Leader>fh", ":Telescope help_tags<CR>", opts)
+bind("n", "<Leader>fc", ":Telescope commands<CR>", opts)
+bind("n", "<Leader>fd", ":Telescope lsp_document_diagnostics<CR>", opts)
 
---> comments
-bind("n", "<Leader>/", ":CommentToggle<CR>", opts)
+--> colorizer
+bind("n", "<Leader>cc", ":ColorizerToggle<CR>", opts)

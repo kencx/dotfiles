@@ -33,6 +33,13 @@ local on_attach = function(client, bufnr)
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 	mappings(bufnr)
 
+	-- require("lsp_signature").on_attach({
+	-- 	bind = true,
+	-- 	handler_opts = {
+	-- 		border = "rounded",
+	-- 	},
+	-- }, bufnr)
+
 	-- format on save
 	if client.resolved_capabilities.document_formatting then
 		vim.cmd([[ autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync() ]])

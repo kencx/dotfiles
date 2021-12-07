@@ -64,7 +64,7 @@ return require("packer").startup({
 			event = "InsertEnter",
 		})
 
-        -- lsp support
+		-- lsp support
 		use({
 			"neovim/nvim-lspconfig", -- todo: lazy load
 			config = function()
@@ -93,6 +93,8 @@ return require("packer").startup({
 			event = "BufRead",
 		})
 
+		-- use({ "ray-x/lsp_signature.nvim" })
+
 		-- tree navigation
 		use({
 			"kyazdani42/nvim-tree.lua",
@@ -105,16 +107,13 @@ return require("packer").startup({
 		use({
 			"romgrk/barbar.nvim",
 			event = "BufEnter",
-			--[[config = function()
-            require('config.barbar_nvim')     -- todo: configs
-        end]]
 		})
 
 		-- status line
 		use({
 			"hoob3rt/lualine.nvim",
 			config = function()
-				require("lualine").setup() -- todo: configs
+				require("config.lualine") -- todo: configs
 			end,
 		})
 
@@ -148,6 +147,9 @@ return require("packer").startup({
 			"nvim-telescope/telescope.nvim", -- todo: configs
 			module = "telescope",
 			cmd = "Telescope",
+			config = function()
+				require("config.telescope")
+			end,
 		})
 
 		-- comment engine
@@ -166,6 +168,17 @@ return require("packer").startup({
 		use({ "christoomey/vim-tmux-navigator" })
 
 		-- colorscheme
+		use({
+			"norcalli/nvim-colorizer.lua",
+			config = function()
+				require("colorizer").setup({ "*" }, {
+					RGB = true,
+					RRGGBB = true,
+					names = false,
+					mode = "background",
+				})
+			end,
+		})
 		use({ "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } })
 	end,
 
