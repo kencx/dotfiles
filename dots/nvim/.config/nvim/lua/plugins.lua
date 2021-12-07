@@ -25,7 +25,7 @@ return require("packer").startup({
 		use({ "wbthomason/packer.nvim" })
 		use({ "nvim-lua/plenary.nvim" })
 
-		-- lsp and completion support
+		-- syntax highlighting
 		use({
 			"nvim-treesitter/nvim-treesitter",
 			config = function()
@@ -35,6 +35,7 @@ return require("packer").startup({
 			event = "BufRead",
 		})
 
+		-- completion support
 		use({
 			"hrsh7th/nvim-cmp",
 			requires = {
@@ -48,6 +49,7 @@ return require("packer").startup({
 			event = "InsertEnter",
 		})
 
+		-- snippet engine
 		use({
 			"SirVer/ultisnips",
 			requires = { { "honza/vim-snippets", rtp = "." } },
@@ -59,19 +61,24 @@ return require("packer").startup({
 				vim.g.UltiSnipsRemoveSelectModeMappings = 0
 			end,
 			after = { "nvim-cmp" },
+			event = "InsertEnter",
 		})
 
+        -- lsp support
 		use({
 			"neovim/nvim-lspconfig", -- todo: lazy load
 			config = function()
 				require("config.lsp")
 			end,
+			event = "BufRead",
 		})
 
+		-- formatting, linting sources
 		use({
 			"jose-elias-alvarez/null-ls.nvim",
 			config = function()
 				require("config.null-ls")
+				local on_attach = require("config.lsp").on_attach
 				require("lspconfig")["null-ls"].setup({ on_attach = on_attach })
 			end,
 			after = {
@@ -80,15 +87,21 @@ return require("packer").startup({
 			},
 		})
 
-		-- UI
+		-- lsp servers in docker containers
+		use({
+			"lspcontainers/lspcontainers.nvim",
+			event = "BufRead",
+		})
+
+		-- tree navigation
 		use({
 			"kyazdani42/nvim-tree.lua",
 			config = function()
 				require("config.nvim_tree") -- todo: lazy load
 			end,
-			-- cmd = { 'NvimTreeToggle', 'NvimTreeFocus' },
 		})
 
+		-- buffer line
 		use({
 			"romgrk/barbar.nvim",
 			event = "BufEnter",
@@ -97,20 +110,32 @@ return require("packer").startup({
         end]]
 		})
 
+		-- status line
 		use({
 			"hoob3rt/lualine.nvim",
 			config = function()
 				require("lualine").setup() -- todo: configs
 			end,
-			-- after = 'gruvbox.nvim',
 		})
 
-		--[[use {
-        'lukas-reineke/indent-blankline.nvim',
-        event = 'BufRead',
-    }]]
+		-- indentation lines
+		use({
+			"lukas-reineke/indent-blankline.nvim",
+			config = function()
+				require("indent_blankline").setup({
+					char = "⦙",
+					show_current_context = true,
+					show_first_indent_level = false,
+					buftype_exclude = { "terminal" },
+				})
+			end,
+			event = "BufRead",
+		})
+
 		use({ "lewis6991/gitsigns.nvim" })
 		use({ "kyazdani42/nvim-web-devicons" })
+
+		-- nvim dashboard
 		use({
 			"glepnir/dashboard-nvim",
 			config = function()
@@ -118,7 +143,6 @@ return require("packer").startup({
 			end,
 		})
 
-		-- Quality of Life support
 		-- TODO: project, which-key
 		use({
 			"nvim-telescope/telescope.nvim", -- todo: configs
@@ -126,16 +150,19 @@ return require("packer").startup({
 			cmd = "Telescope",
 		})
 
+		-- comment engine
 		use({
 			"numToStr/Comment.nvim",
 			config = function()
 				require("Comment").setup()
 			end,
+			event = "BufRead",
 		})
 
 		use({ "tpope/vim-surround" })
 		use({ "jiangmiao/auto-pairs" })
 
+		-- tmux navigation support
 		use({ "christoomey/vim-tmux-navigator" })
 
 		-- colorscheme
@@ -143,6 +170,7 @@ return require("packer").startup({
 	end,
 
 	config = {
+		compile_on_sync = true,
 		-- floating window for command outputs
 		display = {
 			open_fn = function()

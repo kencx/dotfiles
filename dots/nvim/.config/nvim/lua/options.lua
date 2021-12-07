@@ -41,13 +41,15 @@ set.smartcase = true -- switch to case-sensitive when typing uppercase letter
 set.ignorecase = true -- ignore case on search
 set.wrapscan = true -- wrap searches around end-of-file
 
+set.inccommand = "split"
+
 -- indentation
-set.expandtab = true
+-- set.expandtab = true
 set.tabstop = 4 -- print tabs as 4 space
 set.softtabstop = 4
 set.shiftwidth = 4
 set.autoindent = true
-set.smartindent = true
+set.smartindent = false
 set.shiftround = true -- use shiftwidth when using >, <
 set.smarttab = true -- insert tabs based on shiftwidth
 
@@ -57,6 +59,8 @@ set.cursorline = true -- set cursorline
 set.number = true -- show line numbers
 set.relativenumber = true
 set.scrolloff = 4 -- number of lines above and below cursor when scrolling
+
+vim.wo.colorcolumn = "99999" -- fixes highlighting bug with indent_blankline
 
 -- theme
 vim.o.termguicolors = true

@@ -3,10 +3,32 @@
 # converts ObsidianMD file to blog post
 # usage: obs2draft [obs-post-name] [draft-name]
 
+set -euo pipefail
+
 OBS_DIR="$HOME/syncthing/sync/obsidian/Blog"
 BLOG_DIR="$HOME/dev/blog"
 
-cd "$BLOG_DIR" && hugo new posts/"$2" > /dev/null
-cat "$OBS_DIR/$1" >> "$BLOG_DIR/content/posts/$2"
-echo "Blog post $1 created"
+function posts() {
+	cd "$BLOG_DIR/Posts" && hugo new posts/"$2" > /dev/null
+	cat "$OBS_DIR/Posts/$1" >> "$BLOG_DIR/content/posts/$2"
+	echo "Post $1 created"
+}
 
+function notes() {
+    cd "$BLOG_DIR/Notes" && hugo new notes/"$2" > /dev/null
+	cat "$OBS_DIR/Notes/$1" >> "$BLOG_DIR/content/notes/$2"
+	echo "Note $1 created"
+}
+
+function help() {
+    cat <<- EOF
+        Usage: obs2draft [option] <obs-filename> <blog-filename>
+
+		Options:
+			posts  create a blog post
+			notes  create a note
+			help   display this message
+	EOF
+}
+
+"$@"

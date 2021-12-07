@@ -29,20 +29,20 @@ vim.g.nvim_tree_highlight_opened_files = 0
 require("nvim-tree").setup({
 
 	disable_netrw = true,
-	auto_close = true,
+	auto_close = false,
 	open_on_setup = false,
 	open_on_tab = false,
-
+    update_cwd = true,
 	-- update the focused file on `BufEnter`,
 	-- un-collapses the folders recursively until it finds the file
-	update_focus_file = {
+	update_focused_file = {
 		enable = true,
 		update_cwd = true,
 		ignore_list = {},
 	},
 
 	view = {
-		width = 20,
+		width = 30,
 		side = "left",
 		auto_resize = true,
 		mappings = {

@@ -72,3 +72,4 @@ eval "$(starship init zsh)"
 export PF_INFO="ascii title os shell wm editor pkgs uptime"
 export PF_SEP=""
 export PF_ASCII="ubuntu"
+

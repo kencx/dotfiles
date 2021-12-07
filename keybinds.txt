@@ -143,8 +143,24 @@ gu,gU                                       lower/upper case
 K                                           manual entry of word under cursor
 zz                                          center cursor
 
-# vim sandwich
-sa {motion} {text-obj} {bracket}            surround text with bracket  saiw(   foo -> (foo)
-sd {bracket}                                delete surrounding bracket  sd(     (foo) -> foo
-sr {deletion} {bracket}                     replace bracket             sr([    (foo) -> [foo]
+# surround.vim
+cs"'                                        replace "" with ''
+cs'<tag>                                    replace '' with html tag
+cst"                                        replace html tag with ""
 
+ds"                                         delete surrounding ""
+ysiw)                                       surround WORD with ()
+
+# splits
+Modifier: Ctrl + w
+
+n                                           open new window
+q                                           quit current window. quits vim if last window
+c                                           close current window
+o                                           close all windows except current one
+
+r                                           rotate windows down/right
+x                                           exchange window with next one
+
+H,J,K,L                                     change window split position to {top,bottom,left,right}
+T                                           move window to new tab page

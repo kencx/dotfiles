@@ -77,5 +77,6 @@ space-bd - sort by directory
 
 # nvim-lsp
 gd - go to definition under cursor
+gr - list references
 Ctrl-O - go back to last cursor position
 
