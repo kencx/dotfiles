@@ -23,4 +23,6 @@ gb() {
     git checkout "$(git branch | fzf)"
 }
 
-
+function lm {
+  llama "$@" 2> /tmp/path && cd "$(cat /tmp/path)"
+}

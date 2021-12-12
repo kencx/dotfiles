@@ -1,20 +1,20 @@
-! colors
+! gruvbox colors
 
 ! black
 *color0:  #272727
 *color8:  #928373
 
-! white
-*color1:  #ebdbb2
-*color9:  #a89983
-
-! orange/yellow
-*color2:  #FA7921
-*color10: #fabc2e
+! red
+*color1:  #cc231c
+*color9: #fb4833
 
 ! green
-*color3:  #989719
-*color11: #b8ba25
+*color2:  #989719
+*color10: #b8ba25
+
+! orange/yellow
+*color3:  #FA7921
+*color11: #fabc2e
 
 ! blue
 *color4:  #448488
@@ -27,7 +27,7 @@
 ! cyan
 *color6:  #689d69
 *color14: #8ec07b
-!
-! red
-*color7:  #cc231c
-*color15: #fb4833
+
+! white
+*color7:  #ebdbb2
+*color15:  #a89983

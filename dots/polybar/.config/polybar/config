@@ -18,10 +18,10 @@
 
 [colors]
 background = ${xrdb:color0}
-foreground = ${xrdb:color1}
+foreground = ${xrdb:color7}
 alternate-background = #3d3d3d
 alternate-foreground = #807C72
-alert = ${xrdb:color2}
+alert = ${xrdb:color3}
 
 
 [bar/bar]
