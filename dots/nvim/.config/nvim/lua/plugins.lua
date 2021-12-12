@@ -40,6 +40,7 @@ return require("packer").startup({
 			"hrsh7th/nvim-cmp",
 			requires = {
 				"hrsh7th/cmp-nvim-lsp",
+				"hrsh7th/cmp-nvim-lua",
 				"hrsh7th/cmp-buffer",
 				"hrsh7th/cmp-path",
 			},
@@ -51,15 +52,8 @@ return require("packer").startup({
 
 		-- snippet engine
 		use({
-			"SirVer/ultisnips",
-			requires = { { "honza/vim-snippets", rtp = "." } },
-			config = function()
-				vim.g.UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
-				vim.g.UltiSnipsJumpForwardTrigger = "<Plug>(ultisnips_jump_forward)"
-				vim.g.UltiSnipsJumpBackwardTrigger = "<Plug>(ultisnips_jump_backward)"
-				vim.g.UltiSnipsListSnippets = "<c-x><c-s>"
-				vim.g.UltiSnipsRemoveSelectModeMappings = 0
-			end,
+			"hrsh7th/vim-vsnip",
+			requires = { "hrsh7th/cmp-vsnip", "rafamadriz/friendly-snippets" },
 			after = { "nvim-cmp" },
 			event = "InsertEnter",
 		})
@@ -113,7 +107,7 @@ return require("packer").startup({
 		use({
 			"hoob3rt/lualine.nvim",
 			config = function()
-				require("config.lualine") -- todo: configs
+				require("config.lualine")
 			end,
 		})
 
@@ -142,15 +136,16 @@ return require("packer").startup({
 			end,
 		})
 
-		-- TODO: project, which-key
 		use({
-			"nvim-telescope/telescope.nvim", -- todo: configs
+			"nvim-telescope/telescope.nvim",
 			module = "telescope",
 			cmd = "Telescope",
 			config = function()
 				require("config.telescope")
 			end,
 		})
+
+		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
 		-- comment engine
 		use({
@@ -163,11 +158,11 @@ return require("packer").startup({
 
 		use({ "tpope/vim-surround" })
 		use({ "jiangmiao/auto-pairs" })
+		-- TODO: project, which-key
 
 		-- tmux navigation support
 		use({ "christoomey/vim-tmux-navigator" })
 
-		-- colorscheme
 		use({
 			"norcalli/nvim-colorizer.lua",
 			config = function()
@@ -179,6 +174,7 @@ return require("packer").startup({
 				})
 			end,
 		})
+		-- colorscheme
 		use({ "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } })
 	end,
 

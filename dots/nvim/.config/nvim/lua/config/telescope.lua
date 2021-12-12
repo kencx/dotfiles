@@ -4,6 +4,8 @@ local actions = require("telescope.actions")
 local previewers = require("telescope.previewers")
 local Job = require("plenary.job")
 
+telescope.load_extension("fzf")
+
 local new_maker = function(filepath, bufnr, opts)
 	filepath = vim.fn.expand(filepath)
 	Job
@@ -35,6 +37,7 @@ telescope.setup({
 				["<esc>"] = actions.close,
 			},
 		},
+
 		vimgrep_arguments = {
 			"rg",
 			"--color=never",
@@ -45,6 +48,7 @@ telescope.setup({
 			"--smart-case",
 			"--trim", -- add this value
 		},
+
 		layout_strategy = "vertical",
 		layout_config = {
 			vertical = {
@@ -52,6 +56,30 @@ telescope.setup({
 			},
 			width = 0.8,
 			height = 0.8,
+		},
+	},
+
+	-- pickers = {
+	-- 	find_files = {
+	-- 		mappings = {
+	-- 			n = {
+	-- 				["cd"] = function(prompt_bufnr)
+	-- 					local selection = require("telescope.actions.state").get_selected_entry()
+	-- 					local dir = vim.fn.fnamemodify(selection.path, ":p:h")
+	-- 					actions.close(prompt_bufnr)
+	-- 					vim.cmd(string.format("silent cd %s", dir))
+	-- 				end,
+	-- 			},
+	-- 		},
+	-- 	},
+	-- },
+
+	extensions = {
+		fzf = {
+			fuzzy = true,
+			override_generic_sorter = true,
+			override_file_sorter = true,
+			case_mode = "smart_case",
 		},
 	},
 })

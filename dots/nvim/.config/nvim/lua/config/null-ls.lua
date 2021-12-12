@@ -2,7 +2,7 @@ local null_ls = require("null-ls")
 
 local formatters = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
-local hover = null_ls.builtins.hover
+-- local hover = null_ls.builtins.hover
 
 local sources = {
 	-- lua
