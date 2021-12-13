@@ -42,11 +42,27 @@ local on_attach = function(client, bufnr)
 	-- 	},
 	-- }, bufnr)
 
+	vim.o.updatetime = 250
+	vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]])
+
 	-- format on save
 	if client.resolved_capabilities.document_formatting then
 		vim.cmd([[ autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync() ]])
 	end
 end
+
+-- disable inline diagnostics
+local function configure_diagnostics()
+	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+		vim.lsp.diagnostic.on_publish_diagnostics,
+		{
+			virtual_text = false,
+			signs = true,
+			underline = true,
+		}
+	)
+end
+configure_diagnostics()
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -140,6 +156,7 @@ nvim_lsp.bashls.setup({
 -- lua
 nvim_lsp.sumneko_lua.setup({
 	cmd = lspcontainers.command("sumneko_lua"),
+	on_attach = on_attach,
 	capabilities = capabilities,
 })
 
@@ -148,6 +165,7 @@ nvim_lsp.dockerls.setup({
 	before_init = function(params)
 		params.processId = vim.NIL
 	end,
+	on_attach = on_attach,
 	capabilities = capabilities,
 	cmd = lspcontainers.command("dockerls"),
 	root_dir = nvim_lsp.util.root_pattern(".git", vim.fn.getcwd()),

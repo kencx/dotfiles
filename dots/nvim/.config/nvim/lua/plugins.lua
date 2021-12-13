@@ -71,9 +71,9 @@ return require("packer").startup({
 		use({
 			"jose-elias-alvarez/null-ls.nvim",
 			config = function()
-				require("config.null-ls")
 				local on_attach = require("config.lsp").on_attach
 				require("lspconfig")["null-ls"].setup({ on_attach = on_attach })
+				require("config.null-ls")
 			end,
 			after = {
 				"plenary.nvim",
@@ -125,7 +125,12 @@ return require("packer").startup({
 			event = "BufRead",
 		})
 
-		use({ "lewis6991/gitsigns.nvim" })
+		use({ "lewis6991/gitsigns.nvim",
+			config = function()
+				require("gitsigns").setup()
+			end,
+		})
+
 		use({ "kyazdani42/nvim-web-devicons" })
 
 		-- nvim dashboard
@@ -156,7 +161,7 @@ return require("packer").startup({
 			event = "BufRead",
 		})
 
-		use({ "tpope/vim-surround" })
+		use({ "machakann/vim-sandwich" })
 		use({ "jiangmiao/auto-pairs" })
 		-- TODO: project, which-key
 

@@ -1,15 +1,18 @@
 # dotfiles
 
+Theme: Gruvbox Dark
+Font: Fira Code Nerd Font
+
 ## Applications
-- bspwm, sxhkd - heavily opinionated hotkeys
-- ohmyzsh, neovim, tmux - plugins galore
-- polybar, dunst, rofi, fzf
-- st, starship, feh, picom
-- spotifyd, zathura
+- bspwm, sxhkd
+- zsh, ohmyzsh with starship
+- [st](#st)
+- nvim with tmux
+- picom, polybar, dunst
+- rofi, fzf
+- zathura
 - custom browser [startpage](https://github.com/kennethcheo/startpage)
 - repository of custom scripts
-- Theme: gruvbox dark
-- Font: Fira Code Nerd Font
 
 ## Install
 - Xubuntu 21.04
@@ -32,9 +35,8 @@ $ stow [dir] --target="$HOME"
 ```
 
 ## st
-[Luke's](https://github.com/LukeSmithxyz/st) fork of st for an easy experience.
+[Luke's](https://github.com/LukeSmithxyz/st) fork of st for an easy experience. Uses colors from `.Xresources` in `others/.Xresources`.
 
-Copy `config.h` into your local `st` source dir. Compile and build with `sudo make install`.
+[Fork](https://github.com/kencx/st) and edit `config.h`. Compile and build with `sudo make install`.
 
-Uses colors from `.Xresources` in `others/.Xresources`
 

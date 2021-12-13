@@ -21,7 +21,7 @@ local sources = {
 	-- hover.dictionary,
 }
 
-null_ls.config({
+null_ls.setup({
 	sources = sources,
 	-- debug = true,
 })

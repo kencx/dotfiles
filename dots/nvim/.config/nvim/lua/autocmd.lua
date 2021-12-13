@@ -26,3 +26,4 @@ vim.cmd([[autocmd!]])
 vim.cmd([[autocmd FileType text,markdown,tex setlocal textwidth=80]])
 vim.cmd([[autocmd TermOpen * setlocal nonumber norelativenumber]])
 vim.cmd([[augroup END]])
+

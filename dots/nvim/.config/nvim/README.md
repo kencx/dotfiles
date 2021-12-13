@@ -1,10 +1,11 @@
 # nvim
 
-Inspired by LunarVim and NvChad.
-
 ## Plugins
+- Native lsp
+- null-ls for formatting, linting
 - nvim-cmp for completion
-- nvim-tree for directory tree
+- vsnip for snippets
+- nvim-tree
 - telescope.nvim
 - barbar-nvim
 - lualine statusline
@@ -53,12 +54,23 @@ uses [jedi-language-server](https://github.com/pappasam/jedi-language-server)
 pipx install jedi-language-server
 ```
 
+### lspcontainers
+Runs heavyweight LSPs (`npm`) through docker containers. Dynamically attached when
+required.
+- bashls
+- sumneko_lua
+- dockerls
+
 ### Formatters and Linters
-TODO
-
-
-Lastly, run :checkhealth to ensure everything is good.
+Null-ls uses a headless instance of neovim to inject lsp capabilities, allowing
+for use with general purpose lsps
+- ansiblels
+- shellcheck
+- stylua
+- yamllint
+- luacheck
 
 ## impatient.nvim
 impatient.nvim is used to cache `packer_compiled.lua` for faster startup times.
 
+Run :checkhealth to ensure everything is good.
