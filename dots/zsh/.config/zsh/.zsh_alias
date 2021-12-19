@@ -1,4 +1,3 @@
-alias lh="ls -ld .*"
 alias nv="nvim"
 alias lf="lf-ueberzug"
 alias showpath="echo $PATH | tr ':' '\n'"
@@ -8,6 +7,9 @@ alias scrot="scrot $HOME/Pictures/Screenshots/%b%d-%H:%M:%S.png"
 alias td="todo.sh -d $HOME/.config/todo-txt/todo.cfg"
 alias vimgolf="docker run --rm --it -e key="867337c104fb5b765b5ef4ade2a535e0" hettomei/vimgolf"
 
+alias dcu="docker-compose up -d"
+alias dcd="docker-compose down"
+alias dps="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.Networks}}\t{{.Status}}'"
 # git
 unalias gd; unalias gl; unalias gb;
 
@@ -24,5 +26,5 @@ gb() {
 }
 
 function lm {
-  llama "$@" 2> /tmp/path && cd "$(cat /tmp/path)"
+  cd "$(llama "$@")"
 }

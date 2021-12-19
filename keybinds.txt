@@ -142,14 +142,15 @@ gu,gU                                       lower/upper case
 :cd %:h                                     change pwd to current file directory
 K                                           manual entry of word under cursor
 zz                                          center cursor
+,wl											in visual mode, add markdown link
 
-# surround.vim
-cs"'                                        replace "" with ''
-cs'<tag>                                    replace '' with html tag
-cst"                                        replace html tag with ""
+# vim-sandwich
+let {(,[,",'' etc.} be b
+sa{object}b									surround object with b
+sd{object}b									delete surrounding b from object
+srbb										replace surrounding b with another
 
-ds"                                         delete surrounding ""
-ysiw)                                       surround WORD with ()
+
 
 # splits
 Modifier: Ctrl + w
