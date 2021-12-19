@@ -2,10 +2,12 @@
 
 # easy access to config files with fzf preview
 
-CONFIGS='(zsh|bspwm|sxhkd|polybar|kitty|starship|rofi|dunst|config|nvim|lua|init.lua|tmux|picom)'
+FILEPATH="$HOME/dotfiles/dots"
+CONFIGS='(zsh|bspwm|sxhkd|polybar|starship|rofi|dunst|config|nvim|lua|init.lua|tmux|picom)'
 EXCLUDE='{autostart,bin}'
+EDITOR="nvim"
 
-FILE=$(fd $CONFIGS --exclude $EXCLUDE --type f --hidden ~/dotfiles/dots | \
+FILE=$(fd $CONFIGS --exclude $EXCLUDE --type f --hidden "$FILEPATH" | \
     fzf --ansi --cycle \
     --delimiter='/' \
     --with-nth=-2,-1 \
@@ -15,6 +17,6 @@ FILE=$(fd $CONFIGS --exclude $EXCLUDE --type f --hidden ~/dotfiles/dots | \
     --preview-window 'right:70%' \
     --preview 'bat --color=always --style=numbers --line-range=:500 {}'
         ) \
-    && nvim "$FILE"
+    && "$EDITOR" "$FILE"
 
 
