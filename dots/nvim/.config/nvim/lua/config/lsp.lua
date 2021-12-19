@@ -43,7 +43,7 @@ local on_attach = function(client, bufnr)
 	-- }, bufnr)
 
 	vim.o.updatetime = 250
-	vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]])
+	vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
 
 	-- format on save
 	if client.resolved_capabilities.document_formatting then

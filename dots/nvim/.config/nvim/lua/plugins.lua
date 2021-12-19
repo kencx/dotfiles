@@ -40,27 +40,31 @@ return require("packer").startup({
 			"hrsh7th/nvim-cmp",
 			requires = {
 				"hrsh7th/cmp-nvim-lsp",
-				"hrsh7th/cmp-nvim-lua",
-				"hrsh7th/cmp-buffer",
-				"hrsh7th/cmp-path",
+				-- "hrsh7th/cmp-nvim-lua",
+				-- "hrsh7th/cmp-buffer",
+				-- "hrsh7th/cmp-path",
 			},
-			config = function() -- todo: lazy load
+			config = function()
 				require("config.cmp")
 			end,
 			event = "InsertEnter",
 		})
 
+		use({"hrsh7th/cmp-nvim-lua"})
+		use({"hrsh7th/cmp-buffer"})
+		use({"hrsh7th/cmp-path"})
+
 		-- snippet engine
 		use({
 			"hrsh7th/vim-vsnip",
 			requires = { "hrsh7th/cmp-vsnip", "rafamadriz/friendly-snippets" },
-			after = { "nvim-cmp" },
+			after = "nvim-cmp",
 			event = "InsertEnter",
 		})
 
 		-- lsp support
 		use({
-			"neovim/nvim-lspconfig", -- todo: lazy load
+			"neovim/nvim-lspconfig",
 			config = function()
 				require("config.lsp")
 			end,
@@ -93,7 +97,7 @@ return require("packer").startup({
 		use({
 			"kyazdani42/nvim-tree.lua",
 			config = function()
-				require("config.nvim_tree") -- todo: lazy load
+				require("config.nvim_tree")
 			end,
 		})
 
@@ -115,12 +119,7 @@ return require("packer").startup({
 		use({
 			"lukas-reineke/indent-blankline.nvim",
 			config = function()
-				require("indent_blankline").setup({
-					char = "⦙",
-					show_current_context = true,
-					show_first_indent_level = false,
-					buftype_exclude = { "terminal" },
-				})
+				require("config.indent_blankline")
 			end,
 			event = "BufRead",
 		})
@@ -161,9 +160,19 @@ return require("packer").startup({
 			event = "BufRead",
 		})
 
+		-- use({ "folke/which-key.nvim",
+		-- 	config = function ()
+		-- 		require("which-key").setup {}
+		-- 	end,
+		-- })
+		-- use({ "ahmedkhalf/project.nvim",
+		-- 	config = function ()
+		-- 		require("project_nvim").setup{}
+		-- 	end
+		-- })
+
 		use({ "machakann/vim-sandwich" })
 		use({ "jiangmiao/auto-pairs" })
-		-- TODO: project, which-key
 
 		-- tmux navigation support
 		use({ "christoomey/vim-tmux-navigator" })
