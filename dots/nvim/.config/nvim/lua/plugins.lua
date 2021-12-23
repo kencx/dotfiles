@@ -177,19 +177,19 @@ return require("packer").startup({
 		-- tmux navigation support
 		use({ "christoomey/vim-tmux-navigator" })
 
-		use({
-			"norcalli/nvim-colorizer.lua",
+		-- use({ "norcalli/nvim-colorizer.lua",
+		-- 	config = function()
+		-- 		require("colorizer").setup()
+		-- 	end,
+		-- })
+
+		-- colorscheme
+		use({ "rebelot/kanagawa.nvim",
 			config = function()
-				require("colorizer").setup({ "*" }, {
-					RGB = true,
-					RRGGBB = true,
-					names = false,
-					mode = "background",
-				})
+				require("config.colors")
 			end,
 		})
-		-- colorscheme
-		use({ "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } })
+
 	end,
 
 	config = {

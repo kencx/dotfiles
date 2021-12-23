@@ -1,7 +1,10 @@
-require("plugins")
-require("mappings")
+vim.o.termguicolors = true
+
+-- order matters!
 require("options")
+require("mappings")
 require("autocmd")
+require("plugins")
 require("packer_compiled")
 
 local disabled_built_ins = {

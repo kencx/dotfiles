@@ -12,7 +12,7 @@ end
 lualine.setup({
 
 	options = {
-		theme = "gruvbox",
+		theme = "gruvbox_dark",
 		disabled_filetypes = { "NvimTree", "terminal", "help", "dashboard" },
 	},
 	sections = {
