@@ -40,26 +40,20 @@ return require("packer").startup({
 			"hrsh7th/nvim-cmp",
 			requires = {
 				"hrsh7th/cmp-nvim-lsp",
-				-- "hrsh7th/cmp-nvim-lua",
-				-- "hrsh7th/cmp-buffer",
-				-- "hrsh7th/cmp-path",
+				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-path",
 			},
 			config = function()
 				require("config.cmp")
 			end,
-			event = "InsertEnter",
+			-- event = "InsertEnter", # gives problems
 		})
-
-		use({"hrsh7th/cmp-nvim-lua"})
-		use({"hrsh7th/cmp-buffer"})
-		use({"hrsh7th/cmp-path"})
 
 		-- snippet engine
 		use({
 			"hrsh7th/vim-vsnip",
 			requires = { "hrsh7th/cmp-vsnip", "rafamadriz/friendly-snippets" },
 			after = "nvim-cmp",
-			event = "InsertEnter",
 		})
 
 		-- lsp support
@@ -68,6 +62,7 @@ return require("packer").startup({
 			config = function()
 				require("config.lsp")
 			end,
+			requires = { "lspcontainers/lspcontainers.nvim" },
 			event = "BufRead",
 		})
 
@@ -83,12 +78,6 @@ return require("packer").startup({
 				"plenary.nvim",
 				"nvim-lspconfig",
 			},
-		})
-
-		-- lsp servers in docker containers
-		use({
-			"lspcontainers/lspcontainers.nvim",
-			event = "BufRead",
 		})
 
 		-- use({ "ray-x/lsp_signature.nvim" })
@@ -132,14 +121,6 @@ return require("packer").startup({
 
 		use({ "kyazdani42/nvim-web-devicons" })
 
-		-- nvim dashboard
-		use({
-			"glepnir/dashboard-nvim",
-			config = function()
-				require("config.dashboard")
-			end,
-		})
-
 		use({
 			"nvim-telescope/telescope.nvim",
 			module = "telescope",
@@ -148,7 +129,6 @@ return require("packer").startup({
 				require("config.telescope")
 			end,
 		})
-
 		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
 		-- comment engine
@@ -160,11 +140,20 @@ return require("packer").startup({
 			event = "BufRead",
 		})
 
-		-- use({ "folke/which-key.nvim",
-		-- 	config = function ()
-		-- 		require("which-key").setup {}
-		-- 	end,
-		-- })
+		use {
+		"folke/which-key.nvim",
+		config = function()
+			require("which-key").setup {}
+		end
+		}
+
+		-- nvim dashboard
+		use({
+			"glepnir/dashboard-nvim",
+			config = function()
+				require("config.dashboard")
+			end,
+		})
 		-- use({ "ahmedkhalf/project.nvim",
 		-- 	config = function ()
 		-- 		require("project_nvim").setup{}
@@ -177,11 +166,16 @@ return require("packer").startup({
 		-- tmux navigation support
 		use({ "christoomey/vim-tmux-navigator" })
 
-		-- use({ "norcalli/nvim-colorizer.lua",
-		-- 	config = function()
-		-- 		require("colorizer").setup()
-		-- 	end,
-		-- })
+		use({ "norcalli/nvim-colorizer.lua",
+			config = function()
+				require("colorizer").setup({ "*" }, {
+					RGB = true,
+					RRGGBB = true,
+					names = false,
+					mode = "background",
+				})
+			end,
+		})
 
 		-- colorscheme
 		use({ "rebelot/kanagawa.nvim",
