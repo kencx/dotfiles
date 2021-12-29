@@ -33,7 +33,7 @@ export PATH="$PATH:$HOME/go/bin"
 
 # completion
 autoload -Uz compinit; compinit
-zstyle ':completion:*' menu select
+zstyle ':completion:*:ssh:*' menu select
 
 # pipx autocomplete
 autoload -U bashcompinit; bashcompinit
