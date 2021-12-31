@@ -44,8 +44,11 @@ bind("n", "<Leader>h", ":set hlsearch!<CR>", opts)
 -- new tab
 bind("n", "<Leader>n", ":tabnew<CR>", opts)
 
--- markdown
+-- markdown insert link
 bind("v", "wl", [[c[<c-r>"]()<esc>]], opts)
+
+-- change pwd to current buffer
+bind("n", "<Leader>cd", ":cd %:p:h<CR>", opts)
 
 -------------
 -- plugins --
