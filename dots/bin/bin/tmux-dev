@@ -17,7 +17,7 @@ if session-exists ; then
         --reverse \
         --prompt="sessions > " \
     )
-	if $session ; then
+	if [ -n "$session" ] ; then
 		session_name="$(echo "$session" | awk '{print $1}' | sed 's/://')"
 		tmux attach-session -d -t "$session_name"
 	fi

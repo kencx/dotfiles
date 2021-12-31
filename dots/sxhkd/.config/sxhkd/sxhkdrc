@@ -97,7 +97,7 @@ super + n : super + h
 
 # select windows to unhide
 super + n : super + shift + h
-    $HOME/bin/rofi_hidden_windows
+    $HOME/bin/hidden-windows
 
 # toggle {hide,unhide} all windows in focused desktop
 super + n : super + ctrl + h

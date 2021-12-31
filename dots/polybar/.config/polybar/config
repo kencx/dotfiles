@@ -23,7 +23,6 @@ alternate-background = #3d3d3d
 alternate-foreground = #807C72
 alert = ${xrdb:color3}
 
-
 [bar/bar]
 height = 30
 padding-left = 1
@@ -38,7 +37,7 @@ font-1 = FiraCode Nerd Font:size=10;4
 
 modules-left = bspwm
 modules-center = time
-modules-right = cpu filesystem bluetooth eth pulseaudio line powermenu
+modules-right = updates cpu filesystem bluetooth eth pulseaudio line powermenu
 
 module-margin = 1
 
@@ -142,6 +141,10 @@ bar-empty = ─
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground}
 
+[module/updates]
+type = custom/script
+exec = $HOME/bin/update-check
+interval = 3600
 
 [module/cpu]
 type = internal/cpu
@@ -337,9 +340,9 @@ label-separator-foreground = ${colors.foreground}
 menu-0-0 = logout
 menu-0-0-exec = xfce4-session-logout
 menu-0-1 = reboot
-menu-0-1-exec = systemctl reboot
+menu-0-1-exec = reboot now
 menu-0-2 = power off
-menu-0-2-exec = systemctl shutdown
+menu-0-2-exec = shutdown now
 
 
 [module/filesystem]

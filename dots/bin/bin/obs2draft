@@ -5,7 +5,7 @@
 
 set -euo pipefail
 
-OBS_DIR="$HOME/syncthing/sync/obsidian/Blog"
+OBS_DIR="$HOME/syncthing/sync/obsidian"
 BLOG_DIR="$HOME/dev/blog"
 
 function posts() {
@@ -15,8 +15,8 @@ function posts() {
 }
 
 function notes() {
-    cd "$BLOG_DIR/Notes" && hugo new notes/"$2" > /dev/null
-	cat "$OBS_DIR/Notes/$1" >> "$BLOG_DIR/content/notes/$2"
+    cd "$BLOG_DIR/content/notes" && hugo new notes/"$2" > /dev/null
+	cat "$OBS_DIR/$1" >> "$BLOG_DIR/content/notes/$2"
 	echo "Note $1 created"
 }
 

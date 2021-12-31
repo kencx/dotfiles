@@ -1,0 +1,7 @@
+#!/bin/bash
+
+updates=$(apt list --upgradeable | wc -l)
+
+if not "$updates" == 1; then
+	echo ""
+fi

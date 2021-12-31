@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# mount encrypted directories quickly
+
+gocryptfs "$HOME/syncthing/sync/encrypted" "$1"
