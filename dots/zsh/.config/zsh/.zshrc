@@ -45,8 +45,8 @@ if [ -d "$HOME/dev/qmk" ]; then
 fi
 
 # zoxide
-export _ZO_DATA_DIR="$HOME/syncthing/sync/env"
-export _ZO_EXCLUDE_DIR="$HOME/syncthing/sync/env/*"
+export _ZO_DATA_DIR="$HOME/syncthing/sync/backups"
+export _ZO_EXCLUDE_DIR="$HOME/Documents/.env"
 eval "$(zoxide init zsh)"
 
 # aliases
