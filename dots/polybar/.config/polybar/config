@@ -144,6 +144,7 @@ bar-empty-foreground = ${colors.foreground}
 [module/updates]
 type = custom/script
 exec = $HOME/bin/update-check
+tail = true
 interval = 3600
 
 [module/cpu]

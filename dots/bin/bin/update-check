@@ -2,6 +2,6 @@
 
 updates=$(apt list --upgradeable | wc -l)
 
-if not "$updates" == 1; then
-	echo ""
+if [[ "$updates" != 1 ]]; then
+	echo "" "$updates"
 fi

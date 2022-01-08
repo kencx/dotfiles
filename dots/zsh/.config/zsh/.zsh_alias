@@ -6,7 +6,6 @@ alias rm="echo 'Use tm instead'"
 alias tm="trash"
 
 alias pf="ps aux | fzf"
-alias scrot="scrot $HOME/Pictures/Screenshots/%b%d-%H:%M:%S.png"
 alias td="todo.sh -d $HOME/.config/todo-txt/todo.cfg"
 alias vimgolf="docker run --rm --it -e key="867337c104fb5b765b5ef4ade2a535e0" hettomei/vimgolf"
 
@@ -30,6 +29,11 @@ gb() {
 
 function lm {
   cd "$(llama "$@")"
+}
+
+function scr {
+	scrot $HOME/Pictures/Screenshots/%b%d-%H:%M:%S.png "$@"
+	notify-send "Screenshot taken"
 }
 
 function wgon {

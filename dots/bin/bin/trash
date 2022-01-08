@@ -6,5 +6,5 @@ if [ ! -d "$trash" ]; then
 	mkdir -p "$trash"
 fi
 
-mv "$@" "$trash"
+mv --force "$@" "$trash"
 nohup find "$trash" -type f -atime +7 -exec /bin/rm '{}' \; >/dev/null 2>&1 &

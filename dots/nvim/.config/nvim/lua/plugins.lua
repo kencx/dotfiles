@@ -113,7 +113,8 @@ return require("packer").startup({
 			event = "BufRead",
 		})
 
-		use({ "lewis6991/gitsigns.nvim",
+		use({
+			"lewis6991/gitsigns.nvim",
 			config = function()
 				require("gitsigns").setup()
 			end,
@@ -140,20 +141,39 @@ return require("packer").startup({
 			event = "BufRead",
 		})
 
-		use {
-		"folke/which-key.nvim",
-		config = function()
-			require("which-key").setup {}
-		end
-		}
-
-		-- nvim dashboard
 		use({
-			"glepnir/dashboard-nvim",
+			"folke/which-key.nvim",
 			config = function()
-				require("config.dashboard")
+				require("which-key").setup({})
 			end,
 		})
+
+		-- nvim dashboard
+		-- use({
+		-- 	"glepnir/dashboard-nvim",
+		-- 	config = function()
+		-- 		require("config.dashboard")
+		-- 	end,
+		-- })
+		use {
+			"echasnovski/mini.nvim",
+			config = function()
+				local starter = require "mini.starter"
+				starter.setup {
+					items = {
+						starter.sections.builtin_actions(),
+						starter.sections.telescope(),
+					},
+					header = "Good day Kenneth",
+					footer = "",
+					content_hooks = {
+						starter.gen_hook.adding_bullet(),
+						starter.gen_hook.indexing("all", { "Builtin actions" }),
+						starter.gen_hook.aligning("center", "center"),
+					},
+				}
+			end,
+		}
 		-- use({ "ahmedkhalf/project.nvim",
 		-- 	config = function ()
 		-- 		require("project_nvim").setup{}
@@ -166,7 +186,8 @@ return require("packer").startup({
 		-- tmux navigation support
 		use({ "christoomey/vim-tmux-navigator" })
 
-		use({ "norcalli/nvim-colorizer.lua",
+		use({
+			"norcalli/nvim-colorizer.lua",
 			config = function()
 				require("colorizer").setup({ "*" }, {
 					RGB = true,
@@ -178,12 +199,12 @@ return require("packer").startup({
 		})
 
 		-- colorscheme
-		use({ "rebelot/kanagawa.nvim",
+		use({
+			"rebelot/kanagawa.nvim",
 			config = function()
 				require("config.colors")
 			end,
 		})
-
 	end,
 
 	config = {
