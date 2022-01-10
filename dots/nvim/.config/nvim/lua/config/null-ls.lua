@@ -1,4 +1,5 @@
 local null_ls = require("null-ls")
+local lsp = require("config.lsp")
 
 local formatters = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
@@ -20,6 +21,8 @@ local sources = {
 	}),
 	-- hover.dictionary,
 }
+
+require("lspconfig")["null-ls"].setup({ on_attach = lsp.on_attach })
 
 null_ls.setup({
 	sources = sources,

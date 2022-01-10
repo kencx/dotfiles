@@ -25,6 +25,18 @@ local mappings = function(bufnr)
 	-- buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
 end
 
+-- disable inline diagnostics
+local function configure_diagnostics()
+	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+		vim.lsp.diagnostic.on_publish_diagnostics,
+		{
+			virtual_text = false,
+			signs = true,
+			underline = true,
+		}
+	)
+end
+
 local on_attach = function(client, bufnr)
 	local function buf_set_option(...)
 		vim.api.nvim_buf_set_option(bufnr, ...)
@@ -33,6 +45,9 @@ local on_attach = function(client, bufnr)
 
 	-- key mappings
 	mappings(bufnr)
+
+	-- float diagnostics
+	configure_diagnostics()
 
 	-- signatures
 	-- require("lsp_signature").on_attach({
@@ -50,19 +65,6 @@ local on_attach = function(client, bufnr)
 		vim.cmd([[ autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync() ]])
 	end
 end
-
--- disable inline diagnostics
-local function configure_diagnostics()
-	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-		vim.lsp.diagnostic.on_publish_diagnostics,
-		{
-			virtual_text = false,
-			signs = true,
-			underline = true,
-		}
-	)
-end
-configure_diagnostics()
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
