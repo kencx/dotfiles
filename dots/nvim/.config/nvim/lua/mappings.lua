@@ -88,7 +88,8 @@ bind("n", "<Leader>ff", ":Telescope find_files hidden=true <CR>", opts)
 bind("n", "<Leader>fg", ":Telescope live_grep<CR>", opts)
 bind("n", "<Leader>fb", ":Telescope buffers<CR>", opts)
 bind("n", "<Leader>fc", ":Telescope commands<CR>", opts)
-bind("n", "<Leader>fd", ":Telescope lsp_document_diagnostics<CR>", opts)
+bind("n", "<Leader>fd", ":Telescope diagnostics bufnr=0<CR>", opts)
+bind("n", "<Leader>fr", ":Telescope registers<CR>", opts)
 
 -- colorizer
 bind("n", "<Leader>cc", ":ColorizerToggle<CR>", opts)

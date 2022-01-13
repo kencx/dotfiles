@@ -13,7 +13,7 @@ super + space
 
 # keybindings
 super + slash
-    st -c keys $HOME/bin/keybinds
+    st -c keys $HOME/bin/kbinds
 
 # windows
 super + semicolon
@@ -44,7 +44,7 @@ super + z
 
 # toggle scratchpad
 super + u
-    $HOME/bin/scratchpad scratchpad
+    $HOME/bin/scrpad scratchpad
 
 # todo tasks
 super + apostrophe
@@ -97,7 +97,7 @@ super + n : super + h
 
 # select windows to unhide
 super + n : super + shift + h
-    $HOME/bin/hidden-windows
+    $HOME/bin/hidw
 
 # toggle {hide,unhide} all windows in focused desktop
 super + n : super + ctrl + h
