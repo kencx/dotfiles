@@ -1,6 +1,7 @@
 # dotfiles
 
 Theme: Gruvbox Dark & [kanagawa](https://github.com/rebelot/kanagawa.nvim)
+
 Font: Fira Code Nerd Font
 
 More information:
@@ -15,7 +16,6 @@ More information:
 - custom scripts in `dots/bin`
 
 ## Install
-Ensure all required packages are installed.
 
 Dotfiles are managed by [stow](https://www.gnu.org/software/stow/). Refer to
 [this](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html) guide for how it works.
@@ -26,17 +26,17 @@ $ make dev-test     # dry-run, does not perform changes
 $ make dev
 ```
 
-To manually select a dir,
+To manually stow a dir,
 ```
 $ cd dots
 $ stow [dir] --target="$HOME"
 ```
 
-## st
+### st
 [Luke's](https://github.com/LukeSmithxyz/st) fork of st for an easy experience. Uses colors from `.Xresources` in `others/.Xresources`.
 
-[Fork](https://github.com/kencx/st) and edit `config.h`. Compile and build with `sudo make install`.
+Make edits to `config.h`. Compile and build with `sudo make install`.
 
-## Custom browser startpage
-- See [startpage](https://github.com/kennethcheo/startpage)
+### Custom browser startpage
+See [startpage](https://github.com/kennethcheo/startpage)
 
