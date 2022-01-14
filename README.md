@@ -1,22 +1,20 @@
 # dotfiles
 
-Theme: Gruvbox Dark
+Theme: Gruvbox Dark & [kanagawa](https://github.com/rebelot/kanagawa.nvim)
 Font: Fira Code Nerd Font
 
-## Applications
-- bspwm, sxhkd
-- zsh, ohmyzsh with starship
-- [st](#st)
-- nvim with tmux
-- picom, polybar, dunst
-- rofi, fzf
-- zathura
-- custom browser [startpage](https://github.com/kennethcheo/startpage)
-- repository of custom scripts
+More information:
+- WM: [bspwm](https://github.com/baskerville/bspwm), [sxhkd](https://github.com/baskerville/sxhkd)
+- Terminal: [st](#st)
+- Shell: [zsh](https://www.zsh.org) with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
+- Prompt: [starship](https://github.com/starship/starship)
+- Editor: [nvim](https://github.com/neovim/neovim/) with [tmux](https://github.com/tmux/tmux)
+- Compositor: [picom](https://github.com/yshui/picom)
+- Bar: [polybar](https://github.com/polybar/polybar/)
+- Others: [rofi](https://github.com/davatorium/rofi), [fzf](https://github.com/junegunn/fzf), [dunst](https://github.com/dunst-project/dunst), [zathura](https://github.com/pwmt/zathura)
+- custom scripts in `dots/bin`
 
 ## Install
-- Xubuntu 21.04
-
 Ensure all required packages are installed.
 
 Dotfiles are managed by [stow](https://www.gnu.org/software/stow/). Refer to
@@ -39,4 +37,6 @@ $ stow [dir] --target="$HOME"
 
 [Fork](https://github.com/kencx/st) and edit `config.h`. Compile and build with `sudo make install`.
 
+## Custom browser startpage
+- See [startpage](https://github.com/kennethcheo/startpage)
 
