@@ -4,6 +4,10 @@ Theme: Gruvbox Dark & [kanagawa](https://github.com/rebelot/kanagawa.nvim)
 
 Font: Fira Code Nerd Font
 
+<p align="center">
+<img src="./assets/ss.png"/>
+</p>
+
 More information:
 - WM: [bspwm](https://github.com/baskerville/bspwm), [sxhkd](https://github.com/baskerville/sxhkd)
 - Terminal: [st](#st)
