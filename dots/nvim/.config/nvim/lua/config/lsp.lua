@@ -13,15 +13,14 @@ local mappings = function(bufnr)
 	buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 	buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 	buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	-- buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+	buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 	-- buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 	-- buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	-- buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-	-- buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-	-- buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	-- buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
-	-- buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-	-- buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+	buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+	buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+	buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+	buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
 	-- buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
 end
 
@@ -127,19 +126,15 @@ function goimports(timeout_ms)
 	-- textDocument/codeAction can return either Command[] or CodeAction[]. If it
 	-- is a CodeAction, it can have either an edit, a command or both. Edits
 	-- should be executed first.
-	if action.edit or type(action.command) == "table" then
-		if action.edit then
-			vim.lsp.util.apply_workspace_edit(action.edit)
-		end
-		if type(action.command) == "table" then
-			vim.lsp.buf.execute_command(action.command)
-		end
-	else
-		vim.lsp.buf.execute_command(action)
+	if action.edit then
+		vim.lsp.util.apply_workspace_edit(action.edit)
+	end
+	if type(action.command) == "table" then
+		vim.lsp.buf.execute_command(action.command)
 	end
 end
 
-vim.cmd([[ autocmd BufWritePre *.go lua goimports(1000) ]])
+vim.cmd([[ autocmd BufWritePre *.go :silent! lua goimports(1000) ]])
 
 -- lspcontainers
 local lspcontainers = require("lspcontainers")

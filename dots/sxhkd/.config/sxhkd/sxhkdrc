@@ -24,11 +24,11 @@ super + semicolon
 
 # bluetooth menu
 super + shift + b
-    $HOME/bin/rofi-bluetooth --show-menu
+    $HOME/bin/polybar/rofi-bluetooth --show-menu
 
 # wifi menu
 super + shift + c
-    $HOME/bin/nmcli-rofi
+    $HOME/bin/polybar/nmcli-rofi
 
 # mute volume
 XF86AudioMute

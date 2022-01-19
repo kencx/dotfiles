@@ -1,2 +1,2 @@
 #! /bin/bash
-feh --no-fehbg --bg-scale "${HOME}/dotfiles/wallpapers/jupiter.jpg"
+feh --no-fehbg --bg-scale "${HOME}/dotfiles/img/jupiter.jpg"

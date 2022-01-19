@@ -62,7 +62,6 @@ return require("packer").startup({
 		-- lsp support
 		use({
 			"neovim/nvim-lspconfig",
-			lock = true,
 			config = function()
 				require("config.lsp")
 			end,
@@ -73,7 +72,6 @@ return require("packer").startup({
 		-- formatting, linting sources
 		use({
 			"jose-elias-alvarez/null-ls.nvim",
-			lock = true,
 			config = function()
 				-- local on_attach = require("config.lsp").on_attach
 				-- require("lspconfig")["null-ls"].setup({ on_attach = on_attach })
@@ -90,7 +88,6 @@ return require("packer").startup({
 		-- tree navigation
 		use({
 			"kyazdani42/nvim-tree.lua",
-			lock = true,
 			config = function()
 				require("config.nvim_tree")
 			end,
@@ -99,14 +96,12 @@ return require("packer").startup({
 		-- buffer line
 		use({
 			"romgrk/barbar.nvim",
-			lock = true,
 			event = "BufEnter",
 		})
 
 		-- status line
 		use({
 			"hoob3rt/lualine.nvim",
-			lock = true,
 			config = function()
 				require("config.lualine")
 			end,

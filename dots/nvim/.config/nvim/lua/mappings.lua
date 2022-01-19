@@ -65,31 +65,24 @@ bind("n", "<A-.>", ":BufferNext<CR>", opts)
 -- reorder to prev/next
 bind("n", "<A-<>", ":BufferMovePrevious<CR>", opts)
 bind("n", "<A->>", ":BufferMoveNext<CR>", opts)
--- move to buffer position
-bind("n", "<A-1>", ":BufferGoto 1<CR>", opts)
-bind("n", "<A-2>", ":BufferGoto 2<CR>", opts)
-bind("n", "<A-3>", ":BufferGoto 3<CR>", opts)
-bind("n", "<A-4>", ":BufferGoto 4<CR>", opts)
-bind("n", "<A-5>", ":BufferGoto 5<CR>", opts)
-bind("n", "<A-6>", ":BufferGoto 6<CR>", opts)
-bind("n", "<A-7>", ":BufferGoto 7<CR>", opts)
-bind("n", "<A-8>", ":BufferGoto 8<CR>", opts)
-bind("n", "<A-9>", ":BufferGoto 9<CR>", opts)
-bind("n", "<A-0>", ":BufferLast <CR>", opts)
 -- pin/unpin
 bind("n", "<A-p>", ":BufferPin<CR>", opts)
 -- close buffer
 bind("n", "<A-w>", ":BufferClose<CR>", opts)
--- Sort automatically by
-bind("n", "<Space>bb", ":BufferOrderByBufferNumber<CR>", opts)
 
 -- telescope
 bind("n", "<Leader>ff", ":Telescope find_files hidden=true <CR>", opts)
 bind("n", "<Leader>fg", ":Telescope live_grep<CR>", opts)
 bind("n", "<Leader>fb", ":Telescope buffers<CR>", opts)
 bind("n", "<Leader>fc", ":Telescope commands<CR>", opts)
-bind("n", "<Leader>fd", ":Telescope diagnostics bufnr=0<CR>", opts)
 bind("n", "<Leader>fr", ":Telescope registers<CR>", opts)
+
+
+bind("n", "<Leader>fd", ":Telescope diagnostics bufnr=0<CR>", opts)
+bind("n", "<Leader>fs", ":Telescope lsp_document_symbols<CR>", opts)
+
+bind("n", "<Leader>gc", ":Telescope git_commits<CR>", opts)
+bind("n", "<Leader>gst", ":Telescope git_status<CR>", opts)
 
 -- colorizer
 bind("n", "<Leader>cc", ":ColorizerToggle<CR>", opts)
