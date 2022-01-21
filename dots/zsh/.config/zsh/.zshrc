@@ -53,7 +53,7 @@ eval "$(zoxide init zsh)"
 [ -f $HOME/.config/zsh/.zsh_alias ] && source $HOME/.config/zsh/.zsh_alias
 
 # env variables
-export TERM="st-256color"
+export TERM="screen-256color"
 export EDITOR="nvim"
 export BROWSER="firefox"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"

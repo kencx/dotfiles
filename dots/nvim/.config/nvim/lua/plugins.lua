@@ -62,6 +62,7 @@ return require("packer").startup({
 		-- lsp support
 		use({
 			"neovim/nvim-lspconfig",
+			lock = true,
 			config = function()
 				require("config.lsp")
 			end,
@@ -72,6 +73,7 @@ return require("packer").startup({
 		-- formatting, linting sources
 		use({
 			"jose-elias-alvarez/null-ls.nvim",
+			-- commit = "868632e5839c876e99e8ba763261042131e073a7",
 			config = function()
 				-- local on_attach = require("config.lsp").on_attach
 				-- require("lspconfig")["null-ls"].setup({ on_attach = on_attach })
@@ -88,6 +90,7 @@ return require("packer").startup({
 		-- tree navigation
 		use({
 			"kyazdani42/nvim-tree.lua",
+			lock = true,
 			config = function()
 				require("config.nvim_tree")
 			end,
@@ -96,12 +99,14 @@ return require("packer").startup({
 		-- buffer line
 		use({
 			"romgrk/barbar.nvim",
+			lock = true,
 			event = "BufEnter",
 		})
 
 		-- status line
 		use({
 			"hoob3rt/lualine.nvim",
+			lock = true,
 			config = function()
 				require("config.lualine")
 			end,
@@ -110,6 +115,7 @@ return require("packer").startup({
 		-- indentation lines
 		use({
 			"lukas-reineke/indent-blankline.nvim",
+			lock = true,
 			config = function()
 				require("config.indent_blankline")
 			end,
@@ -118,6 +124,7 @@ return require("packer").startup({
 
 		use({
 			"lewis6991/gitsigns.nvim",
+			lock = true,
 			config = function()
 				require("gitsigns").setup()
 			end,
@@ -127,6 +134,7 @@ return require("packer").startup({
 
 		use({
 			"nvim-telescope/telescope.nvim",
+			lock = true,
 			module = "telescope",
 			cmd = "Telescope",
 			config = function()
@@ -138,6 +146,7 @@ return require("packer").startup({
 		-- comment engine
 		use({
 			"numToStr/Comment.nvim",
+			lock = true,
 			config = function()
 				require("Comment").setup()
 			end,
@@ -146,23 +155,18 @@ return require("packer").startup({
 
 		use({
 			"folke/which-key.nvim",
+			lock = true,
 			config = function()
 				require("which-key").setup({})
 			end,
 		})
 
-		-- nvim dashboard
-		-- use({
-		-- 	"glepnir/dashboard-nvim",
-		-- 	config = function()
-		-- 		require("config.dashboard")
-		-- 	end,
-		-- })
-		use {
+		use({
 			"echasnovski/mini.nvim",
+			lock = true,
 			config = function()
-				local starter = require "mini.starter"
-				starter.setup {
+				local starter = require("mini.starter")
+				starter.setup({
 					items = {
 						starter.sections.builtin_actions(),
 						starter.sections.telescope(),
@@ -174,9 +178,9 @@ return require("packer").startup({
 						starter.gen_hook.indexing("all", { "Builtin actions" }),
 						starter.gen_hook.aligning("center", "center"),
 					},
-				}
+				})
 			end,
-		}
+		})
 		-- use({ "ahmedkhalf/project.nvim",
 		-- 	config = function ()
 		-- 		require("project_nvim").setup{}
@@ -185,12 +189,19 @@ return require("packer").startup({
 
 		use({ "machakann/vim-sandwich" })
 		use({ "jiangmiao/auto-pairs" })
+		use({
+			"Julian/vim-textobj-variable-segment",
+			lock = true,
+			requires = { "kana/vim-textobj-user" },
+			event = "BufRead",
+		})
 
 		-- tmux navigation support
 		use({ "christoomey/vim-tmux-navigator" })
 
 		use({
 			"norcalli/nvim-colorizer.lua",
+			lock = true,
 			config = function()
 				require("colorizer").setup({ "*" }, {
 					RGB = true,

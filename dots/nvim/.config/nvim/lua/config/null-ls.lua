@@ -1,5 +1,5 @@
 local null_ls = require("null-ls")
-local lsp = require("config.lsp")
+local on_attach = require("config.lsp").on_attach
 
 local formatters = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
@@ -22,9 +22,42 @@ local sources = {
 	-- hover.dictionary,
 }
 
-require("lspconfig")["null-ls"].setup({ on_attach = lsp.on_attach })
-
 null_ls.setup({
 	sources = sources,
-	-- debug = true,
+	on_attach = on_attach,
+	debug = true,
 })
+
+local h = require("null-ls.helpers")
+local custom_ansible_source = {
+	name = "ansiblelint",
+	methods = { null_ls.methods.DIAGNOSTICS },
+	filetypes = { "yaml" },
+	generator = {
+		command = "ansible-lint",
+		to_stdin = true,
+		ignore_stderr = true,
+		args = { "--parseable-severity", "-q", "--nocolor", "$FILENAME" },
+		format = "line",
+		check_exit_code = function(code)
+			return code <= 2
+		end,
+		on_output = h.diagnostics.from_pattern(
+			[[^[^:]+:(%d+): %[[%w-]+%] %[([%w]+)%] (.*)$]],
+			{ "row", "severity", "message" },
+			{
+				severities = {
+					["VERY_HIGH"] = h.diagnostics.severities.error,
+					["HIGH"] = h.diagnostics.severities.error,
+					["MEDIUM"] = h.diagnostics.severities.warning,
+					["LOW"] = h.diagnostics.severities.warning,
+					["VERY_LOW"] = h.diagnostics.severities.information,
+					["INFO"] = h.diagnostics.severities.hint,
+				},
+			}
+		),
+	},
+}
+
+-- null_ls.disable("ansiblelint")
+-- null_ls.register(custom_ansible_source)
