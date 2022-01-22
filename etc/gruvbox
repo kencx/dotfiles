@@ -1,4 +1,5 @@
-! gruvbox colors
+! .Xresources file
+! gruvbox
 
 ! black
 *color0:  #272727

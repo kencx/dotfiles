@@ -87,6 +87,14 @@ return require("packer").startup({
 
 		-- use({ "ray-x/lsp_signature.nvim" })
 
+		use({
+			"petertriho/nvim-scrollbar",
+			lock = true,
+			config = function()
+				require("config.scrollbar")
+			end,
+		})
+
 		-- tree navigation
 		use({
 			"kyazdani42/nvim-tree.lua",
@@ -106,7 +114,7 @@ return require("packer").startup({
 		-- status line
 		use({
 			"hoob3rt/lualine.nvim",
-			lock = true,
+			-- lock = true,
 			config = function()
 				require("config.lualine")
 			end,
@@ -115,7 +123,7 @@ return require("packer").startup({
 		-- indentation lines
 		use({
 			"lukas-reineke/indent-blankline.nvim",
-			lock = true,
+			-- lock = true,
 			config = function()
 				require("config.indent_blankline")
 			end,
@@ -124,7 +132,7 @@ return require("packer").startup({
 
 		use({
 			"lewis6991/gitsigns.nvim",
-			lock = true,
+			-- lock = true,
 			config = function()
 				require("gitsigns").setup()
 			end,
@@ -146,7 +154,7 @@ return require("packer").startup({
 		-- comment engine
 		use({
 			"numToStr/Comment.nvim",
-			lock = true,
+			-- lock = true,
 			config = function()
 				require("Comment").setup()
 			end,
@@ -155,7 +163,7 @@ return require("packer").startup({
 
 		use({
 			"folke/which-key.nvim",
-			lock = true,
+			-- lock = true,
 			config = function()
 				require("which-key").setup({})
 			end,
@@ -163,7 +171,7 @@ return require("packer").startup({
 
 		use({
 			"echasnovski/mini.nvim",
-			lock = true,
+			-- lock = true,
 			config = function()
 				local starter = require("mini.starter")
 				starter.setup({
@@ -191,7 +199,6 @@ return require("packer").startup({
 		use({ "jiangmiao/auto-pairs" })
 		use({
 			"Julian/vim-textobj-variable-segment",
-			lock = true,
 			requires = { "kana/vim-textobj-user" },
 			event = "BufRead",
 		})
@@ -201,7 +208,7 @@ return require("packer").startup({
 
 		use({
 			"norcalli/nvim-colorizer.lua",
-			lock = true,
+			-- lock = true,
 			config = function()
 				require("colorizer").setup({ "*" }, {
 					RGB = true,
@@ -215,7 +222,7 @@ return require("packer").startup({
 		-- colorscheme
 		use({
 			"rebelot/kanagawa.nvim",
-			lock = true,
+			-- lock = true,
 			config = function()
 				require("config.colors")
 			end,
