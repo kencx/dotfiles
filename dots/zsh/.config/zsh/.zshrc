@@ -30,6 +30,7 @@ export HISTORY_IGNORE="(ls*|cd*|z*|clear|omz reload)"
 export PATH="$HOME/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/go/bin"
+export PATH="$PATH:$HOME/.local/bin/spicetify-cli/"
 
 # completion
 autoload -Uz compinit; compinit
