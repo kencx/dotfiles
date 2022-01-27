@@ -74,6 +74,7 @@ return require("packer").startup({
 		use({
 			"jose-elias-alvarez/null-ls.nvim",
 			-- commit = "868632e5839c876e99e8ba763261042131e073a7",
+			lock = true,
 			config = function()
 				-- local on_attach = require("config.lsp").on_attach
 				-- require("lspconfig")["null-ls"].setup({ on_attach = on_attach })
