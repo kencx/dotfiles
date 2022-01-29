@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# credits to https://github.com/druskus20/eugh
+
+# checks if list ($1) contains an element ($2)
+contains() {
+	for x in $1; do
+		[ "$x" == "$2" ] && echo 1 && return
+	done
+	echo 0
+}
+
+render_workspaces() {
+
+	out=""
+	desktops=$(bspc query -D)
+	focused=$(bspc query -D -d focused)
+	occupied=$(bspc query -D -d .occupied)
+	urgent=$(bspc query -D -d .urgent)
+
+	for d in $desktops; do
+		if [ "$(contains "$focused" "$d")" -eq 1 ]; then
+			ws="$d"
+			icon=""
+			class="focused"
+		elif [ "$(contains "$occupied" "$d")" -eq 1 ]; then
+			ws="$d"
+			icon=""
+			class="occupied"
+		elif [ "$(contains "$urgent" "$d")" -eq 1 ]; then
+			ws="$d"
+			icon=""
+			class="urgent"
+		else
+			ws="$d"
+			icon=""
+			class="empty"
+		fi
+
+		out="$out (box (button :class \"$class\" :onclick \"bspc desktop -f '$ws'\" \"$icon\"))"
+	done
+
+	echo "(box :class \"workspaces\" :orientation \"h\" :halign \"start\" :space-evenly false :spacing 20 $out)"
+}
+
+render_workspaces
+bspc subscribe desktop node_transfer | while read -r _; do
+	render_workspaces
+done

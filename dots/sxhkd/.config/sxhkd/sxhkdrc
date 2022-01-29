@@ -24,11 +24,19 @@ super + semicolon
 
 # bluetooth menu
 super + shift + b
-    $HOME/bin/polybar/rofi-bluetooth --show-menu
+    $HOME/.config/polybar/bin/rofi-bluetooth --show-menu
 
 # wifi menu
 super + shift + c
-    $HOME/bin/polybar/nmcli-rofi
+    $HOME/.config/polybar/bin/nmcli-rofi
+
+# power menu
+super + shift + p
+	eww open powermenu
+
+# close power menu
+super + shift + q
+	eww close powermenu
 
 # mute volume
 XF86AudioMute

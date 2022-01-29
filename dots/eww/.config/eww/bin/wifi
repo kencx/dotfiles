@@ -1,0 +1,19 @@
+#!/bin/bash
+
+wifistate=$(nmcli -fields WIFI g | sed -n 2p)   # wifi enabled/disabled?
+wificonn=$(nmcli con show --active | grep wifi) # wifi connected?
+conn=$(iwgetid -r)								# connected ssid
+
+if [ "$wifistate" = "disabled" ]; then
+	icon="睊"
+elif [[ "$wificonn" = "" ]]; then
+	icon="睊"
+else
+	icon="直"
+fi
+
+if [ "$conn" = "" ]; then
+	conn=" "
+fi
+
+echo "{\"content\": \"$conn\", \"icon\": \"$icon \"}"

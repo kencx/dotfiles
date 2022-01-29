@@ -1,0 +1,33 @@
+#!/bin/bash
+
+sink=$(pactl get-default-sink)
+
+case $1 in
+      "*") ;;
+      "up") pactl set-sink-volume "$sink" +1000;;
+      "down") pactl set-sink-volume "$sink" -1000;;
+esac
+
+vol=$(pactl get-sink-volume "$sink" | \
+	grep 'Volume:' | \
+	sed -e 's,.* \([0-9][0-9]*\)%.*,\1,' | bc)
+
+mute=$(pactl get-sink-mute "$sink" | \
+	grep 'Mute:' | \
+	cut -d ' ' -f2)
+
+if [ "$mute" = "yes" ]; then
+	icon="ﱝ"
+	vol=" "
+else
+	if [ "$vol" -gt 66 ]; then
+		icon="墳"
+	elif [ "$vol" -gt 33 ]; then
+		icon=""
+	elif [ "$vol" -gt 0 ]; then
+		icon=""
+	fi
+	vol="$vol%"
+fi
+
+echo "{\"content\": \"$vol\", \"icon\": \"$icon\"}"
