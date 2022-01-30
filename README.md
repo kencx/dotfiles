@@ -5,7 +5,10 @@ Theme: Gruvbox Dark & [kanagawa](https://github.com/rebelot/kanagawa.nvim)
 Font: Fira Code Nerd Font
 
 <p align="center">
-<img src="./assets/ss.png"/>
+	<img src="./assets/ss-plain.png"/>
+	<img src="./assets/ss-fetch.png"/>
+	<img src="./assets/ss-nvim.png"/>
+	<img src="./assets/ss-firefox.png"/>
 </p>
 
 More information:
@@ -15,7 +18,7 @@ More information:
 - Prompt: [starship](https://github.com/starship/starship)
 - Editor: [nvim](https://github.com/neovim/neovim/) with [tmux](https://github.com/tmux/tmux)
 - Compositor: [picom](https://github.com/yshui/picom)
-- Bar: [polybar](https://github.com/polybar/polybar/)
+- Bar: [eww](https://github.com/elkowar/eww)
 - Others: [rofi](https://github.com/davatorium/rofi), [fzf](https://github.com/junegunn/fzf), [dunst](https://github.com/dunst-project/dunst), [zathura](https://github.com/pwmt/zathura)
 - custom scripts in `dots/bin`
 
@@ -37,10 +40,9 @@ $ stow [dir] --target="$HOME"
 ```
 
 ### st
-[Luke's](https://github.com/LukeSmithxyz/st) fork of st for an easy experience. Uses colors from `.Xresources` in `others/.Xresources`.
+[Luke's](https://github.com/LukeSmithxyz/st) fork of st for an easy experience. Uses colors from `.Xresources` in `etc/.Xresources`.
 
 Make edits to `config.h`. Compile and build with `sudo make install`.
 
 ### Custom browser startpage
 See [startpage](https://github.com/kennethcheo/startpage)
-

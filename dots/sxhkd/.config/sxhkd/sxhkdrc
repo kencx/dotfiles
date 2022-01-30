@@ -22,6 +22,11 @@ super + semicolon
 # bookmarks
 # super + apostrophe
 
+# screenshot
+super + shift + s
+	scrot $HOME/Pictures/Screenshots/%b%d-%H:%M:%S.png && \
+	notify-send "Screenshot taken"
+
 # bluetooth menu
 super + shift + b
     $HOME/.config/polybar/bin/rofi-bluetooth --show-menu
@@ -52,7 +57,7 @@ super + z
 
 # toggle scratchpad
 super + u
-    $HOME/bin/scrpad scratchpad
+    $HOME/bin/pad scratchpad
 
 # todo tasks
 super + apostrophe

@@ -1,0 +1,20 @@
+(defwindow powermenu
+	:monitor 0
+	:wm-ignore true
+	:windowtype "dock"
+	:geometry (geometry :x "0px" :y "0%"
+						:width "20%" :height "10%"
+						:anchor "center center")
+	:stacking "fg"
+	(powermenu))
+
+(defwidget powermenu []
+	(box :class "powermenu"
+		:orientation "h"
+		:space-evenly false
+		:halign "center" :valign "center"
+		:spacing 20
+	(button :class "shutdown" :onrightclick "systemctl poweroff" "襤")
+	(button :class "reboot" :onrightclick "systemctl reboot" "ﰇ")
+	(button :class "lock" :onrightclick "bsplock" "")
+	(button :class "logout" :onrightclick "bspc quit" "")))

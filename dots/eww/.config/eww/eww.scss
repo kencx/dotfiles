@@ -20,7 +20,9 @@ $urgent: #FFA066;
 
 .powermenu {
 	background-color: $background;
-	border: 1px solid $foreground;
+	border: 2px solid $foreground;
+	border-radius: 5px;
+	color: $foreground;
 	font-size: 4rem;
 	padding: 15px 60px;
 }

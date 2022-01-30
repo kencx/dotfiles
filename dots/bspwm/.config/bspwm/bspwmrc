@@ -4,7 +4,7 @@
 pgrep -x sxhkd > /dev/null && sxhkd &
 pgrep -x picom > /dev/null || picom &
 # "$HOME"/.config/polybar/launch.sh
-eww kill && eww daemon && eww open bar &
+~/bin/launch-eww &
 ~/.fehbg &
 pgrep -x dunst > /dev/null && dunst -config "$HOME"/.config/dunst/dunstrc &
 # pgrep -x redshift > /dev/null || redshift -c ~/.config/redshift/redshift.conf &
