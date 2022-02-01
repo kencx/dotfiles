@@ -7,22 +7,27 @@
 # -n: new session
 # -d: directory to open in
 
-function session-exists {
-	tmux has-session -t "dev" 2> /dev/null
-}
+case $1 in
+	"*") ;;
+	"-n") tmux new-session -s "$2" && exit ;;
+	"-d") tmux new-session -c "$PWD" && exit ;;
+	"-h") echo "ttmux [-n| -d] [session-name]" && exit;;
+esac
 
-if session-exists ; then
-    session=$(tmux list-sessions | \
-        fzf --ansi --cycle \
-        --reverse \
-        --prompt="sessions > " \
-    )
-	if [ -n "$session" ] ; then
+
+if tmux has-session -t "dev"; then
+	session=$(tmux list-sessions | \
+		fzf --ansi --cycle \
+		--reverse \
+		--prompt="sessions >" \
+	)
+
+	if [ -n "$session" ]; then
 		session_name="$(echo "$session" | awk '{print $1}' | sed 's/://')"
 		tmux attach-session -d -t "$session_name"
 	fi
 else
-    tmux new-session -s "dev" -d "nvim"
+	tmux new-session -s "dev" -d "nvim"
     tmux split-window -h -l 30%
     tmux split-window -v
 	tmux attach-session -d -t "dev"
