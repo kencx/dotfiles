@@ -3,7 +3,7 @@
 # easy access to config files with fzf preview
 
 FILEPATH="$HOME/dotfiles/dots"
-CONFIGS='(zsh|bspwm|sxhkd|polybar|starship|rofi|dunst|config|nvim|lua|init.lua|tmux|picom)'
+CONFIGS='(zsh|bspwm|sxhkd|polybar|starship|rofi|dunst|config|nvim|lua|init.lua|tmux|picom|eww)'
 EXCLUDE='{autostart,bin}'
 EDITOR="nvim"
 

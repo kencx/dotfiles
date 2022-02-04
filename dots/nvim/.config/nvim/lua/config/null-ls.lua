@@ -13,7 +13,7 @@ local sources = {
 	}),
 
 	diagnostics.yamllint,
-	diagnostics.ansiblelint,
+	-- diagnostics.ansiblelint,
 	diagnostics.shellcheck,
 
 	formatters.codespell.with({
@@ -25,7 +25,7 @@ local sources = {
 null_ls.setup({
 	sources = sources,
 	on_attach = on_attach,
-	debug = true,
+	-- debug = true,
 })
 
 local h = require("null-ls.helpers")
