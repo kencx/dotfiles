@@ -73,3 +73,4 @@ export FZF_DEFAULT_OPTS="--cycle --reverse --border=rounded --margin=1 --padding
 
 # llama
 export LLAMA_VIM_KEYBINDINGS=true
+

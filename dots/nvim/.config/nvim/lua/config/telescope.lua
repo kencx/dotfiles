@@ -37,6 +37,9 @@ telescope.setup({
 				["<esc>"] = actions.close,
 			},
 		},
+		preview = {
+			treesitter = false,
+		},
 
 		vimgrep_arguments = {
 			"rg",

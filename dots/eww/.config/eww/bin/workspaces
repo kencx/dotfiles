@@ -19,7 +19,11 @@ render_workspaces() {
 	urgent=$(bspc query -D -d .urgent)
 
 	for d in $desktops; do
-		if [ "$(contains "$focused" "$d")" -eq 1 ]; then
+		if [ "$(contains "$urgent" "$d")" -eq 1 ]; then
+			ws="$d"
+			icon=""
+			class="urgent"
+		elif [ "$(contains "$focused" "$d")" -eq 1 ]; then
 			ws="$d"
 			icon=""
 			class="focused"
@@ -27,10 +31,6 @@ render_workspaces() {
 			ws="$d"
 			icon=""
 			class="occupied"
-		elif [ "$(contains "$urgent" "$d")" -eq 1 ]; then
-			ws="$d"
-			icon=""
-			class="urgent"
 		else
 			ws="$d"
 			icon=""

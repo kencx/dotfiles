@@ -28,7 +28,7 @@ return require("packer").startup({
 		-- syntax highlighting
 		use({
 			"nvim-treesitter/nvim-treesitter",
-			lock = true,
+			-- lock = true,
 			config = function()
 				require("config.treesitter")
 			end,
@@ -39,7 +39,7 @@ return require("packer").startup({
 		-- completion support
 		use({
 			"hrsh7th/nvim-cmp",
-			lock = true,
+			-- lock = true,
 			requires = {
 				"hrsh7th/cmp-nvim-lsp",
 				"hrsh7th/cmp-buffer",
@@ -62,7 +62,7 @@ return require("packer").startup({
 		-- lsp support
 		use({
 			"neovim/nvim-lspconfig",
-			lock = true,
+			-- lock = true,
 			config = function()
 				require("config.lsp")
 			end,
@@ -74,7 +74,7 @@ return require("packer").startup({
 		use({
 			"jose-elias-alvarez/null-ls.nvim",
 			-- commit = "868632e5839c876e99e8ba763261042131e073a7",
-			lock = true,
+			-- lock = true,
 			config = function()
 				-- local on_attach = require("config.lsp").on_attach
 				-- require("lspconfig")["null-ls"].setup({ on_attach = on_attach })
@@ -90,7 +90,7 @@ return require("packer").startup({
 
 		use({
 			"petertriho/nvim-scrollbar",
-			lock = true,
+			-- lock = true,
 			config = function()
 				require("config.scrollbar")
 			end,
@@ -99,7 +99,7 @@ return require("packer").startup({
 		-- tree navigation
 		use({
 			"kyazdani42/nvim-tree.lua",
-			lock = true,
+			-- lock = true,
 			config = function()
 				require("config.nvim_tree")
 			end,
@@ -108,7 +108,7 @@ return require("packer").startup({
 		-- buffer line
 		use({
 			"romgrk/barbar.nvim",
-			lock = true,
+			-- lock = true,
 			event = "BufEnter",
 		})
 
@@ -143,7 +143,7 @@ return require("packer").startup({
 
 		use({
 			"nvim-telescope/telescope.nvim",
-			lock = true,
+			-- lock = true,
 			module = "telescope",
 			cmd = "Telescope",
 			config = function()

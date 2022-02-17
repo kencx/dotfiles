@@ -15,15 +15,15 @@ alias dps="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.Networks}}\t{{.Stat
 # git
 unalias gd; unalias gl; unalias gb;
 
-gd() {
+function gd {
     git diff --name-only | fzf --ansi --prompt='diff > ' --preview='git diff --color $@ -- {-1}'
 }
 
-gl() {
+function gl {
     git show "$(git log --pretty='%h %s' | fzf --prompt='log > ' --preview='git show --color {1}' | cut -d ' ' -f1)"
 }
 
-gb() {
+function gb {
     git checkout "$(git branch | fzf)"
 }
 
@@ -36,6 +36,7 @@ function scr {
 	notify-send "Screenshot taken"
 }
 
+# turn on/off wireguard client
 function wgon {
 	ssh yossarian "wgc -o"
 }
@@ -43,3 +44,4 @@ function wgon {
 function wgoff {
 	ssh yossarian "wgc -f"
 }
+
