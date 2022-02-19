@@ -54,6 +54,8 @@ set relativenumber
 set so=4              " scrolloff
 
 set bg=dark
+" install gruvbox - git clone https://github.com/morhetz/gruvbox.git ~/.vim/pack/default/start/gruvbox
+autocmd vimenter * ++nested colorscheme gruvbox
 
 " mappings
 let mapleader=" "
