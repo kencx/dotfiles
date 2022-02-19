@@ -1,6 +1,7 @@
 alias nv="nvim"
 alias lf="lf-ueberzug"
 alias showpath="echo $PATH | tr ':' '\n'"
+alias duh="sudo du -h --one-file-system --max-depth=1 --threshold=100K | sort -h"
 
 alias rm="echo 'Use tm instead'"
 alias tm="trash"
@@ -9,9 +10,16 @@ alias pf="ps aux | fzf"
 alias td="todo.sh -d $HOME/.config/todo-txt/todo.cfg"
 alias vimgolf="docker run --rm -it -e key="867337c104fb5b765b5ef4ade2a535e0" hettomei/vimgolf"
 
+alias dc="docker-compose"
 alias dcu="docker-compose up -d"
 alias dcd="docker-compose down"
 alias dps="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.Networks}}\t{{.Status}}'"
+alias dl="docker logs -f"
+
+function dce {
+	docker exec -it $1 bash
+}
+
 # git
 unalias gd; unalias gl; unalias gb;
 
