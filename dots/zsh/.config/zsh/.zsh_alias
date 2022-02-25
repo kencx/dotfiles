@@ -16,6 +16,9 @@ alias dcd="docker-compose down"
 alias dps="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.Networks}}\t{{.Status}}'"
 alias dl="docker logs -f"
 
+alias bwu='export BW_SESSION="$(bw unlock --raw)"'
+alias bwl='export BW_SESSION='
+
 function dce {
 	docker exec -it $1 bash
 }

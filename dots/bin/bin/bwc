@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+COPY="xclip -sel clip"
+
+logins="$(bw list items)"
+name="$(echo "$logins" | jq -r '.[].name' | fzf)"
+selected="$(echo "$logins" | jq -r ".[] | select(.name == \"$name\")")"
+
+echo "Name: $(echo "$selected" | jq -r '.name')"
+echo "> Copying username"
+
+printf '%s' "$(echo "$selected" | jq -r '.login.username')" | $COPY
+echo "Press any key to copy password..."
+
+read
+echo "> Copying password"
+printf '%s' "$(echo "$selected" | jq -r '.login.password')" | $COPY
