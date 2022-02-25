@@ -77,7 +77,6 @@ bind("n", "<Leader>fb", ":Telescope buffers<CR>", opts)
 bind("n", "<Leader>fc", ":Telescope commands<CR>", opts)
 bind("n", "<Leader>fr", ":Telescope registers<CR>", opts)
 
-
 bind("n", "<Leader>fd", ":Telescope diagnostics bufnr=0<CR>", opts)
 bind("n", "<Leader>fs", ":Telescope lsp_document_symbols<CR>", opts)
 
@@ -86,3 +85,6 @@ bind("n", "<Leader>gst", ":Telescope git_status<CR>", opts)
 
 -- colorizer
 bind("n", "<Leader>cc", ":ColorizerToggle<CR>", opts)
+
+-- treesitter
+bind("n", "<Leader>ts", ":write | edit | TSBufEnable highlight<CR>", opts)
