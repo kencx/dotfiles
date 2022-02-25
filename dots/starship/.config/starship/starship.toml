@@ -8,3 +8,5 @@ success_symbol = "[::](bold yellow)"
 [package]
 disabled = true
 
+[aws]
+disabled = true

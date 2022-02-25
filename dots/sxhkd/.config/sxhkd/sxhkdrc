@@ -59,10 +59,6 @@ super + z
 super + u
     $HOME/bin/pad scratchpad
 
-# todo tasks
-super + apostrophe
-    todofi.sh
-
 # telegram
 super + t
     xdo activate -N TelegramDesktop || TelegramDesktop
