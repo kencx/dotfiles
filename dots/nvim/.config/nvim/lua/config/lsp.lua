@@ -26,14 +26,11 @@ end
 
 -- disable inline diagnostics
 local function configure_diagnostics()
-	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-		vim.lsp.diagnostic.on_publish_diagnostics,
-		{
-			virtual_text = false,
-			signs = true,
-			underline = true,
-		}
-	)
+	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+		virtual_text = false,
+		signs = true,
+		underline = true,
+	})
 end
 
 local on_attach = function(client, bufnr)
@@ -166,6 +163,14 @@ nvim_lsp.dockerls.setup({
 	capabilities = capabilities,
 	cmd = lspcontainers.command("dockerls"),
 	root_dir = nvim_lsp.util.root_pattern(".git", vim.fn.getcwd()),
+})
+
+-- terraform
+nvim_lsp.terraformls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	cmd = lspcontainers.command("terraformls"),
+	filetypes = { "hcl", "tf", "terraform", "tfvars" },
 })
 
 M.mappings = mappings
