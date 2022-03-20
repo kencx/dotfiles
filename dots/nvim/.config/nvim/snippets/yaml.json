@@ -1,0 +1,13 @@
+{
+	"play": {
+		"prefix": "play",
+		"body": [
+			"- hosts: ${1:group}",
+			"  become: ${2:yes}",
+			"  roles:",
+			"    - ${3}",
+			"  tasks:"
+		],
+		"description": "Snippet for playbook"
+	}
+}

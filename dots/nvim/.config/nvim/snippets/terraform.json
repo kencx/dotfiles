@@ -1,0 +1,45 @@
+{
+	"tf variable": {
+		"prefix": "tf-var",
+		"description": "Terraform Variable Block",
+		"body": [
+			"variable \"${1}\" {",
+			"  type = ${2}",
+			"  description = ${3}",
+			"  default = ${4}",
+			"}"
+		]
+	},
+
+	"tf output": {
+		"prefix": "tf-output",
+		"description": "Terraform Output Block",
+		"body": [
+			"output \"${1}\" {",
+			"  value = ${2}",
+			"  description = ${3}",
+			"}"
+		]
+	},
+
+	"tf resource": {
+		"prefix": "tf-resource",
+		"description": "Terraform Resource Block",
+		"body": [
+			"resource \"${1}\" \"${2}\" {",
+			"  ${3}",
+			"}"
+		]
+	},
+
+	"tf module": {
+		"prefix": "tf-module",
+		"description": "Terraform Module Block",
+		"body": [
+			"module \"${1}\" {",
+			"  source = ${2}",
+			"  ${3}",
+			"}"
+		]
+	}
+}
