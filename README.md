@@ -29,6 +29,16 @@ Other Dependencies:
 - [bw](https://github.com/bitwarden/cli)
 - [gocryptfs](https://github.com/rfjakob/gocryptfs)
 
+## Scripts
+
+- `bw` - simple CLI interface to copy credentials
+- `configs` - fzf preview of config files
+- `hidw` - hidden window selector powered by bspwm and rofi
+- `kbinds` - fzf preview of sxhkdrc key binds
+- `pad` - toggleable terminal scratchpad
+- `trash` - safe trashcan replacement for rm (very lackluster)
+- `ttmux` - start tmux with fixed layout
+
 ## Install
 
 Dotfiles are managed by [stow](https://www.gnu.org/software/stow/). Refer to

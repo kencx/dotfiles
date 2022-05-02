@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 # autostart
 pgrep -x sxhkd > /dev/null && sxhkd &

@@ -1,4 +1,5 @@
---vim.g.nvim_tree_git_h1 = 0
+-- vim.g.nvim_tree_gitignore = 0
+vim.g.nvim_tree_git_h1 = 0
 vim.g.nvim_tree_group_empty = 1 -- compact folders that contain only a single folder
 vim.g.nvim_tree_highlight_opened_files = 0
 
@@ -54,5 +55,10 @@ require("nvim-tree").setup({
 	filters = {
 		dotfiles = false,
 		custom = { ".git" },
+	},
+
+	git = {
+		enable = false,
+		timeout = 400,
 	},
 })

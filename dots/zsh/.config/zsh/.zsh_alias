@@ -49,10 +49,10 @@ function scr {
 
 # turn on/off wireguard client
 function wgon {
-	ssh yossarian "wgc -o"
+	ssh pi "wgc -o"
 }
 
 function wgoff {
-	ssh yossarian "wgc -f"
+	ssh pi "wgc -f"
 }
 
