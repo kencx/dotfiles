@@ -31,11 +31,11 @@ function gd {
 }
 
 function gl {
-    git show "$(git log --pretty='%h %s' | fzf --prompt='log > ' --preview='git show --color {1}' | cut -d ' ' -f1)"
+    git log --pretty='%h %s' | fzf --prompt='log > ' --preview='git show --color {1}' | cut -d ' ' -f1 | xargs git show
 }
 
 function gb {
-    git checkout "$(git branch | fzf)"
+    git branch | fzf --prompt='branch > ' | xargs git checkout
 }
 
 function lm {
