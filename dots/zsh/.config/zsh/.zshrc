@@ -4,6 +4,7 @@ DISABLE_UPDATE_PROMPT=true
 # plugins
 plugins=(
     git
+	aws
     ansible
     docker
     docker-compose

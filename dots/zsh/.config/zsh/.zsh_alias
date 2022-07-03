@@ -24,7 +24,8 @@ function dce {
 }
 
 # git
-unalias gd; unalias gl; unalias gb;
+unalias gd; unalias gl; unalias gb; unalias glg;
+unalias gm;
 
 function gd {
     git diff --name-only | fzf --ansi --prompt='diff > ' --preview='git diff --color $@ -- {-1}'
@@ -36,6 +37,10 @@ function gl {
 
 function gb {
     git branch | fzf --prompt='branch > ' | xargs git checkout
+}
+
+function glg {
+	git log --all --graph --oneline --decorate=short --pretty=oneline
 }
 
 function lm {

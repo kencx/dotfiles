@@ -173,6 +173,34 @@ nvim_lsp.terraformls.setup({
 	filetypes = { "hcl", "tf", "terraform", "tfvars" },
 })
 
+-- typescript
+nvim_lsp.tsserver.setup({
+	before_init = function(params)
+		params.processId = vim.NIL
+	end,
+	on_attach = on_attach,
+	capabilities = capabilities,
+	cmd = lspcontainers.command("tsserver"),
+	root_dir = nvim_lsp.util.root_pattern("tsconfig.json", "package.json", "jsconfig.json", ".git", vim.fn.getcwd()),
+})
+
+nvim_lsp.tailwindcss.setup({
+	before_init = function(params)
+		params.processId = vim.NIL
+	end,
+	on_attach = on_attach,
+	capabilities = capabilities,
+	cmd = lspcontainers.command("tailwindcss"),
+	filetypes = { "html", "css", "scss", "sass", "postcss", "javascript", "typescript" },
+	root_dir = nvim_lsp.util.root_pattern(
+		"tailwind.config.js",
+		"tailwind.config.ts",
+		"package.json",
+		".git",
+		vim.fn.getcwd()
+	),
+})
+
 M.mappings = mappings
 M.on_attach = on_attach
 return M

@@ -47,6 +47,7 @@ bspc rule -a gotop -o desktop='V' state=floating rectangle=680x920+1200+60 follo
 xdo activate -N gotop || st -c gotop gotop --nvidia &
 
 bspc rule -a feh state=floating
+bspc rule -a Zathura state=floating rectangle=760x980+35+60
 
 # gui
 bspc rule -a Pavucontrol state=floating
