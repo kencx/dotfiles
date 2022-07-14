@@ -1,4 +1,8 @@
-.PHONY: dev dev-test remote
+.PHONY: stow dev dev-test remote
+
+stow:
+	cd ./dots || exit ;\
+	stow "$(c)" -t "$$HOME" -vv
 
 dev:
 	cd ./dots || exit ;\
