@@ -40,7 +40,7 @@ local kind_icons = {
 local cmp = require("cmp")
 cmp.setup({
 
-	mapping = {
+	mapping = cmp.mapping.preset.insert({
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 		["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -73,7 +73,7 @@ cmp.setup({
 				feedkey("<Plug>(vsnip-jump-prev)", "")
 			end
 		end, { "i", "s" }),
-	},
+	}),
 
 	snippet = {
 		expand = function(args)
@@ -96,8 +96,10 @@ cmp.setup({
 		end,
 	},
 
-	documentation = {
-		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+	window = {
+		documentation = {
+			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+		},
 	},
 
 	sources = cmp.config.sources({
@@ -109,7 +111,6 @@ cmp.setup({
 	}),
 
 	experimental = {
-		native_menu = false,
 		ghost_text = true,
 	},
 })

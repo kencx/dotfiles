@@ -54,7 +54,7 @@ return require("packer").startup({
 		-- snippet engine
 		use({
 			"hrsh7th/vim-vsnip",
-			lock = true,
+			-- lock = true,
 			requires = { "hrsh7th/cmp-vsnip", "rafamadriz/friendly-snippets" },
 			after = "nvim-cmp",
 		})
@@ -73,7 +73,6 @@ return require("packer").startup({
 		-- formatting, linting sources
 		use({
 			"jose-elias-alvarez/null-ls.nvim",
-			-- commit = "868632e5839c876e99e8ba763261042131e073a7",
 			-- lock = true,
 			config = function()
 				-- local on_attach = require("config.lsp").on_attach
