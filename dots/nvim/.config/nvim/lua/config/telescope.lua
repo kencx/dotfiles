@@ -5,6 +5,7 @@ local previewers = require("telescope.previewers")
 local Job = require("plenary.job")
 
 telescope.load_extension("fzf")
+telescope.load_extension("file_browser")
 
 local new_maker = function(filepath, bufnr, opts)
 	filepath = vim.fn.expand(filepath)
@@ -30,7 +31,7 @@ end
 telescope.setup({
 	defaults = {
 		initial_mode = "insert",
-		file_ignore_patterns = { "%.git/.*" },
+		file_ignore_patterns = { "%.git/.*", "node_modules" },
 		buffer_previewer_maker = new_maker,
 		mappings = {
 			i = {

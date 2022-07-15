@@ -95,15 +95,6 @@ return require("packer").startup({
 			end,
 		})
 
-		-- tree navigation
-		use({
-			"kyazdani42/nvim-tree.lua",
-			-- lock = true,
-			config = function()
-				require("config.nvim_tree")
-			end,
-		})
-
 		-- buffer line
 		use({
 			"romgrk/barbar.nvim",
@@ -138,7 +129,9 @@ return require("packer").startup({
 			end,
 		})
 
-		use({ "kyazdani42/nvim-web-devicons" })
+		use({
+			"sindrets/diffview.nvim",
+		})
 
 		use({
 			"nvim-telescope/telescope.nvim",
@@ -150,6 +143,8 @@ return require("packer").startup({
 			end,
 		})
 		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+		use({ "nvim-telescope/telescope-file-browser.nvim" })
+		use({ "kyazdani42/nvim-web-devicons" })
 
 		-- comment engine
 		use({

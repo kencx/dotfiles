@@ -54,10 +54,6 @@ bind("n", "<Leader>cd", ":cd %:p:h<CR>", opts)
 -- plugins --
 -------------
 
--- nvim-tree
-bind("n", "<Leader>t", ":NvimTreeToggle<CR>", opts)
-bind("n", "<Leader>r", ":NvimTreeRefresh<CR>", opts) -- consider remove
-
 -- barbar.nvim
 -- move to prev/next
 bind("n", "<A-,>", ":BufferPrevious<CR>", opts)
@@ -71,6 +67,7 @@ bind("n", "<A-p>", ":BufferPin<CR>", opts)
 bind("n", "<A-w>", ":BufferClose<CR>", opts)
 
 -- telescope
+bind("n", "<Leader>ft", ":Telescope file_browser<CR>", opts)
 bind("n", "<Leader>ff", ":Telescope find_files hidden=true <CR>", opts)
 bind("n", "<Leader>fg", ":Telescope live_grep<CR>", opts)
 bind("n", "<Leader>fb", ":Telescope buffers<CR>", opts)
@@ -88,3 +85,17 @@ bind("n", "<Leader>cc", ":ColorizerToggle<CR>", opts)
 
 -- treesitter
 bind("n", "<Leader>ts", ":write | edit | TSBufEnable highlight<CR>", opts)
+
+-- diffview
+bind("n", "<Leader>dv", ":DiffviewToggle()<CR>", opts)
+bind("n", "<Leader>dh", ":DiffviewFileHistory<CR>", opts)
+
+-- local last_tabpage = vim.api.nvim_get_current_tabpage()
+function DiffviewToggle()
+	local view = require("diffview.lib").get_current_view()
+	if view then
+		vim.cmd("DiffviewClose")
+	else
+		vim.cmd("DiffviewOpen")
+	end
+end
