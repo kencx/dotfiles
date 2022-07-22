@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if ! [ -x "$(command -v pipx)" ]; then
+	python3 -m pip install --user pipx
+fi
+
+python3 -m pipx ensurepath
+pipx install --include-deps ansible
+pipx inject --include-apps ansible ansible-lint
+pipx inject --include-apps ansible molecule
+pipx inject --include-deps --include-apps ansible molecule-docker
+pipx inject --include-deps --include-apps ansible molecule-vagrant
+
+pipx list --include-injected
