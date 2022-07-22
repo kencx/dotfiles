@@ -10,3 +10,6 @@ orhun/menyoki@v1.6.0
 goreleaser/goreleaser@v1.10.2
 ciehanski/libgen-cli@v1.0.9
 antonmedv/fx@24.0.0
+FiloSottile/age@v1.0.0
+sharkdp/fd@v8.4.0
+gohugoio/hugo@v0.101.0
