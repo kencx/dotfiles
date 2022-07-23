@@ -11,33 +11,14 @@ Font: Fira Code Nerd Font
 	<img src="./assets/ss-firefox.png"/>
 </p>
 
-More information:
-- WM: [bspwm](https://github.com/baskerville/bspwm), [sxhkd](https://github.com/baskerville/sxhkd)
-- Terminal: [st](#st)
+- WM: [bspwm](https://github.com/baskerville/bspwm)
+- Terminal: [st](#st) fork
 - Shell: [zsh](https://www.zsh.org) with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
 - Prompt: [starship](https://github.com/starship/starship)
 - Editor: [nvim](https://github.com/neovim/neovim/) with [tmux](https://github.com/tmux/tmux)
-- Compositor: [picom](https://github.com/yshui/picom)
+- Compositor: [picom](https://github.com/yshui/picom) fork
 - Bar: [eww](https://github.com/elkowar/eww)
 - Others: [rofi](https://github.com/davatorium/rofi), [dunst](https://github.com/dunst-project/dunst), [zathura](https://github.com/pwmt/zathura)
-- custom scripts in `dots/bin`
-
-Other Dependencies:
-- [fzf](https://github.com/junegunn/fzf),
-- [jq](https://github.com/stedolan/jq)
-- [xclip](https://github.com/astrand/xclip)
-- [bw](https://github.com/bitwarden/cli)
-- [gocryptfs](https://github.com/rfjakob/gocryptfs)
-
-## Scripts
-
-- `bw` - simple CLI interface to copy credentials
-- `configs` - fzf preview of config files
-- `hidw` - hidden window selector powered by bspwm and rofi
-- `kbinds` - fzf preview of sxhkdrc key binds
-- `pad` - toggleable terminal scratchpad
-- `trash` - safe trashcan replacement for rm (very lackluster)
-- `ttmux` - start tmux with fixed layout
 
 ## Install
 
@@ -45,15 +26,16 @@ Dotfiles are managed by [stow](https://www.gnu.org/software/stow/). Refer to
 [this](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html) guide for how it works.
 
 To symlink all dotfiles
-```
+
+```bash
 $ make dev-test     # dry-run, does not perform changes
 $ make dev
 ```
 
-To manually stow a dir,
-```
-$ cd dots
-$ stow [dir] --target="$HOME"
+To sym a specified dir
+
+```bash
+$ make stow c=[dir]
 ```
 
 ### st
@@ -61,10 +43,31 @@ $ stow [dir] --target="$HOME"
 
 Make edits to `config.h`. Compile and build with `sudo make install`.
 
-### Custom browser startpage
-See [startpage](https://github.com/kennethcheo/startpage)
+## etc
 
-### Remote
+### Colorscheme
+Two colorschemes are available in the form of `.Xresources` files.
+
+To use, copy the `.Xresources` file to `~/.Xresources` and replace the
+defined path within it. Take care of the username.
+
+### Binaries
+Key binaries are listed in `/etc/stew` for installation with [stew](https://github.com/marwanhawari/stew).
+
+```bash
+$ stew install Stewfile.lock.json
+```
+
+### desktop
+Desktop files for rofi access. Place them at `~/.local/share/applications/`
+
+### Firefox Theme
+Follow instructions at [SimpleFox](https://github.com/migueravila/SimpleFox).
+
+### Custom browser startpage
+See custom [startpage](https://github.com/kennethcheo/startpage)
+
+## Remote
 Minimal .vimrc config for remote servers
 
 Requires installation of Gruvbox:
