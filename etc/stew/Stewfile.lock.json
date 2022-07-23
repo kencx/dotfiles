@@ -1,0 +1,213 @@
+{
+	"os": "linux",
+	"arch": "amd64",
+	"packages": [
+		{
+			"source": "github",
+			"owner": "BurntSushi",
+			"repo": "ripgrep",
+			"tag": "13.0.0",
+			"asset": "ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz",
+			"binary": "rg",
+			"url": "https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "junegunn",
+			"repo": "fzf",
+			"tag": "0.30.0",
+			"asset": "fzf-0.30.0-linux_amd64.tar.gz",
+			"binary": "fzf",
+			"url": "https://github.com/junegunn/fzf/releases/download/0.30.0/fzf-0.30.0-linux_amd64.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "xxxserxxx",
+			"repo": "gotop",
+			"tag": "v4.1.3",
+			"asset": "gotop_v4.1.3_linux_amd64.tgz",
+			"binary": "gotop_v4.1.3_linux_amd64.tgz",
+			"url": "https://github.com/xxxserxxx/gotop/releases/download/v4.1.3/gotop_v4.1.3_linux_amd64.tgz"
+		},
+		{
+			"source": "github",
+			"owner": "sharkdp",
+			"repo": "bat",
+			"tag": "v0.20.0",
+			"asset": "bat-v0.20.0-x86_64-unknown-linux-gnu.tar.gz",
+			"binary": "bat",
+			"url": "https://github.com/sharkdp/bat/releases/download/v0.20.0/bat-v0.20.0-x86_64-unknown-linux-gnu.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "mathaou",
+			"repo": "termdbms",
+			"tag": "v0.9-alpha",
+			"asset": "termdbms_linux_x86.zip",
+			"binary": "termdbms",
+			"url": "https://github.com/mathaou/termdbms/releases/download/v0.9-alpha/termdbms_linux_x86.zip"
+		},
+		{
+			"source": "github",
+			"owner": "sachaos",
+			"repo": "note",
+			"tag": "v0.4.0",
+			"asset": "note_linux_amd64",
+			"binary": "note",
+			"url": "https://github.com/sachaos/note/releases/download/v0.4.0/note_linux_amd64"
+		},
+		{
+			"source": "github",
+			"owner": "knipferrc",
+			"repo": "fm",
+			"tag": "v0.15.3",
+			"asset": "fm_0.15.3_linux_amd64.tar.gz",
+			"binary": "fm",
+			"url": "https://github.com/knipferrc/fm/releases/download/v0.15.3/fm_0.15.3_linux_amd64.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "dominikh",
+			"repo": "go-tools",
+			"tag": "2022.1.2",
+			"asset": "staticcheck_linux_amd64.tar.gz",
+			"binary": "staticcheck",
+			"url": "https://github.com/dominikh/go-tools/releases/download/2022.1.2/staticcheck_linux_amd64.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "orhun",
+			"repo": "menyoki",
+			"tag": "v1.6.0",
+			"asset": "menyoki-1.6.0-x86_64-unknown-linux-gnu.tar.gz",
+			"binary": "menyoki",
+			"url": "https://github.com/orhun/menyoki/releases/download/v1.6.0/menyoki-1.6.0-x86_64-unknown-linux-gnu.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "goreleaser",
+			"repo": "goreleaser",
+			"tag": "v1.10.2",
+			"asset": "goreleaser_Linux_x86_64.tar.gz",
+			"binary": "goreleaser",
+			"url": "https://github.com/goreleaser/goreleaser/releases/download/v1.10.2/goreleaser_Linux_x86_64.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "ciehanski",
+			"repo": "libgen-cli",
+			"tag": "v1.0.9",
+			"asset": "libgen-cli-v1.0.9-linux",
+			"binary": "libgen",
+			"url": "https://github.com/ciehanski/libgen-cli/releases/download/v1.0.9/libgen-cli-v1.0.9-linux"
+		},
+		{
+			"source": "github",
+			"owner": "antonmedv",
+			"repo": "fx",
+			"tag": "24.0.0",
+			"asset": "fx_linux_amd64",
+			"binary": "fx",
+			"url": "https://github.com/antonmedv/fx/releases/download/24.0.0/fx_linux_amd64"
+		},
+		{
+			"source": "github",
+			"owner": "FiloSottile",
+			"repo": "age",
+			"tag": "v1.0.0",
+			"asset": "age-v1.0.0-linux-amd64.tar.gz",
+			"binary": "age",
+			"url": "https://github.com/FiloSottile/age/releases/download/v1.0.0/age-v1.0.0-linux-amd64.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "sharkdp",
+			"repo": "fd",
+			"tag": "v8.4.0",
+			"asset": "fd-v8.4.0-x86_64-unknown-linux-gnu.tar.gz",
+			"binary": "fd",
+			"url": "https://github.com/sharkdp/fd/releases/download/v8.4.0/fd-v8.4.0-x86_64-unknown-linux-gnu.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "gohugoio",
+			"repo": "hugo",
+			"tag": "v0.101.0",
+			"asset": "hugo_0.101.0_Linux-64bit.tar.gz",
+			"binary": "hugo",
+			"url": "https://github.com/gohugoio/hugo/releases/download/v0.101.0/hugo_0.101.0_Linux-64bit.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "Qalculate",
+			"repo": "libqalculate",
+			"tag": "v4.2.0",
+			"asset": "qalculate-4.2.0-x86_64.tar.xz",
+			"binary": "qalc",
+			"url": "https://github.com/Qalculate/libqalculate/releases/download/v4.2.0/qalculate-4.2.0-x86_64.tar.xz"
+		},
+		{
+			"source": "github",
+			"owner": "ajeetdsouza",
+			"repo": "zoxide",
+			"tag": "v0.8.2",
+			"asset": "zoxide-0.8.2-x86_64-unknown-linux-musl.tar.gz",
+			"binary": "zoxide",
+			"url": "https://github.com/ajeetdsouza/zoxide/releases/download/v0.8.2/zoxide-0.8.2-x86_64-unknown-linux-musl.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "nektos",
+			"repo": "act",
+			"tag": "v0.2.29",
+			"asset": "act_Linux_x86_64.tar.gz",
+			"binary": "act",
+			"url": "https://github.com/nektos/act/releases/download/v0.2.29/act_Linux_x86_64.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "orf",
+			"repo": "gping",
+			"tag": "gping-v1.3.2",
+			"asset": "gping-Linux-x86_64.tar.gz",
+			"binary": "gping",
+			"url": "https://github.com/orf/gping/releases/download/gping-v1.3.2/gping-Linux-x86_64.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "antonmedv",
+			"repo": "llama",
+			"tag": "v1.0.2",
+			"asset": "llama_linux_amd64",
+			"binary": "llama",
+			"url": "https://github.com/antonmedv/llama/releases/download/v1.0.2/llama_linux_amd64"
+		},
+		{
+			"source": "github",
+			"owner": "mozilla",
+			"repo": "sops",
+			"tag": "v3.7.3",
+			"asset": "sops-v3.7.3.linux.amd64",
+			"binary": "sops",
+			"url": "https://github.com/mozilla/sops/releases/download/v3.7.3/sops-v3.7.3.linux.amd64"
+		},
+		{
+			"source": "github",
+			"owner": "stedolan",
+			"repo": "jq",
+			"tag": "jq-1.6",
+			"asset": "jq-linux64",
+			"binary": "jq",
+			"url": "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64"
+		},
+		{
+			"source": "github",
+			"owner": "jesseduffield",
+			"repo": "lazydocker",
+			"tag": "v0.18.1",
+			"asset": "lazydocker_0.18.1_Linux_x86_64.tar.gz",
+			"binary": "lazydocker",
+			"url": "https://github.com/jesseduffield/lazydocker/releases/download/v0.18.1/lazydocker_0.18.1_Linux_x86_64.tar.gz"
+		}
+	]
+}
