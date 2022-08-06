@@ -96,17 +96,15 @@ nvim_lsp.gopls.setup({
 				unusedparams = true,
 			},
 			staticcheck = true,
+			buildFlags = { "-tags=integration" },
 		},
 	},
 })
 
 -- sort imports on save
 function goimports(timeout_ms)
-	local context = { only = { "source.organizeImports" } }
-	vim.validate({ context = { context, "t", true } })
-
 	local params = vim.lsp.util.make_range_params()
-	params.context = context
+	params.context = { only = { "source.organizeImports" } }
 
 	-- See the implementation of the textDocument/codeAction callback
 	-- (lua/vim/lsp/handler.lua) for how to do this properly.
@@ -124,7 +122,7 @@ function goimports(timeout_ms)
 	-- is a CodeAction, it can have either an edit, a command or both. Edits
 	-- should be executed first.
 	if action.edit then
-		vim.lsp.util.apply_workspace_edit(action.edit)
+		vim.lsp.util.apply_workspace_edit(action.edit, "utf-16")
 	end
 	if type(action.command) == "table" then
 		vim.lsp.buf.execute_command(action.command)

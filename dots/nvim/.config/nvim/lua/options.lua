@@ -66,3 +66,6 @@ vim.wo.colorcolumn = "99999" -- fixes highlighting bug with indent_blankline
 --     hi! Normal ctermbg=NONE guibg=NONE
 --     hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 -- ]])
+
+-- vim-tmux-navigator
+vim.g.tmux_navigator_disable_when_zoomed = 1
