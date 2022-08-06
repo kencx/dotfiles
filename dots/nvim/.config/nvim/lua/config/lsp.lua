@@ -109,23 +109,14 @@ function goimports(timeout_ms)
 	-- See the implementation of the textDocument/codeAction callback
 	-- (lua/vim/lsp/handler.lua) for how to do this properly.
 	local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
-	if not result or next(result) == nil then
-		return
-	end
-	local actions = result[1].result
-	if not actions then
-		return
-	end
-	local action = actions[1]
-
-	-- textDocument/codeAction can return either Command[] or CodeAction[]. If it
-	-- is a CodeAction, it can have either an edit, a command or both. Edits
-	-- should be executed first.
-	if action.edit then
-		vim.lsp.util.apply_workspace_edit(action.edit, "utf-16")
-	end
-	if type(action.command) == "table" then
-		vim.lsp.buf.execute_command(action.command)
+	for _, res in pairs(result or {}) do
+		for _, r in pairs(res.result or {}) do
+			if r.edit then
+				vim.lsp.util.apply_workspace_edit(r.edit, "utf-16")
+			else
+				vim.lsp.buf.execute_command(r.command)
+			end
+		end
 	end
 end
 

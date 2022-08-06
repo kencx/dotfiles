@@ -1,0 +1,9 @@
+{
+	"if err != nil": {
+		"prefix": "iferr",
+		"description": "Snippet for if err != nil",
+		"body": [
+			"if err != nil {\n\t${1:return ${2:nil, }${3:err}}\n}"
+		]
+	}
+}

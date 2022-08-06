@@ -1,1 +1,1 @@
-vim.g["vsnip_snippet_dir"] = "~/.config/nvim/snippets/"
+vim.g.vsnip_snippet_dir = vim.fn.expand("~/.config/nvim/snippets/")
