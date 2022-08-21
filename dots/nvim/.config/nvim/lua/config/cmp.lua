@@ -102,6 +102,18 @@ cmp.setup({
 		},
 	},
 
+	completion = {
+		get_trigger_characters = function(trigger_chars)
+			local new_trigger_chars = {}
+			for _, char in ipairs(trigger_chars) do
+				if char ~= ">" then
+					table.insert(new_trigger_chars, char)
+				end
+			end
+			return new_trigger_chars
+		end,
+	},
+
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
 		{ name = "path" },
