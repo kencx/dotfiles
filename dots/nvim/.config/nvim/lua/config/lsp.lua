@@ -53,6 +53,11 @@ local on_attach = function(client, bufnr)
 	-- 	},
 	-- }, bufnr)
 
+	-- document-color.nvim
+	if client.server_capabilities.colorProvider then
+		require("document-color").buf_attach(bufnr, { mode = "background" })
+	end
+
 	vim.o.updatetime = 250
 	vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
 
@@ -173,6 +178,14 @@ nvim_lsp.tsserver.setup({
 	root_dir = nvim_lsp.util.root_pattern("tsconfig.json", "package.json", "jsconfig.json", ".git", vim.fn.getcwd()),
 })
 
+nvim_lsp.svelte.setup({
+	before_init = function(params)
+		params.processId = vim.NIL
+	end,
+	cmd = lspcontainers.command("svelte"),
+	root_dir = nvim_lsp.util.root_pattern("svelte.config.js", ".git", vim.fn.getcwd()),
+})
+
 nvim_lsp.tailwindcss.setup({
 	before_init = function(params)
 		params.processId = vim.NIL
@@ -180,8 +193,9 @@ nvim_lsp.tailwindcss.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 	cmd = lspcontainers.command("tailwindcss"),
-	filetypes = { "html", "css", "scss", "sass", "postcss", "javascript", "typescript" },
+	filetypes = { "html", "css", "scss", "sass", "postcss", "javascript", "typescript", "svelte" },
 	root_dir = nvim_lsp.util.root_pattern(
+		"tailwind.config.cjs",
 		"tailwind.config.js",
 		"tailwind.config.ts",
 		"package.json",
