@@ -26,10 +26,8 @@ dev-test:
 
 remote:
 	cd ./remote || exit ;\
-	for d in */ ;\
-	do echo "$$d" ;\
-		stow "$$(basename "$$d")" -t "$$HOME" -vv ;\
-		echo "------" ;\
-	done ;\
+	stow "$$(basename "./vim")" -t "$$HOME" -vv ;\
 	echo "stow complete";\
+	git clone https://github.com/morhetz/gruvbox.git "$$HOME/.vim/pack/default/start/gruvbox" ;\
+	echo "Installed gruvbox theme"
 

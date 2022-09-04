@@ -52,6 +52,11 @@ function scr {
 	notify-send "Screenshot taken"
 }
 
+function cheat {
+	curl cheat.sh/$1
+}
+
+
 # turn on/off wireguard client
 function wgon {
 	ssh pi "wgc -o"

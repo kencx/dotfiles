@@ -35,7 +35,7 @@ bspc rule -a Firefox focus=on follow=on state=tiled
 bspc rule -a obsidian focus=off follow=off state=tiled
 
 bspc rule -a St -o desktop="I" state=tiled follow=off && st -e tmux &
-bspc rule -a Firefox -o desktop='II' state=tiled && firefox &
+bspc rule -a Firefox -o desktop='II' state=tiled && sleep 5 && firefox &
 bspc rule -a obsidian -o desktop='III' focus=off follow=off \
 	state=tiled && obsidian &
 bspc rule -a TelegramDesktop desktop='V' state=floating follow=off \
