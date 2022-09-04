@@ -1,5 +1,6 @@
--- bind('mode', 'key', 'cmd', *opts)
+-- eg: bind('mode', 'key', 'cmd', *opts)
 local bind = vim.api.nvim_set_keymap
+local lua_bind = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = " "
@@ -86,11 +87,14 @@ bind("n", "<Leader>cc", ":ColorizerToggle<CR>", opts)
 -- treesitter
 bind("n", "<Leader>ts", ":write | edit | TSBufEnable highlight<CR>", opts)
 
--- diffview
-bind("n", "<Leader>dv", ":DiffviewToggle()<CR>", opts)
-bind("n", "<Leader>dh", ":DiffviewFileHistory<CR>", opts)
+-- gitsigns
+bind("v", "<Leader>sh", ":Gitsigns stage_hunk<CR>", opts)
+bind("v", "<Leader>rh", ":Gitsigns reset_hunk<CR>", opts)
+bind("n", "<Leader>sb", ":Gitsigns stage_buffer<CR>", opts)
+bind("n", "<Leader>rb", ":Gitsigns reset_buffer<CR>", opts)
 
--- local last_tabpage = vim.api.nvim_get_current_tabpage()
+-- diffview
+bind("n", "<Leader>dh", ":DiffviewFileHistory<CR>", opts)
 function DiffviewToggle()
 	local view = require("diffview.lib").get_current_view()
 	if view then
@@ -99,3 +103,4 @@ function DiffviewToggle()
 		vim.cmd("DiffviewOpen")
 	end
 end
+lua_bind("n", "<Leader>dv", DiffviewToggle, opts)
