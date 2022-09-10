@@ -202,6 +202,14 @@ return require("packer").startup({
 		-- tmux navigation support
 		use({ "christoomey/vim-tmux-navigator" })
 
+		-- colorscheme
+		use({
+			"rebelot/kanagawa.nvim",
+			-- lock = true,
+			config = function()
+				require("config.colors")
+			end,
+		})
 		use({
 			"norcalli/nvim-colorizer.lua",
 			-- lock = true,
@@ -214,13 +222,13 @@ return require("packer").startup({
 				})
 			end,
 		})
-
-		-- colorscheme
 		use({
-			"rebelot/kanagawa.nvim",
+			"mrshmllow/document-color.nvim",
 			-- lock = true,
 			config = function()
-				require("config.colors")
+				require("document-color").setup({
+					mode = "background",
+				})
 			end,
 		})
 	end,

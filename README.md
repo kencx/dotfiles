@@ -18,6 +18,7 @@ Font: Fira Code Nerd Font
 - Editor: [nvim](https://github.com/neovim/neovim/) with [tmux](https://github.com/tmux/tmux)
 - Compositor: [picom](https://github.com/yshui/picom) fork
 - Bar: [eww](https://github.com/elkowar/eww)
+- Greeter: lightdm-gtk-greeter
 - Others: [rofi](https://github.com/davatorium/rofi), [dunst](https://github.com/dunst-project/dunst), [zathura](https://github.com/pwmt/zathura)
 
 ## Install
@@ -66,6 +67,18 @@ Follow instructions at [SimpleFox](https://github.com/migueravila/SimpleFox).
 
 ### Custom browser startpage
 See custom [startpage](https://github.com/kennethcheo/startpage)
+
+### Greeter
+The default LightDM greeter is used with a custom background. Config file is
+found in `etc/lightdm-gtk-greeter.conf`. Replace the `background` field with the
+correct img path.
+
+```
+$ sudo cp etc/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
+$ sudo cp img/image.png /usr/share/backgrounds/image.png
+```
+
+Test with `dm-tool switch-to-greeter`.
 
 ## Remote
 Minimal .vimrc config for remote servers
