@@ -1,0 +1,10 @@
+#!/bin/bash
+
+HOST=$(grep "Host " /home/kenc/.ssh/config | awk '{print $2}' | \
+	fzf --ansi --cycle \
+	--prompt="ssh > " \
+	--margin=5% \
+	--layout=reverse
+	)
+
+ssh "$HOST"
