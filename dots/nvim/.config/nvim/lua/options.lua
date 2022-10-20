@@ -44,7 +44,7 @@ set.wrapscan = true -- wrap searches around end-of-file
 set.inccommand = "split"
 
 -- indentation
--- set.expandtab = true
+set.expandtab = true
 set.tabstop = 4 -- print tabs as 4 space
 set.softtabstop = 4
 set.shiftwidth = 4
