@@ -202,6 +202,17 @@ return require("packer").startup({
 		-- tmux navigation support
 		use({ "christoomey/vim-tmux-navigator" })
 
+		-- markdown previewer
+		use({
+			"iamcco/markdown-preview.nvim",
+			run = function()
+				fn["mkdp#util#install"]()
+			end,
+			config = function()
+				require("config.markdown_preview")
+			end,
+		})
+
 		-- colorscheme
 		use({
 			"rebelot/kanagawa.nvim",

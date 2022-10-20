@@ -3,7 +3,6 @@ junegunn/fzf@0.30.0
 xxxserxxx/gotop@v4.1.3
 sharkdp/bat@v0.20.0
 mathaou/termdbms@v0.9-alpha
-sachaos/note@v0.4.0
 knipferrc/fm@v0.15.3
 dominikh/go-tools@2022.1.2
 orhun/menyoki@v1.6.0
@@ -21,3 +20,6 @@ antonmedv/llama@v1.0.2
 mozilla/sops@v3.7.3
 stedolan/jq@jq-1.6
 jesseduffield/lazydocker@v0.18.1
+charmbracelet/gum@v0.1.0
+golang-migrate/migrate@v4.15.2
+superfly/flyctl@v0.0.378

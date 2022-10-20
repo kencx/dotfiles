@@ -49,15 +49,6 @@
 		},
 		{
 			"source": "github",
-			"owner": "sachaos",
-			"repo": "note",
-			"tag": "v0.4.0",
-			"asset": "note_linux_amd64",
-			"binary": "note",
-			"url": "https://github.com/sachaos/note/releases/download/v0.4.0/note_linux_amd64"
-		},
-		{
-			"source": "github",
 			"owner": "knipferrc",
 			"repo": "fm",
 			"tag": "v0.15.3",
@@ -208,6 +199,33 @@
 			"asset": "lazydocker_0.18.1_Linux_x86_64.tar.gz",
 			"binary": "lazydocker",
 			"url": "https://github.com/jesseduffield/lazydocker/releases/download/v0.18.1/lazydocker_0.18.1_Linux_x86_64.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "charmbracelet",
+			"repo": "gum",
+			"tag": "v0.1.0",
+			"asset": "gum_0.1.0_linux_x86_64.tar.gz",
+			"binary": "gum",
+			"url": "https://github.com/charmbracelet/gum/releases/download/v0.1.0/gum_0.1.0_linux_x86_64.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "golang-migrate",
+			"repo": "migrate",
+			"tag": "v4.15.2",
+			"asset": "migrate.linux-amd64.tar.gz",
+			"binary": "migrate",
+			"url": "https://github.com/golang-migrate/migrate/releases/download/v4.15.2/migrate.linux-amd64.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "superfly",
+			"repo": "flyctl",
+			"tag": "v0.0.378",
+			"asset": "flyctl_0.0.378_Linux_x86_64.tar.gz",
+			"binary": "flyctl",
+			"url": "https://github.com/superfly/flyctl/releases/download/v0.0.378/flyctl_0.0.378_Linux_x86_64.tar.gz"
 		}
 	]
 }

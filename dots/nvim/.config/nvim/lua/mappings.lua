@@ -104,3 +104,6 @@ function DiffviewToggle()
 	end
 end
 lua_bind("n", "<Leader>dv", DiffviewToggle, opts)
+
+-- markdown-preview
+bind("n", "<Leader>md", ":MarkdownPreview<CR>", opts)
