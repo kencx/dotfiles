@@ -5,12 +5,19 @@
 - null-ls for formatting, linting
 - nvim-cmp for completion
 - vsnip for snippets
-- nvim-tree
 - telescope.nvim
+- telescope-file-browser.nvim
 - barbar-nvim
-- lualine statusline
+- lualine
 - gitsigns
-- gruvbox.nvim
+- Comment.nvim
+- indent-blankline.nvim
+- which-key.nvim
+- auto-pairs
+- vim-sandwich
+- mini.map
+- markdown-preview.nvim
+- kanagawa.nvim
 
 ## Install
 - Ensure neovim is installed
@@ -33,8 +40,15 @@ git clone https://github.com/wbthomason/packer.nvim \
 
 Run :PackerSync & :PackerCompile to install all plugins.
 
+### Snapshotting
+
+Run `:PackerSnapshot [name]` to make a snapshot. By default, it will be saved to
+`$HOME/.cache/nvim/packer.nvim`
+
+To rollback to the snapshot, run `:PackerRollback [name]`.
+
 ## Treesitter
-By default, this config installs 21/70+ of the support languages. Run
+By default, this config installs 20+/70+ of the support languages. Run
 :TSPInstallInfo to see the full list. Run the following to install a supported
 language
 
@@ -58,8 +72,12 @@ pipx install jedi-language-server
 Runs heavyweight LSPs (`npm`) through docker containers. Dynamically attached when
 required.
 - bashls
-- sumneko_lua
 - dockerls
+- terraformls
+- sumneko_lua
+- tailwindcss
+- tsserver
+- svelte
 
 ### Formatters and Linters
 Null-ls uses a headless instance of neovim to inject lsp capabilities, allowing

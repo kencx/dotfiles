@@ -190,7 +190,9 @@ return require("packer").startup({
 		-- colorscheme
 		use({
 			"rebelot/kanagawa.nvim",
-			-- lock = true,
+			-- https://github.com/rebelot/kanagawa.nvim/issues/79
+			-- requires nvim >= 0.8 after this commit
+			commit = "fc2e308",
 			config = function()
 				require("config.colors")
 			end,
