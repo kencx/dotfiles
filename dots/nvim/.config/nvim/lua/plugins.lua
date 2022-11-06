@@ -87,14 +87,6 @@ return require("packer").startup({
 
 		-- use({ "ray-x/lsp_signature.nvim" })
 
-		use({
-			"petertriho/nvim-scrollbar",
-			-- lock = true,
-			config = function()
-				require("config.scrollbar")
-			end,
-		})
-
 		-- buffer line
 		use({
 			"romgrk/barbar.nvim",
@@ -166,30 +158,12 @@ return require("packer").startup({
 		})
 
 		use({
-			"echasnovski/mini.nvim",
-			-- lock = true,
+			"echasnovski/mini.map",
+			lock = true,
 			config = function()
-				local starter = require("mini.starter")
-				starter.setup({
-					items = {
-						starter.sections.builtin_actions(),
-						starter.sections.telescope(),
-					},
-					header = "Good day Kenneth",
-					footer = "",
-					content_hooks = {
-						starter.gen_hook.adding_bullet(),
-						starter.gen_hook.indexing("all", { "Builtin actions" }),
-						starter.gen_hook.aligning("center", "center"),
-					},
-				})
+				require("config.mini-map")
 			end,
 		})
-		-- use({ "ahmedkhalf/project.nvim",
-		-- 	config = function ()
-		-- 		require("project_nvim").setup{}
-		-- 	end
-		-- })
 
 		use({ "machakann/vim-sandwich" })
 		use({ "jiangmiao/auto-pairs" })

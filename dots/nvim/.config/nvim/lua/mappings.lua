@@ -107,3 +107,7 @@ lua_bind("n", "<Leader>dv", DiffviewToggle, opts)
 
 -- markdown-preview
 bind("n", "<Leader>md", ":MarkdownPreview<CR>", opts)
+
+-- mini.map
+bind("n", "<Leader>mm", ":lua MiniMap.toggle()<CR>", opts)
+bind("n", "<Leader>mf", ":lua MiniMap.toggle_focus()<CR>", opts)
