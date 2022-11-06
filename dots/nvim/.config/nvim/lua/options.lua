@@ -25,6 +25,7 @@ set.textwidth = 88
 
 set.listchars = { trail = "." } -- show trailing whitespace chars
 
+set.ttyfast = true
 set.lazyredraw = true
 set.swapfile = false
 set.backup = false
@@ -61,11 +62,6 @@ set.relativenumber = true
 set.scrolloff = 4 -- number of lines above and below cursor when scrolling
 
 vim.wo.colorcolumn = "99999" -- fixes highlighting bug with indent_blankline
-
--- vim.cmd([[
---     hi! Normal ctermbg=NONE guibg=NONE
---     hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
--- ]])
 
 -- vim-tmux-navigator
 vim.g.tmux_navigator_disable_when_zoomed = 1
