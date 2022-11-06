@@ -128,7 +128,6 @@ return require("packer").startup({
 		use({
 			"nvim-telescope/telescope.nvim",
 			tag = "0.1.0",
-			-- lock = true,
 			module = "telescope",
 			cmd = "Telescope",
 			config = function()
