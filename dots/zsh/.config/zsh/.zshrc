@@ -40,6 +40,10 @@ zstyle ':completion:*:ssh:*' menu select
 autoload -U bashcompinit; bashcompinit
 eval "$(register-python-argcomplete pipx)"
 
+# direnv
+eval "$(direnv hook zsh)"
+export DIRENV_LOG_FORMAT=
+
 # qmk autocomplete
 if [ -d "$HOME/dev/qmk" ]; then
     source "$HOME/dev/qmk/qmk_firmware/util/qmk_tab_complete.sh"

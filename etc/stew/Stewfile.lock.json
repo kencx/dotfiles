@@ -226,6 +226,51 @@
 			"asset": "flyctl_0.0.378_Linux_x86_64.tar.gz",
 			"binary": "flyctl",
 			"url": "https://github.com/superfly/flyctl/releases/download/v0.0.378/flyctl_0.0.378_Linux_x86_64.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "wagoodman",
+			"repo": "dive",
+			"tag": "v0.10.0",
+			"asset": "dive_0.10.0_linux_amd64.tar.gz",
+			"binary": "dive",
+			"url": "https://github.com/wagoodman/dive/releases/download/v0.10.0/dive_0.10.0_linux_amd64.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "hadolint",
+			"repo": "hadolint",
+			"tag": "v2.10.0",
+			"asset": "hadolint-Linux-x86_64",
+			"binary": "hadolint",
+			"url": "https://github.com/hadolint/hadolint/releases/download/v2.10.0/hadolint-Linux-x86_64"
+		},
+		{
+			"source": "github",
+			"owner": "aelsabbahy",
+			"repo": "goss",
+			"tag": "v0.3.18",
+			"asset": "goss-linux-amd64",
+			"binary": "goss",
+			"url": "https://github.com/aelsabbahy/goss/releases/download/v0.3.18/goss-linux-amd64"
+		},
+		{
+			"source": "github",
+			"owner": "natsukagami",
+			"repo": "mpd-mpris",
+			"tag": "v0.3.1",
+			"asset": "mpd-mpris_0.3.1_Linux_x86_64.tar.gz",
+			"binary": "mpd-mpris",
+			"url": "https://github.com/natsukagami/mpd-mpris/releases/download/v0.3.1/mpd-mpris_0.3.1_Linux_x86_64.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "direnv",
+			"repo": "direnv",
+			"tag": "v2.32.1",
+			"asset": "direnv.linux-amd64",
+			"binary": "direnv",
+			"url": "https://github.com/direnv/direnv/releases/download/v2.32.1/direnv.linux-amd64"
 		}
 	]
 }
