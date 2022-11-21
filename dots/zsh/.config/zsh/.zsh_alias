@@ -1,5 +1,4 @@
 alias nv="nvim"
-alias lf="lf-ueberzug"
 alias showpath="echo $PATH | tr ':' '\n'"
 alias duh="sudo du -h --one-file-system --max-depth=1 --threshold=100K | sort -h"
 
@@ -19,6 +18,10 @@ alias dl="docker logs -f"
 
 alias bwu='export BW_SESSION="$(bw unlock --raw)"'
 alias bwl='export BW_SESSION='
+
+function zd {
+    cd $(fd . "$HOME/dev" --max-depth=1 | fzf) || exit
+}
 
 function dce {
 	docker exec -it $1 bash
@@ -42,10 +45,6 @@ function gb {
 
 function glg {
 	git log --all --graph --oneline --decorate=short --pretty=oneline
-}
-
-function lm {
-  cd "$(llama "$@")"
 }
 
 function scr {
