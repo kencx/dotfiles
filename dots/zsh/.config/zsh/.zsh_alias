@@ -20,7 +20,7 @@ alias bwu='export BW_SESSION="$(bw unlock --raw)"'
 alias bwl='export BW_SESSION='
 
 function zd {
-    cd $(fd . "$HOME/dev" --max-depth=1 | fzf) || exit
+    cd $(fd . "$HOME/dev" --type d --max-depth=1 | fzf) || exit
 }
 
 function dce {

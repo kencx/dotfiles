@@ -1,0 +1,9 @@
+{
+    "#!/bin/bash": {
+        "prefix": "bash",
+        "description": "Snippet for bash script",
+        "body": [
+            "#!/bin/bash\n\nset -euo pipefail\n\n$1"
+        ]
+    }
+}

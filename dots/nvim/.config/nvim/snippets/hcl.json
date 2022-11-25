@@ -1,0 +1,45 @@
+{
+	"hcl variable": {
+		"prefix": "hcl-var",
+		"description": "HCL Variable Block",
+		"body": [
+			"variable \"${1}\" {",
+			"  type = ${2}",
+			"  description = ${3}",
+			"  default = ${4}",
+			"}"
+		]
+	},
+
+	"hcl output": {
+		"prefix": "hcl-output",
+		"description": "HCL Output Block",
+		"body": [
+			"output \"${1}\" {",
+			"  value = ${2}",
+			"  description = ${3}",
+			"}"
+		]
+	},
+
+	"hcl source": {
+		"prefix": "hcl-source",
+		"description": "HCL Source Block",
+		"body": [
+			"source \"${1}\" \"${2}\" {",
+			"  ${3}",
+			"}"
+		]
+	},
+
+	"hcl build": {
+		"prefix": "hcl-build",
+		"description": "HCL Build Block",
+		"body": [
+			"build {",
+			"  sources = [${1}]",
+			"  ${3}",
+			"}"
+		]
+	}
+}
