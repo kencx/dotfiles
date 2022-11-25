@@ -52,6 +52,10 @@ function scr {
 	notify-send "Screenshot taken"
 }
 
+function certcat {
+    openssl x509 -text -noout -in "$1"
+}
+
 function cheat {
 	curl cheat.sh/$1
 }
