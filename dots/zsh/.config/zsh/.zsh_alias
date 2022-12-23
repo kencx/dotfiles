@@ -1,6 +1,7 @@
 alias nv="nvim"
 alias showpath="echo $PATH | tr ':' '\n'"
 alias duh="sudo du -h --one-file-system --max-depth=1 --threshold=100K | sort -h"
+alias dua="sudo du -ah | sort -rh | head -n 20"
 
 alias rm="echo 'Use tm instead'"
 alias tm="trash"
