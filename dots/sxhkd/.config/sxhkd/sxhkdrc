@@ -139,7 +139,7 @@ super + n : super + {_,shift + } f
     bspc node @/ -F {vertical, horizontal}
 
 # {focus, send node to} {1-5} desktop
-super + n : {_, super + } KP_{End,Down,Next,Left,Begin}
+super + n : {_, super + } {1-5}
 	bspc {desktop -f, node -d} '^{1-5}' --follow
 
 # send all windows in current desktop to chosen desktop
