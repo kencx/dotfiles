@@ -46,7 +46,7 @@ bind("n", "<Leader>h", ":set hlsearch!<CR>", opts)
 bind("n", "<Leader>n", ":tabnew<CR>", opts)
 
 -- markdown insert link
-bind("v", "wl", [[c[<c-r>"]()<esc>]], opts)
+bind("v", "<Leader>ml", [[c[<c-r>"]()<esc>]], opts)
 
 -- change pwd to current buffer
 bind("n", "<Leader>cd", ":cd %:p:h<CR>", opts)
@@ -90,8 +90,32 @@ bind("n", "<Leader>ts", ":write | edit | TSBufEnable highlight<CR>", opts)
 -- gitsigns
 bind("v", "<Leader>sh", ":Gitsigns stage_hunk<CR>", opts)
 bind("v", "<Leader>rh", ":Gitsigns reset_hunk<CR>", opts)
+bind("n", "<Leader>uh", ":Gitsigns undo_stage_hunk<CR>", opts)
 bind("n", "<Leader>sb", ":Gitsigns stage_buffer<CR>", opts)
 bind("n", "<Leader>rb", ":Gitsigns reset_buffer<CR>", opts)
+bind("n", "<Leader>hp", ":Gitsigns preview_hunk<CR>", opts)
+
+lua_bind("n", "]c", function()
+	local gs = require("gitsigns")
+	if vim.wo.diff then
+		return "]c"
+	end
+	vim.schedule(function()
+		gs.next_hunk()
+	end)
+	return "<Ignore>"
+end, opts)
+
+lua_bind("n", "[c", function()
+	local gs = require("gitsigns")
+	if vim.wo.diff then
+		return "[c"
+	end
+	vim.schedule(function()
+		gs.prev_hunk()
+	end)
+	return "<Ignore>"
+end, opts)
 
 -- diffview
 bind("n", "<Leader>dh", ":DiffviewFileHistory<CR>", opts)
