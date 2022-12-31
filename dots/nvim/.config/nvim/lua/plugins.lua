@@ -114,6 +114,15 @@ return require("packer").startup({
 		})
 
 		use({
+			"notjedi/nvim-rooter.lua",
+			config = function()
+				require("nvim-rooter").setup({
+					manual = false,
+				})
+			end,
+		})
+
+        use({
 			"lewis6991/gitsigns.nvim",
 			-- lock = true,
 			config = function()

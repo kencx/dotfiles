@@ -50,6 +50,7 @@ bind("v", "<Leader>ml", [[c[<c-r>"]()<esc>]], opts)
 
 -- change pwd to current buffer
 bind("n", "<Leader>cd", ":cd %:p:h<CR>", opts)
+bind("n", "<Leader>cy", ':let @+ = expand("%:p:h")<CR>', opts)
 
 -------------
 -- plugins --
