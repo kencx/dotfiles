@@ -52,6 +52,9 @@ bind("v", "<Leader>ml", [[c[<c-r>"]()<esc>]], opts)
 bind("n", "<Leader>cd", ":cd %:p:h<CR>", opts)
 bind("n", "<Leader>cy", ':let @+ = expand("%:p:h")<CR>', opts)
 
+-- extract vselection to new buffer
+bind("v", "<Leader>ex", [[:'<,'> d | new +put! " | b#<CR><CR>]], opts)
+
 -------------
 -- plugins --
 -------------
@@ -128,6 +131,7 @@ function DiffviewToggle()
 		vim.cmd("DiffviewOpen")
 	end
 end
+
 lua_bind("n", "<Leader>dv", DiffviewToggle, opts)
 
 -- markdown-preview
