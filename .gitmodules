@@ -1,0 +1,9 @@
+[submodule "dots/tmux/.config/tmux/plugins/tpm"]
+	path = dots/tmux/.config/tmux/plugins/tpm
+	url = git@github.com:tmux-plugins/tpm
+[submodule "dots/tmux/.config/tmux/plugins/extrakto"]
+	path = dots/tmux/.config/tmux/plugins/extrakto
+	url = git@github.com:laktak/extrakto
+[submodule "dots/tmux/.config/tmux/plugins/vim-tmux-navigator"]
+	path = dots/tmux/.config/tmux/plugins/vim-tmux-navigator
+	url = git@github.com:christoomey/vim-tmux-navigator

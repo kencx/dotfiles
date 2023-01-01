@@ -1,10 +1,12 @@
 .PHONY: stow dev dev-test remote
 
 stow:
-	cd ./dots || exit ;\
-	stow "$(c)" -t "$$HOME" -vv
+	stow -d "dots/$(c)" -t "$$HOME" -vv .
 
-dev:
+unstow:
+	stow -d "dots/$(c)" -t "$$HOME" -vv -D .
+
+stow-all:
 	cd ./dots || exit ;\
 	for d in */ ;\
 	do echo "$$d" ;\
@@ -15,7 +17,7 @@ dev:
 	cp etc/.Xresources "$$HOME/.Xresources" ;\
 	cp etc/desktop/* "$$HOME/.local/share/applications/"
 
-dev-test:
+stow-test:
 	cd ./dots || exit ;\
 	for d in */ ;\
 	do echo "$$d" ;\
