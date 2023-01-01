@@ -20,6 +20,8 @@ alias dl="docker logs -f"
 alias bwu='export BW_SESSION="$(bw unlock --raw)"'
 alias bwl='export BW_SESSION='
 
+alias obs="glow -l $HOME/syncthing/sync/obsidian"
+
 function zd {
     cd $(fd . "$HOME/dev" --type d --max-depth=1 | fzf) || exit
 }
