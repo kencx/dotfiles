@@ -9,5 +9,38 @@
 			"  tasks:"
 		],
 		"description": "Snippet for playbook"
-	}
+	},
+
+    "pacman": {
+        "prefix": "pacman",
+        "body": [
+            "- name: Install ${1}",
+            "  pacman:",
+            "    name: ${1}",
+            "    state: present"
+        ],
+        "description": "Snippet for Ansible pacman module"
+    },
+
+    "package": {
+        "prefix": "package",
+        "body": [
+            "- name: Install ${1}",
+            "  package:",
+            "    name: ${1}",
+            "    state: present"
+        ],
+        "description": "Snippet for Ansible package module"
+    },
+
+    "apt": {
+        "prefix": "apt",
+        "body": [
+            "- name: Install ${1}",
+            "  apt:",
+            "    name: ${1}",
+            "    state: present"
+        ],
+        "description": "Snippet for Ansible apt module"
+    }
 }
