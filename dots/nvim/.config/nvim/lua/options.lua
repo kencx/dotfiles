@@ -5,6 +5,7 @@ set.backspace = "indent,eol,start" -- enable backspace in insert mode
 set.mouse = "a" -- enable mouse support
 vim.cmd("set clipboard^=unnamed,unnamedplus")
 
+vim.cmd([[filetype plugin indent on]])
 set.syntax = "on"
 set.hidden = true
 

@@ -23,16 +23,6 @@ autocmd("TermOpen", {
 	command = "setlocal nonumber norelativenumber",
 })
 
-autocmd("FileType", {
-	pattern = "gitcommit",
-	command = "setlocal wrap spell",
-})
-
-autocmd("FileType", {
-	pattern = "help",
-	command = "wincmd L",
-})
-
 autocmd({ "BufNewFile", "BufRead" }, {
 	pattern = "*.nomad",
 	command = "set ft=hcl",
@@ -42,5 +32,12 @@ vim.cmd([[
     augroup remove_whitespace
     autocmd!
     autocmd BufWrite * mark ' | silent! %s/\s\+$// | norm ''
+    augroup END
+]])
+
+vim.cmd([[
+    augroup skeleton
+    autocmd!
+    autocmd BufNewFile *.sh 0r ~/bin/templates/skeleton.sh
     augroup END
 ]])
