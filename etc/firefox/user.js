@@ -73,6 +73,10 @@ user_pref("permissions.default.xr", 0); // Virtual Reality
 user_pref("keyword.enabled", true);
 
 // customization
+user_pref("font.default.x-western", "sans-serif");
+user_pref("font.name.monospace.x-western", "FiraCode Nerd Font Mono");
+user_pref("font.name.sans-serif.x-western", "FiraCode Nerd Font");
+
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("layers.acceleration.force-enabled", true);
 user_pref("gfx.webrender.all", true);
