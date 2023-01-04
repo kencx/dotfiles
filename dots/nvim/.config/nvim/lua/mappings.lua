@@ -140,3 +140,14 @@ bind("n", "<Leader>md", ":MarkdownPreview<CR>", opts)
 -- mini.map
 bind("n", "<Leader>mm", ":lua MiniMap.toggle()<CR>", opts)
 bind("n", "<Leader>mf", ":lua MiniMap.toggle_focus()<CR>", opts)
+
+-- obsidian.nvim
+lua_bind("n", "gf", function()
+	if require("obsidian").util.cursor_on_markdown_link() then
+		return "<cmd>ObsidianFollowLink<CR>"
+	else
+		return "gf"
+	end
+end, { noremap = false, expr = true })
+
+bind("n", "<Leader>og", ":ObsidianSearch<CR>", opts)

@@ -4,6 +4,7 @@ require("nvim-treesitter.configs").setup({
 
 	highlight = {
 		enable = true,
+		additional_vim_regex_highlighting = { "markdown" },
 	},
 
 	incremental_selection = {
@@ -32,6 +33,8 @@ require("nvim-treesitter.configs").setup({
 		"java",
 		"javascript",
 		"json",
+		"markdown",
+		"markdown_inline",
 		"lua",
 		"python",
 		"rust",

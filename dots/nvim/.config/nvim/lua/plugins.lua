@@ -122,7 +122,7 @@ return require("packer").startup({
 			end,
 		})
 
-        use({
+		use({
 			"lewis6991/gitsigns.nvim",
 			-- lock = true,
 			config = function()
@@ -192,6 +192,14 @@ return require("packer").startup({
 			end,
 			config = function()
 				require("config.markdown_preview")
+			end,
+		})
+
+		-- obsidian
+		use({
+			"epwalsh/obsidian.nvim",
+			config = function()
+				require("config.obsidian-nvim")
 			end,
 		})
 
