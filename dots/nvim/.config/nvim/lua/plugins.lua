@@ -120,6 +120,7 @@ return require("packer").startup({
 					manual = false,
 				})
 			end,
+			event = "BufEnter",
 		})
 
 		use({
@@ -128,10 +129,14 @@ return require("packer").startup({
 			config = function()
 				require("gitsigns").setup()
 			end,
+			event = "BufRead",
+			cmd = "Gitsigns",
 		})
 
 		use({
 			"sindrets/diffview.nvim",
+			cmd = { "DiffviewFileHistory" },
+			module = "diffview.lib",
 		})
 
 		use({
@@ -143,8 +148,14 @@ return require("packer").startup({
 				require("config.telescope")
 			end,
 		})
-		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-		use({ "nvim-telescope/telescope-file-browser.nvim" })
+		use({
+			"nvim-telescope/telescope-fzf-native.nvim",
+			run = "make",
+		})
+		use({
+			"nvim-telescope/telescope-file-browser.nvim",
+			cmd = "Telescope",
+		})
 		use({ "kyazdani42/nvim-web-devicons" })
 
 		-- comment engine
@@ -163,6 +174,7 @@ return require("packer").startup({
 			config = function()
 				require("which-key").setup({})
 			end,
+			keys = "<space>",
 		})
 
 		use({
@@ -171,6 +183,8 @@ return require("packer").startup({
 			config = function()
 				require("config.mini-map")
 			end,
+			-- module_pattern = { "mini.map*", "MiniMap*" },
+			-- fn = { "MiniMap.toggle()", "MiniMap.toggle_focus()" },
 		})
 
 		use({ "machakann/vim-sandwich" })
@@ -193,6 +207,15 @@ return require("packer").startup({
 			config = function()
 				require("config.markdown_preview")
 			end,
+			setup = function()
+				vim.g.mkdp_filetypes = { "markdown" }
+			end,
+			ft = "markdown",
+			-- cannot use cmd lazy loading because markdown-preview
+			-- only creates commands on BufEnter, which are not triggered
+			-- on lazy-loading. See
+			-- https://github.com/wbthomason/packer.nvim/issues/620#issuecomment-939150966
+			-- cmd = "MarkdownPreview",
 		})
 
 		-- obsidian
@@ -201,6 +224,13 @@ return require("packer").startup({
 			config = function()
 				require("config.obsidian-nvim")
 			end,
+			cmd = { "ObsidianSearch", "ObsidianFollowLink" },
+		})
+
+		use({
+			"hkupty/iron.nvim",
+			tag = "v3.0",
+			cmd = "IronRepl",
 		})
 
 		-- colorscheme
