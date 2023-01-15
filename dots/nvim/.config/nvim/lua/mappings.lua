@@ -52,6 +52,9 @@ bind("n", "<Leader>cy", ':let @+ = expand("%:p:h")<CR>', opts)
 -- extract vselection to new buffer
 bind("v", "<Leader>ex", [[:'<,'> d | new +put! " | b#<CR><CR>]], opts)
 
+-- toggle relativenumber
+bind("n", "<Leader>rnn", ":exec &rnu? 'se nornu!' : 'se rnu!'<CR>", opts)
+
 -------------
 -- plugins --
 -------------
