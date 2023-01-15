@@ -54,9 +54,9 @@ local on_attach = function(client, bufnr)
 	-- }, bufnr)
 
 	-- document-color.nvim
-	if client.server_capabilities.colorProvider then
-		require("document-color").buf_attach(bufnr, { mode = "background" })
-	end
+	-- if client.server_capabilities.colorProvider then
+	-- 	require("document-color").buf_attach(bufnr, { mode = "background" })
+	-- end
 
 	vim.o.updatetime = 250
 	vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])

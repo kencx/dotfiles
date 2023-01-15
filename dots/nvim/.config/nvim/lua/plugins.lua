@@ -225,15 +225,15 @@ return require("packer").startup({
 				})
 			end,
 		})
-		use({
-			"mrshmllow/document-color.nvim",
-			-- lock = true,
-			config = function()
-				require("document-color").setup({
-					mode = "background",
-				})
-			end,
-		})
+		-- use({
+		-- 	"mrshmllow/document-color.nvim",
+		-- 	-- lock = true,
+		-- 	config = function()
+		-- 		require("document-color").setup({
+		-- 			mode = "background",
+		-- 		})
+		-- 	end,
+		-- })
 	end,
 
 	config = {
