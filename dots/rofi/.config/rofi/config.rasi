@@ -1,4 +1,12 @@
 configuration {
-	modi: "window,run,drun,ssh";
-	theme: "gruvbox";
+    modi: "window,run,drun,ssh";
+    display-run: " ";
+    display-drun: "  ";
+    display-window: "  ";
+    drun-display-format: "{name}";
+    font: "FiraCode Nerd Font 10";
+    modi: "window,run,drun";
+    // show-icons: true;
 }
+
+@theme "gruvbox"

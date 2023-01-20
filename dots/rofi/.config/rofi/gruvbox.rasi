@@ -1,24 +1,10 @@
-configuration {
-  display-run: " ";
-  display-drun: "  ";
-  display-window: "  ";
-  drun-display-format: "{name}";
-  font: "FiraCode Nerd Font 10";
-  modi: "window,run,drun";
- // show-icons: true;
-}
-
 * {
-  bg: #272727;
-  bg-alt: #3c3836;
-
-  fg: #ebdbb2;
-
-  blue: #448488;
+  dark-grey: #272727;
+  grey: #3c3836;
+  white: #ebdbb2;
   orange: #fa7921;
 
-  background-color: @bg;
-
+  background-color: @dark-grey;
   border: 0;
   margin: 0;
   padding: 0;
@@ -28,17 +14,20 @@ configuration {
 element {
   padding: 12;
   orientation: vertical;
-  text-color: @fg;
 }
 
-element selected {
+element-text {
+  text-color: @white;
+}
+
+element-text selected {
   text-color: @orange;
 }
 
 entry {
-  background-color: @bg-alt;
+  background-color: @grey;
   padding: 12 0 12 3;
-  text-color: @fg;
+  text-color: @white;
 }
 
 inputbar {
@@ -55,14 +44,13 @@ mainbox {
 }
 
 prompt {
-  background-color: @bg-alt;
+  background-color: @grey;
   enabled: true;
   font: "FiraCode Nerd Font 10";
   padding: 12 0 0 12;
-  text-color: @fg;
+  text-color: @white;
 }
 
 window {
   transparency: "real";
 }
-
