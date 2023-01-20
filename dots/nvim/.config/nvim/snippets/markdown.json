@@ -1,0 +1,45 @@
+{
+    "hugo post": {
+        "prefix": "hugop",
+        "description": "Hugo post metadata",
+        "body": [
+            "---",
+            "title: $1",
+            "date: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}+08:00",
+            "lastmod: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}+08:00",
+            "draft: true",
+            "toc: false",
+            "---"
+        ]
+    },
+    "hugo note": {
+        "prefix": "hugon",
+        "description": "Hugo note metadata",
+        "body": [
+            "---",
+            "title: $1",
+            "date: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}+08:00",
+            "lastmod: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}+08:00",
+            "draft: true",
+            "toc: false",
+            "tags:",
+            "- $TM_FILENAME_BASE",
+            "---"
+        ]
+    },
+    "hugo figure": {
+        "prefix": "hugof",
+        "description": "Hugo figure shortcode",
+        "body": [
+          "{{< figure src=\"$1\" caption=\"$2\" class=\"center\" >}}"
+        ]
+    },
+    "hugo reference": {
+        "prefix": "hugor",
+        "description": "Hugo reference shortcode",
+        "body": [
+          "{{< ref \"$1\" >}}"
+        ]
+    }
+
+}
