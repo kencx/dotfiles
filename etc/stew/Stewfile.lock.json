@@ -15,46 +15,19 @@
 			"source": "github",
 			"owner": "junegunn",
 			"repo": "fzf",
-			"tag": "0.30.0",
-			"asset": "fzf-0.30.0-linux_amd64.tar.gz",
+			"tag": "0.36.0",
+			"asset": "fzf-0.36.0-linux_amd64.tar.gz",
 			"binary": "fzf",
-			"url": "https://github.com/junegunn/fzf/releases/download/0.30.0/fzf-0.30.0-linux_amd64.tar.gz"
-		},
-		{
-			"source": "github",
-			"owner": "xxxserxxx",
-			"repo": "gotop",
-			"tag": "v4.1.3",
-			"asset": "gotop_v4.1.3_linux_amd64.tgz",
-			"binary": "gotop_v4.1.3_linux_amd64.tgz",
-			"url": "https://github.com/xxxserxxx/gotop/releases/download/v4.1.3/gotop_v4.1.3_linux_amd64.tgz"
+			"url": "https://github.com/junegunn/fzf/releases/download/0.36.0/fzf-0.36.0-linux_amd64.tar.gz"
 		},
 		{
 			"source": "github",
 			"owner": "sharkdp",
 			"repo": "bat",
-			"tag": "v0.20.0",
-			"asset": "bat-v0.20.0-x86_64-unknown-linux-gnu.tar.gz",
+			"tag": "v0.22.1",
+			"asset": "bat-v0.22.1-x86_64-unknown-linux-gnu.tar.gz",
 			"binary": "bat",
-			"url": "https://github.com/sharkdp/bat/releases/download/v0.20.0/bat-v0.20.0-x86_64-unknown-linux-gnu.tar.gz"
-		},
-		{
-			"source": "github",
-			"owner": "mathaou",
-			"repo": "termdbms",
-			"tag": "v0.9-alpha",
-			"asset": "termdbms_linux_x86.zip",
-			"binary": "termdbms",
-			"url": "https://github.com/mathaou/termdbms/releases/download/v0.9-alpha/termdbms_linux_x86.zip"
-		},
-		{
-			"source": "github",
-			"owner": "knipferrc",
-			"repo": "fm",
-			"tag": "v0.15.3",
-			"asset": "fm_0.15.3_linux_amd64.tar.gz",
-			"binary": "fm",
-			"url": "https://github.com/knipferrc/fm/releases/download/v0.15.3/fm_0.15.3_linux_amd64.tar.gz"
+			"url": "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-v0.22.1-x86_64-unknown-linux-gnu.tar.gz"
 		},
 		{
 			"source": "github",
@@ -69,10 +42,10 @@
 			"source": "github",
 			"owner": "orhun",
 			"repo": "menyoki",
-			"tag": "v1.6.0",
-			"asset": "menyoki-1.6.0-x86_64-unknown-linux-gnu.tar.gz",
+			"tag": "v1.6.1",
+			"asset": "menyoki-1.6.1-x86_64-unknown-linux-gnu.tar.gz",
 			"binary": "menyoki",
-			"url": "https://github.com/orhun/menyoki/releases/download/v1.6.0/menyoki-1.6.0-x86_64-unknown-linux-gnu.tar.gz"
+			"url": "https://github.com/orhun/menyoki/releases/download/v1.6.1/menyoki-1.6.1-x86_64-unknown-linux-gnu.tar.gz"
 		},
 		{
 			"source": "github",
@@ -103,57 +76,39 @@
 		},
 		{
 			"source": "github",
-			"owner": "FiloSottile",
-			"repo": "age",
-			"tag": "v1.0.0",
-			"asset": "age-v1.0.0-linux-amd64.tar.gz",
-			"binary": "age",
-			"url": "https://github.com/FiloSottile/age/releases/download/v1.0.0/age-v1.0.0-linux-amd64.tar.gz"
-		},
-		{
-			"source": "github",
 			"owner": "sharkdp",
 			"repo": "fd",
-			"tag": "v8.4.0",
-			"asset": "fd-v8.4.0-x86_64-unknown-linux-gnu.tar.gz",
+			"tag": "v8.6.0",
+			"asset": "fd-v8.6.0-x86_64-unknown-linux-gnu.tar.gz",
 			"binary": "fd",
-			"url": "https://github.com/sharkdp/fd/releases/download/v8.4.0/fd-v8.4.0-x86_64-unknown-linux-gnu.tar.gz"
+			"url": "https://github.com/sharkdp/fd/releases/download/v8.6.0/fd-v8.6.0-x86_64-unknown-linux-gnu.tar.gz"
 		},
 		{
 			"source": "github",
 			"owner": "gohugoio",
 			"repo": "hugo",
-			"tag": "v0.101.0",
-			"asset": "hugo_0.101.0_Linux-64bit.tar.gz",
+			"tag": "v0.110.0",
+			"asset": "hugo_0.110.0_linux-amd64.tar.gz",
 			"binary": "hugo",
-			"url": "https://github.com/gohugoio/hugo/releases/download/v0.101.0/hugo_0.101.0_Linux-64bit.tar.gz"
+			"url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_0.110.0_linux-amd64.tar.gz"
 		},
 		{
 			"source": "github",
 			"owner": "Qalculate",
 			"repo": "libqalculate",
-			"tag": "v4.2.0",
-			"asset": "qalculate-4.2.0-x86_64.tar.xz",
+			"tag": "v4.5.1",
+			"asset": "qalculate-4.5.1-x86_64.tar.xz",
 			"binary": "qalc",
-			"url": "https://github.com/Qalculate/libqalculate/releases/download/v4.2.0/qalculate-4.2.0-x86_64.tar.xz"
+			"url": "https://github.com/Qalculate/libqalculate/releases/download/v4.5.1/qalculate-4.5.1-x86_64.tar.xz"
 		},
 		{
 			"source": "github",
 			"owner": "ajeetdsouza",
 			"repo": "zoxide",
-			"tag": "v0.8.2",
-			"asset": "zoxide-0.8.2-x86_64-unknown-linux-musl.tar.gz",
+			"tag": "v0.9.0",
+			"asset": "zoxide-0.9.0-x86_64-unknown-linux-musl.tar.gz",
 			"binary": "zoxide",
-			"url": "https://github.com/ajeetdsouza/zoxide/releases/download/v0.8.2/zoxide-0.8.2-x86_64-unknown-linux-musl.tar.gz"
-		},
-		{
-			"source": "github",
-			"owner": "nektos",
-			"repo": "act",
-			"tag": "v0.2.29",
-			"asset": "act_Linux_x86_64.tar.gz",
-			"binary": "act",
-			"url": "https://github.com/nektos/act/releases/download/v0.2.29/act_Linux_x86_64.tar.gz"
+			"url": "https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.0/zoxide-0.9.0-x86_64-unknown-linux-musl.tar.gz"
 		},
 		{
 			"source": "github",
@@ -202,30 +157,12 @@
 		},
 		{
 			"source": "github",
-			"owner": "charmbracelet",
-			"repo": "gum",
-			"tag": "v0.1.0",
-			"asset": "gum_0.1.0_linux_x86_64.tar.gz",
-			"binary": "gum",
-			"url": "https://github.com/charmbracelet/gum/releases/download/v0.1.0/gum_0.1.0_linux_x86_64.tar.gz"
-		},
-		{
-			"source": "github",
 			"owner": "golang-migrate",
 			"repo": "migrate",
 			"tag": "v4.15.2",
 			"asset": "migrate.linux-amd64.tar.gz",
 			"binary": "migrate",
 			"url": "https://github.com/golang-migrate/migrate/releases/download/v4.15.2/migrate.linux-amd64.tar.gz"
-		},
-		{
-			"source": "github",
-			"owner": "superfly",
-			"repo": "flyctl",
-			"tag": "v0.0.378",
-			"asset": "flyctl_0.0.378_Linux_x86_64.tar.gz",
-			"binary": "flyctl",
-			"url": "https://github.com/superfly/flyctl/releases/download/v0.0.378/flyctl_0.0.378_Linux_x86_64.tar.gz"
 		},
 		{
 			"source": "github",
@@ -271,6 +208,24 @@
 			"asset": "direnv.linux-amd64",
 			"binary": "direnv",
 			"url": "https://github.com/direnv/direnv/releases/download/v2.32.1/direnv.linux-amd64"
+		},
+		{
+			"source": "github",
+			"owner": "charmbracelet",
+			"repo": "glow",
+			"tag": "v1.4.1",
+			"asset": "glow_1.4.1_linux_x86_64.tar.gz",
+			"binary": "glow",
+			"url": "https://github.com/charmbracelet/glow/releases/download/v1.4.1/glow_1.4.1_linux_x86_64.tar.gz"
+		},
+		{
+			"source": "github",
+			"owner": "xxxserxxx",
+			"repo": "gotop",
+			"tag": "v4.2.0",
+			"asset": "gotop_v4.2.0_linux_amd64.tgz",
+			"binary": "gotop",
+			"url": "https://github.com/xxxserxxx/gotop/releases/download/v4.2.0/gotop_v4.2.0_linux_amd64.tgz"
 		}
 	]
 }
