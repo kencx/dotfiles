@@ -19,12 +19,22 @@ $urgent: #FFA066;
 // Styles on classes (see eww.yuck for more information)
 
 .powermenu {
-	background-color: $background;
-	border: 2px solid $foreground;
+    background-color: $background;
+	border: 1px solid $foreground;
 	border-radius: 5px;
 	color: $foreground;
-	font-size: 4rem;
-	padding: 15px 60px;
+	font-size: 2rem;
+    padding: 8px 0px 8px 0px;
+}
+
+.powermenu-entry {
+    margin-left: -4px;
+}
+
+.powermenu-label {
+    font-size: 1.1rem;
+    padding-right: 16px;
+    margin-left: -16px;
 }
 
 .left {

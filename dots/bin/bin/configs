@@ -4,7 +4,7 @@
 
 FILEPATH="$HOME/dotfiles/dots"
 CONFIGS='(zsh|bspwm|sxhkd|polybar|starship|rofi|dunst|config|nvim|lua|init.lua|tmux|picom|eww)'
-EXCLUDE='{autostart,bin}'
+EXCLUDE='{autostart,bin,plugins}'
 EDITOR="nvim"
 
 FILE=$(fd $CONFIGS --exclude $EXCLUDE --type f --hidden "$FILEPATH" | \
