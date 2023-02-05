@@ -11,9 +11,9 @@ unalias ts
 alias pf="ps aux | fzf"
 alias vimgolf="docker run --rm -it -e key="867337c104fb5b765b5ef4ade2a535e0" hettomei/vimgolf"
 
-alias dc="docker-compose"
-alias dcu="docker-compose up -d"
-alias dcd="docker-compose down"
+alias dc="docker compose"
+alias dcu="docker compose up -d"
+alias dcd="docker compose down"
 alias dps="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.Networks}}\t{{.Status}}'"
 alias dl="docker logs -f"
 
