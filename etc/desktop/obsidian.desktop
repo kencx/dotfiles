@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Obsidian
-Exec=obsidian
+Exec=obsidian %u
 Terminal=false
 Type=Application
 Categories=note
+MimeType=text/html;x-scheme-handler/obsidian;
