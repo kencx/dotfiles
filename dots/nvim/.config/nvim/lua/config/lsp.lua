@@ -186,23 +186,48 @@ nvim_lsp.svelte.setup({
 	root_dir = nvim_lsp.util.root_pattern("svelte.config.js", ".git", vim.fn.getcwd()),
 })
 
-nvim_lsp.tailwindcss.setup({
+-- yamlls
+nvim_lsp.yamlls.setup({
 	before_init = function(params)
 		params.processId = vim.NIL
 	end,
-	on_attach = on_attach,
 	capabilities = capabilities,
-	cmd = lspcontainers.command("tailwindcss"),
-	filetypes = { "html", "css", "scss", "sass", "postcss", "javascript", "typescript", "svelte" },
-	root_dir = nvim_lsp.util.root_pattern(
-		"tailwind.config.cjs",
-		"tailwind.config.js",
-		"tailwind.config.ts",
-		"package.json",
-		".git",
-		vim.fn.getcwd()
-	),
+	cmd = lspcontainers.command("yamlls", {
+		-- requires network access to access yaml schemas
+		network = "bridge",
+	}),
+	root_dir = nvim_lsp.util.root_pattern(".git", vim.fn.getcwd()),
+	settings = {
+		yaml = {
+			schemas = {
+				["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+				["https://raw.githubusercontent.com/canonical/cloud-init/main/cloudinit/config/schemas/versions.schema.cloud-config.json"] = {
+					"user-data.yml",
+					"user-data.yaml",
+					"cloud.cfg",
+				},
+			},
+		},
+	},
 })
+
+-- nvim_lsp.tailwindcss.setup({
+-- 	before_init = function(params)
+-- 		params.processId = vim.NIL
+-- 	end,
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	cmd = lspcontainers.command("tailwindcss"),
+-- 	filetypes = { "html", "css", "scss", "sass", "postcss", "javascript", "typescript", "svelte" },
+-- 	root_dir = nvim_lsp.util.root_pattern(
+-- 		"tailwind.config.cjs",
+-- 		"tailwind.config.js",
+-- 		"tailwind.config.ts",
+-- 		"package.json",
+-- 		".git",
+-- 		vim.fn.getcwd()
+-- 	),
+-- })
 
 M.mappings = mappings
 M.on_attach = on_attach
