@@ -24,7 +24,7 @@ autocmd("TermOpen", {
 })
 
 autocmd({ "BufNewFile", "BufRead" }, {
-	pattern = "*.nomad",
+	pattern = { "*.nomad", "*.tf" },
 	command = "set ft=hcl",
 })
 
