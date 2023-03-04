@@ -12,7 +12,7 @@ $urgent: #FFA066;
 .bar {
   background-color: $background;
   color: $foreground;
-  padding: 10px;
+  font-size: 0.78rem;
   font-family: "Fira Code Nerd Font";
 }
 
@@ -39,6 +39,7 @@ $urgent: #FFA066;
 
 .left {
   margin-left: 40px;
+  margin-top: 7px;
 }
 
 .right {

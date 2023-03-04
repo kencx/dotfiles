@@ -1,6 +1,6 @@
 #!/bin/bash
 
-updates=$(apt list --upgradeable | wc -l)
+updates=$(pacman -Qu | wc -l)
 
 if [[ "$updates" -gt 1 ]]; then
 	echo "" "$updates"

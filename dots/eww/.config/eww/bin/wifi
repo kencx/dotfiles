@@ -1,10 +1,10 @@
 #!/bin/bash
+link="wlan0"
 
-wifistate=$(nmcli -fields WIFI g | sed -n 2p)   # wifi enabled/disabled?
-wificonn=$(nmcli con show --active | grep wifi) # wifi connected?
-conn=$(iwgetid -r)								# connected ssid
+wifistate=$(iwctl device $link show | grep Powered | tr -s ' ' | cut -d' ' -f5)   # wifi enabled/disabled?
+wificonn=$(iwctl station $link show | grep 'Connected network' | tr -s ' ' | cut -d' ' -f4) # wifi connected?
 
-if [ "$wifistate" = "disabled" ]; then
+if [ "$wifistate" = "off" ]; then
 	icon="睊"
 elif [[ "$wificonn" = "" ]]; then
 	icon="睊"
@@ -16,4 +16,4 @@ if [ "$conn" = "" ]; then
 	conn=" "
 fi
 
-echo "{\"content\": \"$conn\", \"icon\": \"$icon \"}"
+echo "{\"content\": \"$wificonn\", \"icon\": \"$icon \"}"
