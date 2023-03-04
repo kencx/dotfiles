@@ -1,10 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
 
-autocmd("BufWritePost", {
-	pattern = "plugins.lua",
-	command = "PackerCompile",
-})
-
 -- highlight on yank
 autocmd("TextYankPost", {
 	command = "silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=700}",
