@@ -75,9 +75,14 @@ user_pref("keyword.enabled", true);
 // customization
 user_pref("font.default.x-western", "sans-serif");
 user_pref("font.name.monospace.x-western", "FiraCode Nerd Font Mono");
-user_pref("font.name.sans-serif.x-western", "FiraCode Nerd Font");
+user_pref("font.name.sans-serif.x-western", "sans-serif");
 
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("layers.acceleration.force-enabled", true);
 user_pref("gfx.webrender.all", true);
 user_pref("svg.context-properties.content.enabled", true);
+user_pref("ui.systemUsesDarkTheme", 1);
+
+user_pref("browser.startup.page", 3);
+user_pref("browser.startup.homepage", "file:///home/kenc/.mozilla/startpage/index.html");
+
