@@ -34,10 +34,10 @@ bspc rule -a keys state=floating focus=on rectangle=890x700+520+180
 bspc rule -a Firefox focus=on follow=on state=tiled
 bspc rule -a obsidian focus=off follow=off state=tiled
 
-bspc rule -a St -o desktop="I" state=tiled follow=off && st -e tmux &
-bspc rule -a Firefox -o desktop='II' state=tiled && sleep 5 && firefox &
+bspc rule -a St -o desktop="I" state=tiled follow=off && st tmux &
+bspc rule -a Firefox -o desktop='II' state=tiled && sleep 5 && launch firefox
 bspc rule -a obsidian -o desktop='III' focus=off follow=off \
-	state=tiled && obsidian &
+	state=tiled && launch obsidian
 bspc rule -a TelegramDesktop desktop='V' state=floating follow=off \
     rectangle=680x920+35+60 && telegram-desktop &
 
@@ -48,14 +48,10 @@ st -c scratchpad &
 
 # tui
 bspc rule -a gotop -o desktop='V' state=floating rectangle=680x920+1200+60 follow=off
-xdo activate -N gotop || st -c gotop gotop --nvidia &
-
-bspc rule -a feh state=floating
-bspc rule -a Zathura state=floating rectangle=760x980+35+60
+#xdotool search -class gotop > /dev/null || st -c gotop gotop --nvidia &
 
 # gui
-bspc rule -a Pavucontrol state=floating
-bspc rule -a Blueman-manager state=floating
-bspc rule -a Power-manager state=floating
-bspc rule -a Thunar state=floating
-
+bspc rule -a feh state=floating
+bspc rule -a Zathura state=floating rectangle=760x980+35+60
+#bspc rule -a Blueman-manager state=floating
+#bspc rule -a Thunar state=floating

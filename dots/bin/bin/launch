@@ -1,0 +1,3 @@
+#!/bin/bash
+
+xdotool search -class $1 > /dev/null || $1 &

@@ -85,7 +85,7 @@ PF_SEP=""
 PF_ASCII="arch"
 
 # fzf
-FZF_DEFAULT_OPTS="--cycle --reverse --border=rounded --margin=1 --padding=1 --ansi --height=90%"
+export FZF_DEFAULT_OPTS="--cycle --reverse --border=rounded --margin=1 --padding=1 --ansi --height=90%"
 
 # llama
 LLAMA_VIM_KEYBINDINGS=true
