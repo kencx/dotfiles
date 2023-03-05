@@ -1,5 +1,6 @@
 ZSH_THEME="cypher"
 DISABLE_UPDATE_PROMPT=true
+DISABLE_AUTO_TITLE="true"
 
 # plugins
 plugins=(
@@ -19,13 +20,24 @@ plugins=(
 )
 
 # zsh config
-export HISTFILE="$HOME/.config/zsh/.zsh_history"
+HISTSIZE=5000
+HISTFILE="$HOME/.config/zsh/.zsh_history"
+SAVEHIST=5000
+HISTDUP=erase
+
+setopt appendhistory
+setopt sharehistory
+setopt incappendhistory
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+export LESSHISTFILE=-
 export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 ZSH_THEME_TERM_TITLE_IDLE="zsh"
 
-export HISTSIZE=10000
-export SAVEHIST=10000
 export HISTORY_IGNORE="(ls*|cd*|z*|clear|omz reload)"
 
 export PATH="$HOME/bin:$PATH"
@@ -68,12 +80,16 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
 # pfetch
-export PF_INFO="ascii title os shell wm editor pkgs uptime"
-export PF_SEP=""
-export PF_ASCII="ubuntu"
+PF_INFO="ascii title os shell wm editor pkgs uptime"
+PF_SEP=""
+PF_ASCII="arch"
 
 # fzf
-export FZF_DEFAULT_OPTS="--cycle --reverse --border=rounded --margin=1 --padding=1 --ansi --height=90%"
+FZF_DEFAULT_OPTS="--cycle --reverse --border=rounded --margin=1 --padding=1 --ansi --height=90%"
 
 # llama
-export LLAMA_VIM_KEYBINDINGS=true
+LLAMA_VIM_KEYBINDINGS=true
+
+if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]]; then
+   exec startx
+fi
