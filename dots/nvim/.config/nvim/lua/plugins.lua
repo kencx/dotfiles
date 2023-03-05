@@ -13,19 +13,26 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 return require("lazy").setup({
-	-- caches lua modules
-	--{
-	--	"lewis6991/impatient.nvim",
-	--	config = function()
-	--		require("impatient").enable_profile()
-	--	end,
-	--},
+	{
+		"rebelot/kanagawa.nvim",
+		lazy = false,
+		priority = 1000,
+		-- https://github.com/rebelot/kanagawa.nvim/issues/79
+		-- requires nvim >= 0.8 after this commit
+		-- commit = "fc2e308",
+		commit = "476eb22",
+		config = function()
+			require("config.colors")
+		end,
+	},
 
+	"christoomey/vim-tmux-navigator",
 	"nvim-lua/plenary.nvim",
+	-- "ray-x/lsp_signature.nvim",
+	"romgrk/barbar.nvim",
 
 	{
 		"nvim-treesitter/nvim-treesitter",
-		-- pin = true,
 		config = function()
 			require("config.treesitter")
 		end,
@@ -36,33 +43,22 @@ return require("lazy").setup({
 	-- lsp support
 	{
 		"neovim/nvim-lspconfig",
-		-- pin = true,
+		version = "v0.1.4",
+		event = "BufEnter",
 		config = function()
 			require("config.lsp")
 		end,
 		dependencies = {
 			"lspcontainers/lspcontainers.nvim",
 			"jose-elias-alvarez/null-ls.nvim",
-			"hrsh7th/nvim-cmp",
-			"hrsh7th/cmp-nvim-lsp",
+			-- "hrsh7th/nvim-cmp",
 		},
-	},
-
-	-- formatting, linting sources
-	{
-		"jose-elias-alvarez/null-ls.nvim",
-		-- pin = true,
-		config = function()
-			-- local on_attach = require("config.lsp").on_attach
-			-- require("lspconfig")["null-ls"].setup({ on_attach = on_attach })
-			require("config.null-ls")
-		end,
 	},
 
 	-- completion support
 	{
 		"hrsh7th/nvim-cmp",
-		-- pin = true,
+		event = "InsertEnter",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
@@ -77,21 +73,16 @@ return require("lazy").setup({
 	-- snippet engine
 	{
 		"hrsh7th/vim-vsnip",
+		event = "InsertEnter",
 		dependencies = {
 			"hrsh7th/cmp-vsnip",
 			"rafamadriz/friendly-snippets",
 		},
 	},
 
-	---- "ray-x/lsp_signature.nvim",
-
-	-- buffer line
-	"romgrk/barbar.nvim",
-
 	-- status line
 	{
 		"hoob3rt/lualine.nvim",
-		-- pin = true,
 		config = function()
 			require("config.lualine")
 		end,
@@ -100,32 +91,28 @@ return require("lazy").setup({
 	-- indentation lines
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		-- pin = true,
+		event = "BufRead",
 		config = function()
 			require("config.indent_blankline")
 		end,
-		event = "BufRead",
 	},
 
 	{
 		"notjedi/nvim-rooter.lua",
-		config = function()
-			require("nvim-rooter").setup({
-				manual = false,
-			})
-		end,
 		event = "BufEnter",
+		opts = function()
+			manual = false
+		end,
 	},
 
-    -- git
+	-- git
 	{
 		"lewis6991/gitsigns.nvim",
-		-- pin = true,
+		event = "BufRead",
+		cmd = "Gitsigns",
 		config = function()
 			require("gitsigns").setup()
 		end,
-		event = "BufRead",
-		cmd = "Gitsigns",
 	},
 
 	--{
@@ -136,8 +123,7 @@ return require("lazy").setup({
 
 	{
 		"nvim-telescope/telescope.nvim",
-		version = "0.1.0",
-		module = "telescope",
+		version = "0.1.1",
 		cmd = "Telescope",
 		config = function()
 			require("config.telescope")
@@ -148,53 +134,43 @@ return require("lazy").setup({
 			"kyazdani42/nvim-web-devicons",
 		},
 	},
-	{
-		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "make",
-	},
-	{
-		"nvim-telescope/telescope-file-browser.nvim",
-		cmd = "Telescope",
-	},
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", cmd = "Telescope" },
+	{ "nvim-telescope/telescope-file-browser.nvim", cmd = "Telescope" },
 
 	-- comment engine
 	{
 		"numToStr/Comment.nvim",
-		-- pin = true,
 		config = function()
 			require("Comment").setup()
 		end,
-		event = "BufRead",
+		event = "BufEnter",
 	},
 
 	{
 		"folke/which-key.nvim",
-		-- pin = true,
 		config = function()
 			require("which-key").setup({})
 		end,
 		keys = {
-		  "<space>"
+			"<space>",
 		},
 	},
 
 	{
 		"echasnovski/mini.map",
+		event = "BufEnter",
 		config = function()
 			require("config.mini-map")
 		end,
 		-- module_pattern = { "mini.map*", "MiniMap*" },
 	},
 
-	"machakann/vim-sandwich",
-	"jiangmiao/auto-pairs",
+	{ "machakann/vim-sandwich", event = "BufEnter" },
+	{ "jiangmiao/auto-pairs", event = "InsertEnter" },
 	{
 		"Julian/vim-textobj-variable-segment",
 		dependencies = { "kana/vim-textobj-user" },
 	},
-
-	---- tmux navigation support
-	"christoomey/vim-tmux-navigator",
 
 	-- markdown previewer
 	{
@@ -202,13 +178,14 @@ return require("lazy").setup({
 		build = function()
 			fn["mkdp#util#install"]()
 		end,
+		init = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		event = "BufEnter *.md",
+		ft = "markdown",
 		config = function()
 			require("config.markdown_preview")
 		end,
-		setup = function()
-			vim.g.mkdp_filetypes = { "markdown" }
-		end,
-		ft = "markdown",
 	},
 
 	---- obsidian
@@ -239,16 +216,6 @@ return require("lazy").setup({
 	--	end,
 	--	cmd = "Oil",
 	--},
-
-	{
-		"rebelot/kanagawa.nvim",
-		-- https://github.com/rebelot/kanagawa.nvim/issues/79
-		-- requires nvim >= 0.8 after this commit
-		-- commit = "fc2e308",
-		config = function()
-			require("config.colors")
-		end,
-	},
 	--{
 	--	"norcalli/nvim-colorizer.lua",
 	--	-- pin = true,

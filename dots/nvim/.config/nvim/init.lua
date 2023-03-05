@@ -5,7 +5,6 @@ require("options")
 require("mappings")
 require("autocmd")
 require("plugins")
-require("packer_compiled")
 require("config.vsnip")
 
 local disabled_built_ins = {

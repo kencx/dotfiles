@@ -23,10 +23,10 @@ vim.g.indent_blankline_context_patterns = {
 
 vim.g.indent_blankline_use_treesitter = true
 
-require("indent_blankline").setup ({
+require("indent_blankline").setup({
 	char = "⦙",
 	show_current_context = false,
 	show_first_indent_level = false,
 	buftype_exclude = { "terminal", "nofile" },
-	filetype_exclude = { "help", "packer", "dashboard", "NvimTree" }
+	filetype_exclude = { "help", "packer", "dashboard", "NvimTree" },
 })

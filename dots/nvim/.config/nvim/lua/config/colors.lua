@@ -1,17 +1,18 @@
 local defaults = require("kanagawa.colors").setup()
+local overrides = {
+	Search = { bg = defaults.surimiOrange, fg = defaults.sumiInk0 },
+	IncSearch = { fg = defaults.sumiInk0, bg = defaults.surimiOrange },
+	Visual = { fg = defaults.sumiInk0, bg = defaults.surimiOrange },
+}
 
 require("kanagawa").setup({
-	undercurls = true,
+	undercurl = true,
 	colors = {
 		sumiInk0 = "#272727",
 		sumiInk1 = "#282828",
 	},
-	overrides = {
-		Search = { bg = defaults.surimiOrange },
-		IncSearch = { fg = defaults.sumiInk0, bg = defaults.surimiOrange },
-		Visual = { fg = defaults.sumiInk0, bg = defaults.surimiOrange },
-	},
+	overrides = overrides,
 })
 
--- must be called after setup
+-- setup must be called before loading
 vim.cmd("colorscheme kanagawa")
