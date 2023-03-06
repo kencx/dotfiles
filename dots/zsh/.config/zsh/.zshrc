@@ -80,9 +80,9 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
 # pfetch
-PF_INFO="ascii title os shell wm editor pkgs uptime"
-PF_SEP=""
-PF_ASCII="arch"
+export PF_INFO="ascii title os kernel shell wm editor pkgs uptime"
+export PF_SEP=""
+export PF_ASCII="arch"
 
 # fzf
 export FZF_DEFAULT_OPTS="--cycle --reverse --border=rounded --margin=1 --padding=1 --ansi --height=90%"

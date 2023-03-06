@@ -300,7 +300,7 @@ show_menu() {
 }
 
 # Rofi command to pipe into, can add any options here
-rofi_command="rofi -dmenu -no-fixed-num-lines -width -50 -yoffset -180 -i -p"
+rofi_command="rofi -dmenu -no-fixed-num-lines -width -50 -yoffset 0 -i -p"
 
 case "$1" in
     --status)
