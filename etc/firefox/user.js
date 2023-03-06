@@ -72,6 +72,9 @@ user_pref("permissions.default.xr", 0); // Virtual Reality
 // search
 user_pref("keyword.enabled", true);
 
+// misc
+user_pref("browser.tabs.loadDivertedInBackground", true);
+
 // customization
 user_pref("font.default.x-western", "sans-serif");
 user_pref("font.name.monospace.x-western", "FiraCode Nerd Font Mono");
