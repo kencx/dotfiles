@@ -2,40 +2,45 @@
 	:monitor 0
 	:wm-ignore true
 	:windowtype "dock"
-	:geometry (geometry :x "110px" :y "46px"
-						:width "20%" :height "10%"
+	:geometry (geometry :x "0px" :y "30px"
+						:width "4%" :height "10%"
 						:anchor "top right")
 	:stacking "fg"
 	(powermenu))
+
+(defwidget powermenu-entry [icon command label]
+    (box :class "powermenu-entry"
+        :orientation "h"
+        :spacing 16
+        :space-evenly false
+        (button :class "powermenu-icon" :onrightclick "${command}" "${icon}")
+        (label :class "powermenu-label" :text "${label}")
+    ))
 
 (defwidget powermenu []
 	(box :class "powermenu"
 		:orientation "v"
 		:space-evenly true
-		:halign "center" :valign "center"
+        :valign "center"
 
-        (box :class "powermenu-entry"
-            :orientation "h"
-            :space-evenly true
-            (button :class "powermenu-icon" :onrightclick "systemctl poweroff" "襤")
-            (label :class "powermenu-label" :text "Shutdown")
+        (powermenu-entry
+            :icon "襤"
+            :command "shutdown now"
+            :label "Shutdown"
         )
-        (box :class "powermenu-entry"
-            :orientation "h"
-            :space-evenly true
-            (button :class "powermenu-icon" :onrightclick "systemctl reboot" "ﰇ")
-            (label :class "powermenu-label" :text "Reboot")
+        (powermenu-entry
+            :icon "ﰇ"
+            :command "reboot now"
+            :label "Reboot"
         )
-        (box :class "powermenu-entry"
-            :orientation "h"
-            :space-evenly true
-            (button :class "powermenu-icon" :onrightclick "bsplock" "")
-            (label :class "powermenu-label" :text "Lock")
+        (powermenu-entry
+            :icon ""
+            :command "bsplock"
+            :label "Lock"
         )
-        (box :class "powermenu-entry"
-            :orientation "h"
-            :space-evenly true
-            (button :class "powermenu-icon" :onrightclick "bspc quit" "")
-            (label :class "powermenu-label" :text "Logout")
+        (powermenu-entry
+            :icon ""
+            :command "bspc quit"
+            :label "Logout"
         )
     ))

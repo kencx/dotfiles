@@ -50,7 +50,7 @@
 
 
 (defwidget right []
-	(box :class "right" :orientation "h" :space-evenly false :halign "end" :spacing 15
+	(box :class "right" :orientation "h" :space-evenly false :halign "end" :spacing 24
 		(system :class "package"
 				:icon ""
 				:text {package_poll})
