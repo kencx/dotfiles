@@ -78,7 +78,7 @@ user_pref("browser.tabs.loadDivertedInBackground", true);
 // customization
 user_pref("font.default.x-western", "sans-serif");
 user_pref("font.name.monospace.x-western", "FiraCode Nerd Font Mono");
-user_pref("font.name.sans-serif.x-western", "sans-serif");
+user_pref("font.name.sans-serif.x-western", "Liberation Sans");
 
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("layers.acceleration.force-enabled", true);
