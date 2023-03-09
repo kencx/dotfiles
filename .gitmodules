@@ -10,3 +10,6 @@
 [submodule "dots/zsh/.config/zsh/plugins/forgit"]
 	path = dots/zsh/.config/zsh/plugins/forgit
 	url = git@github.com:wfxr/forgit.git
+[submodule "dots/zsh/.config/zsh/plugins/zsh-vi-mode"]
+	path = dots/zsh/.config/zsh/plugins/zsh-vi-mode
+	url = git@github.com:jeffreytse/zsh-vi-mode.git

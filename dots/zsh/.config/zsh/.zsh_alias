@@ -27,7 +27,7 @@ function dce {
 # git
 unalias gcf
 alias gst='git status'
-alias gc='git commit'
+alias gc='git commit --verbose'
 alias gp='git push'
 alias gd='forgit::diff'
 alias gl='forgit::log'

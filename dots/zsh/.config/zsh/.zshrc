@@ -56,12 +56,19 @@ export FZF_DEFAULT_OPTS="--cycle --reverse --border=top --margin=1 --padding=0 -
 source "$ZDOTDIR/plugins/sudo.plugin.zsh"
 source "$ZDOTDIR/plugins/history-substring-search.plugin.zsh"
 source "$ZDOTDIR/plugins/forgit/forgit.plugin.zsh"
+source "$ZDOTDIR/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+
+ZVM_CURSOR_STYLE_ENABLED=false
+ZVM_NORMAL_MODE_CURSOR=ZVM_CURSOR_BLOCK
+ZVM_INSERT_MODE_CURSOR=ZVM_CURSOR_BEAM
+# ZVM_VI_HIGHLIGHT_FOREGROUND=
+# ZVM_VI_HIGHLIGHT_BACKGROUND=
 
 # aliases
 [ -f $ZDOTDIR/.zsh_alias ] && source $ZDOTDIR/.zsh_alias
