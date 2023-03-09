@@ -1,0 +1,37 @@
+
+# should be called before compinit
+zmodload zsh/complist
+
+autoload -Uz compinit; compinit -C -d $HOME/.cache/zsh/.zcompdump-$HOST
+# show hidden files
+_comp_options+=(globdots)
+
+# automatically highlight first element of completion menu
+setopt MENU_COMPLETE
+
+zstyle ':completion:*' completer _extensions _complete _approximate
+
+# use cache for commands using cache
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$HOME/.cache/zsh/.zcompcache"
+
+zstyle ':completion:*' file-list list=20 insert=10
+zstyle ':completion:*:processes' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu select
+
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+
+# pipx autocomplete
+autoload -U bashcompinit; bashcompinit
+eval "$(register-python-argcomplete pipx)"
+
+# qmk autocomplete
+if [ -d "$HOME/dev/qmk" ]; then
+    source "$HOME/dev/qmk/qmk_firmware/util/qmk_tab_complete.sh"
+fi
+
+# source custom completion dir
+if [ -d "$ZDOTDIR/completions" ];then
+    fpath+=($ZDOTDIR/completions)
+fi

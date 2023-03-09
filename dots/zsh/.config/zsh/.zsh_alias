@@ -1,22 +1,60 @@
 alias nv="nvim"
 alias showpath="echo $PATH | tr ':' '\n'"
-alias duh="sudo du -h --one-file-system --max-depth=1 --threshold=100K | sort -h"
-alias dua="sudo du -ah | sort -rh | head -n 20"
+alias reloadz="source $HOME/.config/zsh/.zshrc"
 
 alias rm="echo 'Use tm instead'"
 alias tm="trash"
 
-unalias ts
-
 alias pf="ps aux | fzf"
 alias vimgolf="docker run --rm -it -e key="867337c104fb5b765b5ef4ade2a535e0" hettomei/vimgolf"
 
+# ls
+alias ls='ls --color=auto'
+alias la='ls -la --color=auto'
+alias lah='ls -lah --color=auto'
+
+# docker
 alias dc="docker compose"
 alias dcu="docker compose up -d"
 alias dcd="docker compose down"
 alias dps="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.Networks}}\t{{.Status}}'"
 alias dl="docker logs -f"
 
+function dce {
+	docker exec -it $1 bash
+}
+
+# git
+unalias gcf
+alias gst='git status'
+alias gc='git commit'
+alias gp='git push'
+alias gd='forgit::diff'
+alias gl='forgit::log'
+
+export FORGIT_ADD_FZF_OPTS="--prompt='git add >'"
+export FORGIT_LOG_FZF_OPTS="--prompt='git log >'"
+export FORGIT_DIFF_FZF_OPTS="--prompt='git diff >'"
+export FORGIT_CHECKOUT_BRANCH_FZF_OPTS="--prompt='git branch >'"
+
+function glg {
+	git log --all --graph --oneline --decorate=short --pretty=oneline
+}
+
+# systemd
+alias syscat='systemctl cat'
+alias sys='systemctl status'
+alias sysstart='sudo systemctl start'
+alias sysrestart='sudo systemctl restart'
+alias sysstop='sudo systemctl stop'
+alias sysdr='sudo systemctl daemon-reload'
+
+# ansible
+alias adoc='ansible-doc'
+alias ainv='ansible-inventory'
+alias aplay='ansible-playbook'
+
+# bitwarden
 alias bwu='export BW_SESSION="$(bw unlock --raw)"'
 alias bwl='export BW_SESSION='
 
@@ -26,32 +64,8 @@ function zd {
     cd $(fd . "$HOME/dev" --type d --max-depth=1 | fzf) || exit
 }
 
-function dce {
-	docker exec -it $1 bash
-}
-
-# git
-unalias gd; unalias gl; unalias gb; unalias glg;
-unalias gm;
-
-function gd {
-    git diff --name-only | fzf --ansi --prompt='diff > ' --preview='git diff --color $@ -- {-1}'
-}
-
-function gl {
-    git log --pretty='%h %s' | fzf --prompt='log > ' --preview='git show --color {1}' | cut -d ' ' -f1 | xargs git show
-}
-
-function gb {
-    git branch | fzf --prompt='branch > ' | xargs git checkout
-}
-
-function glg {
-	git log --all --graph --oneline --decorate=short --pretty=oneline
-}
-
 function scr {
-	scrot $HOME/Pictures/Screenshots/%b%d-%H:%M:%S.png "$@"
+	scrot $HOME/Screenshots/%b%d-%H:%M:%S.png "$@"
 	notify-send "Screenshot taken"
 }
 
@@ -70,5 +84,16 @@ function wgon {
 
 function wgoff {
 	ssh pi "wgc -f"
+}
+
+function clear_libvirt {
+    sudo find /var/lib/libvirt/images -mtime +7
+    printf >&2 '%s ' 'Confirm clear libvirt images? (y/n)'
+    read ans
+    echo
+    if [[ $ans =~ ^[Yy]$ ]]; then
+        sudo find /var/lib/libvirt/images -mtime +7 -exec rm -- '{}' \;
+        echo "Libvirt images cleared"
+    fi
 }
 

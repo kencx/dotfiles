@@ -1,29 +1,9 @@
-ZSH_THEME="cypher"
-DISABLE_UPDATE_PROMPT=true
-DISABLE_AUTO_TITLE="true"
-
-# plugins
-plugins=(
-    git
-	aws
-    ansible
-    docker
-    docker-compose
-    sudo                # press esc twice to add sudo to current line
-    systemd
-    ufw
-    tmux
-    command-not-found   # provide suggested packages
-    pip
-    python
-    vi-mode             # esc to enter vim mode
-)
-
-# zsh config
+# zsh history
 HISTSIZE=5000
-HISTFILE="$HOME/.config/zsh/.zsh_history"
+HISTFILE="$ZDOTDIR/.zsh_history"
 SAVEHIST=5000
 HISTDUP=erase
+export HISTORY_IGNORE="(ls*|cd*|z*|clear)"
 
 setopt appendhistory
 setopt sharehistory
@@ -33,51 +13,33 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-export LESSHISTFILE=-
-export ZSH="$HOME/.oh-my-zsh"
-source $ZSH/oh-my-zsh.sh
-ZSH_THEME_TERM_TITLE_IDLE="zsh"
+# enable vi-mode with Esc
+bindkey -v
 
-export HISTORY_IGNORE="(ls*|cd*|z*|clear|omz reload)"
-
+# env variables
 export PATH="$HOME/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/go/bin"
 
-# completion
-autoload -Uz compinit; compinit
-zstyle ':completion:*:ssh:*' menu select
-
-# pipx autocomplete
-autoload -U bashcompinit; bashcompinit
-eval "$(register-python-argcomplete pipx)"
+export TERM="screen-256color"
+export EDITOR="nvim"
+export BROWSER="firefox"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export LESSHISTFILE=-
 
 # direnv
 eval "$(direnv hook zsh)"
 export DIRENV_LOG_FORMAT=
 
-# qmk autocomplete
-if [ -d "$HOME/dev/qmk" ]; then
-    source "$HOME/dev/qmk/qmk_firmware/util/qmk_tab_complete.sh"
-fi
-
 # zoxide
 export _ZO_DATA_DIR="$HOME/syncthing/sync/backups"
-export _ZO_EXCLUDE_DIR="$HOME/Documents/.env"
+export _ZO_EXCLUDE_DIR="$HOME/.env"
 eval "$(zoxide init zsh)"
 
-# aliases
-[ -f $HOME/.config/zsh/.zsh_alias ] && source $HOME/.config/zsh/.zsh_alias
-
-# env variables
-export TERM="screen-256color"
-export EDITOR="nvim"
-export BROWSER="firefox"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-
-# starship
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
-eval "$(starship init zsh)"
+# pure prompt
+fpath+=($HOME/dev/opensource/pure)
+autoload -U promptinit; promptinit
+prompt pure
 
 # pfetch
 export PF_INFO="ascii title os kernel shell wm editor pkgs uptime"
@@ -85,11 +47,29 @@ export PF_SEP=""
 export PF_ASCII="arch"
 
 # fzf
-export FZF_DEFAULT_OPTS="--cycle --reverse --border=rounded --margin=1 --padding=1 --ansi --height=90%"
+export FZF_DEFAULT_OPTS="--cycle --reverse --border=top --margin=1 --padding=0 --ansi --height=90%"
 
-# llama
-LLAMA_VIM_KEYBINDINGS=true
+# ssh-agent
+[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" >> /dev/null
 
+# plugins
+source "$ZDOTDIR/plugins/sudo.plugin.zsh"
+source "$ZDOTDIR/plugins/history-substring-search.plugin.zsh"
+source "$ZDOTDIR/plugins/forgit/forgit.plugin.zsh"
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+# aliases
+[ -f $ZDOTDIR/.zsh_alias ] && source $ZDOTDIR/.zsh_alias
+
+# completions
+[ -f $ZDOTDIR/.zsh_completions ] && source $ZDOTDIR/.zsh_completions
+
+# xorg
 if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]]; then
    exec startx
 fi

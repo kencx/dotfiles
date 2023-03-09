@@ -7,3 +7,6 @@
 [submodule "dots/tmux/.config/tmux/plugins/vim-tmux-navigator"]
 	path = dots/tmux/.config/tmux/plugins/vim-tmux-navigator
 	url = git@github.com:christoomey/vim-tmux-navigator
+[submodule "dots/zsh/.config/zsh/plugins/forgit"]
+	path = dots/zsh/.config/zsh/plugins/forgit
+	url = git@github.com:wfxr/forgit.git
