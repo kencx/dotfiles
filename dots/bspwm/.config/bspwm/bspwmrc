@@ -2,12 +2,9 @@
 
 # autostart
 pgrep -x sxhkd > /dev/null && sxhkd &
-pgrep -x picom > /dev/null || picom &
-# "$HOME"/.config/polybar/launch.sh
+#pgrep -x picom > /dev/null || picom &
 ~/bin/launch-eww &
 ~/.fehbg &
-pgrep -x dunst > /dev/null && dunst -config "$HOME"/.config/dunst/dunstrc &
-# pgrep -x redshift > /dev/null || redshift -c ~/.config/redshift/redshift.conf &
 
 # bspwm
 bspc monitor -d I II III IV V
@@ -48,7 +45,7 @@ st -c scratchpad &
 
 # tui
 bspc rule -a gotop -o desktop='V' state=floating rectangle=680x920+1200+60 follow=off
-#xdotool search -class gotop > /dev/null || st -c gotop gotop --nvidia &
+xdotool search -class gotop > /dev/null || st -c gotop gotop --nvidia &
 
 # gui
 bspc rule -a feh state=floating

@@ -4,7 +4,7 @@ Documentation=http://jonls.dk/redshift/
 After=display-manager.service
 
 [Service]
-ExecStart=/usr/local/bin/redshift -c %h/.config/redshift/redshift.conf
+ExecStart=/usr/bin/redshift -c %h/.config/redshift/redshift.conf
 Restart=always
 RestartSec=20
 Environment='XAUTHORITY=%h/.Xauthority' 'DISPLAY=:0'
