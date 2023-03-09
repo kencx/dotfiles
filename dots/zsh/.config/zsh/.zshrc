@@ -13,9 +13,6 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# enable vi-mode with Esc
-bindkey -v
-
 # env variables
 export PATH="$HOME/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin"
@@ -56,7 +53,7 @@ export FZF_DEFAULT_OPTS="--cycle --reverse --border=top --margin=1 --padding=0 -
 source "$ZDOTDIR/plugins/sudo.plugin.zsh"
 source "$ZDOTDIR/plugins/history-substring-search.plugin.zsh"
 source "$ZDOTDIR/plugins/forgit/forgit.plugin.zsh"
-source "$ZDOTDIR/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+# source "$ZDOTDIR/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
@@ -69,6 +66,46 @@ ZVM_NORMAL_MODE_CURSOR=ZVM_CURSOR_BLOCK
 ZVM_INSERT_MODE_CURSOR=ZVM_CURSOR_BEAM
 # ZVM_VI_HIGHLIGHT_FOREGROUND=
 # ZVM_VI_HIGHLIGHT_BACKGROUND=
+
+# https://unix.stackexchange.com/questions/25765/pasting-from-clipboard-to-vi-enabled-zsh-or-bash-shell
+function x11-clip-wrap-widgets() {
+    local copy_or_paste=$1
+    shift
+
+    for widget in $@; do
+        if [[ $copy_or_paste == "copy" ]]; then
+            eval "
+            function _x11-clip-wrapped-$widget() {
+                zle .$widget
+                xclip -in -selection clipboard <<<\$CUTBUFFER
+            }
+            "
+        else
+            eval "
+            function _x11-clip-wrapped-$widget() {
+                CUTBUFFER=\$(xclip -out -selection clipboard)
+                zle .$widget
+            }
+            "
+        fi
+
+        zle -N $widget _x11-clip-wrapped-$widget
+    done
+}
+
+
+local copy_widgets=(
+    vi-yank vi-yank-eol vi-delete vi-backward-kill-word vi-change-whole-line
+)
+local paste_widgets=(
+    vi-put-{before,after}
+)
+
+x11-clip-wrap-widgets copy $copy_widgets
+x11-clip-wrap-widgets paste  $paste_widgets
+
+# enable vi-mode with Esc
+bindkey -v
 
 # aliases
 [ -f $ZDOTDIR/.zsh_alias ] && source $ZDOTDIR/.zsh_alias
