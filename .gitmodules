@@ -1,15 +1,15 @@
 [submodule "dots/tmux/.config/tmux/plugins/tpm"]
 	path = dots/tmux/.config/tmux/plugins/tpm
-	url = git@github.com:tmux-plugins/tpm
+	url = https://github.com/tmux-plugins/tpm.git
 [submodule "dots/tmux/.config/tmux/plugins/extrakto"]
 	path = dots/tmux/.config/tmux/plugins/extrakto
-	url = git@github.com:laktak/extrakto
+	url = https://github.com/laktak/extrakto.git
 [submodule "dots/tmux/.config/tmux/plugins/vim-tmux-navigator"]
 	path = dots/tmux/.config/tmux/plugins/vim-tmux-navigator
-	url = git@github.com:christoomey/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator.git
 [submodule "dots/zsh/.config/zsh/plugins/forgit"]
 	path = dots/zsh/.config/zsh/plugins/forgit
-	url = git@github.com:wfxr/forgit.git
+	url = https://github.com/wfxr/forgit.git.git
 [submodule "dots/zsh/.config/zsh/plugins/zsh-vi-mode"]
 	path = dots/zsh/.config/zsh/plugins/zsh-vi-mode
-	url = git@github.com:jeffreytse/zsh-vi-mode.git
+	url = https://github.com/jeffreytse/zsh-vi-mode.git.git
