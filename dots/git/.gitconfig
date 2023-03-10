@@ -1,3 +1,5 @@
+[core]
+    editor = nvim
 [user]
 	email = kennethcheo@pm.me
 	name = kencx
@@ -10,8 +12,16 @@
 	changed = green
 	untracked = red
 [log]
-	date = short
+    date = short
+[commit]
+    verbose = true
+[fetch]
+    prune = true
+[grep]
+    lineNumber = true
+    extendedRegexp = true
 [diff]
+    renames = copies
     tool = nvimdiff
 [difftool "nvimdiff"]
 	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
@@ -21,3 +31,10 @@
 	ff = only
 [merge]
 	ff = only
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+    insteadOf = "gh:"
+    pushInsteadOf = "gh:"
+[url "https://aur.archlinux.org/"]
+    insteadOf = "aur:"
+

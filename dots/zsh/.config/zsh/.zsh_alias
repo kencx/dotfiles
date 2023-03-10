@@ -28,6 +28,7 @@ function dce {
 # git
 unalias gcf
 alias gst='git status'
+alias gap='git -c color.diff=true add --patch'
 alias gc='git commit --verbose'
 alias gp='git push'
 alias gds='git diff --staged'
