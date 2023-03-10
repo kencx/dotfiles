@@ -30,7 +30,7 @@
         )
         (powermenu-entry
             :icon "ﰇ"
-            :command "reboot now"
+            :command "shutdown -r now"
             :label "Reboot"
         )
         (powermenu-entry

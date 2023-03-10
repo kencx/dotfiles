@@ -29,6 +29,7 @@ unalias gcf
 alias gst='git status'
 alias gc='git commit --verbose'
 alias gp='git push'
+alias gds='git diff --staged'
 alias gd='forgit::diff'
 alias gl='forgit::log'
 

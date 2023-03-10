@@ -48,6 +48,8 @@ export FZF_DEFAULT_OPTS="--cycle --reverse --border=top --margin=1 --padding=0 -
 
 # ssh-agent
 [ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" >> /dev/null
+eval $(keychain --eval --quiet id_ed25519 id_cluster id_pihole id_github)
+[ -f $HOME/.keychain/$HOST-sh ] && . $HOME/.keychain/$HOST-sh 2>/dev/null
 
 # plugins
 source "$ZDOTDIR/plugins/sudo.plugin.zsh"
