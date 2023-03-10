@@ -2,7 +2,7 @@
 
 # quick access to pdf notes
 
-FILEPATH="$HOME/Documents/notes"
+FILEPATH="$HOME/notes"
 EXTENSION="pdf"
 READER="zathura"
 

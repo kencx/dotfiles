@@ -11,6 +11,7 @@ alias vimgolf="docker run --rm -it -e key="867337c104fb5b765b5ef4ade2a535e0" het
 # ls
 alias ls='ls --color=auto'
 alias la='ls -la --color=auto'
+alias ll='ls -la --color=auto'
 alias lah='ls -lah --color=auto'
 
 # docker

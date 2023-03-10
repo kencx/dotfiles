@@ -6,6 +6,7 @@
 - `hidw` - hidden window selector
 - `install-ansible` - Script for installing ansible with pipx
 - `kbinds` - fzf preview of sxhkdrc key binds
+- `launch` - Launch application. If already exists, autofocus instead.
 - `launch-eww` - ewwbar launch script
 - `notes` - fzf preview of books
 - `pad` - toggleable terminal scratchpad

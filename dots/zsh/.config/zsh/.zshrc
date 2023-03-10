@@ -23,6 +23,7 @@ export EDITOR="nvim"
 export BROWSER="firefox"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export LESSHISTFILE=-
+# export MOZ_DISABLE_RDD_SANDBOX=1
 
 # direnv
 eval "$(direnv hook zsh)"
@@ -34,9 +35,11 @@ export _ZO_EXCLUDE_DIR="$HOME/.env"
 eval "$(zoxide init zsh)"
 
 # pure prompt
-fpath+=($HOME/dev/opensource/pure)
-autoload -U promptinit; promptinit
-prompt pure
+if [[ -d $HOME/dev/opensource/pure ]]; then
+    fpath+=($HOME/dev/opensource/pure)
+    autoload -U promptinit; promptinit
+    prompt pure
+fi
 
 # pfetch
 export PF_INFO="ascii title os kernel shell wm editor pkgs uptime"
@@ -47,8 +50,7 @@ export PF_ASCII="arch"
 export FZF_DEFAULT_OPTS="--cycle --reverse --border=top --margin=1 --padding=0 --ansi --height=90%"
 
 # ssh-agent
-[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" >> /dev/null
-eval $(keychain --eval --quiet id_ed25519 id_cluster id_pihole id_github)
+eval $(keychain --eval --quiet id_ed25519)
 [ -f $HOME/.keychain/$HOST-sh ] && . $HOME/.keychain/$HOST-sh 2>/dev/null
 
 # plugins
