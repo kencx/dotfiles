@@ -1,3 +1,8 @@
+local ok, kanagawa = pcall(require, "kanagawa")
+if not ok then
+	return
+end
+
 local defaults = require("kanagawa.colors").setup()
 local overrides = {
 	Search = { bg = defaults.surimiOrange, fg = defaults.sumiInk0 },
@@ -5,7 +10,7 @@ local overrides = {
 	Visual = { fg = defaults.sumiInk0, bg = defaults.surimiOrange },
 }
 
-require("kanagawa").setup({
+kanagawa.setup({
 	undercurl = true,
 	colors = {
 		sumiInk0 = "#272727",

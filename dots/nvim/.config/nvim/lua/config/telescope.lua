@@ -1,12 +1,16 @@
-local telescope = require("telescope")
-local actions = require("telescope.actions")
+local telescope_ok, telescope = pcall(require, "telescope")
+if not telescope_ok then
+	return
+end
 
+local actions = require("telescope.actions")
 local previewers = require("telescope.previewers")
 local Job = require("plenary.job")
 
 telescope.load_extension("fzf")
 telescope.load_extension("file_browser")
 
+-- don't preview binaries
 local new_maker = function(filepath, bufnr, opts)
 	filepath = vim.fn.expand(filepath)
 	Job:new({
@@ -17,7 +21,6 @@ local new_maker = function(filepath, bufnr, opts)
 			if mime_type == "text" then
 				previewers.buffer_previewer_maker(filepath, bufnr, opts)
 			else
-				-- maybe we want to write something to the buffer here
 				vim.schedule(function()
 					vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "BINARY" })
 				end)
@@ -36,10 +39,7 @@ telescope.setup({
 				["<esc>"] = actions.close,
 			},
 		},
-		preview = {
-			treesitter = false,
-		},
-
+		preview = { treesitter = false },
 		vimgrep_arguments = {
 			"rg",
 			"--color=never",
@@ -48,33 +48,19 @@ telescope.setup({
 			"--line-number",
 			"--column",
 			"--smart-case",
-			"--trim", -- add this value
+			-- trim indentation
+			"--trim",
+			-- ignore .git/
+			"--glob",
+			"!**/.git/*",
 		},
-
 		layout_strategy = "vertical",
 		layout_config = {
-			vertical = {
-				mirror = false,
-			},
+			vertical = { mirror = false },
 			width = 0.8,
 			height = 0.8,
 		},
 	},
-
-	-- pickers = {
-	-- 	find_files = {
-	-- 		mappings = {
-	-- 			n = {
-	-- 				["cd"] = function(prompt_bufnr)
-	-- 					local selection = require("telescope.actions.state").get_selected_entry()
-	-- 					local dir = vim.fn.fnamemodify(selection.path, ":p:h")
-	-- 					actions.close(prompt_bufnr)
-	-- 					vim.cmd(string.format("silent cd %s", dir))
-	-- 				end,
-	-- 			},
-	-- 		},
-	-- 	},
-	-- },
 
 	extensions = {
 		fzf = {

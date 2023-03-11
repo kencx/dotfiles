@@ -1,12 +1,13 @@
--- https://github.com/nvim-treesitter/nvim-treesitter
+local ok, configs = pcall(require, "nvim-treesitter.configs")
+if not ok then
+	return
+end
 
-require("nvim-treesitter.configs").setup({
-
+configs.setup({
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = { "markdown" },
 	},
-
 	incremental_selection = {
 		enable = true,
 		keymaps = {
@@ -16,9 +17,10 @@ require("nvim-treesitter.configs").setup({
 			node_decremental = "grm",
 		},
 	},
-
-	indent = {
-		enable = false,
+	indent = { enable = false },
+	context_commentstring = {
+		enable = true,
+		enable_autocmd = false,
 	},
 
 	ensure_installed = {

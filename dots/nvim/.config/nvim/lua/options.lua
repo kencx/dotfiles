@@ -62,6 +62,9 @@ set.number = true -- show line numbers
 set.relativenumber = true
 set.scrolloff = 4 -- number of lines above and below cursor when scrolling
 
+set.wildignore:append("**/.git/*")
+set.wildignore:append("**/node_modules/*")
+
 vim.wo.colorcolumn = "99999" -- fixes highlighting bug with indent_blankline
 
 -- vim-tmux-navigator

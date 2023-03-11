@@ -1,10 +1,8 @@
--- eg: bind('mode', 'key', 'cmd', *opts)
 local bind = vim.api.nvim_set_keymap
 local lua_bind = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = " "
--- bind("n", ";", ":", opts)
 
 -- unbind arrow keys
 bind("n", "<up>", "<NOP>", opts)
@@ -12,7 +10,7 @@ bind("n", "<down>", "<NOP>", opts)
 bind("n", "<left>", "<NOP>", opts)
 bind("n", "<right>", "<NOP>", opts)
 
--- unbind esc
+-- exit insert mode
 bind("i", "jj", "<Esc>", opts)
 bind("i", "jk", "<Esc>", opts)
 bind("i", "kk", "<Esc>", opts)
@@ -42,18 +40,20 @@ bind("v", "<a-k>", ":m '<-2<CR>gv=gv", opts)
 -- turn off search highlighting
 bind("n", "<Leader>h", ":set hlsearch!<CR>", opts)
 
--- new tab
-bind("n", "<Leader>n", ":tabnew<CR>", opts)
+-- new buffer
+bind("n", "<Leader>n", ":enew<CR>", opts)
 
 -- change pwd to current buffer
-bind("n", "<Leader>cd", ":cd %:p:h<CR>", opts)
-bind("n", "<Leader>cy", ':let @+ = expand("%:p:h")<CR>', opts)
+-- bind("n", "<Leader>cd", ":cd %:p:h<CR>", opts)
+-- bind("n", "<Leader>cy", ':let @+ = expand("%:p:h")<CR>', opts)
 
 -- extract vselection to new buffer
 bind("v", "<Leader>ex", [[:'<,'> d | new +put! " | b#<CR><CR>]], opts)
 
 -- toggle relativenumber
 bind("n", "<Leader>rnn", ":exec &rnu? 'se nornu!' : 'se rnu!'<CR>", opts)
+
+-- bind("n", ";", ":", opts)
 
 -------------
 -- plugins --
@@ -85,54 +85,8 @@ bind("n", "<Leader>fs", ":Telescope lsp_document_symbols<CR>", opts)
 bind("n", "<Leader>gc", ":Telescope git_commits<CR>", opts)
 bind("n", "<Leader>gst", ":Telescope git_status<CR>", opts)
 
--- colorizer
-bind("n", "<Leader>cc", ":ColorizerToggle<CR>", opts)
-
 -- treesitter
 bind("n", "<Leader>ts", ":write | edit | TSBufEnable highlight<CR>", opts)
-
--- gitsigns
-bind("v", "<Leader>sh", ":Gitsigns stage_hunk<CR>", opts)
-bind("v", "<Leader>rh", ":Gitsigns reset_hunk<CR>", opts)
-bind("n", "<Leader>uh", ":Gitsigns undo_stage_hunk<CR>", opts)
-bind("n", "<Leader>sb", ":Gitsigns stage_buffer<CR>", opts)
-bind("n", "<Leader>rb", ":Gitsigns reset_buffer<CR>", opts)
-bind("n", "<Leader>hp", ":Gitsigns preview_hunk<CR>", opts)
-
-lua_bind("n", "]c", function()
-	local gs = require("gitsigns")
-	if vim.wo.diff then
-		return "]c"
-	end
-	vim.schedule(function()
-		gs.next_hunk()
-	end)
-	return "<Ignore>"
-end, opts)
-
-lua_bind("n", "[c", function()
-	local gs = require("gitsigns")
-	if vim.wo.diff then
-		return "[c"
-	end
-	vim.schedule(function()
-		gs.prev_hunk()
-	end)
-	return "<Ignore>"
-end, opts)
-
--- diffview
-bind("n", "<Leader>dh", ":DiffviewFileHistory<CR>", opts)
-function DiffviewToggle()
-	local view = require("diffview.lib").get_current_view()
-	if view then
-		vim.cmd("DiffviewClose")
-	else
-		vim.cmd("DiffviewOpen")
-	end
-end
-
-lua_bind("n", "<Leader>dv", DiffviewToggle, opts)
 
 -- markdown-preview
 bind("n", "<Leader>md", ":MarkdownPreview<CR>", opts)
@@ -151,3 +105,19 @@ lua_bind("n", "gf", function()
 end, { noremap = false, expr = true })
 
 bind("n", "<Leader>og", ":ObsidianSearch<CR>", opts)
+
+-- diffview
+--[[ bind("n", "<Leader>dh", ":DiffviewFileHistory<CR>", opts) ]]
+--[[ function DiffviewToggle() ]]
+--[[ 	local view = require("diffview.lib").get_current_view() ]]
+--[[ 	if view then ]]
+--[[ 		vim.cmd("DiffviewClose") ]]
+--[[ 	else ]]
+--[[ 		vim.cmd("DiffviewOpen") ]]
+--[[ 	end ]]
+--[[ end ]]
+
+--[[ lua_bind("n", "<Leader>dv", DiffviewToggle, opts) ]]
+
+-- colorizer
+--[[ bind("n", "<Leader>cc", ":ColorizerToggle<CR>", opts) ]]

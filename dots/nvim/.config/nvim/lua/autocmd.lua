@@ -5,14 +5,6 @@ autocmd("TextYankPost", {
 	command = "silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=700}",
 })
 
--- set minimap colorscheme
-autocmd("ColorScheme", {
-	pattern = "*",
-	callback = function()
-		vim.api.nvim_set_hl(0, "MiniMapNormal", { fg = "#363646", bg = "#272727" })
-	end,
-})
-
 autocmd("TermOpen", {
 	pattern = "*",
 	command = "setlocal nonumber norelativenumber",

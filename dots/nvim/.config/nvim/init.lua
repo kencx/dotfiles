@@ -2,9 +2,10 @@ vim.o.termguicolors = true
 
 -- order matters!
 require("options")
-require("mappings")
+require("keymaps")
 require("autocmd")
 require("plugins")
+require("lsp")
 require("config.vsnip")
 
 local disabled_built_ins = {

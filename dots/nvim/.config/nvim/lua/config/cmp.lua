@@ -1,3 +1,8 @@
+local ok, cmp = pcall(require, "cmp")
+if not ok then
+	return
+end
+
 vim.opt.completeopt = "menu,menuone,noselect"
 
 local has_words_before = function()
@@ -37,9 +42,7 @@ local kind_icons = {
 	TypeParameter = "",
 }
 
-local cmp = require("cmp")
 cmp.setup({
-
 	mapping = cmp.mapping.preset.insert({
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -62,7 +65,8 @@ cmp.setup({
 			elseif has_words_before() then
 				cmp.complete()
 			else
-				fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+				-- fallback function sends an already mapped key. In this case, it's probably `<Tab>`.
+				fallback()
 			end
 		end, { "i", "s" }),
 
@@ -83,7 +87,8 @@ cmp.setup({
 
 	formatting = {
 		format = function(entry, vim_item)
-			vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+			-- concatenate icons with name of item
+			vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
 			vim_item.menu = ({
 				buffer = "[buf]",
 				path = "[path]",

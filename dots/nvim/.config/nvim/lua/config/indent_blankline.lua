@@ -1,3 +1,8 @@
+local ok, indent = pcall(require, "indent_blankline")
+if not ok then
+	return
+end
+
 vim.g.indent_blankline_context_patterns = {
 	"class",
 	"return",
@@ -20,10 +25,9 @@ vim.g.indent_blankline_context_patterns = {
 	"import_statement",
 	"operation_type",
 }
-
 vim.g.indent_blankline_use_treesitter = true
 
-require("indent_blankline").setup({
+indent.setup({
 	char = "⦙",
 	show_current_context = false,
 	show_first_indent_level = false,

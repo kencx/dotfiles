@@ -1,5 +1,4 @@
-local fn = vim.fn
-local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
@@ -25,19 +24,38 @@ return require("lazy").setup({
 			require("config.colors")
 		end,
 	},
-
-	"christoomey/vim-tmux-navigator",
 	"nvim-lua/plenary.nvim",
-	-- "ray-x/lsp_signature.nvim",
-	"romgrk/barbar.nvim",
 
+	-- look
+	{ "romgrk/barbar.nvim", dependencies = "nvim-tree/nvim-web-devicons" },
+	{
+		"hoob3rt/lualine.nvim",
+		event = "VimEnter",
+		config = function()
+			require("config.lualine")
+		end,
+	},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		config = function()
 			require("config.treesitter")
 		end,
 		build = ":TSUpdate",
+		event = "BufReadPre",
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
 		event = "BufRead",
+		config = function()
+			require("config.indent_blankline")
+		end,
+	},
+	{
+		"echasnovski/mini.map",
+		event = "BufEnter",
+		config = function()
+			require("config.mini-map")
+		end,
 	},
 
 	-- lsp support
@@ -45,14 +63,27 @@ return require("lazy").setup({
 		"neovim/nvim-lspconfig",
 		version = "v0.1.4",
 		event = "BufEnter",
-		config = function()
-			require("config.lsp")
-		end,
 		dependencies = {
 			"lspcontainers/lspcontainers.nvim",
 			"jose-elias-alvarez/null-ls.nvim",
-			-- "hrsh7th/nvim-cmp",
 		},
+	},
+	{
+		"utilyre/barbecue.nvim",
+		-- version = "*",
+		dependencies = {
+			"SmiteshP/nvim-navic",
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require("config.barbeque")
+		end,
+	},
+	{
+		"ray-x/lsp_signature.nvim",
+		config = function()
+			require("config.lsp-signature")
+		end,
 	},
 
 	-- completion support
@@ -80,72 +111,31 @@ return require("lazy").setup({
 		},
 	},
 
-	-- status line
-	{
-		"hoob3rt/lualine.nvim",
-		config = function()
-			require("config.lualine")
-		end,
-	},
-
-	-- indentation lines
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		event = "BufRead",
-		config = function()
-			require("config.indent_blankline")
-		end,
-	},
-
+	-- navigation
+	{ "christoomey/vim-tmux-navigator", lazy = false },
 	{
 		"notjedi/nvim-rooter.lua",
-		event = "BufEnter",
-		opts = function()
-			manual = false
-		end,
-	},
-
-	-- git
-	{
-		"lewis6991/gitsigns.nvim",
-		event = "BufRead",
-		cmd = "Gitsigns",
 		config = function()
-			require("gitsigns").setup()
+			require("nvim-rooter").setup()
 		end,
 	},
-
-	--{
-	--	"sindrets/diffview.nvim",
-	--	cmd = { "DiffviewFileHistory" },
-	--	module = "diffview.lib",
-	--},
-
 	{
 		"nvim-telescope/telescope.nvim",
 		version = "0.1.1",
+		-- event = "BufEnter",
 		cmd = "Telescope",
 		config = function()
 			require("config.telescope")
 		end,
 		dependencies = {
+			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-fzf-native.nvim",
 			"nvim-telescope/telescope-file-browser.nvim",
-			"kyazdani42/nvim-web-devicons",
+			"nvim-tree/nvim-web-devicons",
 		},
 	},
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", cmd = "Telescope" },
 	{ "nvim-telescope/telescope-file-browser.nvim", cmd = "Telescope" },
-
-	-- comment engine
-	{
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end,
-		event = "BufEnter",
-	},
-
 	{
 		"folke/which-key.nvim",
 		config = function()
@@ -156,27 +146,43 @@ return require("lazy").setup({
 		},
 	},
 
-	{
-		"echasnovski/mini.map",
-		event = "BufEnter",
-		config = function()
-			require("config.mini-map")
-		end,
-		-- module_pattern = { "mini.map*", "MiniMap*" },
-	},
-
+	-- editing
 	{ "machakann/vim-sandwich", event = "BufEnter" },
-	{ "jiangmiao/auto-pairs", event = "InsertEnter" },
+	{ "jiangmiao/auto-pairs" },
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require("config.comment")
+		end,
+		event = "BufEnter",
+		dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
+	},
 	{
 		"Julian/vim-textobj-variable-segment",
-		dependencies = { "kana/vim-textobj-user" },
+		dependencies = "kana/vim-textobj-user",
 	},
 
+	-- git
+	{
+		"lewis6991/gitsigns.nvim",
+		event = "BufReadPre",
+		cmd = "Gitsigns",
+		config = function()
+			require("config.gitsigns")
+		end,
+	},
+	--{
+	--	"sindrets/diffview.nvim",
+	--	cmd = { "DiffviewFileHistory" },
+	--	module = "diffview.lib",
+	--},
+
+	-- tools
 	-- markdown previewer
 	{
 		"iamcco/markdown-preview.nvim",
 		build = function()
-			fn["mkdp#util#install"]()
+			vim.fn["mkdp#util#install"]()
 		end,
 		init = function()
 			vim.g.mkdp_filetypes = { "markdown" }
@@ -188,14 +194,14 @@ return require("lazy").setup({
 		end,
 	},
 
-	---- obsidian
-	--{
-	--	"epwalsh/obsidian.nvim",
-	--	config = function()
-	--		require("config.obsidian-nvim")
-	--	end,
-	--	cmd = { "ObsidianSearch", "ObsidianFollowLink" },
-	--},
+	-- obsidian
+	{
+		"epwalsh/obsidian.nvim",
+		config = function()
+			require("config.obsidian-nvim")
+		end,
+		cmd = { "ObsidianSearch", "ObsidianFollowLink" },
+	},
 
 	--{
 	--	"hkupty/iron.nvim",
@@ -216,6 +222,8 @@ return require("lazy").setup({
 	--	end,
 	--	cmd = "Oil",
 	--},
+
+	-- colors
 	--{
 	--	"norcalli/nvim-colorizer.lua",
 	--	-- pin = true,
@@ -228,6 +236,7 @@ return require("lazy").setup({
 	--		})
 	--	end,
 	--},
+	--
 	-- {
 	-- 	"mrshmllow/document-color.nvim",
 	-- 	-- pin = true,
