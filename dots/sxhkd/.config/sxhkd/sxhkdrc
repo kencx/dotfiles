@@ -51,6 +51,9 @@ XF86AudioMute
 XF86Audio{Raise,Lower}Volume
     pactl set-sink-volume @DEFAULT_SINK@ {+,-}1000
 
+XF86MonBrightness{Up,Down}
+    xbacklight -{inc,dec} 20 && notify-send "Brightness"
+
 # configs
 super + z
     st -c configs $HOME/bin/configs
