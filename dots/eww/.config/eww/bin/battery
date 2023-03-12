@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! command -v acpi; then
+if ! command -v acpi > /dev/null; then
     exit 0
 fi
 
