@@ -54,6 +54,9 @@
 		(system :class "package"
 				:icon ""
 				:text {package_poll})
+        (system :class "battery"
+                :icon {battery_icon_poll}
+                :text {battery_poll})
 		(system :class "cpu"
 				:icon ""
 				:text "${round(EWW_CPU.avg, 0)}%")
@@ -115,6 +118,12 @@
 
 (defpoll package_poll :interval "10s"
 	"./bin/updates")
+
+(defpoll battery_poll :interval "10s"
+    "./bin/battery --perc")
+
+(defpoll battery_icon_poll :interval "10s"
+    "./bin/battery --icon")
 
 (defpoll bluetooth_poll :interval "1s"
 	"./bin/bluetooth --status")
