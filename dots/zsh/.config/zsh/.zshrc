@@ -39,6 +39,8 @@ if [[ -d $HOME/dev/opensource/pure ]]; then
     fpath+=($HOME/dev/opensource/pure)
     autoload -U promptinit; promptinit
     prompt pure
+else
+    PS1='%F{blue}%~ %(?.%F{green}.%F{red})%#%f '
 fi
 
 # pfetch
