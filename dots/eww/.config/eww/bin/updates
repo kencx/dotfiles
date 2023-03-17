@@ -1,6 +1,6 @@
 #!/bin/bash
 
-updates=$(checkupdates --nosync | wc -l)
+updates=$(checkupdates | wc -l)
 
 if [[ "$updates" -gt 0 ]]; then
 	echo "" "$updates"
