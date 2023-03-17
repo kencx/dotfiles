@@ -33,7 +33,7 @@ super + shift + b
 
 # wifi menu
 super + shift + c
-    $HOME/.config/eww/bin/nmcli-rofi
+    $HOME/.config/eww/bin/iwd-rofi
 
 # power menu
 super + shift + p

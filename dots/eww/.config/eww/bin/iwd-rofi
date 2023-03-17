@@ -1,0 +1,64 @@
+#!/bin/bash
+
+set -euo pipefail
+
+whitespace="s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g;/^\s*$/d"
+
+iwctl_menu() {
+    action=$(printf "Connect\nDisconnect" \
+        | rofi -sep '\n' -dmenu -p "Action: ")
+}
+
+get_interface() {
+    device=$(iwctl device list \
+        | tail -n +5 \
+        | sed -r "$whitespace" \
+        | awk '{print $1, $2, $3}' \
+        | rofi -dmenu -p "Device: " \
+        | awk '{print $1}')
+    [[ -n $device ]] || exit 1
+}
+
+scan_ssid() {
+    iwctl station $device scan && sleep 1
+    ssid=$(iwctl station $device get-networks \
+        | sed -r "$whitespace" \
+        | sed -n '3,100p' \
+        | sed '3s/[[:space:]]>\s/   /g' \
+        | rofi -dmenu -p "SSID: " \
+        | awk '{print $1}')
+    [[ -n $ssid ]] || exit 1
+}
+
+get_psk() {
+    psk=$(echo -en "" | rofi -dmenu -password -p "Password: " -lines 0)
+}
+
+connect_ssid() {
+    iwctl station "$device" connect "$ssid" -P "$psk" \
+        && notify-send "iwctl: Connected to \"$ssid\""
+}
+
+get_connected_ssid() {
+    connected_ssid=$(iwctl station "$device" show \
+        | sed -r "$whitespace" \
+        | sed -n '7p' \
+        | awk '{print $3}' \
+        | rofi -dmenu)
+}
+
+disconnect_ssid() {
+    iwctl station "$device" disconnect "$connected_ssid"
+    notify-send "iwctl: Disconnected from \"$connected_ssid\""
+}
+
+iwctl_menu
+get_interface
+if [[ $action == "Connect" ]]; then
+    scan_ssid
+    get_psk
+    connect_ssid
+else
+    get_connected_ssid
+    disconnect_ssid
+fi

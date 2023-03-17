@@ -86,7 +86,7 @@
 
 (defwidget wifi []
 	(eventbox :cursor "pointer"
-		(button :onclick `$(./bin/nmcli-rofi)`
+		(button :onclick `$(./bin/iwd-rofi)`
 			(system :class "wifi"
 					:icon {wifi_poll.icon}
 					:text {wifi_poll.content}))))
@@ -116,7 +116,7 @@
 (defpoll time :interval "10s"
 	"date '+%A %d %b, %H:%M'")
 
-(defpoll package_poll :interval "10s"
+(defpoll package_poll :interval "10m"
 	"./bin/updates")
 
 (defpoll battery_poll :interval "10s"
