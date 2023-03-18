@@ -53,10 +53,12 @@
 	(box :class "right" :orientation "h" :space-evenly false :halign "end" :spacing 24
 		(system :class "package"
 				:icon ""
-				:text {package_poll})
+				:text {package_poll}
+                :visible {package_poll != "" ? true : false})
         (system :class "battery"
                 :icon {battery_icon_poll}
-                :text {battery_poll})
+                :text {battery_poll}
+                :visible {battery_poll != "" ? true : false})
 		(system :class "cpu"
 				:icon ""
 				:text "${round(EWW_CPU.avg, 0)}%")
@@ -73,7 +75,7 @@
 		:orientation "h"
 		:halign "center"
 		:space-evenly false
-		:visible {visible ?: true}
+		:visible "${visible}"
 	(label :class "system_icon" :text "${icon} ${text}")
 	(children)))
 
