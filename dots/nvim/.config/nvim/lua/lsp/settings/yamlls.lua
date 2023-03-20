@@ -6,40 +6,40 @@ end
 local lspconfig_util = require("lspconfig/util")
 
 local schemas = {
-    ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-    ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = {
-        "**/docker-compose.yml",
-        "**/docker-compose.yaml",
-        "**/docker-compose.*.yml",
-        "**/docker-compose.*.yaml",
-    },
+	["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+	["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = {
+		"**/docker-compose.yml",
+		"**/docker-compose.yaml",
+		"**/docker-compose.*.yml",
+		"**/docker-compose.*.yaml",
+	},
 
-    -- cloud-config
-    ["https://raw.githubusercontent.com/canonical/cloud-init/main/cloudinit/config/schemas/versions.schema.cloud-config.json"] = {
-        "user-data.yml",
-        "user-data.yaml",
-        "cloud.cfg",
-        "cloudconfig.yaml",
-        "cloud-config.yaml",
-        "*.cloudconfig.yaml",
-        "*.cloud-config.yaml"
-    },
+	-- cloud-config
+	["https://raw.githubusercontent.com/canonical/cloud-init/main/cloudinit/config/schemas/versions.schema.cloud-config.json"] = {
+		"user-data.yml",
+		"user-data.yaml",
+		"cloud.cfg",
+		"cloudconfig.yaml",
+		"cloud-config.yaml",
+		"*.cloudconfig.yaml",
+		"*.cloud-config.yaml",
+	},
 
-    -- ansible
-    ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook"] = {
-        "playbook.yml",
-        "playbook.yaml",
-        "main.yml",
-        "main.yaml",
-        "**/playbooks/*.yml",
-        "**/playbooks/*.yaml"
-    },
-    ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks"] = {
-        "**/tasks/*.yml",
-        "**/tasks/*.yaml",
-        "**/handlers/*.yml",
-        "**/handlers/*.yaml"
-    },
+	-- ansible
+	["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook"] = {
+		"playbook.yml",
+		"playbook.yaml",
+		"site.yml",
+		"site.yaml",
+		"**/playbooks/*.yml",
+		"**/playbooks/*.yaml",
+	},
+	["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks"] = {
+		"**/tasks/*.yml",
+		"**/tasks/*.yaml",
+		"**/handlers/*.yml",
+		"**/handlers/*.yaml",
+	},
 }
 
 return {
