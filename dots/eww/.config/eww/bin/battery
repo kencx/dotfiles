@@ -10,7 +10,7 @@ charge="$(acpi | awk -F ' ' 'END {print $3}' | tr -d \,)"
 main() {
     if [[ ($charge = "Charging") && ($battery -lt "100") ]]; then
         echo "󱐋"
-    elif [[ $charge = "Full" ]]; then
+    elif [[ $battery -eq "100" ]]; then
         echo " "
     else
         if [[ ($battery -lt 100) && (($battery -gt 65) || ($battery -eq 65)) ]]; then

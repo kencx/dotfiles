@@ -69,6 +69,9 @@ Desktop files for rofi access. Place them at `~/.local/share/applications/`
 ### Custom browser startpage
 [startpage](https://github.com/kennethcheo/startpage)
 
+### Lock
+[slock](https://github.com/khuedoan/slock)
+
 ### Greeter
 The default LightDM greeter is used with a custom background. Config file is
 found in `etc/lightdm-gtk-greeter.conf`. Replace the `background` field with the
