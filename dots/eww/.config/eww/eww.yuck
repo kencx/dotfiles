@@ -19,12 +19,15 @@
 		(right)))
 
 (defwidget left []
-	(eventbox :onscroll `$(./bin/desktop_scroll {})`
+	(eventbox :onscroll `$(./bin/desktop-scroll {})`
 	(box :class "left"
 		:orientation "h"
 		:space-evenly false
 		:halign "start"
 		:spacing 30
+    (system :class "sxhkd"
+        :icon ""
+        :text {sxhkd_listen})
 	(workspaces)
 	(music))))
 
@@ -111,6 +114,9 @@
 ; variables
 (deflisten workspaces_listen
 	"./bin/workspaces")
+
+(deflisten sxhkd_listen :initial ""
+	"./bin/sxhkd-watcher")
 
 (deflisten music :initial ""
 	"playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+SXHKD_FIFO="/var/run/sxhkd.fifo"
+if [[ ! -p $SXHKD_FIFO ]]; then
+   mkfifo $SXHKD_FIFO
+fi
+
+cat $SXHKD_FIFO | while read line; do
+case ${line} in
+    # EEnd chain
+    E*)
+        echo "" ;;
+    "Hsuper + n")
+        echo "N" ;;
+    "Hsuper + p")
+        echo "P" ;;
+    "Hsuper + e")
+        echo "R" ;;
+   esac
+done
