@@ -1,4 +1,4 @@
-.PHONY: stow dev dev-test remote
+.PHONY: stow dev dev-test remote update
 
 stow:
 	stow -d "dots/$(c)" -t "$$HOME" -vv .
@@ -33,3 +33,5 @@ remote:
 	git clone https://github.com/morhetz/gruvbox.git "$$HOME/.vim/pack/default/start/gruvbox" ;\
 	echo "Installed gruvbox theme"
 
+update:
+	git submodule foreach git pull origin master
