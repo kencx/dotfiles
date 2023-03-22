@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # autostart
-pgrep -x sxhkd > /dev/null && sxhkd -s /var/run/sxhkd.fifo &
+#pgrep -x sxhkd > /dev/null && sxhkd -s /var/run/sxhkd.fifo &
 #pgrep -x picom > /dev/null || picom &
 ~/bin/launch-eww &
 ~/.fehbg &

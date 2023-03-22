@@ -1,10 +1,6 @@
 #!/bin/bash
 
-SXHKD_FIFO="/var/run/sxhkd.fifo"
-if [[ ! -p $SXHKD_FIFO ]]; then
-   mkfifo $SXHKD_FIFO
-fi
-
+SXHKD_FIFO="/var/run/user/1000/sxhkd.fifo"
 cat $SXHKD_FIFO | while read line; do
 case ${line} in
     # EEnd chain
