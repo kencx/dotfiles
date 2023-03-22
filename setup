@@ -1,0 +1,102 @@
+#!/bin/bash
+
+# do not set -e as stow is supposed to fail in some cases
+set -uo pipefail
+
+if ! command -v stow > /dev/null 2>&1; then
+    echo "ERROR: \"stow\" not installed"
+fi
+
+help() {
+	cat << EOF
+usage: ./setup [subcommand] [args]
+
+  Subcommand:
+    help     Returns help
+    stow     Stow dir
+    unstow   Unstow dir
+
+  Arguments:
+    --all        Act on all subdirectories in \$DOTS_DIR
+    --simulate   Simulation mode
+    --dir        Set \$DOTS_DIR. Defaults to "./dots"
+    --target     Set \$TARGET_DIR. Defaults to "\$HOME"
+EOF
+}
+
+DEFAULT_WARNING="WARNING: in simulation mode so not modifying filesystem."
+DOTS_DIR="dots"
+SIMULATE=true
+UNSTOW=true
+
+build() {
+    STOW_COMMAND="stow -v"
+
+    if $SIMULATE; then
+        STOW_COMMAND+=" -n"
+    fi
+
+    if $UNSTOW; then
+        STOW_COMMAND+=" -D"
+    fi
+}
+
+stow_one() {
+    build
+    STOW_COMMAND+="-t $HOME -d $DOTS_DIR/$1 . 2>&1"
+    eval "$STOW_COMMAND"
+}
+
+stow_all() {
+    local success=0 fail=0 MESSAGE SUCCESS_MATCH
+
+    MESSAGE="Linking all directories in \"./$DOTS_DIR\" to \"$HOME\":"
+    SUCCESS_MATCH="^LINK:.*"
+
+    if $UNSTOW; then
+        MESSAGE="Unlinking all directories in \"./$DOTS_DIR\" to \"$HOME\":"
+        SUCCESS_MATCH="^UNLINK:.*"
+    fi
+
+    if $SIMULATE; then
+        echo "RUNNING STOW SIMULATE:"
+    fi
+
+    echo "$MESSAGE"
+    for dir in dots/*; do
+        # skip
+        if [[ $dir == "dots/ssh" ]]; then
+            continue
+        fi
+
+        output="$(stow_one "${dir##*/}")"
+        # split output by newline, do not quote within array
+        IFS=$'\n' lines=($output)
+
+        for line in "${lines[@]}"; do
+            if [[ "$line" =~ $SUCCESS_MATCH ]]; then
+                ((success++))
+                printf "  %s\n" "$line"
+            elif [[ "$line" == "$DEFAULT_WARNING" ]]; then
+                :;
+            elif [[ "$line" =~ ^WARNING:.* ]]; then
+                ((fail++))
+            else
+                :;
+            fi
+        done
+    done
+
+    if ! ((success+fail)); then
+        echo "NO DIRECTORIES STOWED!"
+    else
+        echo "STOW COMPLETE: $success SUCCESS; $fail FAIL"
+    fi
+}
+
+subcommand=${1:-""}
+case $subcommand in
+    "" | "-h" | "--help" | "help")
+        help
+        ;;
+esac
