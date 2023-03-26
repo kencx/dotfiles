@@ -27,7 +27,8 @@
 		:spacing 30
     (system :class "sxhkd"
         :icon ""
-        :text {sxhkd_listen})
+        :text {sxhkd_listen}
+        :visible true)
 	(workspaces)
 	(music))))
 
@@ -64,10 +65,12 @@
                 :visible {battery_poll != "" ? true : false})
 		(system :class "cpu"
 				:icon ""
-				:text "${round(EWW_CPU.avg, 0)}%")
+				:text "${round(EWW_CPU.avg, 0)}%"
+                :visible true)
 		(system :class "disk"
 				:icon ""
-				:text "${round(EWW_DISK["/"].free / (1024*1024*1024), 2)} GB")
+				:text "${round(EWW_DISK["/"].free / (1024*1024*1024), 2)} GB"
+                :visible true)
 		(bluetooth)
 		(wifi)
 		(volume)
@@ -87,14 +90,16 @@
 		(button :onclick `$(./bin/bluetooth)`
 			(system :class "bluetooth"
 					:icon ""
-					:text {bluetooth_poll}))))
+					:text {bluetooth_poll}
+                    :visible true))))
 
 (defwidget wifi []
 	(eventbox :cursor "pointer"
 		(button :onclick `$(./bin/iwd-rofi)`
 			(system :class "wifi"
 					:icon {wifi_poll.icon}
-					:text {wifi_poll.content}))))
+					:text {wifi_poll.content}
+                    :visible true))))
 
 (defwidget volume []
 	(eventbox :cursor "pointer"
@@ -102,14 +107,16 @@
 		(button :onclick `pactl set-sink-mute @DEFAULT_SINK@ toggle`
 			(system :class "volume"
 				:icon {vol_poll.icon}
-				:text {vol_poll.content}))))
+				:text {vol_poll.content}
+                :visible true))))
 
 (defwidget power []
 	(eventbox :cursor "pointer"
 		(button :onclick `eww open powermenu &`
 				:onrightclick `eww close powermenu &`
 		(system :class "power"
-				:icon ""))))
+				:icon ""
+                :visible true))))
 
 ; variables
 (deflisten workspaces_listen
