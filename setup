@@ -129,20 +129,32 @@ subcommand=${1:-""}
 case $subcommand in
     "stow")
         shift
-        parse_flags $@;;
+        parse_flags "$@"
+        UNSTOW=false
+        ;;
     "unstow")
         shift
-        parse_flags $@
-        UNSTOW=true ;;
+        parse_flags "$@"
+        UNSTOW=true
+        ;;
     "" | "-h" | "--help" | "help")
         help
         exit 1 ;;
 esac
 
-shift $(($OPTIND-1))
+shift $((OPTIND-1))
 
 if $ALL ; then
     stow_all
 else
-    stow_one $@
+    stow_one "$@"
 fi
+
+# echo "Copying .Xresources"
+# cp etc/.Xresources "$HOME/.Xresources"
+#
+# echo "Copying .desktop files"
+# mkdir -p "$HOME/.local/share/applications"
+# cp etc/desktop/* "$HOME/.local/share/applications/"
+#
+# echo "Installing neovim plugins"
