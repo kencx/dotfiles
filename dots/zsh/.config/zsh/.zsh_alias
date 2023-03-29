@@ -1,3 +1,4 @@
+alias sudo="sudo "
 alias nv="nvim"
 alias showpath="echo $PATH | tr ':' '\n'"
 alias reloadz="source $HOME/.config/zsh/.zshrc"

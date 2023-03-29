@@ -1,3 +1,4 @@
+alias sudo="sudo "
 alias showpath="echo $PATH | tr ':' '\n'"
 
 alias ls='ls --color=auto'
