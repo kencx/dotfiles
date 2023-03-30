@@ -12,9 +12,11 @@ help() {
 usage: ./setup [subcommand] [flags] [args]
 
   Subcommand:
-    help     Returns help
-    stow     Stow dir
-    unstow   Unstow dir
+    help       Returns help
+    install    Run full installation
+    uninstall  Run full uninstallation
+    stow       Stow dir
+    unstow     Unstow dir
 
   Flags:
     -a, --all       Act on all subdirectories in \$DOTS_DIR
@@ -106,6 +108,39 @@ stow_all() {
     fi
 }
 
+full_installation() {
+    echo "Stow all dotfiles"
+    stow_all
+
+    echo "Install .Xresources"
+    cp ./etc/.Xresources "$HOME/.Xresources"
+
+    echo "Install desktop files to $HOME/.local/share/applications"
+    mkdir -p "$HOME/.local/share/applications"
+    cp ./etc/desktop/* "$HOME/.local/share/applications/"
+
+    echo "Installing neovim plugins"
+    nvim --headless "+Lazy! sync" +qa
+
+    echo "Installation complete!"
+}
+
+full_uninstallation() {
+    echo "Unstow all dotfiles"
+    stow_all
+
+    echo "Uninstall .Xresources"
+    rm "$HOME/.Xresources"
+
+    echo "Remove desktop files from $HOME/.local/share/applications"
+    rm "$HOME/.local/share/applications/"
+
+    echo "Remove all neovim plugins"
+    rm -r "$HOME/.local/share/nvim/lazy"
+
+    echo "Installation complete!"
+}
+
 parse_flags() {
     while getopts sad:t: opt
     do
@@ -127,15 +162,39 @@ parse_flags() {
 
 subcommand=${1:-""}
 case $subcommand in
+    "install")
+        shift
+        parse_flags "$@"
+        ALL=true
+        UNSTOW=false
+        full_installation
+        ;;
+    "uninstall")
+        shift
+        parse_flags "$@"
+        ALL=true
+        UNSTOW=true
+        full_uninstallation
+        ;;
     "stow")
         shift
         parse_flags "$@"
         UNSTOW=false
+        if $ALL ; then
+            stow_all
+        else
+            stow_one "$@"
+        fi
         ;;
     "unstow")
         shift
         parse_flags "$@"
         UNSTOW=true
+        if $ALL ; then
+            stow_all
+        else
+            stow_one "$@"
+        fi
         ;;
     "" | "-h" | "--help" | "help")
         help
@@ -144,17 +203,4 @@ esac
 
 shift $((OPTIND-1))
 
-if $ALL ; then
-    stow_all
-else
-    stow_one "$@"
-fi
 
-# echo "Copying .Xresources"
-# cp etc/.Xresources "$HOME/.Xresources"
-#
-# echo "Copying .desktop files"
-# mkdir -p "$HOME/.local/share/applications"
-# cp etc/desktop/* "$HOME/.local/share/applications/"
-#
-# echo "Installing neovim plugins"
