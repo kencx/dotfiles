@@ -14,9 +14,10 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # env variables
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
-export PATH="$PATH:/usr/local/go/bin"
-export PATH="$PATH:$HOME/go/bin"
+# export PATH="$PATH:/usr/local/go/bin"
+# export PATH="$PATH:$HOME/go/bin"
 
 export TERM="screen-256color"
 export EDITOR="nvim"
