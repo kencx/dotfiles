@@ -17,15 +17,17 @@ mute=$(pactl get-sink-mute "$sink" | \
 	cut -d ' ' -f2)
 
 if [ "$mute" = "yes" ]; then
-	icon="ﱝ"
+	icon="󰝟"
 	vol=" "
 else
 	if [ "$vol" -gt 66 ]; then
-		icon="墳"
+		icon="󰕾"
 	elif [ "$vol" -gt 33 ]; then
-		icon=""
+		icon="󰖀"
 	elif [ "$vol" -gt 0 ]; then
-		icon=""
+		icon="󰕿"
+    else
+        icon="󰝟"
 	fi
 	vol="$vol%"
 fi

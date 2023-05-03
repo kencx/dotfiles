@@ -5,11 +5,11 @@ wifistate=$(iwctl device $link show | grep Powered | tr -s ' ' | cut -d' ' -f5) 
 wificonn=$(iwctl station $link show | grep 'Connected network' | tr -s ' ' | cut -d' ' -f4) # wifi connected?
 
 if [ "$wifistate" = "off" ]; then
-	icon="睊"
+	icon="󰖪"
 elif [[ "$wificonn" = "" ]]; then
-	icon="睊"
+	icon="󱚵"
 else
-	icon="直"
+	icon="󰖩"
 fi
 
 if [ "$conn" = "" ]; then

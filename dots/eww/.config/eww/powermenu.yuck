@@ -24,22 +24,22 @@
         :valign "center"
 
         (powermenu-entry
-            :icon "襤"
+            :icon "󰐥"
             :command "shutdown now"
             :label "Shutdown"
         )
         (powermenu-entry
-            :icon "ﰇ"
+            :icon "󰜉"
             :command "shutdown -r now"
             :label "Reboot"
         )
         (powermenu-entry
-            :icon ""
+            :icon "󰌾"
             :command "bsplock"
             :label "Lock"
         )
         (powermenu-entry
-            :icon ""
+            :icon "󰍃"
             :command "bspc quit"
             :label "Logout"
         )

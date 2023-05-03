@@ -64,7 +64,7 @@
                 :text {battery_poll}
                 :visible {battery_poll != "" ? true : false})
 		(system :class "cpu"
-				:icon ""
+				:icon "󰍛"
 				:text "${round(EWW_CPU.avg, 0)}%"
                 :visible true)
 		(system :class "disk"
