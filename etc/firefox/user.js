@@ -85,6 +85,8 @@ user_pref("layers.acceleration.force-enabled", true);
 user_pref("gfx.webrender.all", true);
 user_pref("svg.context-properties.content.enabled", true);
 user_pref("ui.systemUsesDarkTheme", 1);
+user_pref("media.videocontrols.picture-in-picture.enabled", false)
+user_pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false)
 
 user_pref("browser.startup.page", 3);
 user_pref("browser.startup.homepage", "file:///home/kenc/.mozilla/startpage/index.html");
