@@ -109,34 +109,98 @@ stow_all() {
 }
 
 full_install() {
+    if $SIMULATE; then
+        printf "SIMULATION MODE: No files will be changed!\n\n"
+    fi
     echo "Stow all dotfiles"
     stow_all
 
-    echo "Install .Xresources"
-    cp ./etc/.Xresources "$HOME/.Xresources"
+    echo "Install .Xresources:"
+    if [[ ! -f "./etc/.Xresources" ]]; then
+        echo ".Xresources not found, skipping..."
+    elif $SIMULATE; then
+        printf "  Copying ./etc/.Xresources to %s/.Xresources\n" "$HOME"
+    else
+        cp ./etc/.Xresources "$HOME/.Xresources"
+    fi
 
-    echo "Install desktop files to $HOME/.local/share/applications"
-    mkdir -p "$HOME/.local/share/applications"
-    cp ./etc/desktop/* "$HOME/.local/share/applications/"
+    echo "Install desktop files:"
+    if [[ ! -d "./etc/desktop" ]]; then
+        echo ".desktop files not found, skipping..."
+    elif $SIMULATE; then
+        printf "  Copying ./etc/desktop/* to %s/.local/share/applications\n" "$HOME"
+    else
+        mkdir -p "$HOME/.local/share/applications"
+        cp ./etc/desktop/* "$HOME/.local/share/applications/"
+    fi
 
-    echo "Installing neovim plugins"
-    nvim --headless "+Lazy! sync" +qa
+    echo "Installing firefox customizations:"
+    ff_dir=$HOME/.mozilla/firefox
+    ff_path="$ff_dir/$(grep 'Default=.*\.default-release$' $ff_dir/profiles.ini | cut -d"=" -f2)"
+
+    if [[ ! -d "$ff_dir" ]]; then
+        printf "  Firefox not installed, skipping...\n"
+    elif [[ ! -d $ff_path ]]; then
+        printf "  Firefox default profile not available, skipping...\n"
+    elif $SIMULATE; then
+        printf "  Copying ./etc/firefox/chrome dir to %s\n" "$ff_path"
+        printf "  Copying ./etc/firefox/user.js to %s\n" "$ff_path"
+    else
+        cp -r ./etc/firefox/chrome "$ff_path"
+        cp ./etc/firefox/user.js  "$ff_path"
+    fi
+
+    echo "Installing neovim plugins:"
+    if ! command -v nvim > /dev/null 2>&1; then
+        printf "  nvim not installed, skipping..."
+    elif $SIMULATE; then
+        printf "  Running command: 'nvim --headless \"+Lazy! sync\" +qa'"
+    else
+        nvim --headless "+Lazy! sync" +qa
+    fi
 
     echo "Installation complete!"
 }
 
 full_uninstall() {
+    if $SIMULATE; then
+        printf "SIMULATION MODE: No files will be changed!\n\n"
+    fi
     echo "Unstow all dotfiles"
     stow_all
 
-    echo "Uninstall .Xresources"
-    rm "$HOME/.Xresources"
+    echo "Uninstall .Xresources:"
+    if $SIMULATE; then
+        printf "  Removing %s/.Xresources\n" "$HOME"
+    else
+        rm "$HOME/.Xresources"
+    fi
 
-    echo "Remove desktop files from $HOME/.local/share/applications"
-    rm "$HOME/.local/share/applications/"
+    echo "Remove desktop files:"
+    if $SIMULATE; then
+        printf "  Removing %s/.local/share/applications/*.desktop\n" "$HOME"
+    else
+        rm "$HOME/.local/share/applications/*.desktop"
+    fi
 
-    echo "Remove all neovim plugins"
-    rm -r "$HOME/.local/share/nvim/lazy"
+    echo "Installing firefox customizations:"
+    ff_dir=$HOME/.mozilla/firefox
+    ff_path="$ff_dir/$(grep 'Default=.*\.default-release$' $ff_dir/profiles.ini | cut -d"=" -f2)"
+
+    if $SIMULATE; then
+        printf "  Removing %s/chrome\n" "$ff_path"
+        printf "  Removing %s/user.js\n" "$ff_path"
+    else
+        rm -r "$ff_path/chrome"
+        rm "$ff_path/user.js"
+    fi
+
+    echo "Remove all neovim plugins:"
+    if $SIMULATE; then
+        printf "  Removing %s/.local/share/nvim/lazy\n" "$HOME"
+    else
+        rm -r "$HOME/.local/share/nvim/lazy"
+    fi
 
     echo "Installation complete!"
 }
