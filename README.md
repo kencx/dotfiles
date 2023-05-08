@@ -1,16 +1,9 @@
 # dotfiles
 
-Theme: Gruvbox Dark & [kanagawa](https://github.com/rebelot/kanagawa.nvim)
+See [screenshots](#screenshots).
 
-Font: Fira Code Nerd Font
-
-<p align="center">
-	<img src="./assets/ss-plain.png"/>
-	<img src="./assets/ss-fetch.png"/>
-	<img src="./assets/ss-nvim.png"/>
-	<img src="./assets/ss-firefox.png"/>
-</p>
-
+- Theme: Gruvbox Dark & [kanagawa](https://github.com/rebelot/kanagawa.nvim)
+- Font: Fira Code Nerd Font
 - WM: [bspwm](https://github.com/baskerville/bspwm)
 - Terminal: [st](#st) fork
 - Shell: [zsh](https://www.zsh.org)
@@ -18,27 +11,64 @@ Font: Fira Code Nerd Font
 - Editor: [nvim](https://github.com/neovim/neovim/) with [tmux](https://github.com/tmux/tmux)
 - Compositor: [picom](https://github.com/yshui/picom) fork
 - Bar: [eww](https://github.com/elkowar/eww)
-- Greeter: lightdm-gtk-greeter
 - Others: [rofi](https://github.com/davatorium/rofi), [dunst](https://github.com/dunst-project/dunst), [zathura](https://github.com/pwmt/zathura), feh, redshift
 
 ## Install
 
-Managed by [stow](https://www.gnu.org/software/stow/). Refer to
-[this](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html)
-guide for how it works.
-
-To symlink all dotfiles
+The `setup` script requires [stow](https://www.gnu.org/software/stow/).
 
 ```bash
-$ make dev-test     # dry-run, does not perform changes
-$ make dev
+# dry-run
+$ ./setup install --simulate
+
+$ ./setup install
 ```
 
-To sym a specified dir
+The script will:
+
+- Stow all dotfiles
+- Copy `.Xresources` in `./etc/.Xresources`
+- Apply Firefox customizations in `./etc/firefox`
+- Copy all `.desktop` files in `./etc/desktop` to `~/.local/share/applications`
+- Install all neovim plugins
+
+>TODO: Install [custom st fork](#st).
+
+To run separate stow and unstows:
 
 ```bash
-$ make stow c=[dir]
+# dry-run: stow only bspwm
+$ ./setup stow --simulate bspwm
+
+# unstow only bspwm
+$ ./setup unstow bspwm
 ```
+
+All dotfiles must be placed in `./dots/` directory or specify custom directory
+with `--dots` flag:
+
+```bash
+$ ./setup stow --dots ./foo bspwm
+```
+
+## Uninstall
+
+Uninstall will:
+
+- Unstow all dotfiles
+- Delete any existing `.Xresources`, Firefox customizations and `.desktop` files
+- Uninstall all neovim plugins
+
+```bash
+# dry-run
+$ ./setup uninstall --simulate
+
+# uninstall all
+$ ./setup uninstall
+```
+
+
+## Applications
 
 ### st
 [Luke's](https://github.com/LukeSmithxyz/st) fork of st for an easy experience. Uses colors from `.Xresources` in `etc/.Xresources`.
@@ -83,3 +113,12 @@ $ sudo cp img/image.png /usr/share/backgrounds/image.png
 ```
 
 Test with `dm-tool switch-to-greeter`.
+
+## Screenshots
+
+<p align="center">
+	<img src="./assets/ss-plain.png"/>
+	<img src="./assets/ss-fetch.png"/>
+	<img src="./assets/ss-nvim.png"/>
+	<img src="./assets/ss-firefox.png"/>
+</p>
