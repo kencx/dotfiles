@@ -79,7 +79,7 @@ by Miguel Avila
 
 /* This positions the tabs under the navaigator container */
 #titlebar {
-  -moz-box-ordinal-group: 3 !important;
+  order: 3 !important;
 }
 
 ┌┬┐┌─┐┬  ┌─┐┌┬┐┌─┐
