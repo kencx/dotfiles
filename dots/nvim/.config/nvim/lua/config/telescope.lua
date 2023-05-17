@@ -3,12 +3,14 @@ if not telescope_ok then
 	return
 end
 
+local plenary_ok, _ = pcall(require, "plenary")
+if not plenary_ok then
+	return
+end
+
 local actions = require("telescope.actions")
 local previewers = require("telescope.previewers")
 local Job = require("plenary.job")
-
-telescope.load_extension("fzf")
-telescope.load_extension("file_browser")
 
 -- don't preview binaries
 local new_maker = function(filepath, bufnr, opts)
@@ -69,5 +71,14 @@ telescope.setup({
 			override_file_sorter = true,
 			case_mode = "smart_case",
 		},
+		file_browser = {
+			hijack_netrw = true,
+			hidden = true,
+			grouped = true,
+			respect_gitignore = false,
+		},
 	},
 })
+
+telescope.load_extension("fzf")
+telescope.load_extension("file_browser")

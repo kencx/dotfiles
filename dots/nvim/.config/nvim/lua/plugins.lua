@@ -122,8 +122,6 @@ return require("lazy").setup({
 	{
 		"nvim-telescope/telescope.nvim",
 		version = "0.1.1",
-		-- event = "BufEnter",
-		cmd = "Telescope",
 		config = function()
 			require("config.telescope")
 		end,
@@ -134,8 +132,8 @@ return require("lazy").setup({
 			"nvim-tree/nvim-web-devicons",
 		},
 	},
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", cmd = "Telescope" },
-	{ "nvim-telescope/telescope-file-browser.nvim", cmd = "Telescope" },
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	{ "nvim-telescope/telescope-file-browser.nvim" },
 	{
 		"folke/which-key.nvim",
 		config = function()
