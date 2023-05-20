@@ -45,6 +45,15 @@ function glg {
 	git log --all --graph --oneline --decorate=short --pretty=oneline
 }
 
+# delete branches
+function gcbd {
+    git branch |
+        grep --invert-match '\*' |
+        cut -c 3- |
+        fzf --multi --preview="git log {} --" |
+        xargs --no-run-if-empty git branch --delete --force
+}
+
 # systemd
 alias syscat='systemctl cat'
 alias sys='systemctl status'
@@ -68,6 +77,11 @@ function zd {
     cd $(fd . "$HOME/dev" --type d --max-depth=1 | fzf) || exit
 }
 
+# search aliases and paste selection in command line
+function aliases {
+    print -z -- $(alias | fzf | cut -d"=" -f1)
+}
+
 function scr {
 	scrot $HOME/Screenshots/%b%d-%H:%M:%S.png "$@"
 	notify-send "Screenshot taken"
@@ -82,13 +96,13 @@ function cheat {
 }
 
 # turn on/off wireguard client
-function wgon {
-	ssh pi "wgc -o"
-}
-
-function wgoff {
-	ssh pi "wgc -f"
-}
+# function wgon {
+# 	ssh pi "wgc -o"
+# }
+#
+# function wgoff {
+# 	ssh pi "wgc -f"
+# }
 
 function clear_libvirt {
     sudo find /var/lib/libvirt/images -mtime +7
