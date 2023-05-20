@@ -29,6 +29,13 @@ local sources = {
 	formatters.codespell.with({
 		filetypes = { "markdown" },
 	}),
+	formatters.shfmt.with({
+		extra_args = { "-i", "4" },
+	}),
+	formatters.packer,
+	formatters.terraform_fmt.with({
+		filetypes = { "hcl" },
+	}),
 	--[[ formatters.black, ]]
 	-- formatting.isort,
 	-- hover.dictionary,

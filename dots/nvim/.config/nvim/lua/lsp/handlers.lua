@@ -39,10 +39,6 @@ local function lsp_keymaps(bufnr)
 end
 
 local function format_on_save(client, bufnr)
-	-- if client.server_capabilities.documentFormattingProvider then
-	-- 	vim.cmd([[ autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync() ]])
-	-- end
-
 	-- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save
 	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 	local lsp_formatting = function(b)
@@ -54,16 +50,14 @@ local function format_on_save(client, bufnr)
 		})
 	end
 
-	if client.supports_method("textDocument/formatting") then
-		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			group = augroup,
-			buffer = bufnr,
-			callback = function()
-				lsp_formatting(bufnr)
-			end,
-		})
-	end
+	vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+	vim.api.nvim_create_autocmd("BufWritePre", {
+		group = augroup,
+		buffer = bufnr,
+		callback = function()
+			lsp_formatting(bufnr)
+		end,
+	})
 end
 
 local function document_color(client, bufnr)
