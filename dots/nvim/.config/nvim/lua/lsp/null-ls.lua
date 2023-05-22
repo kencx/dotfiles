@@ -29,6 +29,9 @@ local sources = {
 	formatters.codespell.with({
 		filetypes = { "markdown" },
 	}),
+    formatters.gofmt,
+    formatters.goimports,
+
 	formatters.shfmt.with({
 		extra_args = { "-i", "4" },
 	}),
