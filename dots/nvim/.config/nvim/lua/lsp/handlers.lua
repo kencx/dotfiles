@@ -9,11 +9,24 @@ M.setup = function()
 		severity_sort = true,
 		float = {
 			border = "single",
+			focusable = false,
 			format = function(diagnostic)
 				return string.format("%s (%s)", diagnostic.message, diagnostic.source)
 			end,
 		},
 	})
+end
+
+LspDiagnosticsPopupHandler = function()
+	local current_cursor = vim.api.nvim_win_get_cursor(0)
+	local last_popup_cursor = vim.w.lsp_diagnostics_last_cursor or { nil, nil }
+
+	-- show floating diagnostics only once for each cursor location
+	-- unless moved later
+	if not (current_cursor[1] == last_popup_cursor[1] and current_cursor[2] == last_popup_cursor[2]) then
+		vim.w.lsp_diagnostics_last_cursor = current_cursor
+		vim.diagnostic.open_float(0, { scope = "cursor" })
+	end
 end
 
 local function lsp_keymaps(bufnr)
@@ -92,9 +105,8 @@ M.on_attach = function(client, bufnr)
 	-- document_color(client, bufnr)
 	function_signature(bufnr)
 
-	-- show line diagnostics in hover window
 	vim.o.updatetime = 250
-	vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
+	vim.cmd([[autocmd CursorHold * lua LspDiagnosticsPopupHandler()]])
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
