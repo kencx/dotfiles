@@ -24,7 +24,7 @@ super + semicolon
 
 # screenshot
 super + shift + s
-	scrot $HOME/Pictures/Screenshots/%b%d-%H:%M:%S.png && \
+	scrot $HOME/Screenshots/%b%d-%H:%M:%S.png && \
 	notify-send "Screenshot taken"
 
 # bluetooth menu
