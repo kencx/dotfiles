@@ -3,6 +3,9 @@ alias nv="nvim"
 alias showpath="echo $PATH | tr ':' '\n'"
 alias reloadz="source $HOME/.config/zsh/.zshrc"
 
+alias pbcopy="xclip -selection c"
+alias pbpaste="xclip -o -selection c"
+
 alias rm="echo 'Use tm instead'"
 alias tm="trash"
 
