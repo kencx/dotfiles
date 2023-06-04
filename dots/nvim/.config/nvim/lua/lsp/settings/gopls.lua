@@ -7,7 +7,8 @@ return {
 				unusedparams = true,
 			},
 			staticcheck = true,
-			buildFlags = { "-tags=integration" },
+			templateExtensions = { "templ", "tmpl" },
+			-- buildFlags = { "-tags=integration" },
 		},
 	},
 }

@@ -9,38 +9,43 @@ local hover = null_ls.builtins.hover
 local code_actions = null_ls.builtins.code_actions
 
 local sources = {
+	-- lua
 	formatters.stylua,
 	diagnostics.luacheck.with({
 		extra_args = { "-g" },
 	}),
 
-	diagnostics.yamllint,
+	-- go
+	formatters.gofmt,
+	formatters.goimports,
+
+	-- bash
 	diagnostics.shellcheck,
-	-- diagnostics.ansiblelint,
-	-- diagnostics.actionlint,
-	-- diagnostics.flake8,
-	-- diagnostics.hadolint,
-
-	-- diagnostics on save
-	diagnostics.terraform_validate.with({
-		filetypes = { "hcl" },
-	}),
-
-	formatters.codespell.with({
-		filetypes = { "markdown" },
-	}),
-    formatters.gofmt,
-    formatters.goimports,
-
 	formatters.shfmt.with({
 		extra_args = { "-i", "4" },
+	}),
+
+	-- python
+	formatters.black,
+	-- formatting.isort,
+
+	-- hcl
+	diagnostics.terraform_validate.with({
+		filetypes = { "hcl" },
 	}),
 	formatters.packer,
 	formatters.terraform_fmt.with({
 		filetypes = { "hcl" },
 	}),
-	--[[ formatters.black, ]]
-	-- formatting.isort,
+
+	diagnostics.yamllint,
+	-- diagnostics.ansiblelint,
+	-- diagnostics.actionlint,
+	-- diagnostics.hadolint,
+
+	formatters.codespell.with({
+		filetypes = { "markdown" },
+	}),
 	-- hover.dictionary,
 	--[[ code_actions.gitsigns, ]]
 }
@@ -48,4 +53,19 @@ local sources = {
 null_ls.setup({
 	debug = false,
 	sources = sources,
+	on_attach = function(client, bufnr)
+		-- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save
+		if client.supports_method("textDocument/formatting") then
+			local augroup = vim.api.nvim_create_augroup("NullLSFormatting", {})
+
+			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = augroup,
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.format({ bufnr = bufnr })
+				end,
+			})
+		end
+	end,
 })

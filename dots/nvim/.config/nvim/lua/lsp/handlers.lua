@@ -53,33 +53,22 @@ end
 
 local function format_on_save(client, bufnr)
 	-- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save
-	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-	local lsp_formatting = function(b)
-		vim.lsp.buf.format({
-			filter = function(c)
-				return c.name == "null-ls"
+	if client.supports_method("textDocument/formatting") then
+		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = augroup,
+			buffer = bufnr,
+			callback = function()
+				vim.lsp.buf.format({
+					--[[ filter = function(c) ]]
+					--[[ 	return c.name == "null-ls" ]]
+					--[[ end, ]]
+					bufnr = bufnr,
+				})
 			end,
-			bufnr = b,
 		})
-	end
-
-	vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-	vim.api.nvim_create_autocmd("BufWritePre", {
-		group = augroup,
-		buffer = bufnr,
-		callback = function()
-			lsp_formatting(bufnr)
-		end,
-	})
-end
-
-local function document_color(client, bufnr)
-	if client.server_capabilities.colorProvider then
-		local ok, color = pcall(require, "document-color")
-		if not ok then
-			return
-		end
-		color.buf_attach(bufnr, { mode = "background" })
 	end
 end
 
@@ -102,7 +91,6 @@ M.on_attach = function(client, bufnr)
 
 	lsp_keymaps(bufnr)
 	format_on_save(client, bufnr)
-	-- document_color(client, bufnr)
 	function_signature(bufnr)
 
 	vim.o.updatetime = 250
