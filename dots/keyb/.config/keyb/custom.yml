@@ -1,200 +1,231 @@
 - name: bspwm
   keybinds:
-  - name: float terminal
-    key: super + Return
-  - name: tiled terminal
-    key: super + shift + Return
-  - name: program launcher
-    key: super + space
-  - name: Show windows
-    key: super + semicolon
-  - name: telegram
-    key: super + t
-  - name: Wifi
-    key: super + shift + c
-  - name: Bluetooth
-    key: super + shift + b
-  - name: Screenshot
-    key: super + shift + s
-  - name: reload sxhkd
-    key: super + Escape
-  - name: '{quit, escape} bspwm'
-    key: super + alt + {q,r}
-  - name: '{close, kill} window'
-    key: super + {_, shift +} w
-  - name: toggle tiled and floating layout
-    key: super + s
-  - name: set node to {pseudo_tiled, fullscreen}
-    key: super + shift + {t, f}
-  - name: toggle node to {locked, sticky}
-    key: super + ctrl + {l, s}
-  - name: focus node in direction
-    key: super + h,j,k,l
-  - name: focus {prev, next} node
-    key: super + (, )
-  - name: focus {next, prev} desktop
-    key: super + [, ]
+    - name: float terminal
+      key: super + Return
+    - name: tiled terminal
+      key: super + shift + Return
+    - name: program launcher
+      key: super + space
+    - name: Show windows
+      key: super + semicolon
+    - name: telegram
+      key: super + t
+    - name: Wifi
+      key: super + shift + c
+    - name: Bluetooth
+      key: super + shift + b
+    - name: Screenshot
+      key: super + shift + s
+    - name: reload sxhkd
+      key: super + Escape
+    - name: '{quit, escape} bspwm'
+      key: super + alt + {q,r}
+    - name: '{close, kill} window'
+      key: super + {_, shift +} w
+    - name: toggle tiled and floating layout
+      key: super + s
+    - name: set node to {pseudo_tiled, fullscreen}
+      key: super + shift + {t, f}
+    - name: toggle node to {locked, sticky}
+      key: super + ctrl + {l, s}
+    - name: focus node in direction
+      key: super + h,j,k,l
+    - name: focus {prev, next} node
+      key: super + (, )
+    - name: focus {next, prev} desktop
+      key: super + [, ]
 - name: bspwm (node mode)
   prefix: super + n
   keybinds:
-  - name: hide current window
-    key: super + h
-  - name: unhide window menu
-    key: super + shift + h
-  - name: toggle hide all windows in focused desktop
-    key: super + ctrl + h
-  - name: swap current node and biggest node
-    key: super + g
-  - name: rotate nodes {CW, ACW}
-    key: super + {q, e}
-  - name: flip nodes {vertical, horizontal}
-    key: super + {_, shift + } f
-  - name: focus or send to desktop {1-5}
-    key: '{_, super +} 1-5'
+    - name: hide current window
+      key: super + h
+    - name: unhide window menu
+      key: super + shift + h
+    - name: toggle hide all windows in focused desktop
+      key: super + ctrl + h
+    - name: swap current node and biggest node
+      key: super + g
+    - name: rotate nodes {CW, ACW}
+      key: super + {q, e}
+    - name: flip nodes {vertical, horizontal}
+      key: super + {_, shift + } f
+    - name: focus or send to desktop {1-5}
+      key: '{_, super +} 1-5'
 - name: bspwm (preselect)
   prefix: super + p
   keybinds:
-  - name: preselect direction
-    key: super + {h,j,k,l}
-  - name: cancel preselection for focused node
-    key: super + space
-  - name: move window to chosen preselection
-    key: super + shift + m
-    ignore_prefix: true
+    - name: preselect direction
+      key: super + {h,j,k,l}
+    - name: cancel preselection for focused node
+      key: super + space
+    - name: move window to chosen preselection
+      key: super + shift + m
+      ignore_prefix: true
 - name: bspwm (move, resize)
   prefix: super + e
   keybinds:
-  - name: expand window
-    key: '{h,j,k,l}'
-  - name: contract window
-    key: shift + {h,j,k,l}
-  - name: move floating window
-    key: '{←,↓,↑,→}'
-  - name: Equalize
-    key: super + e
+    - name: expand window
+      key: '{h,j,k,l}'
+    - name: contract window
+      key: shift + {h,j,k,l}
+    - name: move floating window
+      key: '{←,↓,↑,→}'
+    - name: Equalize
+      key: super + e
 - name: tmux (copy)
   prefix: ctrl + a
   keybinds:
-  - name: Start copy mode
-    key: '['
-  - name: Start visual selection
-    key: ctrl + space
-    ignore_prefix: true
-  - name: Copy highlighted selection
-    key: ctrl + w
-    ignore_prefix: true
-  - name: Paste
-    key: ']'
+    - name: Start copy mode
+      key: '['
+    - name: Start visual selection
+      key: ctrl + space
+      ignore_prefix: true
+    - name: Copy highlighted selection
+      key: ctrl + w
+      ignore_prefix: true
+    - name: Paste
+      key: ']'
 - name: tmux (panes)
   prefix: ctrl + a
   keybinds:
-  - name: Split pane vertically
-    key: '|'
-  - name: Split pane horizontally
-    key: '-'
-  - name: Show pane numbers
-    key: q
-  - name: Toggle pane zoom
-    key: z
-  - name: Convert pane into a window
-    key: '!'
-  - name: Kill current pane
-    key: x
-  - name: Move pane to the previous pane
-    key: '{'
-  - name: Move pane to the next pane
-    key: '}'
-  - name: Toggle between pane layouts
-    key: Space
-  - name: Resize pane
-    key: ctrl + {←,↓,↑,→}
+    - name: Split pane vertically
+      key: '|'
+    - name: Split pane horizontally
+      key: '-'
+    - name: Show pane numbers
+      key: q
+    - name: Toggle pane zoom
+      key: z
+    - name: Convert pane into a window
+      key: '!'
+    - name: Kill current pane
+      key: x
+    - name: Move pane to the previous pane
+      key: '{'
+    - name: Move pane to the next pane
+      key: '}'
+    - name: Toggle between pane layouts
+      key: Space
+    - name: Resize pane
+      key: ctrl + {←,↓,↑,→}
 - name: tmux (windows)
   prefix: ctrl + a
   keybinds:
-  - name: Create new window
-    key: c
-  - name: Rename current window
-    key: R
-  - name: Close current window
-    key: '&'
-  - name: List windows
-    key: w
-  - name: Detach from session
-    key: d
-  - name: Previous window
-    key: shift + left
-    ignore_prefix: true
-  - name: Next window
-    key: shift + right
-    ignore_prefix: true
-  - name: Shift window left
-    key: ">"
-  - name: Shift window right
-    key: "<"
+    - name: Create new window
+      key: c
+    - name: Rename current window
+      key: R
+    - name: Close current window
+      key: '&'
+    - name: List windows
+      key: w
+    - name: Detach from session
+      key: d
+    - name: Previous window
+      key: shift + left
+      ignore_prefix: true
+    - name: Next window
+      key: shift + right
+      ignore_prefix: true
+    - name: Shift window left
+      key: ">"
+    - name: Shift window right
+      key: "<"
 - name: nvim
   prefix: space
   keybinds:
-  - name: new tab
-    key: "n"
-  - name: change pwd to current buffer
-    key: cd
-  - name: insert markdown link
-    key: wl
-  - name: colorizer toggle
-    key: cc
+    - name: new tab
+      key: "n"
+    - name: change pwd to current buffer
+      key: cd
+    - name: insert markdown link
+      key: wl
+    - name: colorizer toggle
+      key: cc
+- name: nvim splits
+  prefix: ctrl + w
+  keybinds:
+    - name: create vertical split
+      key: v
+    - name: create horizontal split
+      key: s
+    - name: create empty split
+      key: n
+    - name: close split
+      key: q
+    - name: close all other splits
+      key: o
 - name: nvim telescope
   keybinds:
-  - name: Enter insert mode
-    key: jk, kk, jj
-  - name: Select file as vsplit
-    key: ctrl + v
-  - name: Select file as new tab
-    key: ctrl + t
-  - name: Scroll up preview window
-    key: ctrl + u
-  - name: Scroll down preview window
-    key: ctrl + d
+    - name: Enter insert mode
+      key: jk, kk, jj
+    - name: Select file as vsplit
+      key: ctrl + v
+    - name: Select file as new tab
+      key: ctrl + t
+    - name: Scroll up preview window
+      key: ctrl + u
+    - name: Scroll down preview window
+      key: ctrl + d
 - name: nvim telescope file browser (normal mode)
   keybinds:
-  - name: list mappings
-    key: '?'
-  - name: rename file
-    key: r
-  - name: create file
-    key: c
-  - name: go to cwd
-    key: w
-  - name: change cwd
-    key: t
-  - name: toggle hidden
-    key: h
-  - name: toggle files/folders
-    key: f
+    - name: list mappings
+      key: '?'
+    - name: rename file
+      key: r
+    - name: create file
+      key: c
+    - name: go to cwd
+      key: w
+    - name: change cwd
+      key: t
+    - name: toggle hidden
+      key: h
+    - name: toggle files/folders
+      key: f
 - name: nvim tree
   keybinds:
-  - name: open as preview (cursor remains in tree)
-    key: tab
-  - name: close current directory
-    key: backspace
-  - name: Change directory under cursor to root
-    key: ctrl + ]
-  - name: toggle hidden
-    key: H
-  - name: show hotkeys
-    key: g?
+    - name: open as preview (cursor remains in tree)
+      key: tab
+    - name: close current directory
+      key: backspace
+    - name: Change directory under cursor to root
+      key: ctrl + ]
+    - name: toggle hidden
+      key: H
+    - name: show hotkeys
+      key: g?
 - name: nvim lsp
   keybinds:
-  - name: go to defintion
-    key: gd
-  - name: list references
-    key: gr
-  - name: hover
-    key: K
-  - name: rename
-    key: space + rn
-  - name: code action
-    key: space + ca
-  - name: next diagnostic
-    key: ']d'
-  - name: prev diagnostic
-    key: '[d'
+    - name: go to defintion
+      key: gd
+    - name: list references
+      key: gr
+    - name: hover
+      key: K
+    - name: rename
+      key: space + rn
+    - name: code action
+      key: space + ca
+    - name: next diagnostic
+      key: ']d'
+    - name: prev diagnostic
+      key: '[d'
+- name: nvim gitsigns
+  keybinds:
+    - name: preview hunk
+      key: space + hp
+    - name: next change
+      key: ']c'
+    - name: prev change
+      key: '[c'
+    - name: stage hunk (visual line)
+      key: space + sh
+    - name: undo stage hunk (visual line)
+      key: space + uh
+    - name: reset hunk (visual line)
+      key: space + rh
+    - name: stage buffer
+      key: space + sb
+    - name: reset buffer
+      key: space + rb
