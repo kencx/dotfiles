@@ -17,7 +17,7 @@ M.setup = function()
 	})
 end
 
-LspDiagnosticsPopupHandler = function()
+local function lspDiagnosticsPopupHandler()
 	local current_cursor = vim.api.nvim_win_get_cursor(0)
 	local last_popup_cursor = vim.w.lsp_diagnostics_last_cursor or { nil, nil }
 
@@ -94,7 +94,12 @@ M.on_attach = function(client, bufnr)
 	function_signature(bufnr)
 
 	vim.o.updatetime = 250
-	vim.cmd([[autocmd CursorHold * lua LspDiagnosticsPopupHandler()]])
+	vim.api.nvim_create_autocmd("CursorHold", {
+		pattern = "*",
+		callback = function()
+			lspDiagnosticsPopupHandler()
+		end,
+	})
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
