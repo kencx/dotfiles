@@ -14,4 +14,3 @@ lspconfig.terraformls.setup(vim.tbl_deep_extend("force", require("lsp.settings.t
 lspconfig.yamlls.setup(vim.tbl_deep_extend("force", require("lsp.settings.yamlls"), defaults))
 lspconfig.svelte.setup(vim.tbl_deep_extend("force", require("lsp.settings.svelte"), defaults))
 lspconfig.tsserver.setup(vim.tbl_deep_extend("force", require("lsp.settings.tsserver"), defaults))
--- lspconfig.tailwindcss.setup(vim.tbl_deep_extend("force", require("lsp.settings.tailwindcss"), defaults))

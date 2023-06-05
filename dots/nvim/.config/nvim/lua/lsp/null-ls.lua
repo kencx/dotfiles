@@ -57,19 +57,5 @@ local sources = {
 null_ls.setup({
 	debug = false,
 	sources = sources,
-	on_attach = function(client, bufnr)
-		-- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save
-		if client.supports_method("textDocument/formatting") then
-			local augroup = vim.api.nvim_create_augroup("NullLSFormatting", {})
-
-			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				group = augroup,
-				buffer = bufnr,
-				callback = function()
-					vim.lsp.buf.format({ bufnr = bufnr })
-				end,
-			})
-		end
-	end,
+	on_attach = require("lsp.format").format_on_save,
 })

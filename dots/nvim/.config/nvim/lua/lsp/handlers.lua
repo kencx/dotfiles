@@ -17,19 +17,7 @@ M.setup = function()
 	})
 end
 
-local function lspDiagnosticsPopupHandler()
-	local current_cursor = vim.api.nvim_win_get_cursor(0)
-	local last_popup_cursor = vim.w.lsp_diagnostics_last_cursor or { nil, nil }
-
-	-- show floating diagnostics only once for each cursor location
-	-- unless moved later
-	if not (current_cursor[1] == last_popup_cursor[1] and current_cursor[2] == last_popup_cursor[2]) then
-		vim.w.lsp_diagnostics_last_cursor = current_cursor
-		vim.diagnostic.open_float(0, { scope = "cursor" })
-	end
-end
-
-local function lsp_keymaps(bufnr)
+local function attach_keymaps(bufnr)
 	local opts = { noremap = true, silent = true }
 	local function keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -51,27 +39,6 @@ local function lsp_keymaps(bufnr)
 	-- keymap("n", "<space>q", "<cmd>lua vim.diagnostic.set_loclist()<CR>", opts)
 end
 
-local function format_on_save(client, bufnr)
-	-- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save
-	if client.supports_method("textDocument/formatting") then
-		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
-		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			group = augroup,
-			buffer = bufnr,
-			callback = function()
-				vim.lsp.buf.format({
-					--[[ filter = function(c) ]]
-					--[[ 	return c.name == "null-ls" ]]
-					--[[ end, ]]
-					bufnr = bufnr,
-				})
-			end,
-		})
-	end
-end
-
 local function function_signature(bufnr)
 	local ok, lsp_signature = pcall(require, "lsp_signature")
 	if not ok then
@@ -85,13 +52,30 @@ local function function_signature(bufnr)
 	}, bufnr)
 end
 
+local function lspDiagnosticsPopupHandler()
+	local current_cursor = vim.api.nvim_win_get_cursor(0)
+	local last_popup_cursor = vim.w.lsp_diagnostics_last_cursor or { nil, nil }
+
+	-- show floating diagnostics only once for each cursor location
+	-- unless moved later
+	if not (current_cursor[1] == last_popup_cursor[1] and current_cursor[2] == last_popup_cursor[2]) then
+		vim.w.lsp_diagnostics_last_cursor = current_cursor
+		vim.diagnostic.open_float(0, { scope = "cursor" })
+	end
+end
+
 M.on_attach = function(client, bufnr)
 	-- set by default >=v0.8.1
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-	lsp_keymaps(bufnr)
-	format_on_save(client, bufnr)
+	attach_keymaps(bufnr)
 	function_signature(bufnr)
+
+	-- TODO
+	-- telescope code action picker with diff preview
+
+	-- autoformat
+	require("lsp.format").format_on_save(client, bufnr)
 
 	vim.o.updatetime = 250
 	vim.api.nvim_create_autocmd("CursorHold", {
