@@ -3,6 +3,8 @@ if not ok then
 	return
 end
 
+local util = require("lsp/util")
+
 local formatters = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 local hover = null_ls.builtins.hover
@@ -26,7 +28,9 @@ local sources = {
 	}),
 
 	-- python
-	formatters.black,
+	formatters.black.with({
+		prefer_local = util.get_python_relative_bin(require("null-ls.utils").get_root()),
+	}),
 	-- formatting.isort,
 
 	-- hcl

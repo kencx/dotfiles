@@ -1,3 +1,6 @@
+local util = require("lsp/util")
+local configs = require("lspconfig/configs")
+
 return {
 	cmd = { "pylsp" },
 	filetypes = { "python" },
@@ -14,7 +17,9 @@ return {
 				pycodestyle = { enabled = false },
 				pyflakes = { enabled = false },
 				yapf = { enabled = false },
-				black = { enabled = true },
+				jedi = {
+					environment = util.get_python_path(configs.root_dir),
+				},
 			},
 		},
 	},
