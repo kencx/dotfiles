@@ -13,6 +13,7 @@ autocmd("highlightOnYank", "TextYankPost", "*", "silent! lua vim.highlight.on_ya
 autocmd("noNumberInTerminal", "TermOpen", "*", "setlocal nonumber norelativenumber")
 
 autocmd("setTfFileType", { "BufNewFile", "BufRead" }, { "*.nomad", "*.tf" }, "set ft=hcl")
+autocmd("setGoModFileType", { "BufNewFile", "BufRead" }, { "go.mod" }, "set ft=gomod")
 
 autocmd("clearWhitespace", "BufWrite", "*", [[mark ' | silent! %s/\s\+$// | norm '']])
 

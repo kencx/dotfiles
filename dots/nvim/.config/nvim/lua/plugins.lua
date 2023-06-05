@@ -69,6 +69,12 @@ return require("lazy").setup({
 		},
 	},
 	{
+		"kosayoda/nvim-lightbulb",
+		config = function()
+			require("config.nvim-lightbulb")
+		end,
+	},
+	{
 		"utilyre/barbecue.nvim",
 		-- version = "*",
 		dependencies = {
