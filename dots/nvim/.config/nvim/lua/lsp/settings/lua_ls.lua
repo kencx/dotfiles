@@ -4,7 +4,7 @@ if not lspcontainers_ok then
 end
 
 return {
-	cmd = lspcontainers.command("sumneko_lua"),
+	cmd = lspcontainers.command("lua_ls"),
 	settings = {
 		Lua = {
 			runtime = {
@@ -17,10 +17,7 @@ return {
 			},
 			workspace = {
 				-- make server aware of Neovim runtime files
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-				},
+				library = vim.api.nvim_get_runtime_file("", true),
 			},
 			telemetry = { enable = false },
 		},
