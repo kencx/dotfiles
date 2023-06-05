@@ -1,30 +1,19 @@
-local autocmd = vim.api.nvim_create_autocmd
+local function autocmd(group_name, event, pattern, command)
+	local augroup = vim.api.nvim_create_augroup(group_name, {})
 
--- highlight on yank
-autocmd("TextYankPost", {
-	command = "silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=700}",
-})
+	vim.api.nvim_create_autocmd(event, {
+		group = augroup,
+		pattern = pattern,
+		command = command,
+	})
+end
 
-autocmd("TermOpen", {
-	pattern = "*",
-	command = "setlocal nonumber norelativenumber",
-})
+autocmd("highlightOnYank", "TextYankPost", "*", "silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=700}")
 
-autocmd({ "BufNewFile", "BufRead" }, {
-	pattern = { "*.nomad", "*.tf" },
-	command = "set ft=hcl",
-})
+autocmd("noNumberInTerminal", "TermOpen", "*", "setlocal nonumber norelativenumber")
 
-vim.cmd([[
-    augroup remove_whitespace
-    autocmd!
-    autocmd BufWrite * mark ' | silent! %s/\s\+$// | norm ''
-    augroup END
-]])
+autocmd("setTfFileType", { "BufNewFile", "BufRead" }, { "*.nomad", "*.tf" }, "set ft=hcl")
 
-vim.cmd([[
-    augroup skeleton
-    autocmd!
-    autocmd BufNewFile *.sh 0r ~/bin/templates/skeleton.sh
-    augroup END
-]])
+autocmd("clearWhitespace", "BufWrite", "*", [[mark ' | silent! %s/\s\+$// | norm '']])
+
+autocmd("shTemplate", "BufNewFile", "*.sh", "0r ~/bin/templates/skeleton.sh")
