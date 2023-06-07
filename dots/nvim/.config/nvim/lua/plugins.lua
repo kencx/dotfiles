@@ -152,7 +152,12 @@ return require("lazy").setup({
 
 	-- editing
 	{ "machakann/vim-sandwich", event = "BufEnter" },
-	{ "jiangmiao/auto-pairs" },
+	{
+		"windwp/nvim-autopairs",
+		config = function()
+			require("config.autopairs")
+		end,
+	},
 	{
 		"numToStr/Comment.nvim",
 		config = function()
