@@ -9,12 +9,26 @@ local function autocmd(group_name, event, pattern, command)
 end
 
 autocmd("highlightOnYank", "TextYankPost", "*", "silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=700}")
-
 autocmd("noNumberInTerminal", "TermOpen", "*", "setlocal nonumber norelativenumber")
-
-autocmd("setTfFileType", { "BufNewFile", "BufRead" }, { "*.nomad", "*.tf" }, "set ft=hcl")
-autocmd("setGoModFileType", { "BufNewFile", "BufRead" }, { "go.mod" }, "set ft=gomod")
-
 autocmd("clearWhitespace", "BufWrite", "*", [[mark ' | silent! %s/\s\+$// | norm '']])
-
 autocmd("shTemplate", "BufNewFile", "*.sh", "0r ~/bin/templates/skeleton.sh")
+
+local setFileGroup = vim.api.nvim_create_augroup("setFileType", { clear = true })
+local fileTypes = {
+	hcl = {
+		pattern = { "*.nomad", "*.tf" },
+		command = "set ft=hcl",
+	},
+	gomod = {
+		pattern = { "go.mod" },
+		command = "set ft=gomod",
+	},
+}
+
+for _, type in pairs(fileTypes) do
+	vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+		pattern = type.pattern,
+		group = setFileGroup,
+		command = type.command,
+	})
+end
