@@ -45,7 +45,7 @@ export FORGIT_DIFF_FZF_OPTS="--prompt='git diff >'"
 export FORGIT_CHECKOUT_BRANCH_FZF_OPTS="--prompt='git branch >'"
 
 function glg {
-	git log --all --graph --oneline --decorate=short --pretty=oneline
+	watch --color -n 3 git log --all --graph --oneline --decorate=short --pretty=oneline --color=always
 }
 
 # delete branches
