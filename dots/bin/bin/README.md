@@ -1,5 +1,6 @@
 ## Scripts
 
+- `aura` - wrapper tool for aurutils
 - `bw` - Bitwarden CLI interface to copy credentials
 - `color-test` - Script for testing colors on terminal
 - `configs` - fzf preview of config files
