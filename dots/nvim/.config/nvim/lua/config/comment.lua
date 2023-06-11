@@ -20,3 +20,6 @@ comment.setup({
 		})
 	end,
 })
+
+local ft = require("Comment.ft")
+ft({ "hcl" }, ft.get("terraform"))
