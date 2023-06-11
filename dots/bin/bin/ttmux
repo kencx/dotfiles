@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # generates dev env layout with nvim and tmux
 # if session already exists, select session with fzf

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -eu
 
@@ -14,7 +14,7 @@ rsync -a --delete \
     --exclude='syncthing/*' \
     --exclude='.cache/*' \
     --exclude='tmp/*' \
-    /home/kenc "$MOUNT_POINT"
+    "$HOME" "$MOUNT_POINT"
 echo "rsync to $MOUNT_POINT completed in ${SECONDS}s"
 
 umount -v "$MOUNT_POINT"

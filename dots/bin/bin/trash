@@ -1,18 +1,20 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# very basic trashcan replacement for rm
 
 trash=$HOME/tmp
 
 if [ ! -d "$trash" ]; then
-	mkdir -p "$trash"
+    mkdir -p "$trash"
 fi
 
 clean() {
-	/bin/rm -rf $trash/*
+    /bin/rm -rf $trash/*
 }
 
 case "$1" in
-	"clear") clean && exit ;;
-	*) ;;
+"clear") clean && exit ;;
+*) ;;
 
 esac
 

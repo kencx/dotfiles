@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # List all manually installed packages on Ubuntu/Debian distros
 # http://askubuntu.com/a/492343

@@ -1,22 +1,21 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # easy access to config files with fzf preview
 
 FILEPATH="$HOME/dotfiles/dots"
-CONFIGS='(zsh|bspwm|sxhkd|polybar|starship|rofi|dunst|config|nvim|lua|init.lua|tmux|picom|eww)'
+CONFIGS='(zsh|bspwm|sxhkd|rofi|dunst|config|nvim|lua|init.lua|tmux|picom|eww|feh|bash|git|redshift|zathura|mpv|keyb|redshift)'
 EXCLUDE='{autostart,bin,plugins}'
 EDITOR="nvim"
 
-FILE=$(fd $CONFIGS --exclude $EXCLUDE --type f --hidden "$FILEPATH" | \
-    fzf --ansi --cycle \
-    --delimiter='/' \
-    --with-nth=-2,-1 \
-    --layout=reverse \
-    --margin=5% \
-    --prompt="config > " \
-    --preview-window 'right:70%' \
-    --preview 'bat --color=always --style=numbers --line-range=:500 {}'
-        ) \
-    && "$EDITOR" "$FILE"
-
-
+FILE=$(
+    fd $CONFIGS --exclude $EXCLUDE --type f --hidden "$FILEPATH" |
+        fzf --ansi --cycle \
+            --delimiter='/' \
+            --with-nth=-2,-1 \
+            --layout=reverse \
+            --margin=5% \
+            --prompt="config > " \
+            --preview-window 'right:70%' \
+            --preview 'bat --color=always --style=numbers --line-range=:500 {}'
+) &&
+    "$EDITOR" "$FILE"

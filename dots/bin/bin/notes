@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # quick access to pdf notes
 
@@ -6,15 +6,16 @@ FILEPATH="$HOME/notes"
 EXTENSION="pdf"
 READER="zathura"
 
-FILE=$(fd . --extension "$EXTENSION" --type f "$FILEPATH" | \
-    fzf --ansi --cycle \
-    --delimiter='/' \
-    --with-nth=-1 \
-	--layout=reverse \
-    --margin=5% \
-    --prompt="notes > "
+FILE=$(
+    fd . --extension "$EXTENSION" --type f "$FILEPATH" |
+        fzf --ansi --cycle \
+            --delimiter='/' \
+            --with-nth=-1 \
+            --layout=reverse \
+            --margin=5% \
+            --prompt="notes > "
 )
 
 if [ -n "$FILE" ]; then
-	"$READER" "$FILE" &
+    "$READER" "$FILE" &
 fi
