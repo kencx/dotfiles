@@ -4,6 +4,7 @@
 - `bw` - Bitwarden CLI interface to copy credentials
 - `color-test` - Script for testing colors on terminal
 - `configs` - fzf preview of config files
+- `getbook` - Download ebooks from irc-highway.net with openbooks
 - `hidw` - hidden window selector
 - `launch` - Launch application. If already exists, autofocus instead.
 - `launch-eww` - ewwbar launch script

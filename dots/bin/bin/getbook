@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# download ebooks from irc-highway with openbooks
+
+set -euo pipefail
+
+DEST_DIR="$HOME/Downloads"
+NAME="changme"
+
+# https://github.com/evan-buss/openbooks/
+if ! command -v openbooks >/dev/null 2>&1; then
+    echo "ERROR: \"openbooks\" not installed"
+fi
+
+if ! command -v awk >/dev/null 2>&1; then
+    echo "ERROR: \"awk\" not installed"
+fi
+
+# search book title
+openbooks cli --dir "$DEST_DIR" --name "$NAME" search "$1"
+
+# poll for results file
+while true; do
+    if ! (file "$DEST_DIR/SearchBot_*" | grep -q "compressed"); then
+        results=$(find "$DEST_DIR" -name "SearchBot_*")
+        break
+    fi
+done
+
+results=$(find "$DEST_DIR" -name "SearchBot_*")
+selected=$(awk '/^!.*/ {print $0}' <"$results" | fzf)
+
+# strip metadata
+stripped=$(echo "$selected" | awk '/^!.*/ { split($0, a, "::");
+    gsub(/^[ \t]+/, "", a[1]);
+    gsub(/[ \t]+$/, "", a[1]);
+    print a[1] }')
+
+echo "Downloading $stripped"
+openbooks cli --dir "$DEST_DIR" --name "$NAME" download "$stripped"
+
+# rm results file
+find "$DEST_DIR" -name "SearchBot_*" -exec rm {} \;
