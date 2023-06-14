@@ -37,13 +37,10 @@ export _ZO_EXCLUDE_DIR="$HOME/.env"
 eval "$(zoxide init zsh)"
 
 # pure prompt
-if [[ -d $HOME/dev/opensource/pure ]]; then
-    fpath+=($HOME/dev/opensource/pure)
     autoload -U promptinit; promptinit
     prompt pure
-else
-    PS1='%F{blue}%~ %(?.%F{green}.%F{red})%#%f '
-fi
+# default prompt
+# PS1='%F{blue}%~ %(?.%F{green}.%F{red})%#%f '
 
 # pfetch
 export PF_INFO="ascii title os kernel shell wm editor pkgs uptime"

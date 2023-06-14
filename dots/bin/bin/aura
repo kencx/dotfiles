@@ -8,18 +8,18 @@ set -euo pipefail
 
 DB="custom"
 REPO_DIR="/var/cache/pacman/$DB"
-BUCKET=""
+BUCKET="minio/aur"
 
 help() {
     cat <<EOF
-usage: ./aur-wrapper [subcommand] [args]
+usage: ./aura [subcommand] [args]
 
   Subcommand:
-    help    Print help
-    list    List all packages in DB
-    add     Add package to DB from AUR
-    remove  Remove package from DB
-    sync    Sync packages
+    help        Print help
+    list, ls    List all packages in DB
+    add         Add package to DB from AUR
+    remove, rm  Remove package from DB
+    sync        Sync packages
 EOF
 }
 
@@ -30,9 +30,9 @@ aur_sync() {
 subcommand=${1:-}
 
 case $subcommand in
-"list")
+"list" | "ls")
     aur_sync
-    aur repo --database "$DB" --list
+    aur repo --database "$DB" --list -S
     ;;
 
 "add")
@@ -45,16 +45,19 @@ case $subcommand in
         --makepkg-conf=/etc/makepkg-chroot.conf \
         --database "$DB" \
         --root "$REPO_DIR" "$@"
+    mcli mirror --no-color --quiet --overwrite "$REPO_DIR" "$BUCKET"
     aur_sync
     ;;
 
-"remove")
+"remove" | "rm")
     shift
     repo-remove "$REPO_DIR/$DB.db.tar.xz" "$@"
 
     for pkg in "$@"; do
         find "$REPO_DIR" -type f -name "$pkg*.pkg.*" -printf "removing %P\n" -delete
+        mcli find --no-color --quiet --name "$pkg*.pkg.*" "$BUCKET" --exec "mcli rm --no-color {}"
     done
+
     aur_sync
     ;;
 
@@ -68,12 +71,25 @@ case $subcommand in
         --database "$DB" \
         --root "$REPO_DIR" \
         --upgrades -k0
-    sudo paccache -rvk2 -c "$REPO_DIR"
+    mcli mirror --no-color --quiet --overwrite "$REPO_DIR" "$BUCKET"
     ;;
+
+"clean")
+    AUR_ASROOT=1 aur sync \
+        --no-view \
+        --no-confirm \
+        --chroot \
+        --pacman-conf=/etc/pacman-chroot.conf \
+        --makepkg-conf=/etc/makepkg-chroot.conf \
+        --database "$DB" \
+        --root "$REPO_DIR" \
+        --upgrades -k0
+    sudo paccache -rvk2 -c "$REPO_DIR"
+    mcli mirror --no-color --quiet --overwrite --remove "$REPO_DIR" "$BUCKET"
+    ;;
+
 "" | *)
     help
+    exit 1
     ;;
 esac
-
-# sync to minio bucket
-# mcli mirror --overwrite --remove "$REPO_DIR" "$BUCKET"
