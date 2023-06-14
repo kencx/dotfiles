@@ -8,7 +8,38 @@ set -euo pipefail
 
 DB="custom"
 REPO_DIR="/var/cache/pacman/$DB"
-BUCKET="minio/aur"
+S3_ALIAS="minio"
+BUCKET="$S3_ALIAS/aur"
+
+if ! command -v aur >/dev/null 2>&1; then
+    echo "ERROR: \"aur\" not installed"
+    exit 1
+fi
+
+if ! command -v mcli >/dev/null 2>&1; then
+    echo "ERROR: \"mcli\" not installed"
+    exit 1
+fi
+
+if ! command -v paccache >/dev/null 2>&1; then
+    echo "ERROR: \"paccache\" not installed"
+    exit 1
+fi
+
+if mcli alias ls --no-color --quiet "$S3_ALIAS" 2>&1 | grep -q "ERROR"; then
+    echo "ERROR: S3 alias \"$S3_ALIAS\" not set up"
+    exit 1
+fi
+
+if ! mcli ready --no-color --quiet "$S3_ALIAS" 2>&1 | grep -q "The cluster is ready"; then
+    echo "ERROR: S3 endpoint not ready"
+    exit 1
+fi
+
+if mcli ls --no-color --quiet --summarize "$BUCKET" 2>&1 | grep -q "ERROR"; then
+    echo "ERROR: Bucket \"$BUCKET\" does not exist"
+    exit 1
+fi
 
 help() {
     cat <<EOF
