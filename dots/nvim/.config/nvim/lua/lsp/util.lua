@@ -22,7 +22,8 @@ end
 
 M.get_python_path = function(workspace)
 	local venv = get_python_venv(workspace)
-	if venv ~= "" then
+	if venv ~= nil and venv ~= "" then
+		vim.api.nvim_notify("set venv to" .. path.join(venv, "bin", "python"), 1, {})
 		return path.join(venv, "bin", "python")
 	end
 
