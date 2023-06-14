@@ -9,7 +9,7 @@
 	url = https://github.com/christoomey/vim-tmux-navigator.git
 [submodule "dots/zsh/.config/zsh/plugins/forgit"]
 	path = dots/zsh/.config/zsh/plugins/forgit
-	url = https://github.com/wfxr/forgit.git.git
+	url = https://github.com/wfxr/forgit.git
 [submodule "dots/zsh/.config/zsh/plugins/zsh-vi-mode"]
 	path = dots/zsh/.config/zsh/plugins/zsh-vi-mode
-	url = https://github.com/jeffreytse/zsh-vi-mode.git.git
+	url = https://github.com/jeffreytse/zsh-vi-mode.git
