@@ -16,6 +16,15 @@ if ! command -v awk >/dev/null 2>&1; then
     echo "ERROR: \"awk\" not installed"
 fi
 
+case "$1" in
+"-h" | "--help")
+    echo "usage: getbook [book]"
+    echo ""
+    echo "Ensure args with spaces are quoted."
+    exit
+    ;;
+esac
+
 # search book title
 openbooks cli --dir "$DEST_DIR" --name "$NAME" search "$1"
 
