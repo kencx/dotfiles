@@ -36,11 +36,15 @@ export _ZO_DATA_DIR="$HOME/syncthing/sync/backups"
 export _ZO_EXCLUDE_DIR="$HOME/.env"
 eval "$(zoxide init zsh)"
 
-# pure prompt
+# prompt
+if [[ -e "/usr/share/zsh/functions/Prompts/prompt_pure_setup" ]]; then
+    # pure
     autoload -U promptinit; promptinit
     prompt pure
-# default prompt
-# PS1='%F{blue}%~ %(?.%F{green}.%F{red})%#%f '
+else
+    # default
+    PS1='%F{blue}%~ %(?.%F{green}.%F{red})%#%f '
+fi
 
 # pfetch
 export PF_INFO="ascii title os kernel shell wm editor pkgs uptime"
@@ -53,6 +57,9 @@ export FZF_DEFAULT_OPTS="--cycle --reverse --border=top --margin=1 --padding=0 -
 # ssh-agent
 eval $(keychain --eval --quiet id_ed25519)
 [ -f $HOME/.keychain/$HOST-sh ] && . $HOME/.keychain/$HOST-sh 2>/dev/null
+
+# bind shift=tab to backwards menu
+bindkey "\e[Z" reverse-menu-complete
 
 # plugins
 source "$ZDOTDIR/plugins/sudo.plugin.zsh"

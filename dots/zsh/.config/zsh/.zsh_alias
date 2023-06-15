@@ -1,5 +1,13 @@
 alias sudo="sudo "
+
+# parse colours
+alias less="less -R"
+
+# unified diff
+alias diff="diff -u"
+
 alias nv="nvim"
+alias xclip="xclip -selection clipboard"
 alias showpath="echo $PATH | tr ':' '\n'"
 alias reloadz="source $HOME/.config/zsh/.zshrc"
 
@@ -96,6 +104,10 @@ function certcat {
 
 function cheat {
 	curl cheat.sh/$1
+}
+
+function bk {
+    cp -a "$1" "${1}_$(date --iso-8601=seconds)"
 }
 
 # turn on/off wireguard client

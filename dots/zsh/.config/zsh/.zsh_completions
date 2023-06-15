@@ -6,6 +6,7 @@ autoload -Uz compinit; compinit -C -d $HOME/.cache/zsh/.zcompdump-$HOST
 # show hidden files
 _comp_options+=(globdots)
 
+zstyle ":completion:*" auto-description "specify: %d"
 zstyle ':completion:*' completer _extensions _complete _approximate
 
 # use cache for commands using cache
