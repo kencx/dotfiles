@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
 
-# wrapper tool for aurutils to manage custom repository
-# should NOT be run as root
-# but syncing requires root access
+# aura is an aurutils wrapper for managing a custom Arch repository.
+# It should be run with the custom repository's user.
+
+# TODO fetch from non-AUR git repo
+# TODO implement fzf search
 
 set -euo pipefail
 
 DB="custom"
 REPO_DIR="/var/cache/pacman/$DB"
+S3_CONFIG_DIR="/home/kenc/.mcli"
+S3_CMD="mcli --config-dir=$S3_CONFIG_DIR --no-color --quiet"
 S3_ALIAS="minio"
 BUCKET="$S3_ALIAS/aur"
 
@@ -26,17 +30,17 @@ if ! command -v paccache >/dev/null 2>&1; then
     exit 1
 fi
 
-if mcli alias ls --no-color --quiet "$S3_ALIAS" 2>&1 | grep -q "ERROR"; then
+if $S3_CMD alias ls --no-color --quiet "$S3_ALIAS" 2>&1 | grep -q "ERROR"; then
     echo "ERROR: S3 alias \"$S3_ALIAS\" not set up"
     exit 1
 fi
 
-if ! mcli ready --no-color --quiet "$S3_ALIAS" 2>&1 | grep -q "The cluster is ready"; then
+if ! $S3_CMD ready --no-color --quiet "$S3_ALIAS" 2>&1 | grep -q "The cluster is ready"; then
     echo "ERROR: S3 endpoint not ready"
     exit 1
 fi
 
-if mcli ls --no-color --quiet --summarize "$BUCKET" 2>&1 | grep -q "ERROR"; then
+if $S3_CMD ls --no-color --quiet --summarize "$BUCKET" 2>&1 | grep -q "ERROR"; then
     echo "ERROR: Bucket \"$BUCKET\" does not exist"
     exit 1
 fi
@@ -44,6 +48,9 @@ fi
 help() {
     cat <<EOF
 usage: ./aura [subcommand] [args]
+
+aura is an aurutils wrapper for managing a custom Arch repository.
+It should be run with the custom repository's user.
 
   Subcommand:
     help        Print help
@@ -76,7 +83,7 @@ case $subcommand in
         --makepkg-conf=/etc/makepkg-chroot.conf \
         --database "$DB" \
         --root "$REPO_DIR" "$@"
-    mcli mirror --no-color --quiet --overwrite "$REPO_DIR" "$BUCKET"
+    $S3_CMD mirror --overwrite "$REPO_DIR" "$BUCKET"
     aur_sync
     ;;
 
@@ -86,7 +93,7 @@ case $subcommand in
 
     for pkg in "$@"; do
         find "$REPO_DIR" -type f -name "$pkg*.pkg.*" -printf "removing %P\n" -delete
-        mcli find --no-color --quiet --name "$pkg*.pkg.*" "$BUCKET" --exec "mcli rm --no-color {}"
+        $S3_CMD find --name "$pkg*.pkg.*" "$BUCKET" --exec "$S3_CMD rm {}"
     done
 
     aur_sync
@@ -102,7 +109,7 @@ case $subcommand in
         --database "$DB" \
         --root "$REPO_DIR" \
         --upgrades -k0
-    mcli mirror --no-color --quiet --overwrite "$REPO_DIR" "$BUCKET"
+    $S3_CMD mirror --overwrite "$REPO_DIR" "$BUCKET"
     ;;
 
 "clean")
@@ -116,7 +123,7 @@ case $subcommand in
         --root "$REPO_DIR" \
         --upgrades -k0
     sudo paccache -rvk2 -c "$REPO_DIR"
-    mcli mirror --no-color --quiet --overwrite --remove "$REPO_DIR" "$BUCKET"
+    $S3_CMD mirror --overwrite --remove "$REPO_DIR" "$BUCKET"
     ;;
 
 "" | *)
