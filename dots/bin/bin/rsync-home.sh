@@ -11,10 +11,10 @@ mount -v $DISK "$MOUNT_POINT"
 
 SECONDS=0
 rsync -a --delete \
-    --exclude='syncthing/*' \
+    --exclude='syncthing/sync/*' \
     --exclude='.cache/*' \
     --exclude='tmp/*' \
-    "$HOME" "$MOUNT_POINT"
+    "/home/kenc" "$MOUNT_POINT"
 echo "rsync to $MOUNT_POINT completed in ${SECONDS}s"
 
 umount -v "$MOUNT_POINT"
