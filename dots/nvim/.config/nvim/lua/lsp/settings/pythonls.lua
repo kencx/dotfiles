@@ -22,6 +22,7 @@ return {
 				pycodestyle = { enabled = false },
 				pyflakes = { enabled = false },
 				yapf = { enabled = false },
+				ruff = { enabled = false },
 				jedi = {
 					environment = util.get_python_path(configs.root_dir),
 				},

@@ -28,10 +28,15 @@ local sources = {
 	}),
 
 	-- python
+	-- diagnostics.ruff.with({
+	-- 	prefer_local = util.get_python_relative_bin(require("null-ls.utils").get_root()),
+	-- }),
 	formatters.black.with({
 		prefer_local = util.get_python_relative_bin(require("null-ls.utils").get_root()),
 	}),
-	-- formatting.isort,
+	formatters.isort.with({
+		prefer_local = util.get_python_relative_bin(require("null-ls.utils").get_root()),
+	}),
 
 	-- hcl
 	diagnostics.terraform_validate.with({
