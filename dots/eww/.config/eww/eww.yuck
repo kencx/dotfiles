@@ -56,6 +56,10 @@
 (defwidget right []
 	(box :class "right" :orientation "h" :space-evenly false :halign "end" :spacing 24
 		(system :class "package"
+				:icon "AUR"
+				:text {aur_poll}
+                :visible {aur_poll != "0" ? true : false})
+		(system :class "package"
 				:icon ""
 				:text {package_poll}
                 :visible {package_poll != "" ? true : false})
@@ -130,6 +134,9 @@
 
 (defpoll time :interval "10s"
 	"date '+%A %d %b, %H:%M'")
+
+(defpoll aur_poll :interval "10m"
+	"/home/kenc/bin/aura check | wc -l")
 
 (defpoll package_poll :interval "10m"
 	"./bin/updates")

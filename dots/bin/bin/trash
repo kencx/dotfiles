@@ -9,7 +9,7 @@ if [ ! -d "$trash" ]; then
 fi
 
 clean() {
-    /bin/rm -rf $trash/*
+    find "$trash" -mindepth 1 -delete
 }
 
 case "$1" in

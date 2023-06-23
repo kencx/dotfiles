@@ -13,7 +13,7 @@ alias dps="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.Networks}}\t{{.Stat
 alias dl="docker logs -f"
 
 function dce {
-	docker exec -it $1 bash
+    docker exec -it $1 bash
 }
 
 alias gst='git status'
