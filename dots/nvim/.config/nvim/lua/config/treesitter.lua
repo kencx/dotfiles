@@ -32,6 +32,7 @@ configs.setup({
 		"gomod",
 		"hcl",
 		"html",
+		"http",
 		"java",
 		"javascript",
 		"json",

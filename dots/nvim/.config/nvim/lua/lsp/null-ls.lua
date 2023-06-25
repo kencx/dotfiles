@@ -36,6 +36,7 @@ local sources = {
 	}),
 	formatters.isort.with({
 		prefer_local = util.get_python_relative_bin(require("null-ls.utils").get_root()),
+		extra_args = { "--profile", "black" },
 	}),
 
 	-- hcl
