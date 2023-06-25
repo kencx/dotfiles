@@ -202,7 +202,6 @@ return require("lazy").setup({
 			require("config.markdown_preview")
 		end,
 	},
-
 	-- obsidian
 	{
 		"epwalsh/obsidian.nvim",
@@ -217,18 +216,17 @@ return require("lazy").setup({
 	--	version = "v3.0",
 	--	cmd = "IronRepl",
 	--},
-
-	--{
-	--	"stevearc/oil.nvim",
-	--	config = function()
-	--		require("oil").setup({
-	--			columns = {
-	--				"icon",
-	--				"permissions",
-	--				"size",
-	--			},
-	--		})
-	--	end,
-	--	cmd = "Oil",
-	--},
+	{
+		"stevearc/oil.nvim",
+		config = function()
+			require("oil").setup({
+				columns = {
+					"icon",
+					"permissions",
+					"size",
+				},
+			})
+		end,
+		cmd = "Oil",
+	},
 })

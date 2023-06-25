@@ -229,3 +229,21 @@
       key: space + sb
     - name: reset buffer
       key: space + rb
+- name: nvim Oil
+  keybinds:
+    - name: Open Oil
+      key: :Oil
+    - name: Quit
+      key: Ctrl + C
+    - name: Go to parent directory
+      key: "-"
+    - name: Go to buffer's $CWD
+      key: "_"
+    - name: Toggle hidden
+      key: "g."
+    - name: Show help
+      key: "g?"
+    - name: Preview selection
+      key: Ctrl + p
+    - name: Refresh
+      key: Ctrl + l
