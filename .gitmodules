@@ -13,3 +13,6 @@
 [submodule "dots/zsh/.config/zsh/plugins/zsh-vi-mode"]
 	path = dots/zsh/.config/zsh/plugins/zsh-vi-mode
 	url = https://github.com/jeffreytse/zsh-vi-mode.git
+[submodule "bin/aura"]
+	path = bin/aura
+	url = git@github.com:kencx/aura.git
