@@ -43,6 +43,9 @@ SIMULATE=false
 UNSTOW=false
 ALL=false
 
+# add no fold directories here
+NO_FOLD_DIRS=("redshift" "dunst")
+
 build() {
     STOW_COMMAND="stow -v"
 
@@ -57,7 +60,12 @@ build() {
 
 stow_one() {
     build
-    STOW_COMMAND+="-t $TARGET_DIR -d $DOTS_DIR/$1 . 2>&1"
+    # https://krzysztofzuraw.com/blog/2019/multiple-stow-directories/
+    if [[ "${NO_FOLD_DIRS[*]}" =~ "$1" ]]; then
+        STOW_COMMAND+="-t $TARGET_DIR -d $DOTS_DIR/$1 --no-folding . 2>&1"
+    else
+        STOW_COMMAND+="-t $TARGET_DIR -d $DOTS_DIR/$1 . 2>&1"
+    fi
     eval "$STOW_COMMAND"
 }
 
@@ -81,9 +89,10 @@ stow_all() {
         # skip
         if [[ $dir == "dots/ssh" ]]; then
             continue
+        else
+            output="$(stow_one "${dir##*/}")"
         fi
 
-        output="$(stow_one "${dir##*/}")"
         # split output by newline, do not quote within array
         IFS=$'\n' lines=($output)
 

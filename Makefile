@@ -1,31 +1,26 @@
-.PHONY: stow dev dev-test remote update
+.PHONY: help stow unstow install uninstall remote update
 
+help:
+	@echo 'Usage:'
+	@sed -n 's/^##//p' ${MAKEFILE_LIST} | column -t -s ':' | sed -e 's/^/ /'
+
+## stow: stow directory
 stow:
-	stow -d "dots/$(c)" -t "$$HOME" -vv .
+	./setup stow "$(c)"
 
+## unstow: unstow directory
 unstow:
-	stow -d "dots/$(c)" -t "$$HOME" -vv -D .
+	./setup unstow "$(c)"
 
-stow-all:
-	cd ./dots || exit ;\
-	for d in */ ;\
-	do echo "$$d" ;\
-		stow "$$(basename "$$d")" -t "$$HOME" -vv ;\
-		echo "------" ;\
-	done ;\
-	echo "stow complete";\
-	cp etc/.Xresources "$$HOME/.Xresources" ;\
-	cp etc/desktop/* "$$HOME/.local/share/applications/"
+## install: Run full installation
+install:
+	./setup install
 
-stow-test:
-	cd ./dots || exit ;\
-	for d in */ ;\
-	do echo "$$d" ;\
-		stow -n "$$(basename "$$d")" -t "$$HOME" -vv ;\
-		echo "------" ;\
-	done ;\
-	echo "stow test complete"
+## uninstall: Run full uninstallation
+uninstall:
+	./setup uninstall
 
+## remote: Install remote dotfiles
 remote:
 	cd ./remote || exit ;\
 	stow "$$(basename "./vim")" -t "$$HOME" -vv ;\
@@ -33,5 +28,6 @@ remote:
 	git clone https://github.com/morhetz/gruvbox.git "$$HOME/.vim/pack/default/start/gruvbox" ;\
 	echo "Installed gruvbox theme"
 
+## update: Update submodules
 update:
 	git submodule foreach git pull origin master
