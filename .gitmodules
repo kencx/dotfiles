@@ -16,3 +16,6 @@
 [submodule "bin/aura"]
 	path = bin/aura
 	url = git@github.com:kencx/aura.git
+[submodule "st"]
+	path = etc/st
+	url = https://github.com/kencx/st.git
