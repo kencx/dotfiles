@@ -61,6 +61,9 @@ eval $(keychain --eval --quiet id_ed25519)
 # bind shift=tab to backwards menu
 bindkey "\e[Z" reverse-menu-complete
 
+# enable incremental history search
+bindkey '^R' history-incremental-pattern-search-backward
+
 # plugins
 source "$ZDOTDIR/plugins/sudo.plugin.zsh"
 source "$ZDOTDIR/plugins/history-substring-search.plugin.zsh"
