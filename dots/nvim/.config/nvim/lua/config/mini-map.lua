@@ -3,6 +3,11 @@ if not ok then
 	return
 end
 
+local util = require("util")
+
+util.map("n", "<Leader>mm", minimap.toggle)
+util.map("n", "<Leader>mf", minimap.toggle_focus)
+
 minimap.setup({
 	integrations = {
 		minimap.gen_integration.builtin_search(),

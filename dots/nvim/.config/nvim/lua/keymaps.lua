@@ -1,5 +1,5 @@
-local bind = vim.api.nvim_set_keymap
-local lua_bind = vim.keymap.set
+local util = require("util")
+local bind = util.map
 local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = " "
@@ -71,33 +71,14 @@ bind("n", "<A-p>", ":BufferPin<CR>", opts)
 -- close buffer
 bind("n", "<A-w>", ":BufferClose<CR>", opts)
 
--- telescope
-bind("n", "<Leader>ft", ":Telescope file_browser<CR>", opts)
-bind("n", "<Leader>ff", ":Telescope find_files hidden=true <CR>", opts)
-bind("n", "<Leader>fg", ":Telescope live_grep<CR>", opts)
-bind("n", "<Leader>fgb", ":Telescope current_buffer_fuzzy_find<CR>", opts)
-bind("n", "<Leader>fb", ":Telescope buffers<CR>", opts)
-bind("n", "<Leader>fc", ":Telescope commands<CR>", opts)
-bind("n", "<Leader>fr", ":Telescope registers<CR>", opts)
-
-bind("n", "<Leader>fd", ":Telescope diagnostics bufnr=0<CR>", opts)
-bind("n", "<Leader>fs", ":Telescope lsp_document_symbols<CR>", opts)
-
-bind("n", "<Leader>gc", ":Telescope git_commits<CR>", opts)
-bind("n", "<Leader>gst", ":Telescope git_status<CR>", opts)
-
 -- treesitter
 bind("n", "<Leader>ts", ":write | edit | TSBufEnable highlight<CR>", opts)
 
 -- markdown-preview
 bind("n", "<Leader>md", ":MarkdownPreview<CR>", opts)
 
--- mini.map
-bind("n", "<Leader>mm", ":lua MiniMap.toggle()<CR>", opts)
-bind("n", "<Leader>mf", ":lua MiniMap.toggle_focus()<CR>", opts)
-
 -- obsidian.nvim
-lua_bind("n", "gf", function()
+bind("n", "gf", function()
 	if require("obsidian").util.cursor_on_markdown_link() then
 		return "<cmd>ObsidianFollowLink<CR>"
 	else
@@ -119,6 +100,3 @@ bind("n", "<Leader>og", ":ObsidianSearch<CR>", opts)
 --[[ end ]]
 
 --[[ lua_bind("n", "<Leader>dv", DiffviewToggle, opts) ]]
-
--- colorizer
---[[ bind("n", "<Leader>cc", ":ColorizerToggle<CR>", opts) ]]

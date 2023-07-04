@@ -167,6 +167,31 @@
       key: ctrl + u
     - name: Scroll down preview window
       key: ctrl + d
+    - name: File browser
+      key: space + ft
+    - name: Find files
+      key: space + ff
+    - name: Grep current selection
+      key: space + fw
+    - name: Grep string
+      key: space + fg
+    - name: Grep current buffer
+      key: space + fz
+    - name: Buffers
+      key: space + fb
+    - name: Registers
+      key: space + fr
+    - name: Diagnostics
+      key: space + fd
+    - name: LSP document symbols
+      key: space + fs
+    - name: Git commits
+      key: space + gc
+    - name: Git buffer commits
+      key: space + gbc
+    - name: Git status
+      key: space + gst
+
 - name: nvim telescope file browser (normal mode)
   keybinds:
     - name: list mappings
@@ -183,18 +208,6 @@
       key: h
     - name: toggle files/folders
       key: f
-- name: nvim tree
-  keybinds:
-    - name: open as preview (cursor remains in tree)
-      key: tab
-    - name: close current directory
-      key: backspace
-    - name: Change directory under cursor to root
-      key: ctrl + ]
-    - name: toggle hidden
-      key: H
-    - name: show hotkeys
-      key: g?
 - name: nvim lsp
   keybinds:
     - name: go to defintion
