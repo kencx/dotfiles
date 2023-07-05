@@ -9,14 +9,14 @@
 # bspwm
 bspc monitor -d I II III IV V
 
-bspc config window_gap      12
-bspc config top_padding	    24
-bspc config border_width    0
+bspc config window_gap 12
+bspc config top_padding 24
+bspc config border_width 0
 
-bspc config automatic_scheme     longest_side
-bspc config split_ratio          0.5
-bspc config borderless_monocle   true
-bspc config gapless_monocle      true
+bspc config automatic_scheme longest_side
+bspc config split_ratio 0.5
+bspc config borderless_monocle true
+bspc config gapless_monocle true
 
 bspc config pointer_modifier mod1
 bspc config pointer_action2 resize_side
@@ -34,7 +34,7 @@ bspc rule -a obsidian focus=off follow=off state=tiled
 bspc rule -a St -o desktop="I" state=tiled follow=off && st tmux &
 bspc rule -a Firefox -o desktop='II' state=tiled && sleep 5 && launch firefox
 bspc rule -a obsidian -o desktop='III' focus=off follow=off \
-	state=tiled && launch obsidian
+    state=tiled && launch obsidian
 bspc rule -a TelegramDesktop desktop='V' state=floating follow=off \
     rectangle=680x920+35+60 && telegram-desktop &
 
@@ -44,8 +44,8 @@ xdotool search --class scratchpad windowkill
 st -c scratchpad &
 
 # tui
-bspc rule -a gotop -o desktop='V' state=floating rectangle=680x920+1200+60 follow=off
-xdotool search -class gotop > /dev/null || st -c gotop gotop --nvidia &
+bspc rule -a btop -o desktop='V' state=floating rectangle=1080x920+740+60 follow=off
+xdotool search -class btop >/dev/null || st -c btop btop
 
 # gui
 bspc rule -a feh state=floating
