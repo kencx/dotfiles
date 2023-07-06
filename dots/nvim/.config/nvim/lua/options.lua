@@ -26,6 +26,10 @@ set.textwidth = 88
 
 set.listchars = { trail = "." } -- show trailing whitespace chars
 
+set.foldmethod = "indent"
+vim.cmd("set nofoldenable")
+set.foldlevel = 99
+
 set.ttyfast = true
 set.lazyredraw = true
 set.swapfile = false
