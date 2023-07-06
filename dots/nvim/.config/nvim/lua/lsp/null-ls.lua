@@ -22,7 +22,9 @@ local sources = {
 	formatters.goimports,
 
 	-- bash
-	diagnostics.shellcheck,
+	diagnostics.shellcheck.with({
+		extra_args = { "-o", "check-extra-masked-returns" },
+	}),
 	formatters.shfmt.with({
 		extra_args = { "-i", "4" },
 	}),
