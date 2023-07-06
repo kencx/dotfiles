@@ -1,6 +1,13 @@
 alias sudo="sudo "
 alias showpath="echo $PATH | tr ':' '\n'"
 
+alias less="less -R"
+alias diff="diff -u"
+
+alias xclip="xclip -selection clipboard"
+alias pbcopy="xclip -selection clipboard"
+alias pbpaste="xclip -o -selection clipboard"
+
 alias ls='ls --color=auto'
 alias la='ls -la --color=auto'
 alias ll='ls -la --color=auto'
@@ -29,6 +36,12 @@ alias sysrestart='sudo systemctl restart'
 alias sysstop='sudo systemctl stop'
 alias sysdr='sudo systemctl daemon-reload'
 
+alias adoc="ansible-doc"
+
 function certcat {
     openssl x509 -text -noout -in "$1"
+}
+
+function cheat {
+    curl "cheat.sh/$1"
 }
