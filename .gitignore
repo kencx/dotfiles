@@ -1,3 +1,4 @@
 *.txt
 remote/vim/.vim/pack
 *.log
+.luarc.json

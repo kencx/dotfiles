@@ -23,6 +23,10 @@ set textwidth=88
 
 set listchars=trail:.
 
+set foldmethod=indent
+set nofoldenable
+set foldlevel=99
+
 set lazyredraw
 set noswapfile
 set nobackup
@@ -77,6 +81,7 @@ vnoremap <a-k> :m <-2<CR>gv=gv
 nnoremap <Leader>h :sethlsearch!<CR>
 nnoremap <Leader>n :tabnew<CR>
 nnoremap <Leader>cd :cd %:p:h<CR>
+nnoremap <Leader>rnn :exec &rnu? 'se nornu!' : 'se rnu!'<CR>
 
 " autocmd
 augroup highlight_yank
@@ -96,7 +101,7 @@ augroup END
 
 augroup _markdown
 	autocmd!
-	autocmd FileType text,markdown,tex setlocal textwidth=80
+	autocmd FileType text,markdown,tex setlocal textwidth=80 conceallevel=2
 	autocmd FileType markdown setlocal wrap
 augroup END
 
@@ -105,3 +110,13 @@ augroup _git
 	autocmd FileType gitcommit setlocal wrap
 	autocmd FileType gitcommit setlocal spell
 augroup END
+
+augroup _hcl
+    autocmd!
+    autocmd FileType *.nomad,*.tf set ft=hcl
+augropu END
+
+augroup _gomod
+    autocmd!
+    autocmd FileType go.mod set ft=gomod
+augropu END
