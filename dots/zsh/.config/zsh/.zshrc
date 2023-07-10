@@ -61,26 +61,33 @@ eval $(keychain --eval --quiet id_ed25519)
 # bind shift=tab to backwards menu
 bindkey "\e[Z" reverse-menu-complete
 
-# enable incremental history search
-bindkey '^R' history-incremental-pattern-search-backward
-
 # plugins
 source "$ZDOTDIR/plugins/sudo.plugin.zsh"
-source "$ZDOTDIR/plugins/history-substring-search.plugin.zsh"
 source "$ZDOTDIR/plugins/forgit/forgit.plugin.zsh"
-# source "$ZDOTDIR/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
 
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+if [ -f "$ZDOTDIR/plugins/zsh-fzf-history-search/zsh-fzf-history-search.plugin.zsh" ]; then
+    source "$ZDOTDIR/plugins/zsh-fzf-history-search/zsh-fzf-history-search.plugin.zsh"
+else
+    # enable incremental history search
+    bindkey '^R' history-incremental-pattern-search-backward
+fi
 
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
+source "$ZDOTDIR/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
 
+ZVM_VI_SURROUND_BINDKEY="s-prefix"
 ZVM_CURSOR_STYLE_ENABLED=false
 ZVM_NORMAL_MODE_CURSOR=ZVM_CURSOR_BLOCK
 ZVM_INSERT_MODE_CURSOR=ZVM_CURSOR_BEAM
 # ZVM_VI_HIGHLIGHT_FOREGROUND=
 # ZVM_VI_HIGHLIGHT_BACKGROUND=
+
+# unbind all history search bindings and rebind to fzf-history-search
+function zvm_after_init() {
+  bindkey '^r' fzf_history_search
+  bindkey -r '^S'
+  bindkey -r '^P'
+  bindkey -r '^N'
+}
 
 # https://unix.stackexchange.com/questions/25765/pasting-from-clipboard-to-vi-enabled-zsh-or-bash-shell
 function x11-clip-wrap-widgets() {
@@ -107,7 +114,6 @@ function x11-clip-wrap-widgets() {
         zle -N $widget _x11-clip-wrapped-$widget
     done
 }
-
 
 local copy_widgets=(
     vi-yank vi-yank-eol vi-delete vi-backward-kill-word vi-change-whole-line
