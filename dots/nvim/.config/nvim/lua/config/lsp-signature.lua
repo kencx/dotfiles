@@ -25,7 +25,7 @@ lsp_signature.setup({
 	always_trigger = false,
 
 	-- by default it will be on top of all floating windows, set to <= 50 send it to bottom
-	zindex = 200,
+	zindex = 50,
 
 	-- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
 	toggle_key = nil,
