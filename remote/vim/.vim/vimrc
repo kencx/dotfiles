@@ -84,6 +84,10 @@ nnoremap <Leader>cd :cd %:p:h<CR>
 nnoremap <Leader>rnn :exec &rnu? 'se nornu!' : 'se rnu!'<CR>
 
 " autocmd
+augroup clear
+	autocmd!
+augroup END
+
 augroup highlight_yank
 	autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=700}
@@ -111,12 +115,5 @@ augroup _git
 	autocmd FileType gitcommit setlocal spell
 augroup END
 
-augroup _hcl
-    autocmd!
-    autocmd FileType *.nomad,*.tf set ft=hcl
-augropu END
-
-augroup _gomod
-    autocmd!
-    autocmd FileType go.mod set ft=gomod
-augropu END
+autocmd clear FileType *.nomad,*.tf set ft=hcl
+autocmd clear FileType go.mod set ft=gomod
