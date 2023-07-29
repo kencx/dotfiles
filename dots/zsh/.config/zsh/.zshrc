@@ -55,7 +55,7 @@ export PF_ASCII="arch"
 export FZF_DEFAULT_OPTS="--cycle --reverse --border=top --margin=1 --padding=0 --ansi --height=90%"
 
 # ssh-agent
-eval $(keychain --eval --quiet id_ed25519)
+eval $(keychain --eval --quiet id_ed25519 id_github)
 [ -f $HOME/.keychain/$HOST-sh ] && . $HOME/.keychain/$HOST-sh 2>/dev/null
 
 # bind shift=tab to backwards menu
@@ -81,6 +81,26 @@ ZVM_INSERT_MODE_CURSOR=ZVM_CURSOR_BEAM
 # ZVM_VI_HIGHLIGHT_FOREGROUND=
 # ZVM_VI_HIGHLIGHT_BACKGROUND=
 
+# https://github.com/jeffreytse/zsh-vi-mode/issues/19
+# redefine zsh-vi-mode yank and paste to allow copy and paste from clipboard
+zvm_vi_yank () {
+	zvm_yank
+	printf %s "${CUTBUFFER}" | xclip -sel c
+	zvm_exit_visual_mode
+}
+
+_zvm_vi_put_after () {
+    CUTBUFFER=$(xclip -out -selection clipboard)
+    zvm_vi_put_after
+    zvm_highlight clear
+}
+
+_zvm_vi_put_before () {
+    CUTBUFFER=$(xclip -out -selection clipboard)
+    zvm_vi_put_before
+    zvm_highlight clear
+}
+
 # unbind all history search bindings and rebind to fzf-history-search
 function zvm_after_init() {
   bindkey '^r' fzf_history_search
@@ -89,44 +109,13 @@ function zvm_after_init() {
   bindkey -r '^N'
 }
 
-# https://unix.stackexchange.com/questions/25765/pasting-from-clipboard-to-vi-enabled-zsh-or-bash-shell
-function x11-clip-wrap-widgets() {
-    local copy_or_paste=$1
-    shift
+function zvm_after_lazy_keybindings {
+  zvm_define_widget _zvm_vi_put_after
+  zvm_define_widget _zvm_vi_put_before
 
-    for widget in $@; do
-        if [[ $copy_or_paste == "copy" ]]; then
-            eval "
-            function _x11-clip-wrapped-$widget() {
-                zle .$widget
-                xclip -in -selection clipboard <<<\$CUTBUFFER
-            }
-            "
-        else
-            eval "
-            function _x11-clip-wrapped-$widget() {
-                CUTBUFFER=\$(xclip -out -selection clipboard)
-                zle .$widget
-            }
-            "
-        fi
-
-        zle -N $widget _x11-clip-wrapped-$widget
-    done
+  zvm_bindkey vicmd 'p' _zvm_vi_put_after
+  zvm_bindkey vicmd 'P' _zvm_vi_put_before
 }
-
-local copy_widgets=(
-    vi-yank vi-yank-eol vi-delete vi-backward-kill-word vi-change-whole-line
-)
-local paste_widgets=(
-    vi-put-{before,after}
-)
-
-x11-clip-wrap-widgets copy $copy_widgets
-x11-clip-wrap-widgets paste  $paste_widgets
-
-# enable vi-mode with Esc
-bindkey -v
 
 # aliases
 [ -f $ZDOTDIR/.zsh_alias ] && source $ZDOTDIR/.zsh_alias
