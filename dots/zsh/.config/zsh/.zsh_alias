@@ -65,6 +65,10 @@ function gcbd {
         xargs --no-run-if-empty git branch --delete --force
 }
 
+function gw {
+    cd $(git worktree list | fzf | cut -d ' ' -f1) || exit
+}
+
 # systemd
 alias syscat='systemctl cat'
 alias sys='systemctl status'
