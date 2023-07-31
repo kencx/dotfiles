@@ -219,14 +219,8 @@ return require("lazy").setup({
 	{
 		"stevearc/oil.nvim",
 		config = function()
-			require("oil").setup({
-				columns = {
-					"icon",
-					"permissions",
-					"size",
-				},
-			})
+			require("config.oil")
 		end,
-		cmd = "Oil",
+		-- cmd = "Oil",
 	},
 })
