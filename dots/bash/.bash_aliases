@@ -29,6 +29,22 @@ alias gc='git commit --verbose'
 alias gp='git push'
 alias gds='git diff --staged'
 
+# delete branches
+function gcbd {
+    git branch |
+        grep --invert-match '\*' |
+        cut -c 3- |
+        fzf --multi --preview="git log {} --" |
+        xargs --no-run-if-empty git branch --delete --force
+}
+
+function gw {
+    select=$(git worktree list | fzf | cut -d ' ' -f1)
+    if [[ -n "$select" ]]; then
+        cd "$select" || exit
+    fi
+}
+
 alias syscat='systemctl cat'
 alias sys='systemctl status'
 alias sysstart='sudo systemctl start'

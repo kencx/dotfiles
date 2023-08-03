@@ -65,7 +65,10 @@ function gcbd {
 }
 
 function gw {
-    cd $(git worktree list | fzf | cut -d ' ' -f1) || exit
+    select=$(git worktree list | fzf | cut -d ' ' -f1)
+    if [[ -n "$select" ]]; then
+        cd "$select" || exit
+    fi
 }
 
 # systemd
