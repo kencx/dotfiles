@@ -43,7 +43,7 @@ super + shift + p
 super + shift + q
 	eww close powermenu
 
-super + shift + l
+super + ctrl + l
     systemctl suspend && slock
 
 # mute volume
