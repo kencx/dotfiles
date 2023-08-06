@@ -23,6 +23,11 @@ local fileTypes = {
 		pattern = { "go.mod" },
 		command = "set ft=gomod",
 	},
+	-- set ansible filetype for additional files
+	-- ansible = {
+	-- 	pattern = {},
+	-- 	command = "set ft=yaml.ansible",
+	-- },
 }
 
 for _, type in pairs(fileTypes) do

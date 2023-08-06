@@ -57,6 +57,7 @@ return require("lazy").setup({
 			require("config.mini-map")
 		end,
 	},
+	{ "pearofducks/ansible-vim" },
 
 	-- lsp support
 	{

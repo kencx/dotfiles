@@ -7,6 +7,12 @@ configs.setup({
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = { "markdown" },
+		disable = function()
+			-- disable for ansible yml files
+			if vim.bo.filetype == "yaml.ansible" then
+				return true
+			end
+		end,
 	},
 	incremental_selection = {
 		enable = true,

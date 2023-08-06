@@ -7,6 +7,7 @@ require("autocmd")
 require("plugins")
 require("lsp")
 require("config.vsnip")
+require("config.ansible-vim")
 
 local disabled_built_ins = {
 	"netrw",

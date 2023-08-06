@@ -1,5 +1,6 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "176e85eeb63f1a5970d6b88f1725039d85ca0055" },
+  "ansible-vim": { "branch": "master", "commit": "93798e8c89c441d29d4678da0c0d5e1429eb43b0" },
   "barbar.nvim": { "branch": "master", "commit": "8cca17ea0ced3ba564e5da972a25600edafe7d7b" },
   "barbecue.nvim": { "branch": "main", "commit": "cd7e7da622d68136e13721865b4d919efd6325ed" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
