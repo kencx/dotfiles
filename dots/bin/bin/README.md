@@ -10,6 +10,7 @@
 - `launch-eww` - ewwbar launch script
 - `notes` - fzf preview of books and PDFs
 - `pad` - toggleable terminal scratchpad
+- `pachist` - Quick `pacman.log` reader
 - `qmnt` - gocryptfs dir unlocker
 - `sshf` - SSH host picker
 - `trash` - safe trashcan replacement for rm (very lackluster)

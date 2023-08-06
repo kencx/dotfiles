@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+LOG_FILE="/var/log/pacman.log"
+if ! [[ $(type -p "bat") ]]; then
+    PAGER=less
+else
+    PAGER=bat
+fi
+
+help() {
+    echo "Usage: $0 [FLAGS]"
+    echo ""
+    echo "Flags:"
+    echo "  -l,  --last     Last pacman transaction"
+    echo "  -i,  --install  All pacman installs"
+    echo "  -w,  --warn     All pacman warnings"
+    echo "  -pn, --pacnew   All pacnew changes"
+    echo "  -h,  --help     Help"
+    exit 1
+}
+
+if [[ "$#" -lt 1 ]]; then
+    help
+fi
+
+case "$1" in
+"-l" | "--last") tac $LOG_FILE | sed '/\[PACMAN\] Running/q' | tac | $PAGER ;;
+"-pn" | "--pacnew") cat $LOG_FILE | grep "pacnew" | $PAGER ;;
+"-i" | "--install") cat $LOG_FILE | grep "\[ALPM\] install" | $PAGER ;;
+"-w" | "--warn") cat $LOG_FILE | grep "warning" | $PAGER ;;
+"-h" | "--help") help ;;
+*)
+    help
+    ;;
+esac

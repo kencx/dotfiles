@@ -1,9 +1,9 @@
 {
-    "#!/bin/bash": {
+    "bash shbang": {
         "prefix": "bash",
-        "description": "Snippet for bash script",
+        "description": "Bash shbang",
         "body": [
-            "#!/bin/bash\n\nset -euo pipefail\n\n$1"
+            "#!/usr/bin/env bash\n\nset -euo pipefail\n\n$1"
         ]
     }
 }
