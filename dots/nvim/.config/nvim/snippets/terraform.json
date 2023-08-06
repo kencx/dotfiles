@@ -1,6 +1,6 @@
 {
 	"tf variable": {
-		"prefix": "tf-var",
+		"prefix": ["hcl-var", "tf-var"],
 		"description": "Terraform Variable Block",
 		"body": [
 			"variable \"${1}\" {",
@@ -12,7 +12,7 @@
 	},
 
 	"tf output": {
-		"prefix": "tf-output",
+		"prefix": ["hcl-output", "tf-output"],
 		"description": "Terraform Output Block",
 		"body": [
 			"output \"${1}\" {",
@@ -23,7 +23,7 @@
 	},
 
 	"tf resource": {
-		"prefix": "tf-resource",
+		"prefix": ["hcl-resource", "tf-resource"],
 		"description": "Terraform Resource Block",
 		"body": [
 			"resource \"${1}\" \"${2}\" {",
@@ -33,7 +33,7 @@
 	},
 
 	"tf module": {
-		"prefix": "tf-module",
+		"prefix": ["hcl-module", "tf-module"],
 		"description": "Terraform Module Block",
 		"body": [
 			"module \"${1}\" {",
