@@ -4,6 +4,7 @@ if not ok then
 end
 
 configs.setup({
+	indent = { enable = false },
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = { "markdown" },
@@ -17,18 +18,67 @@ configs.setup({
 	incremental_selection = {
 		enable = true,
 		keymaps = {
-			init_selection = "gnn",
-			node_incremental = "grn",
-			scope_incremental = "grc",
-			node_decremental = "grm",
+			init_selection = "<C-Space>",
+			node_incremental = "<C-Space>",
+			scope_incremental = false,
+			node_decremental = "<S-Tab>",
 		},
 	},
-	indent = { enable = false },
 	context_commentstring = {
 		enable = true,
 		enable_autocmd = false,
 	},
-
+	-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+	textobjects = {
+		select = {
+			enable = true,
+			lookahead = true,
+			keymaps = {
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
+				["ac"] = "@class.outer",
+			},
+		},
+		swap = {
+			enable = true,
+			swap_next = {
+				["<Leader>a"] = "@parameter.inner",
+			},
+			swap_previous = {
+				["<Leader>A"] = "@parameter.inner",
+			},
+		},
+		move = {
+			enable = true,
+			set_jumps = true, -- whether to set jumps in the jumplist
+			goto_next_start = {
+				["]m"] = "@function.outer",
+				["]]"] = "@class.outer",
+			},
+			goto_next_end = {
+				["]M"] = "@function.outer",
+				["]["] = "@class.outer",
+			},
+			goto_previous_start = {
+				["[m"] = "@function.outer",
+				["[["] = "@class.outer",
+			},
+			goto_previous_end = {
+				["[M"] = "@function.outer",
+				["[]"] = "@class.outer",
+			},
+		},
+	},
+	-- https://github.com/RRethy/nvim-treesitter-textsubjects/
+	textsubjects = {
+		enable = true,
+		prev_selection = ",",
+		keymaps = {
+			["."] = "textsubjects-smart",
+			[";"] = "textsubjects-container-outer",
+			["i;"] = "textsubjects-container-inner",
+		},
+	},
 	ensure_installed = {
 		"bash",
 		"comment",
@@ -54,7 +104,6 @@ configs.setup({
 		"vim",
 		"yaml",
 	},
-
 	ignore_install = {
 		"beancount",
 		"clojure",

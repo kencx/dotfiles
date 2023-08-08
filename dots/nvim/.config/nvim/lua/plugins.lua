@@ -42,6 +42,15 @@ return require("lazy").setup({
 		end,
 		build = ":TSUpdate",
 		event = "BufReadPre",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			"RRethy/nvim-treesitter-textsubjects",
+		},
+	},
+	{
+		-- provides single text object (on iv and av) for variable segment
+		"Julian/vim-textobj-variable-segment",
+		dependencies = "kana/vim-textobj-user",
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
@@ -166,10 +175,6 @@ return require("lazy").setup({
 		end,
 		event = "BufEnter",
 		dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
-	},
-	{
-		"Julian/vim-textobj-variable-segment",
-		dependencies = "kana/vim-textobj-user",
 	},
 
 	-- git
