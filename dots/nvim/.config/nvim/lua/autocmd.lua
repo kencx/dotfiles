@@ -16,7 +16,7 @@ autocmd("shTemplate", "BufNewFile", "*.sh", "0r ~/bin/templates/skeleton.sh")
 local setFileGroup = vim.api.nvim_create_augroup("setFileType", { clear = true })
 local fileTypes = {
 	hcl = {
-		pattern = { "*.nomad", "*.tf" },
+		pattern = { "*.nomad", "*.tf", "*.tfvars" },
 		command = "set ft=hcl",
 	},
 	gomod = {
