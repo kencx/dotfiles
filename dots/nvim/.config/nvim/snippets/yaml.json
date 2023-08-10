@@ -42,5 +42,43 @@
           "    state: present"
       ],
       "description": "Snippet for Ansible apt module"
+  },
+
+	"template": {
+		"prefix": ["template", "tmp", "tp"],
+		"description": "Ansible template",
+		"body": [
+      "- name: Copy ${1}",
+      "  template:",
+      "    src: \"${1}\"",
+      "    dest: ${2}",
+      "    owner: ${3}",
+      "    group: ${4}",
+      "    mode: ${5}"
+		]
+	},
+
+	"copy": {
+		"prefix": ["copy"],
+		"description": "Ansible copy",
+		"body": [
+      "- name: Copy ${1}",
+      "  copy:",
+      "    src: \"${1}\"",
+      "    dest: ${2}",
+      "    owner: ${3}",
+      "    group: ${4}",
+      "    mode: ${5}"
+		]
+	},
+
+  "role": {
+    "prefix": "role",
+    "description": "Add new Ansible role",
+    "body": [
+      "- name: ${1}",
+      "  role: ${2}",
+      "  vars: ${3}"
+    ]
   }
 }
