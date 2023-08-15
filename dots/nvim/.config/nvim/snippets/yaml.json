@@ -80,5 +80,25 @@
       "  role: ${2}",
       "  vars: ${3}"
     ]
+  },
+
+  "unarchive": {
+    "prefix": "unarchive",
+    "description": "Ansible unarchive",
+    "body": [
+      "- name: ${1}",
+      "  unarchive:",
+      "    src: ${2}",
+      "    dest: ${3}",
+      "    remote_src: true",
+      "    include: ${4}",
+      "    creates: ${3}/${4}",
+      "    keep_newer: true",
+      "    owner: ${5}",
+      "    group: ${5}",
+      "    mode: 0755",
+      "    extra_opts:",
+      "      - --no-anchored"
+    ]
   }
 }
