@@ -23,6 +23,7 @@ export PATH="$PATH:$HOME/go/bin"
 export TERM="screen-256color"
 export EDITOR="nvim"
 export BROWSER="firefox"
+export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export LESSHISTFILE=-
 # export MOZ_DISABLE_RDD_SANDBOX=1
