@@ -17,8 +17,6 @@ setopt hist_ignore_space
 # env variables
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
-# export PATH="$PATH:/usr/local/go/bin"
-export PATH="$PATH:$HOME/go/bin"
 
 export TERM="screen-256color"
 export EDITOR="nvim"

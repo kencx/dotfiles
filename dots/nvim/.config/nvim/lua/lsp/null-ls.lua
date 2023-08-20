@@ -55,7 +55,13 @@ local sources = {
 	-- diagnostics.actionlint,
 	-- diagnostics.hadolint,
 
+	-- ruby
+	diagnostics.rubocop,
+
 	formatters.codespell.with({
+		filetypes = { "markdown" },
+	}),
+	diagnostics.codespell.with({
 		filetypes = { "markdown" },
 	}),
 	-- hover.dictionary,
