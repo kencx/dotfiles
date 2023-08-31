@@ -227,6 +227,5 @@ return require("lazy").setup({
 		config = function()
 			require("config.oil")
 		end,
-		-- cmd = "Oil",
 	},
 })
