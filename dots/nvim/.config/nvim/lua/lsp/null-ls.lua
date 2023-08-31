@@ -4,6 +4,12 @@ if not ok then
 end
 
 local util = require("lsp/util")
+local custom_util = require("../util")
+
+-- toggle black
+custom_util.map("n", "<Leader>b", function()
+	null_ls.toggle({ name == "black" })
+end)
 
 local formatters = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
