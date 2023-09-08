@@ -122,7 +122,15 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
 		{ name = "path" },
-		{ name = "vsnip" },
+		{
+			name = "vsnip",
+			entry_filter = function()
+				local context = require("cmp.config.context")
+				local string_ctx = context.in_treesitter_capture("string") and not context.in_syntax_group("String")
+				local comment_ctx = context.in_treesitter_capture("comment") or context.in_syntax_group("Comment")
+				return not string_ctx and not comment_ctx
+			end,
+		},
 		{ name = "buffer", keyword_length = 3 },
 		{ name = "nvim_lua" },
 	}),
