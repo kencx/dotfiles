@@ -34,3 +34,29 @@ for _, type in pairs(fileTypes) do
 		command = type.command,
 	})
 end
+
+-- auto fstrings
+util.autocmd_callback("python-fstring", "InsertCharPre", "*.py", function()
+	if vim.v.char ~= "{" then
+		return
+	end
+
+	local node = vim.treesitter.get_node()
+	if not node then
+		return
+	end
+	if node:type() ~= "string" then
+		node = node:parent()
+	end
+	if not node or node:type() ~= "string" then
+		return
+	end
+
+	local row, col, _, _ = vim.treesitter.get_node_range(node)
+	local first_char = vim.api.nvim_buf_get_text(0, row, col, row, col + 1, {})[1]
+	if first_char == "f" then
+		return
+	end
+
+	vim.api.nvim_input("<Esc>m'" .. row + 1 .. "gg" .. col + 1 .. "|if<Esc>`'la")
+end)
