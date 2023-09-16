@@ -30,6 +30,9 @@ export LESSHISTFILE=-
 eval "$(direnv hook zsh)"
 export DIRENV_LOG_FORMAT=
 
+# rbenv
+eval "$(rbenv init - zsh)"
+
 # zoxide
 export _ZO_DATA_DIR="$HOME/syncthing/sync/backups"
 export _ZO_EXCLUDE_DIR="$HOME/.env"
