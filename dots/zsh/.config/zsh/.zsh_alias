@@ -31,6 +31,7 @@ alias dcu="docker compose up -d"
 alias dcd="docker compose down"
 alias dps="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.Networks}}\t{{.Status}}'"
 alias dl="docker logs -f"
+alias di="docker images | fzf"
 
 function dce {
 	docker exec -it $1 bash
