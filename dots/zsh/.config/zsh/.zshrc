@@ -31,7 +31,9 @@ eval "$(direnv hook zsh)"
 export DIRENV_LOG_FORMAT=
 
 # rbenv
-eval "$(rbenv init - zsh)"
+if ! [[ $(type -p rbenv) ]]; then
+    eval "$(rbenv init - zsh)"
+fi
 
 # zoxide
 export _ZO_DATA_DIR="$HOME/syncthing/sync/backups"
