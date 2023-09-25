@@ -9,6 +9,7 @@ util.autocmd(
 util.autocmd("noNumberInTerminal", "TermOpen", "*", "setlocal nonumber norelativenumber")
 util.autocmd("clearWhitespace", "BufWrite", "*", [[mark ' | silent! %s/\s\+$// | norm '']])
 util.autocmd("shTemplate", "BufNewFile", "*.sh", "0r ~/bin/templates/skeleton.sh")
+util.autocmd("composeTemplate", "BufNewFile", "docker-compose.yml", "0r ~/bin/templates/compose-skeleton.yml")
 
 local setFileGroup = vim.api.nvim_create_augroup("setFileType", { clear = true })
 local fileTypes = {

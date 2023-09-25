@@ -1,0 +1,9 @@
+---
+services:
+  foo:
+    image:
+    container_name:
+    ports:
+      - 8000:8000
+    volumes:
+      - ./data:/data
