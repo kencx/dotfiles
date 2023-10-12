@@ -55,6 +55,7 @@ return require("lazy").setup({
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		event = "BufRead",
+		version = "v2.20.8",
 		config = function()
 			require("config.indent_blankline")
 		end,
