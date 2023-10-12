@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+start=$(date +%s)
+"$@"
+duration=$(($(date +%s) - start))
+[ $duration -le 15 ] || notify-send "Long Running Command" "Command \"$(echo $@)\" took $duration seconds to finish"
