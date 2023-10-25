@@ -50,5 +50,3 @@ xdotool search -class btop >/dev/null || st -c btop btop
 # gui
 bspc rule -a feh state=floating
 bspc rule -a Zathura state=floating rectangle=760x980+35+60
-#bspc rule -a Blueman-manager state=floating
-#bspc rule -a Thunar state=floating

@@ -89,6 +89,6 @@ user_pref("media.videocontrols.picture-in-picture.enabled", false);
 user_pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false);
 user_pref("full-screen-api.warning.timeout", 0);
 
-user_pref("browser.startup.page", 3);
-user_pref("browser.startup.homepage", "file:///home/kenc/.mozilla/startpage/index.html");
+// user_pref("browser.startup.page", 3);
+// user_pref("browser.startup.homepage", "file:///home/kenc/.mozilla/startpage/index.html");
 
