@@ -54,7 +54,7 @@ export FORGIT_DIFF_FZF_OPTS="--prompt='git diff >'"
 export FORGIT_CHECKOUT_BRANCH_FZF_OPTS="--prompt='git branch >'"
 
 function glg {
-	watch --color -n 3 git log --all --graph --oneline --decorate=short --pretty=oneline --color=always
+	watch --color -n 3 git log --all --graph --oneline --decorate=short --color=always
 }
 
 # delete branches
@@ -70,6 +70,28 @@ function gw {
     select=$(git worktree list | fzf | cut -d ' ' -f1)
     if [[ -n "$select" ]]; then
         cd "$select" || exit
+    fi
+}
+
+# view fetched changes
+function gf {
+    local log_format="%C(auto)%h%d %s %C(black)%C(bold)%cr%Creset"
+    git fetch
+    git log --graph --color=always --format=$log_format ...HEAD@{u} | \
+    fzf --exit-0 \
+        --preview="echo {} | grep -Eo '[a-f0-9]+' | head -1 | tr -d '[:space:]' | xargs -I% git show --color=always -U3 % --"
+}
+
+# only fetch master branch from specified remotes
+function gfm {
+    git fetch origin +refs/heads/master:refs/remotes/origin/master
+
+    if git ls-remote --exit-code upstream > /dev/null 2>&1 ; then
+        git fetch --no-tags upstream +refs/heads/master:refs/remotes/upstream/master
+    fi
+
+    if git ls-remote --exit-code develop > /dev/null 2>&1 ; then
+        git fetch --no-tags develop +refs/heads/master:refs/remotes/develop/master
     fi
 }
 

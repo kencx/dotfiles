@@ -1,16 +1,17 @@
 [core]
     editor = nvim
 [user]
-	email = kennethcheo@pm.me
-	name = kencx
+    email = kennethcheo@pm.me
+    name = kencx
+
 [color]
-	status = true
-	branch = true
-	diff = auto
+    status = true
+    branch = true
+    diff = auto
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = red
+    added = yellow
+    changed = green
+    untracked = red
 [log]
     date = short
 [commit]
@@ -20,21 +21,37 @@
 [grep]
     lineNumber = true
     extendedRegexp = true
+
 [diff]
     renames = copies
     tool = nvimdiff
 [difftool "nvimdiff"]
-	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+
 [alias]
-	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''%C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+    r = "remote -v"
+    glg = "log --graph --oneline --all --decorate=short --color=always"
+    alias = "!git config -l | grep alias | cut -c 7-"
+    amend = "commit --amend --reuse-message=HEAD"
+    refresh = "!f() { git fetch && git stash && git rebase $(git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/@@\") && git stash pop; }; f"
+
+    # checkout pr branch
+    pr = "!f() { git fetch origin pull/$1/head:pr-$1 && git checkout pr-$1; }; f"
+
+    # checkout pr branch on upstream
+    pru = "!f() { git fetch upstream pull/$1/head:pr-$1 && git checkout pr-$1; }; f"
+
+    # setup upstream on forked repo and sync changes
+    sync-upstream = "!f() { if [[ $# -lt 1 ]]; then echo 'error: Missing argument!\nusage: git sync-upstream foo/bar'; return 1; fi; git remote add upstream git@github.com:$1.git || exit 1; git fetch --no-tags upstream +refs/heads/master:refs/remotes/upstream/master; git checkout master; git branch --set-upstream-to=upstream/master; git rebase upstream/master; }; f"
+
 [pull]
-	ff = only
+    ff = only
 [merge]
-	ff = only
+    ff = only
+
 [url "git@github.com:"]
     insteadOf = https://github.com/
     insteadOf = "gh:"
     pushInsteadOf = "gh:"
 [url "https://aur.archlinux.org/"]
     insteadOf = "aur:"
-
