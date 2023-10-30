@@ -11,7 +11,10 @@ See [screenshots](#screenshots).
 - Editor: [nvim](https://github.com/neovim/neovim/) with [tmux](https://github.com/tmux/tmux)
 - Compositor: [picom](https://github.com/yshui/picom) fork
 - Bar: [eww](https://github.com/elkowar/eww)
-- Others: [rofi](https://github.com/davatorium/rofi), [dunst](https://github.com/dunst-project/dunst), [zathura](https://github.com/pwmt/zathura), feh, redshift
+- Firefox Theme: [SimpleFox](https://github.com/migueravila/SimpleFox)
+- Custom browser [startpage](https://github.com/kennethcheo/startpage)
+- Lock: [slock](https://github.com/khuedoan/slock)
+- Others: [rofi](https://github.com/davatorium/rofi), [dunst](https://github.com/dunst-project/dunst), [zathura](https://github.com/pwmt/zathura), feh, nsxiv, redshift
 
 ## Install
 
@@ -91,28 +94,7 @@ To use, copy the `.Xresources` file to `~/.Xresources` and replace the
 defined path within it. Take care of the username.
 
 ### desktop
-Desktop files for rofi access. Place them at `~/.local/share/applications/`
-
-### Firefox Theme
-[SimpleFox](https://github.com/migueravila/SimpleFox).
-
-### Custom browser startpage
-[startpage](https://github.com/kennethcheo/startpage)
-
-### Lock
-[slock](https://github.com/khuedoan/slock)
-
-### Greeter
-The default LightDM greeter is used with a custom background. Config file is
-found in `etc/lightdm-gtk-greeter.conf`. Replace the `background` field with the
-correct img path.
-
-```
-$ sudo cp etc/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
-$ sudo cp img/image.png /usr/share/backgrounds/image.png
-```
-
-Test with `dm-tool switch-to-greeter`.
+Desktop files for rofi access are found in `etc/desktop`. Place them at `~/.local/share/applications/`
 
 ## Screenshots
 
