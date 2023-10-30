@@ -28,12 +28,22 @@
 [difftool "nvimdiff"]
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
+[remote "origin"]
+    fetch = "^refs/heads/gh-pages"
+    fetch = "^refs/heads/dependabot/*"
+
 [alias]
     r = "remote -v"
     glg = "log --graph --oneline --all --decorate=short --color=always"
     alias = "!git config -l | grep alias | cut -c 7-"
-    amend = "commit --amend --reuse-message=HEAD"
-    refresh = "!f() { git fetch && git stash && git rebase $(git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/@@\") && git stash pop; }; f"
+    amend = "commit --amend --no-edit"
+    undo-commit = "reset --soft HEAD^"
+
+    # get name of default branch
+    main-rev = "!git symbolic-ref --short refs/remotes/origin/HEAD | cut -d/ -f2"
+
+    # sync with master
+    sync = "!f() { git fetch --no-tags && git stash && git rebase $(git main-rev) && git stash pop; }; f"
 
     # checkout pr branch
     pr = "!f() { git fetch origin pull/$1/head:pr-$1 && git checkout pr-$1; }; f"
@@ -41,8 +51,24 @@
     # checkout pr branch on upstream
     pru = "!f() { git fetch upstream pull/$1/head:pr-$1 && git checkout pr-$1; }; f"
 
-    # setup upstream on forked repo and sync changes
-    sync-upstream = "!f() { if [[ $# -lt 1 ]]; then echo 'error: Missing argument!\nusage: git sync-upstream foo/bar'; return 1; fi; git remote add upstream git@github.com:$1.git || exit 1; git fetch --no-tags upstream +refs/heads/master:refs/remotes/upstream/master; git checkout master; git branch --set-upstream-to=upstream/master; git rebase upstream/master; }; f"
+    # setup upstream on fork
+    fork = "!f() { \
+        if [[ $# -lt 1 ]]; then echo 'error: Missing argument!\nusage: git fork foo/bar'; return 1; fi; \
+        git remote add upstream git@github.com:$1.git || exit 1; \
+        local main=$(git main-rev); \
+        git config remote.upstream.fetch +refs/heads/$main:refs/remotes/upstream/$main; \
+        git fetch --no-tags --prune --all; \
+    }; f"
+
+    # sync master with upstream/master on fork. this will rebase
+    # any changes in master on top of upstream/master, which
+    # may not be what you want
+    sync-fork = "!f() { \
+        local main=$(git main-rev); \
+        git checkout $main; \
+        git branch --set-upstream-to=upstream/$main || exit 1; \
+        git stash && git rebase upstream/$main && git stash pop; \
+    }; f"
 
 [pull]
     ff = only

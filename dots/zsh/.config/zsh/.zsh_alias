@@ -82,17 +82,12 @@ function gf {
         --preview="echo {} | grep -Eo '[a-f0-9]+' | head -1 | tr -d '[:space:]' | xargs -I% git show --color=always -U3 % --"
 }
 
-# only fetch master branch from specified remotes
+# only fetch specified branches
 function gfm {
-    git fetch origin +refs/heads/master:refs/remotes/origin/master
-
-    if git ls-remote --exit-code upstream > /dev/null 2>&1 ; then
-        git fetch --no-tags upstream +refs/heads/master:refs/remotes/upstream/master
-    fi
-
-    if git ls-remote --exit-code develop > /dev/null 2>&1 ; then
-        git fetch --no-tags develop +refs/heads/master:refs/remotes/develop/master
-    fi
+    branch="$(git symbolic-ref --short refs/remotes/origin/HEAD | cut -d/ -f2)"
+    git config remote.origin.fetch "+refs/heads/${branch}:refs/remotes/origin/$branch"
+    git for-each-ref | awk '{print $3}' | grep -Ev "^(refs/heads/|refs/remotes/origin/(HEAD$|${branch}$)|refs/remotes/upstream/${branch})" | xargs --no-run-if-empty -n1 git update-ref -d
+    git fetch --all --prune --no-tags
 }
 
 # systemd
