@@ -1,2 +1,1 @@
 #! /bin/bash
-feh --no-fehbg --bg-scale "${HOME}/dotfiles/img/jupiter.png"

@@ -3,12 +3,12 @@
 # do not set -e as stow is supposed to fail in some cases
 set -uo pipefail
 
-if ! command -v stow > /dev/null 2>&1; then
+if ! command -v stow >/dev/null 2>&1; then
     echo "ERROR: \"stow\" not installed"
 fi
 
 help() {
-	cat << EOF
+    cat <<EOF
 usage: ./setup [subcommand] [flags] [args]
 
   Subcommand:
@@ -92,16 +92,16 @@ stow_all() {
                 ((success++))
                 printf "  %s\n" "$line"
             elif [[ "$line" == "$DEFAULT_WARNING" ]]; then
-                :;
+                :
             elif [[ "$line" =~ ^WARNING:.* ]]; then
                 ((fail++))
             else
-                :;
+                :
             fi
         done
     done
 
-    if ! ((success+fail)); then
+    if ! ((success + fail)); then
         echo "NO DIRECTORIES STOWED!"
     else
         echo "STOW COMPLETE: $success SUCCESS; $fail FAIL"
@@ -147,11 +147,11 @@ full_install() {
         printf "  Copying ./etc/firefox/user.js to %s\n" "$ff_path"
     else
         cp -r ./etc/firefox/chrome "$ff_path"
-        cp ./etc/firefox/user.js  "$ff_path"
+        cp ./etc/firefox/user.js "$ff_path"
     fi
 
     echo "Installing neovim plugins:"
-    if ! command -v nvim > /dev/null 2>&1; then
+    if ! command -v nvim >/dev/null 2>&1; then
         printf "  nvim not installed, skipping..."
     elif $SIMULATE; then
         printf "  Running command: 'nvim --headless \"+Lazy! sync\" +qa'"
@@ -208,11 +208,21 @@ full_uninstall() {
 parse_global_flags() {
     while [ $# -gt 0 ]; do
         case $1 in
-        -s|--simulate) SIMULATE=true ;;
-        -a|--all) ALL=true ;;
-        -d|--dots) DOTS_DIR=$2; shift ;;
-        -t|--target) TARGET_DIR=$2; shift ;;
-        -*) echo "$0: error - unrecognized option \"$1\"" 1>&2; help; exit 1;;
+        -s | --simulate) SIMULATE=true ;;
+        -a | --all) ALL=true ;;
+        -d | --dots)
+            DOTS_DIR=$2
+            shift
+            ;;
+        -t | --target)
+            TARGET_DIR=$2
+            shift
+            ;;
+        -*)
+            echo "$0: error - unrecognized option \"$1\"" 1>&2
+            help
+            exit 1
+            ;;
         *) break ;;
         esac
         shift
@@ -225,48 +235,50 @@ declare -a args
 
 subcommand=${1:-""}
 case $subcommand in
-    "install")
-        shift
-        parse_global_flags "$@"
-        ALL=true
-        UNSTOW=false
-        full_install
-        ;;
-    "uninstall")
-        shift
-        parse_global_flags "$@"
-        ALL=true
-        UNSTOW=true
-        full_uninstall
-        ;;
-    "stow")
-        shift
-        parse_global_flags "$@"
-        # set args to positional params
-        set -- "${args[@]}"
-        UNSTOW=false
-        if $ALL ; then
-            stow_all
-        else
-            stow_one "$@"
-        fi
-        ;;
-    "unstow")
-        shift
-        parse_global_flags "$@"
-        set -- "${args[@]}"
-        UNSTOW=true
-        if $ALL ; then
-            stow_all
-        else
-            stow_one "$@"
-        fi
-        ;;
-    "" | "-h" | "--help" | "help")
-        help
-        exit 1 ;;
-    *)
-        echo "$0: error - unrecognized command \"$1\""
-        help
-        exit 1 ;;
+"install")
+    shift
+    parse_global_flags "$@"
+    ALL=true
+    UNSTOW=false
+    full_install
+    ;;
+"uninstall")
+    shift
+    parse_global_flags "$@"
+    ALL=true
+    UNSTOW=true
+    full_uninstall
+    ;;
+"stow")
+    shift
+    parse_global_flags "$@"
+    # set args to positional params
+    set -- "${args[@]}"
+    UNSTOW=false
+    if $ALL; then
+        stow_all
+    else
+        stow_one "$@"
+    fi
+    ;;
+"unstow")
+    shift
+    parse_global_flags "$@"
+    set -- "${args[@]}"
+    UNSTOW=true
+    if $ALL; then
+        stow_all
+    else
+        stow_one "$@"
+    fi
+    ;;
+"" | "-h" | "--help" | "help")
+    help
+    exit 1
+    ;;
+*)
+    echo "$0: error - unrecognized command \"$1\""
+    help
+    exit 1
+    ;;
 esac
