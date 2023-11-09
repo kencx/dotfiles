@@ -5,6 +5,8 @@
 // @match         *://*.reddit.com/*
 // @exclude-match *://*.reddit.com/poll/*
 // @exclude-match *://old.reddit.com/*
+// @exclude-match *://i.reddit.com/*
+// @exclude-match *://*.reddit.com/media*
 // @run-at        document-start
 // @grant         none
 // ==/UserScript==
