@@ -38,6 +38,12 @@ function dce {
 	docker exec -it $1 bash
 }
 
+function drmi {
+    docker images | fzf |
+    awk '{printf "%s:%s", $1, $2}' |
+    xargs --no-run-if-empty docker rmi
+}
+
 # git
 unalias gcf
 alias gst='git status'
