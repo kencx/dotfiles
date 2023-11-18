@@ -61,3 +61,18 @@ util.autocmd_callback("python-fstring", "InsertCharPre", "*.py", function()
 
 	vim.api.nvim_input("<Esc>m'" .. row + 1 .. "gg" .. col + 1 .. "|if<Esc>`'la")
 end)
+
+-- dynamic leadmultispace based on vim.bo.tabstop
+local function update_lead()
+	local lcs = vim.opt_local.listchars:get()
+	local tab = vim.fn.str2list(lcs.tab)
+	local space = vim.fn.str2list(lcs.multispace or lcs.space)
+	local lead = { tab[1] }
+	for i = 1, vim.bo.tabstop - 1 do
+		lead[#lead + 1] = space[i % #space + 1]
+	end
+	vim.opt_local.listchars:append({ leadmultispace = vim.fn.list2str(lead) })
+end
+
+util.autocmd_callback("update-lead", "OptionSet", { "listchars", "tabstop", "filetype" }, update_lead)
+vim.api.nvim_create_autocmd("VimEnter", { group = "update-lead", callback = update_lead, once = true })

@@ -27,7 +27,8 @@ set.textwidth = 88
 set.list = true
 set.listchars = {
 	trail = ".",
-	leadmultispace = "⦙ ",
+	multispace = "⦙   ",
+	leadmultispace = "⦙   ",
 	tab = "⦙ ",
 }
 
