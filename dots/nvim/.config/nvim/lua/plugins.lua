@@ -53,14 +53,6 @@ return require("lazy").setup({
 		dependencies = "kana/vim-textobj-user",
 	},
 	{
-		"lukas-reineke/indent-blankline.nvim",
-		event = "BufRead",
-		version = "v2.20.8",
-		config = function()
-			require("config.indent_blankline")
-		end,
-	},
-	{
 		"echasnovski/mini.map",
 		event = "BufEnter",
 		config = function()

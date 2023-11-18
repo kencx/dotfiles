@@ -24,7 +24,12 @@ set.wrap = true -- enable line wrapping
 set.linebreak = true
 set.textwidth = 88
 
-set.listchars = { trail = "." } -- show trailing whitespace chars
+set.list = true
+set.listchars = {
+	trail = ".",
+	leadmultispace = "⦙ ",
+	tab = "⦙ ",
+}
 
 set.foldmethod = "indent"
 vim.cmd("set nofoldenable")
