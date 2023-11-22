@@ -136,7 +136,7 @@
 	"date '+%A %d %b, %H:%M'")
 
 (defpoll aur_poll :interval "10m"
-	"/home/kenc/bin/aura check | wc -l")
+	"/home/kenc/bin/aura check | grep -c -v \"[I]\"")
 
 (defpoll package_poll :interval "10m"
 	"./bin/updates")
