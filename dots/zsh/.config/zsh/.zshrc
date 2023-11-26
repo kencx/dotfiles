@@ -66,6 +66,7 @@ eval $(keychain --eval --quiet id_ed25519 id_github)
 bindkey "\e[Z" reverse-menu-complete
 
 # plugins
+source "$ZDOTDIR/plugins/jq-zsh-plugin/jq.plugin.zsh"
 source "$ZDOTDIR/plugins/sudo.plugin.zsh"
 source "$ZDOTDIR/plugins/forgit/forgit.plugin.zsh"
 

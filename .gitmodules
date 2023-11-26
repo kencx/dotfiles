@@ -22,3 +22,6 @@
 [submodule "dots/zsh/.config/zsh/plugins/zsh-fzf-history-search"]
 	path = dots/zsh/.config/zsh/plugins/zsh-fzf-history-search
 	url = https://github.com/joshskidmore/zsh-fzf-history-search.git
+[submodule "dots/zsh/.config/zsh/plugins/jq-zsh-plugin"]
+	path = dots/zsh/.config/zsh/plugins/jq-zsh-plugin
+	url = git@github.com:reegnz/jq-zsh-plugin
