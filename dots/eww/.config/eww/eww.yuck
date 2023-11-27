@@ -44,7 +44,6 @@
 			(button :onclick `playerctl play-pause`
 					:onrightclick `playerctl stop`
 			(label :limit-width 50
-				:show_truncated true
 				:text {music != "" ? "  ${music}" : ""})))))
 
 
@@ -136,7 +135,7 @@
 	"date '+%A %d %b, %H:%M'")
 
 (defpoll aur_poll :interval "10m"
-	"/home/kenc/bin/aura check | grep -c -v \"[I]\"")
+	"/home/kenc/bin/aura check | grep -c -v '[I]' || true")
 
 (defpoll package_poll :interval "10m"
 	"./bin/updates")
