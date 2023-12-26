@@ -86,6 +86,7 @@ configs.setup({
 		"dockerfile",
 		"go",
 		"gomod",
+		"haskell",
 		"hcl",
 		"html",
 		"http",
