@@ -52,13 +52,6 @@ return require("lazy").setup({
 		"Julian/vim-textobj-variable-segment",
 		dependencies = "kana/vim-textobj-user",
 	},
-	{
-		"echasnovski/mini.map",
-		event = "BufEnter",
-		config = function()
-			require("config.mini-map")
-		end,
-	},
 	{ "pearofducks/ansible-vim" },
 
 	-- lsp support
@@ -75,17 +68,6 @@ return require("lazy").setup({
 		"kosayoda/nvim-lightbulb",
 		config = function()
 			require("config.nvim-lightbulb")
-		end,
-	},
-	{
-		"utilyre/barbecue.nvim",
-		-- version = "*",
-		dependencies = {
-			"SmiteshP/nvim-navic",
-			"nvim-tree/nvim-web-devicons",
-		},
-		config = function()
-			require("config.barbeque")
 		end,
 	},
 	{
