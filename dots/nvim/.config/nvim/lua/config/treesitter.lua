@@ -24,10 +24,6 @@ configs.setup({
 			node_decremental = "<S-Tab>",
 		},
 	},
-	context_commentstring = {
-		enable = true,
-		enable_autocmd = false,
-	},
 	-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 	textobjects = {
 		select = {

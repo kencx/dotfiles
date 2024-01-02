@@ -21,7 +21,8 @@ set wrap
 set linebreak
 set textwidth=88
 
-set listchars=trail:.
+set list=true
+set listchars=trail:.,multispace:⦙   ,leadmultispace:⦙   ,tab:⦙ ,
 
 set foldmethod=indent
 set nofoldenable

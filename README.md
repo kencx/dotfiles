@@ -100,7 +100,4 @@ Desktop files for rofi access are found in `etc/desktop`. Place them at `~/.loca
 
 <p align="center">
 	<img src="./assets/ss-plain.png"/>
-	<img src="./assets/ss-fetch.png"/>
-	<img src="./assets/ss-nvim.png"/>
-	<img src="./assets/ss-firefox.png"/>
 </p>
