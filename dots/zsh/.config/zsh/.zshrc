@@ -15,6 +15,7 @@ setopt hist_find_no_dups
 setopt hist_ignore_space
 
 # env variables
+export PATH="$HOME/.ghcup/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
