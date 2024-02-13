@@ -5,7 +5,7 @@ local defaults = {
 
 local lspconfig = require("lspconfig")
 
-lspconfig.sumneko_lua.setup(vim.tbl_deep_extend("force", require("lsp.settings.lua_ls"), defaults))
+lspconfig.lua_ls.setup(vim.tbl_deep_extend("force", require("lsp.settings.lua_ls"), defaults))
 lspconfig.gopls.setup(vim.tbl_deep_extend("force", require("lsp.settings.gopls"), defaults))
 lspconfig.bashls.setup(vim.tbl_deep_extend("force", require("lsp.settings.bashls"), defaults))
 lspconfig.dockerls.setup(vim.tbl_deep_extend("force", require("lsp.settings.dockerls"), defaults))
@@ -14,5 +14,6 @@ lspconfig.terraformls.setup(vim.tbl_deep_extend("force", require("lsp.settings.t
 lspconfig.yamlls.setup(vim.tbl_deep_extend("force", require("lsp.settings.yamlls"), defaults))
 lspconfig.solargraph.setup(vim.tbl_deep_extend("force", require("lsp.settings.solargraph"), defaults))
 lspconfig.svelte.setup(vim.tbl_deep_extend("force", require("lsp.settings.svelte"), defaults))
+lspconfig.templ.setup(vim.tbl_deep_extend("force", require("lsp.settings.templ"), defaults))
 lspconfig.tsserver.setup(vim.tbl_deep_extend("force", require("lsp.settings.tsserver"), defaults))
 lspconfig.hls.setup(vim.tbl_deep_extend("force", require("lsp.settings.hls"), defaults))

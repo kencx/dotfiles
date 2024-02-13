@@ -57,7 +57,7 @@ return require("lazy").setup({
 	-- lsp support
 	{
 		"neovim/nvim-lspconfig",
-		version = "v0.1.4",
+		version = "v0.1.7",
 		event = "BufEnter",
 		dependencies = {
 			"lspcontainers/lspcontainers.nvim",

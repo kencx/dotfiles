@@ -96,6 +96,7 @@ configs.setup({
 		"rust",
 		"svelte",
 		"scss",
+		"templ",
 		"toml",
 		"typescript",
 		"vim",

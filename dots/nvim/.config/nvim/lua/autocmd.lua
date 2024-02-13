@@ -26,6 +26,10 @@ local fileTypes = {
 		pattern = { "*/playbooks/*.yml", "*/playbooks/*.yaml" },
 		command = "set ft=yaml.ansible",
 	},
+	templ = {
+		pattern = { "*.templ" },
+		command = "set ft=templ",
+	},
 }
 
 for _, type in pairs(fileTypes) do
