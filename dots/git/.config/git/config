@@ -38,6 +38,7 @@
     alias = "!git config -l | grep alias | cut -c 7-"
     amend = "commit --amend --no-edit"
     undo-commit = "reset --soft HEAD^"
+    pushf = "push --force-with-lease"
 
     # get name of default branch
     main-rev = "!git symbolic-ref --short refs/remotes/origin/HEAD | cut -d/ -f2"
