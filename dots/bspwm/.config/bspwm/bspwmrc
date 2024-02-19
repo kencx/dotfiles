@@ -7,7 +7,7 @@
 feh --no-fehbg --bg-scale "${HOME}/dotfiles/img/jupiter.png" &
 
 # bspwm
-bspc monitor -d I II III IV V
+bspc monitor -d I II III IV V VI
 
 bspc config window_gap 12
 bspc config top_padding 24
@@ -35,7 +35,7 @@ bspc rule -a St -o desktop="I" state=tiled follow=off && st tmux &
 bspc rule -a Firefox -o desktop='II' state=tiled && sleep 5 && launch firefox
 bspc rule -a obsidian -o desktop='III' focus=off follow=off \
     state=tiled && launch obsidian
-bspc rule -a TelegramDesktop desktop='V' state=floating follow=off \
+bspc rule -a TelegramDesktop desktop='VI' state=floating follow=off \
     rectangle=680x920+35+60 && telegram-desktop &
 
 # scratchpad
@@ -44,7 +44,7 @@ xdotool search --class scratchpad windowkill
 st -c scratchpad &
 
 # tui
-bspc rule -a btop -o desktop='V' state=floating rectangle=1080x920+740+60 follow=off
+bspc rule -a btop -o desktop='VI' state=floating rectangle=1080x920+740+60 follow=off
 xdotool search -class btop >/dev/null || st -c btop btop
 
 # gui
