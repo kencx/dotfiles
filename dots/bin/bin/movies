@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# quick access to movies
+
+FILEPATH="$HOME/movies"
+MEDIA_PLAYER="mpv"
+
+FILE=$(
+    fd . --extension ".mp4" --extension ".mkv" --type f "$FILEPATH" |
+        fzf --ansi --cycle \
+            --delimiter='/' \
+            --with-nth=-1 \
+            --layout=reverse \
+            --margin=5% \
+            --prompt="movies > "
+)
+
+if [ -n "$FILE" ]; then
+    "$MEDIA_PLAYER" "$FILE" &
+fi
