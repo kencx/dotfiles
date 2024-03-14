@@ -60,7 +60,7 @@ export PF_ASCII="arch"
 export FZF_DEFAULT_OPTS="--cycle --reverse --border=top --margin=1 --padding=0 --ansi --height=90%"
 
 # ssh-agent
-eval $(keychain --eval --quiet id_ed25519 id_github)
+eval $(keychain --eval --quiet id_ed25519 id_github id_vps)
 [ -f $HOME/.keychain/$HOST-sh ] && . $HOME/.keychain/$HOST-sh 2>/dev/null
 
 # bind shift=tab to backwards menu
