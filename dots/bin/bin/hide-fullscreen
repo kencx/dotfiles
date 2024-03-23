@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# xdotool bug fails to allow multiple flags while searching
+window_id=$(
+    comm -12 \
+        <(xdotool search --name "bar" | sort) \
+        <(xdotool search --class "eww" | sort)
+)
+
+# When used with firefox fullscreen, it SOMETIMES creates an additional transparent window
+# that takes up space. Restarting bspwm and eww removes it
+
+bspc subscribe node_state | while read -r _ _ _ _ state flag; do
+    if [[ "$state" != fullscreen ]]; then continue; fi
+    if [[ "$flag" == on ]]; then
+        xdotool windowunmap "$window_id"
+    else
+        xdotool windowmap "$window_id"
+    fi
+done

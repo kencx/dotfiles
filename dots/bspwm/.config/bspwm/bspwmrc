@@ -3,7 +3,9 @@
 # autostart
 #pgrep -x sxhkd > /dev/null && sxhkd -s /var/run/sxhkd.fifo &
 #pgrep -x picom > /dev/null || picom &
+
 ~/bin/launch-eww &
+~/bin/hide-fullscreen &
 feh --no-fehbg --bg-scale "${HOME}/dotfiles/img/jupiter.png" &
 
 # bspwm
