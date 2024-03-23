@@ -1,20 +1,11 @@
 #!/usr/bin/env bash
 
-# listing sxhkdrc keybindings with fzf
-
-KEY=$(awk '/^[a-zA-Z{]/ && last {print $0,"\t",last} {last=""} /^#/{last=$0}' \
-    ~/.config/sxhkd/sxhkdrc | column -t -s $'\t' | \
-
+awk '/^[a-zA-Z{]/ && last {print $0,"\t",last} {last=""} /^#/{last=$0}' \
+    ~/.config/sxhkd/sxhkdrc | column -t -s $'\t' |
     fzf --tac --cycle \
         --layout=reverse \
         --border=rounded \
         --margin=1 \
         --padding=1 \
         --prompt='keys > ' \
-		--ansi)
-
-# get key and trim whitespace
-KEYBINDING=$(echo "$KEY" | awk -F"#" '{print $1}' | sed 's/ *//g')
-xdotool key "$KEYBINDING"
-
-
+        --ansi
