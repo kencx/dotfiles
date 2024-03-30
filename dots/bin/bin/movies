@@ -2,11 +2,11 @@
 
 # quick access to movies
 
-FILEPATH="$HOME/movies"
+FILEPATH="$HOME/dev/compose-stacks/qbittorrent/torrents"
 MEDIA_PLAYER="mpv"
 
 FILE=$(
-    fd . --extension ".mp4" --extension ".mkv" --type f "$FILEPATH" |
+    find "$FILEPATH" -type f -name '*.mp4' -or -name '*.mkv' |
         fzf --ansi --cycle \
             --delimiter='/' \
             --with-nth=-1 \
