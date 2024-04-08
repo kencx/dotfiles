@@ -76,10 +76,7 @@
                 :visible true)
 		(bluetooth)
 		(wifi)
-        (system :class "vpn"
-                :icon ""
-                :text "󰦝"
-                :visible {vpn_poll != "false" ? true : false})
+        (vpn)
 		(volume)
 		(power)))
 
@@ -107,6 +104,12 @@
 					:icon {wifi_poll.icon}
 					:text {wifi_poll.content}
                     :visible true))))
+
+(defwidget vpn []
+    (box :class "vpn"
+        :tooltip {vpn_poll.hostname}
+        :visible {vpn_poll.connected != "false" ? true : false}
+        (label :class "" :text "󰦝")))
 
 (defwidget volume []
 	(eventbox :cursor "pointer"
@@ -138,8 +141,8 @@
 (defpoll time :interval "10s"
 	"date '+%A %d %b, %H:%M'")
 
-(defpoll vpn_poll :interval "1m"
-	"curl -s https://am.i.mullvad.net/json | jq '.mullvad_exit_ip'")
+(defpoll vpn_poll :interval "1m" :initial "{}"
+	"./bin/vpn")
 
 (defpoll aur_poll :interval "10m"
 	"/home/kenc/bin/aura check | grep -c -v '[I]' || true")
@@ -156,8 +159,8 @@
 (defpoll bluetooth_poll :interval "1s"
 	"./bin/bluetooth --status")
 
-(defpoll wifi_poll :interval "1s"
+(defpoll wifi_poll :interval "1s" :initial "{}"
 	"./bin/wifi")
 
-(defpoll vol_poll :interval "1s"
+(defpoll vol_poll :interval "1s" :initial "{}"
 	"./bin/vol")

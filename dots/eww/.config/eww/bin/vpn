@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+MULLVAD_ENDPOINT="https://am.i.mullvad.net/json"
+
+mullvad=$(curl -s "$MULLVAD_ENDPOINT")
+connected=$(echo "$mullvad" | jq '.mullvad_exit_ip')
+hostname=$(echo "$mullvad" | jq '.mullvad_exit_ip_hostname')
+country=$(echo "$mullvad" | jq '.country')
+
+echo "{\"hostname\": $hostname, \"country\": $country, \"connected\": $connected}"
