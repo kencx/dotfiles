@@ -3,16 +3,20 @@ HISTSIZE=5000
 HISTFILE="$ZDOTDIR/.zsh_history"
 SAVEHIST=5000
 HISTDUP=erase
-export HISTORY_IGNORE="(ls*|cd*|z*|clear)"
+export HISTORY_IGNORE="(ls*|cd*|z*|clear|reloadz)"
 
-setopt appendhistory
-setopt sharehistory
-setopt incappendhistory
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
-setopt hist_ignore_space
+setopt extendedhistory       # write in ':start:elapsed;command' format
+setopt appendhistory         # append to history file
+setopt sharehistory          # share history between all sessions
+setopt incappendhistory      # write to history immediately
+setopt hist_ignore_all_dups  # delete old event if new event is dup
+setopt hist_save_no_dups     # don't save dups
+setopt hist_ignore_dups      # don't record event that was just recorded
+setopt hist_find_no_dups     # don't find dups
+setopt hist_ignore_space     # don't record event with space
+setopt hist_no_store         # don't store "history"
+setopt hist_reduce_blanks    # remove blanks
+setopt hist_verify           # do not execute on history expansion
 
 # env variables
 export PATH="$HOME/.ghcup/bin:$PATH"
