@@ -82,13 +82,13 @@ by Miguel Avila
   order: 3 !important;
 }
 
+/*
 ┌┬┐┌─┐┬  ┌─┐┌┬┐┌─┐
  ││├┤ │  ├┤  │ ├┤
 ─┴┘└─┘┴─┘└─┘ ┴ └─┘
 ┌─┐┌─┐┌┬┐┌─┐┌─┐┌┐┌┌─┐┌┐┌┌┬┐┌─┐
 │  │ ││││├─┘│ ││││├┤ │││ │ └─┐
 └─┘└─┘┴ ┴┴  └─┘┘└┘└─┘┘└┘ ┴ └─┘
-
 */
 
 /* Tabs elements  */
@@ -206,4 +206,168 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 #context_selectAllTabs,
 #context_closeTabOptions {
   display: none !important;
+}
+
+/* hide tabs bar */
+/* https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/hide_tabs_toolbar.css */
+
+:root[tabsintitlebar]{ --uc-toolbar-height: 40px; }
+:root[tabsintitlebar][uidensity="compact"]{ --uc-toolbar-height: 32px }
+#titlebar{
+  will-change: unset !important;
+  transition: none !important;
+  opacity: 1 !important;
+}
+#TabsToolbar{ visibility: collapse !important }
+
+:root[sizemode="fullscreen"] #TabsToolbar > :is(#window-controls,.titlebar-buttonbox-container){
+  visibility: visible !important;
+  z-index: 2;
+}
+
+:root:not([inFullscreen]) #nav-bar{
+  margin-top: calc(0px - var(--uc-toolbar-height,0px));
+}
+
+:root[tabsintitlebar] #toolbar-menubar[autohide="true"]{
+  min-height: unset !important;
+  height: var(--uc-toolbar-height,0px) !important;
+  position: relative;
+}
+
+#toolbar-menubar[autohide="false"]{
+  margin-bottom: var(--uc-toolbar-height,0px)
+}
+
+:root[tabsintitlebar] #toolbar-menubar[autohide="true"] #main-menubar{
+  flex-grow: 1;
+  align-items: stretch;
+  background-attachment: scroll, fixed, fixed;
+  background-position: 0 0, var(--lwt-background-alignment), right top;
+  background-repeat: repeat-x, var(--lwt-background-tiling), no-repeat;
+  background-size: auto 100%, var(--lwt-background-size, auto auto), auto auto;
+  padding-right: 20px;
+}
+:root[tabsintitlebar] #toolbar-menubar[autohide="true"]:not([inactive]) #main-menubar{
+  background-color: var(--lwt-accent-color);
+  background-image: linear-gradient(var(--toolbar-bgcolor,--toolbar-non-lwt-bgcolor),var(--toolbar-bgcolor,--toolbar-non-lwt-bgcolor)), var(--lwt-additional-images,none), var(--lwt-header-image, none);
+  mask-image: linear-gradient(to left, transparent, black 20px);
+}
+
+#toolbar-menubar:not([inactive]){ z-index: 2 }
+#toolbar-menubar[autohide="true"][inactive] > #menubar-items {
+  opacity: 0;
+  pointer-events: none;
+  margin-left: var(--uc-window-drag-space-pre,0px)
+}
+
+/* sidebery */
+
+/* https://github.com/christorange/VerticalFox/tree/main */
+
+/* only required for sidebar on left side */
+/* .tab[selected="true"] { */
+/* 	visibility: collapse; */
+/* 	height: 0px; */
+/* } */
+/**/
+/* .tabbrowser-tab { */
+/* 	visibility: collapse; */
+/* 	height: 0px; */
+/* } */
+/**/
+/* .tabbrowser-tab[visuallyselected="true"] { */
+/* 	visibility: collapse; */
+/* 	height: 0px; */
+/* } */
+
+/* https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/autohide_sidebar.css */
+
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] {
+  --uc-sidebar-width: 44px;
+  --uc-sidebar-hover-width: 260px;
+  --uc-autohide-sidebar-delay: 600ms; /* Waiting time before hiding sidebar */
+  --uc-autohide-transition-duration: 115ms;
+  --uc-autohide-transition-type: linear;
+  position: relative;
+  min-width: var(--uc-sidebar-width) !important;
+  width: var(--uc-sidebar-width) !important;
+  max-width: var(--uc-sidebar-width) !important;
+  z-index:100;
+}
+
+#sidebar-box:is([sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"], [positionend]) {
+  direction: rtl
+}
+
+#sidebar-box:is([sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"], [positionend]) > * {
+  direction: ltr
+}
+
+#sidebar-box:is([sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"], [positionend]):-moz-locale-dir(rtl){
+  direction: ltr
+}
+
+#sidebar-box:is([sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"], [positionend]):-moz-locale-dir(rtl) > *{
+  direction: rtl
+}
+
+#main-window[sizemode="fullscreen"] #sidebar-box{
+  --uc-sidebar-width: 0px;
+}
+
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] > #sidebar-splitter {
+  display: none
+}
+
+/* hide sidebar header */
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] #sidebar-header {
+  display: none !important;
+	overflow: hidden;
+}
+
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] > #sidebar {
+  transition: min-width var(--uc-autohide-transition-duration) var(--uc-autohide-transition-type) var(--uc-autohide-sidebar-delay) !important;
+  min-width: var(--uc-sidebar-width) !important;
+  will-change: min-width;
+}
+
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:hover > #sidebar {
+  min-width: var(--uc-sidebar-hover-width) !important;
+  transition-delay: 0ms !important;
+}
+
+/* Add sidebar divider and give it background */
+
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] > #sidebar,
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] > #sidebar-header {
+  background-color: inherit !important;
+  /* border-inline: 1px solid rgb(80,80,80); */
+  border-inline-width: 0px 1px;
+}
+
+#sidebar-box:is([sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]):not([positionend]) > :-moz-locale-dir(rtl),
+#sidebar-box:is([sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"], [positionend]) > * {
+  border-inline-width: 1px 0px;
+}
+
+/* Move statuspanel to the other side when sidebar is hovered so it doesn't get covered by sidebar */
+
+#sidebar-box:not([positionend]):hover ~ #appcontent #statuspanel{
+  inset-inline: auto 0px !important;
+}
+#sidebar-box:not([positionend]):hover ~ #appcontent #statuspanel-label{
+  margin-inline: 0px !important;
+  border-left-style: solid !important;
+}
+
+.sidebar-panel {
+	background-color: transparent !important;
+	color: var(--newtab-text-primary-color) !important;
+}
+
+.sidebar-panel #search-box {
+	-moz-appearance: none !important;
+	background-color: rgba(249, 249, 250, 0.1) !important;
+	color: inherit !important;
 }
