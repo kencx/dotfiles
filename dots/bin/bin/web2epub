@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+papeer get --format epub "$1"
