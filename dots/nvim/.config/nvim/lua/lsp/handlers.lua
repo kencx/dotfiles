@@ -25,7 +25,6 @@ local function attach_keymaps(bufnr)
 
 	keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 	keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 
 	-- keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 	-- keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
@@ -34,8 +33,6 @@ local function attach_keymaps(bufnr)
 
 	keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 	keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-	keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 	-- keymap("n", "<space>q", "<cmd>lua vim.diagnostic.set_loclist()<CR>", opts)
 end
 
@@ -65,9 +62,6 @@ local function lspDiagnosticsPopupHandler()
 end
 
 M.on_attach = function(client, bufnr)
-	-- set by default >=v0.8.1
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
 	attach_keymaps(bufnr)
 	function_signature(bufnr)
 

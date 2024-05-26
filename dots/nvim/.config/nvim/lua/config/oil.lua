@@ -9,12 +9,11 @@ local util = require("util")
 util.map("n", "<Leader>ol", function()
 	local open = false
 
-	-- check for oil filetype in all windows
-	for _, win in ipairs(vim.api.nvim_list_wins()) do
-		if vim.api.nvim_get_option_value("filetype", { win = win }) == "oil" then
-			open = true
-			vim.api.nvim_win_close(win, false)
-		end
+	-- check for oil filetype in current buffer
+	local buf = vim.api.nvim_get_current_buf()
+	if vim.api.nvim_buf_get_option(buf, "filetype") == "oil" then
+		open = true
+		vim.api.nvim_win_close(vim.api.nvim_get_current_win(), false)
 	end
 
 	if open == false then

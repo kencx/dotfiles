@@ -53,7 +53,7 @@ return require("lazy").setup({
 	-- lsp support
 	{
 		"neovim/nvim-lspconfig",
-		version = "v0.1.7",
+		version = "v0.1.8",
 		event = "BufEnter",
 		dependencies = {
 			"lspcontainers/lspcontainers.nvim",
@@ -108,7 +108,7 @@ return require("lazy").setup({
 	},
 	{
 		"nvim-telescope/telescope.nvim",
-		version = "0.1.2",
+		version = "0.1.8",
 		config = function()
 			require("config.telescope")
 		end,
