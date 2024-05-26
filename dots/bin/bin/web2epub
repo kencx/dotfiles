@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-papeer get --format epub "$1"
+OUTPUT_DIR="$HOME/syncthing/sync/kobo/web/"
+out=$(papeer get --format epub "$1")
+mv "$(echo "$out" | cut -d'"' -f2)" "$OUTPUT_DIR"
