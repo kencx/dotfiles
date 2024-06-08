@@ -14,10 +14,27 @@ local previewers = require("telescope.previewers")
 local Job = require("plenary.job")
 local util = require("util")
 
+-- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#falling-back-to-find_files-if-git_files-cant-find-a-git-directory
+-- cache the results of "git rev-parse"
+local is_inside_work_tree = {}
+local project_files = function()
+	local opts = { hidden = true, show_untracked = true }
+
+	local cwd = vim.fn.getcwd()
+	if is_inside_work_tree[cwd] == nil then
+		vim.fn.system("git rev-parse --is-inside-work-tree")
+		is_inside_work_tree[cwd] = vim.v.shell_error == 0
+	end
+
+	if is_inside_work_tree[cwd] then
+		builtin.git_files(opts)
+	else
+		builtin.find_files(opts)
+	end
+end
+
 util.map("n", "<Leader>ft", telescope.extensions.file_browser.file_browser)
-util.map("n", "<Leader>ff", function()
-	builtin.find_files({ hidden = true })
-end)
+util.map("n", "<Leader>ff", project_files)
 util.map("n", "<Leader>fw", builtin.grep_string)
 util.map("n", "<Leader>fg", builtin.live_grep)
 util.map("n", "<Leader>fz", builtin.current_buffer_fuzzy_find)
@@ -35,6 +52,7 @@ util.map("n", "<Leader>gc", builtin.git_commits)
 util.map("n", "<Leader>gbc", builtin.git_bcommits)
 util.map("n", "<Leader>gst", builtin.git_status)
 
+-- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#dont-preview-binaries
 -- don't preview binaries
 local avoid_binaries = function(filepath, bufnr)
 	filepath = vim.fn.expand(filepath)
