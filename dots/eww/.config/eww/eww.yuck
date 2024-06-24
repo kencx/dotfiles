@@ -19,7 +19,6 @@
 		(right)))
 
 (defwidget left []
-	(eventbox :onscroll `$(./bin/desktop-scroll {})`
 	(box :class "left"
 		:orientation "h"
 		:space-evenly false
@@ -30,7 +29,7 @@
         :text {sxhkd_listen}
         :visible true)
 	(workspaces)
-	(music))))
+	(music)))
 
 (defwidget workspaces []
 	(literal :content workspaces_listen))

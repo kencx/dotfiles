@@ -1,8 +1,7 @@
 #!/bin/bash
 
 case $1 in
-      "*") ;;
-      "up") bspc desktop -f next.local;;
-      "down") bspc desktop -f prev.local;;
+"*") ;;
+"up") bspc desktop -f next.local ;;
+"down") bspc desktop -f prev.local ;;
 esac
-
