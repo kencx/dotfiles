@@ -3,7 +3,7 @@
 	:wm-ignore true
 	:windowtype "dock"
 	:geometry (geometry :x "0px" :y "30px"
-						:width "4%" :height "10%"
+						:width "8%" :height "10%"
 						:anchor "top right")
 	:stacking "fg"
 	(powermenu))
