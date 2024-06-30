@@ -46,14 +46,21 @@ return require("lazy").setup({
 	{
 		-- provides single text object (on iv and av) for variable segment
 		"Julian/vim-textobj-variable-segment",
+		lazy = true,
+		event = "InsertEnter",
 		dependencies = "kana/vim-textobj-user",
 	},
-	{ "pearofducks/ansible-vim" },
+	{
+		"pearofducks/ansible-vim",
+		lazy = true,
+		ft = { "yml", "yaml", "ansible.yaml", "ansible.yml" },
+	},
 
 	-- lsp support
 	{
 		"neovim/nvim-lspconfig",
 		version = "v0.1.8",
+		lazy = true,
 		event = "BufEnter",
 		dependencies = {
 			"lspcontainers/lspcontainers.nvim",
@@ -68,6 +75,8 @@ return require("lazy").setup({
 	},
 	{
 		"ray-x/lsp_signature.nvim",
+		lazy = true,
+		event = "InsertEnter",
 		config = function()
 			require("config.lsp-signature")
 		end,
@@ -76,6 +85,7 @@ return require("lazy").setup({
 	-- completion support
 	{
 		"hrsh7th/nvim-cmp",
+		lazy = true,
 		event = "InsertEnter",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
@@ -91,6 +101,7 @@ return require("lazy").setup({
 	-- snippet engine
 	{
 		"hrsh7th/vim-vsnip",
+		lazy = true,
 		event = "InsertEnter",
 		dependencies = {
 			"hrsh7th/cmp-vsnip",
@@ -109,6 +120,8 @@ return require("lazy").setup({
 	{
 		"nvim-telescope/telescope.nvim",
 		version = "0.1.8",
+		lazy = true,
+		keys = { "<leader>" },
 		config = function()
 			require("config.telescope")
 		end,
@@ -119,8 +132,17 @@ return require("lazy").setup({
 			"nvim-tree/nvim-web-devicons",
 		},
 	},
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-	{ "nvim-telescope/telescope-file-browser.nvim" },
+	{
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "make",
+		lazy = true,
+		keys = { "<leader>" },
+	},
+	{
+		"nvim-telescope/telescope-file-browser.nvim",
+		lazy = true,
+		keys = { "<leader>" },
+	},
 	-- {
 	-- 	"folke/which-key.nvim",
 	-- 	config = function()
@@ -135,6 +157,8 @@ return require("lazy").setup({
 	{ "machakann/vim-sandwich", event = "BufEnter" },
 	{
 		"windwp/nvim-autopairs",
+		lazy = true,
+		event = "InsertEnter",
 		config = function()
 			require("config.autopairs")
 		end,
