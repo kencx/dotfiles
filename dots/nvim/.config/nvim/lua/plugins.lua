@@ -121,15 +121,15 @@ return require("lazy").setup({
 	},
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	{ "nvim-telescope/telescope-file-browser.nvim" },
-	{
-		"folke/which-key.nvim",
-		config = function()
-			require("which-key").setup({})
-		end,
-		keys = {
-			"<space>",
-		},
-	},
+	-- {
+	-- 	"folke/which-key.nvim",
+	-- 	config = function()
+	-- 		require("which-key").setup({})
+	-- 	end,
+	-- 	keys = {
+	-- 		"<space>",
+	-- 	},
+	-- },
 
 	-- editing
 	{ "machakann/vim-sandwich", event = "BufEnter" },
