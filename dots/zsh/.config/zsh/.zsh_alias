@@ -53,6 +53,7 @@ alias gp='git push'
 alias gds='git diff --staged'
 alias gd='forgit::diff'
 alias gl='forgit::log'
+alias glb='git log @ ^$(git main-rev) --oneline --graph'
 
 export FORGIT_ADD_FZF_OPTS="--prompt='git add >'"
 export FORGIT_LOG_FZF_OPTS="--prompt='git log >'"
