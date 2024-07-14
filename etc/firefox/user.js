@@ -40,6 +40,7 @@ user_pref("extensions.shield-recipe-client.api_url", "");
 user_pref("app.normandy.enabled", false);
 user_pref("app.normandy.api_url", "");
 user_pref("app.shield.optoutstudies.enabled", false);
+user_pref("dom.private-attribution.submission.enabled", false);
 
 // crash reports
 user_pref("breakpad.reportURL", "");
