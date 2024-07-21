@@ -34,7 +34,8 @@
 
 [alias]
     r = "remote -v"
-    glg = "log --graph --oneline --all --decorate=short --color=always"
+    glg = "log --color=always --graph --all --decorate=short --pretty=format:'%Cred%h %Cgreen(%as)%Creset -%C(bold red)%d%Creset %s %C(bold blue)<%an>'"
+
     alias = "!git config -l | grep alias | cut -c 7-"
     amend = "commit --amend --no-edit"
     undo-commit = "reset --soft HEAD^"
