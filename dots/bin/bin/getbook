@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-# download ebooks from irc-highway with openbooks
+# download ebooks from irchighway with openbooks
 
 set -euo pipefail
 
 DEST_DIR="$HOME/Downloads"
-NAME="changme"
+NAME=$(openssl rand -base64 12)
 
 # https://github.com/evan-buss/openbooks/
 if ! command -v openbooks >/dev/null 2>&1; then
