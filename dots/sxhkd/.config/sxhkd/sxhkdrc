@@ -13,7 +13,7 @@ super + space
 
 # keybindings
 super + slash
-    st -c keys $HOME/.local/bin/keyb
+    st -c keys keyb
 
 # windows
 super + semicolon
