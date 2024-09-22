@@ -11,7 +11,7 @@ gitsigns.setup({
 
 		util.map("v", "<Leader>sh", ":Gitsigns stage_hunk<CR>", opts)
 		util.map("v", "<Leader>rh", ":Gitsigns reset_hunk<CR>", opts)
-		util.map("n", "<Leader>uh", ":Gitsigns undo_stage_hunk<CR>", opts)
+		util.map("v", "<Leader>nh", ":Gitsigns undo_stage_hunk<CR>", opts)
 		util.map("n", "<Leader>sb", ":Gitsigns stage_buffer<CR>", opts)
 		util.map("n", "<Leader>rb", ":Gitsigns reset_buffer<CR>", opts)
 		util.map("n", "<Leader>hp", ":Gitsigns preview_hunk<CR>", opts)
