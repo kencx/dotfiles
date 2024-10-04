@@ -1,27 +1,28 @@
 [submodule "dots/tmux/.config/tmux/plugins/tpm"]
-	path = dots/tmux/.config/tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm.git
+    path = dots/tmux/.config/tmux/plugins/tpm
+    url = https://github.com/tmux-plugins/tpm.git
 [submodule "dots/tmux/.config/tmux/plugins/extrakto"]
-	path = dots/tmux/.config/tmux/plugins/extrakto
-	url = https://github.com/laktak/extrakto.git
+    path = dots/tmux/.config/tmux/plugins/extrakto
+    url = https://github.com/laktak/extrakto.git
 [submodule "dots/tmux/.config/tmux/plugins/vim-tmux-navigator"]
-	path = dots/tmux/.config/tmux/plugins/vim-tmux-navigator
-	url = https://github.com/christoomey/vim-tmux-navigator.git
+    path = dots/tmux/.config/tmux/plugins/vim-tmux-navigator
+    url = https://github.com/christoomey/vim-tmux-navigator.git
 [submodule "dots/zsh/.config/zsh/plugins/forgit"]
-	path = dots/zsh/.config/zsh/plugins/forgit
-	url = https://github.com/wfxr/forgit.git
+    path = dots/zsh/.config/zsh/plugins/forgit
+    url = https://github.com/wfxr/forgit.git
 [submodule "dots/zsh/.config/zsh/plugins/zsh-vi-mode"]
-	path = dots/zsh/.config/zsh/plugins/zsh-vi-mode
-	url = https://github.com/jeffreytse/zsh-vi-mode.git
+    path = dots/zsh/.config/zsh/plugins/zsh-vi-mode
+    url = https://github.com/jeffreytse/zsh-vi-mode.git
 [submodule "bin/aura"]
-	path = bin/aura
-	url = git@github.com:kencx/aura.git
+    path = bin/aura
+    url = git@github.com:kencx/aura.git
+    branch = experimental/build-git
 [submodule "st"]
-	path = etc/st
-	url = https://github.com/kencx/st.git
+    path = etc/st
+    url = https://github.com/kencx/st.git
 [submodule "dots/zsh/.config/zsh/plugins/zsh-fzf-history-search"]
-	path = dots/zsh/.config/zsh/plugins/zsh-fzf-history-search
-	url = https://github.com/joshskidmore/zsh-fzf-history-search.git
+    path = dots/zsh/.config/zsh/plugins/zsh-fzf-history-search
+    url = https://github.com/joshskidmore/zsh-fzf-history-search.git
 [submodule "dots/zsh/.config/zsh/plugins/jq-zsh-plugin"]
-	path = dots/zsh/.config/zsh/plugins/jq-zsh-plugin
-	url = git@github.com:reegnz/jq-zsh-plugin
+    path = dots/zsh/.config/zsh/plugins/jq-zsh-plugin
+    url = git@github.com:reegnz/jq-zsh-plugin
