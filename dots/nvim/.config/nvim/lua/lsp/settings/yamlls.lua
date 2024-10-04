@@ -6,40 +6,38 @@ end
 local lspconfig_util = require("lspconfig/util")
 
 local schemas = {
-	["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+	["https://json.schemastore.org/github-workflow.json"] = ".github/workflows/*",
+	["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
+	["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "*gitlab-ci*.{yml,yaml}",
 	["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = {
-		"**/docker-compose.yml",
-		"**/docker-compose.yaml",
-		"**/docker-compose.*.yml",
-		"**/docker-compose.*.yaml",
+		"**/docker-compose.{yml,yaml}",
+		"**/docker-compose.*.{yml,yaml}",
 	},
 
 	-- cloud-config
 	["https://raw.githubusercontent.com/canonical/cloud-init/main/cloudinit/config/schemas/versions.schema.cloud-config.json"] = {
-		"user-data.yml",
-		"user-data.yaml",
+		"user-data.{yml,yaml}",
 		"cloud.cfg",
-		"cloudconfig.yaml",
-		"cloud-config.yaml",
-		"*.cloudconfig.yaml",
-		"*.cloud-config.yaml",
+		"cloudconfig.{yml,yaml}",
+		"cloud-config.{yml,yaml}",
+		"*.cloudconfig.{yml,yaml}",
+		"*.cloud-config.{yml,yaml}",
 	},
 
 	-- ansible
 	["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook"] = {
-		"playbook.yml",
-		"playbook.yaml",
-		"site.yml",
-		"site.yaml",
-		"**/playbooks/*.yml",
-		"**/playbooks/*.yaml",
+		"playbook.{yml,yaml}",
+		"site.{yml,yaml}",
+		"**/playbooks/*.{yml,yaml}",
 	},
 	["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks"] = {
-		"**/tasks/*.yml",
-		"**/tasks/*.yaml",
-		"**/handlers/*.yml",
-		"**/handlers/*.yaml",
+		"**/tasks/*.{yml,yaml}",
+		"**/handlers/*.{yml,yaml}",
 	},
+
+	-- k8s
+	kubernetes = {"**/helm/*.{yml,yaml}"},
+	["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
 }
 
 return {
