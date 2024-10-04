@@ -56,7 +56,9 @@ local sources = {
 		filetypes = { "hcl" },
 	}),
 
-	diagnostics.yamllint,
+	diagnostics.yamllint.with({
+		extra_args = { "-d", "{extends: default, rules: {document-start: disable}}" },
+	}),
 	-- diagnostics.ansiblelint,
 	-- diagnostics.actionlint,
 	-- diagnostics.hadolint,
