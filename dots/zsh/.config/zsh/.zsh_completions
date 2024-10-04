@@ -32,6 +32,10 @@ if [ -d "$HOME/dev/qmk" ]; then
     source "$HOME/dev/qmk/qmk_firmware/util/qmk_tab_complete.sh"
 fi
 
+# k8s autocomplete
+source <(helm completion zsh)
+source <(kubectl completion zsh)
+
 # source custom completion dir
 if [ -d "$ZDOTDIR/completions" ];then
     fpath+=($ZDOTDIR/completions)
