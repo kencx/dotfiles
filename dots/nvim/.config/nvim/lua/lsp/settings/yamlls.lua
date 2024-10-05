@@ -1,7 +1,4 @@
 local lspcontainers_ok, lspcontainers = pcall(require, "lspcontainers")
-if not lspcontainers_ok then
-	return
-end
 
 local lspconfig_util = require("lspconfig/util")
 
@@ -39,6 +36,23 @@ local schemas = {
 	kubernetes = {"**/helm/*.{yml,yaml}"},
 	["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
 }
+
+if not lspcontainers_ok then
+    return {
+        root_dir = lspconfig_util.root_pattern(".git", vim.fn.getcwd()),
+        settings = {
+            yaml = {
+                schemas = schemas,
+                validate = true,
+                format = {
+                    enabled = false,
+                },
+                completion = true,
+                hover = true,
+            },
+        },
+    }
+end
 
 return {
 	cmd = lspcontainers.command("yamlls", {

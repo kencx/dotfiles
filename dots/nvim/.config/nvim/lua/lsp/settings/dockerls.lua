@@ -1,9 +1,12 @@
 local lspcontainers_ok, lspcontainers = pcall(require, "lspcontainers")
-if not lspcontainers_ok then
-	return
-end
 
 local lspconfig_util = require("lspconfig/util")
+
+if not lspcontainers_ok then
+	return {
+        root_dir = lspconfig_util.root_pattern(".git", vim.fn.getcwd()),
+    }
+end
 
 return {
 	cmd = lspcontainers.command("dockerls"),

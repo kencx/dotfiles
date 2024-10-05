@@ -1,6 +1,8 @@
 local lspcontainers_ok, lspcontainers = pcall(require, "lspcontainers")
 if not lspcontainers_ok then
-	return
+	return {
+        filetypes = { "hcl", "tf", "terraform", "tfvars" },
+    }
 end
 
 return {
