@@ -32,8 +32,10 @@ export LESSHISTFILE=-
 # export MOZ_DISABLE_RDD_SANDBOX=1
 
 # direnv
-eval "$(direnv hook zsh)"
-export DIRENV_LOG_FORMAT=
+if ! [[ $(type -p direnv) ]]; then
+    eval "$(direnv hook zsh)"
+    export DIRENV_LOG_FORMAT=
+fi
 
 # rbenv
 if ! [[ $(type -p rbenv) ]]; then
@@ -41,9 +43,11 @@ if ! [[ $(type -p rbenv) ]]; then
 fi
 
 # zoxide
-export _ZO_DATA_DIR="$HOME/syncthing/sync/backups"
-export _ZO_EXCLUDE_DIR="$HOME/.env"
-eval "$(zoxide init zsh)"
+if ! [[ $(type -p zoxide) ]]; then
+    export _ZO_DATA_DIR="$HOME/syncthing/sync/backups"
+    export _ZO_EXCLUDE_DIR="$HOME/.env"
+    eval "$(zoxide init zsh)"
+fi
 
 # prompt
 if [[ -e "/usr/share/zsh/functions/Prompts/prompt_pure_setup" ]]; then
@@ -65,8 +69,10 @@ export PF_ASCII="arch"
 export FZF_DEFAULT_OPTS="--cycle --reverse --border=top --margin=1 --padding=0 --ansi --height=90%"
 
 # ssh-agent
-eval $(keychain --eval --quiet id_ed25519 id_github id_vps)
-[ -f $HOME/.keychain/$HOST-sh ] && . $HOME/.keychain/$HOST-sh 2>/dev/null
+if ! [[ $(type -p keychain) ]]; then
+    eval $(keychain --eval --quiet id_ed25519 id_github id_vps)
+    [ -f $HOME/.keychain/$HOST-sh ] && . $HOME/.keychain/$HOST-sh 2>/dev/null
+fi
 
 # bind shift=tab to backwards menu
 bindkey "\e[Z" reverse-menu-complete
