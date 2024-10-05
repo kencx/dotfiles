@@ -112,6 +112,21 @@ alias adoc='ansible-doc'
 alias ainv='ansible-inventory'
 alias aplay='ansible-playbook'
 
+# aws
+function awsctx {
+    profile=$1
+    if [[ -z "$profile" ]]; then
+        profile=$(aws configure list-profiles | fzf)
+    fi
+
+    if [[ -n "$profile" ]]; then
+        export AWS_PROFILE=$profile
+
+        # sso if not logged in
+        aws sts get-caller-identity || aws sso login
+    fi
+}
+
 # bitwarden
 alias bwu='export BW_SESSION="$(bw unlock --raw)"'
 alias bwl='export BW_SESSION='
