@@ -80,3 +80,7 @@ end
 
 util.autocmd_callback("update-lead", "OptionSet", { "listchars", "tabstop", "filetype" }, update_lead)
 vim.api.nvim_create_autocmd("VimEnter", { group = "update-lead", callback = update_lead, once = true })
+
+util.autocmd_callback("format-json", "BufRead", "*.json", function()
+	util.map("n", "<Leader>jq", ":%!jq<CR>", { noremap = true, silent = true })
+end)
