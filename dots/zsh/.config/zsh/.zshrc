@@ -31,19 +31,23 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export LESSHISTFILE=-
 # export MOZ_DISABLE_RDD_SANDBOX=1
 
+command_exists() {
+    type -p "$1" &> /dev/null
+}
+
 # direnv
-if ! [[ $(type -p direnv) ]]; then
+if command_exists direnv; then
     eval "$(direnv hook zsh)"
     export DIRENV_LOG_FORMAT=
 fi
 
 # rbenv
-if ! [[ $(type -p rbenv) ]]; then
+if command_exists rbenv; then
     eval "$(rbenv init - zsh)"
 fi
 
 # zoxide
-if ! [[ $(type -p zoxide) ]]; then
+if command_exists zoxide; then
     export _ZO_DATA_DIR="$HOME/syncthing/sync/backups"
     export _ZO_EXCLUDE_DIR="$HOME/.env"
     eval "$(zoxide init zsh)"
