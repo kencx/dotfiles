@@ -97,6 +97,7 @@ configs.setup({
 		"svelte",
 		"scss",
 		"templ",
+		"terraform",
 		"toml",
 		"typescript",
 		"vim",
