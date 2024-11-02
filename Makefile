@@ -30,4 +30,4 @@ remote:
 
 ## update: Update submodules
 update:
-	git submodule update --recursive --remote
+	git -c submodule."lib/tmux-test".update=none submodule update --recursive --remote
