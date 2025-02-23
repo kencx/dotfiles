@@ -15,5 +15,5 @@ lspconfig.yamlls.setup(vim.tbl_deep_extend("force", require("lsp.settings.yamlls
 lspconfig.solargraph.setup(vim.tbl_deep_extend("force", require("lsp.settings.solargraph"), defaults))
 lspconfig.svelte.setup(vim.tbl_deep_extend("force", require("lsp.settings.svelte"), defaults))
 lspconfig.templ.setup(vim.tbl_deep_extend("force", require("lsp.settings.templ"), defaults))
-lspconfig.tsserver.setup(vim.tbl_deep_extend("force", require("lsp.settings.tsserver"), defaults))
+-- lspconfig.tsserver.setup(vim.tbl_deep_extend("force", require("lsp.settings.tsserver"), defaults))
 lspconfig.hls.setup(vim.tbl_deep_extend("force", require("lsp.settings.hls"), defaults))
