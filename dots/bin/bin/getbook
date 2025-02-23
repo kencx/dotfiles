@@ -5,6 +5,8 @@
 set -euo pipefail
 
 DEST_DIR="$HOME/Downloads"
+SEARCHBOT="searchook"
+SEARCHBOT_PREFIX="SearchOok_*"
 NAME=$(openssl rand -base64 12)
 
 # https://github.com/evan-buss/openbooks/
@@ -26,17 +28,17 @@ case "$1" in
 esac
 
 # search book title
-openbooks cli --dir "$DEST_DIR" --name "$NAME" search "$1"
+openbooks cli --dir "$DEST_DIR" --name "$NAME" --searchbot "$SEARCHBOT" search "$1"
 
 # poll for results file
 while true; do
-    if ! (file "$DEST_DIR/SearchBot_*" | grep -q "compressed"); then
-        results=$(find "$DEST_DIR" -name "SearchBot_*")
+    if ! (file "$DEST_DIR/$SEARCHBOT_PREFIX" | grep -q "compressed"); then
+        results=$(find "$DEST_DIR" -name "$SEARCHBOT_PREFIX")
         break
     fi
 done
 
-results=$(find "$DEST_DIR" -name "SearchBot_*")
+results=$(find "$DEST_DIR" -name "$SEARCHBOT_PREFIX")
 selected=$(awk '/^!.*/ {print $0}' <"$results" | fzf)
 
 # strip metadata
@@ -46,7 +48,7 @@ stripped=$(echo "$selected" | awk '/^!.*/ { split($0, a, "::");
     print a[1] }')
 
 echo "Downloading $stripped"
-openbooks cli --dir "$DEST_DIR" --name "$NAME" download "$stripped"
+openbooks cli --dir "$DEST_DIR" --name "$NAME" --searchbot "$SEARCHBOT" download "$stripped"
 
 # rm results file
-find "$DEST_DIR" -name "SearchBot_*" -exec rm {} \;
+find "$DEST_DIR" -name "$SEARCHBOT_PREFIX" -exec rm {} \;
