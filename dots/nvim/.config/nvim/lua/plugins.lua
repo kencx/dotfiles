@@ -64,7 +64,8 @@ return require("lazy").setup({
 		event = "BufEnter",
 		dependencies = {
 			"lspcontainers/lspcontainers.nvim",
-			"jose-elias-alvarez/null-ls.nvim",
+			"nvimtools/none-ls.nvim",
+			"gbprod/none-ls-shellcheck.nvim",
 		},
 	},
 	{

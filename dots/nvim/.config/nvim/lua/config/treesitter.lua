@@ -94,6 +94,7 @@ configs.setup({
 		"java",
 		"javascript",
 		"json",
+		"make",
 		"markdown",
 		"markdown_inline",
 		"lua",

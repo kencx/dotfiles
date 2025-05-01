@@ -19,16 +19,14 @@ local code_actions = null_ls.builtins.code_actions
 local sources = {
 	-- lua
 	formatters.stylua,
-	diagnostics.luacheck.with({
-		extra_args = { "-g" },
-	}),
+	diagnostics.selene,
 
 	-- go
 	formatters.gofmt,
 	formatters.goimports,
 
 	-- bash
-	diagnostics.shellcheck.with({
+	require("none-ls-shellcheck.diagnostics").with({
 		extra_args = { "-o", "check-extra-masked-returns" },
 	}),
 	formatters.shfmt.with({

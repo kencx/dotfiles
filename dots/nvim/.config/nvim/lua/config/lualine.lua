@@ -5,7 +5,7 @@ end
 
 -- if lsp attached, show LSP
 local provider = function()
-	if next(vim.lsp.buf_get_clients()) ~= nil then
+	if next(vim.lsp.et_clients()) ~= nil then
 		return " LSP"
 	else
 		return ""
