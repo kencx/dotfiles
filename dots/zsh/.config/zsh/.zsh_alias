@@ -13,6 +13,7 @@ alias reloadz="source $HOME/.config/zsh/.zshrc"
 alias rmorphans="pacman -Qtdq | sudo pacman -Rns -"
 alias nr="nsxiv-rifle"
 alias k="kubectl"
+alias rg="rg --vimgrep"
 
 alias pbcopy="xclip -selection c"
 alias pbpaste="xclip -o -selection c"
