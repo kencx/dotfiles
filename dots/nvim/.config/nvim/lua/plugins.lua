@@ -50,16 +50,16 @@ return require("lazy").setup({
 		event = "InsertEnter",
 		dependencies = "kana/vim-textobj-user",
 	},
-	{
-		"pearofducks/ansible-vim",
-		lazy = true,
-		ft = { "yml", "yaml", "ansible.yaml", "ansible.yml" },
-	},
+	-- {
+	-- 	"pearofducks/ansible-vim",
+	-- 	lazy = true,
+	-- 	ft = { "yml", "yaml", "ansible.yaml", "ansible.yml" },
+	-- },
 
 	-- lsp support
 	{
 		"neovim/nvim-lspconfig",
-		version = "v1.6.0",
+		version = "v2.3.0",
 		lazy = true,
 		event = "BufEnter",
 		dependencies = {
