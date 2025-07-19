@@ -11,6 +11,7 @@ lspconfig.bashls.setup(vim.tbl_deep_extend("force", require("lsp.settings.bashls
 lspconfig.dockerls.setup(vim.tbl_deep_extend("force", require("lsp.settings.dockerls"), defaults))
 lspconfig.pylsp.setup(vim.tbl_deep_extend("force", require("lsp.settings.pythonls"), defaults))
 lspconfig.terraformls.setup(vim.tbl_deep_extend("force", require("lsp.settings.terraformls"), defaults))
+lspconfig.tflint.setup(vim.tbl_deep_extend("force", require("lsp.settings.tflint"), defaults))
 lspconfig.yamlls.setup(vim.tbl_deep_extend("force", require("lsp.settings.yamlls"), defaults))
 lspconfig.solargraph.setup(vim.tbl_deep_extend("force", require("lsp.settings.solargraph"), defaults))
 lspconfig.svelte.setup(vim.tbl_deep_extend("force", require("lsp.settings.svelte"), defaults))
