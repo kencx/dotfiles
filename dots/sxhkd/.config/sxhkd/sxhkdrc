@@ -29,7 +29,7 @@ super + shift + s
 
 # bluetooth menu
 super + shift + b
-    $HOME/.config/eww/bin/bluetooth --show-menu
+    st -c bluetui bluetui
 
 # wifi menu
 super + shift + c
