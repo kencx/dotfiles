@@ -90,7 +90,7 @@
 
 (defwidget bluetooth []
 	(eventbox :cursor "pointer"
-		(button :onclick `$(./bin/bluetooth)`
+		(button :onclick `$(st -c bluetui bluetui)`
 			(system :class "bluetooth"
 					:icon ""
 					:text {bluetooth_poll}
