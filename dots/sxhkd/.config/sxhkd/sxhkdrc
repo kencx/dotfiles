@@ -27,6 +27,10 @@ super + shift + s
 	scrot $HOME/Screenshots/%b%d-%H:%M:%S.png && \
 	notify-send "Screenshot taken"
 
+# wiremix
+super + shift + v
+    st -c wiremix wiremix
+
 # bluetooth menu
 super + shift + b
     st -c bluetui bluetui

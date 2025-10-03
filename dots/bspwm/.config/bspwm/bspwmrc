@@ -30,6 +30,7 @@ bspc rule -a tiled state=tiled focus=on
 bspc rule -a configs state=floating focus=on rectangle=760x700+620+200
 bspc rule -a keys state=floating focus=on rectangle=890x700+520+180
 bspc rule -a bluetui state=floating focus=on rectangle=890x700+520+180
+bspc rule -a wiremix state=floating focus=on rectangle=890x700+520+180
 
 bspc rule -a Firefox focus=on follow=on state=tiled
 bspc rule -a obsidian focus=off follow=off state=tiled
