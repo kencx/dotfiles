@@ -2,4 +2,4 @@
 
 # mount encrypted directories quickly
 
-gocryptfs "$HOME/syncthing/sync/encrypted" "$1"
+gocryptfs --allow_other "$HOME/syncthing/sync/encrypted" "$1"

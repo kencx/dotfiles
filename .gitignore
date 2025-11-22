@@ -2,3 +2,5 @@
 remote/vim/.vim/pack
 *.log
 .luarc.json
+
+!rsync-homedir-excludes.txt
