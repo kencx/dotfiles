@@ -1,0 +1,418 @@
+input {
+    keyboard {
+        xkb {
+            // You can set rules, model, layout, variant and options.
+            // For more information, see xkeyboard-config(7).
+
+            // For example:
+            // layout "us,ru"
+            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+
+            // If this section is empty, niri will fetch xkb settings
+            // from org.freedesktop.locale1. You can control these using
+            // localectl set-x11-keymap.
+        }
+
+        // Enable numlock on startup, omitting this setting disables it.
+        numlock
+    }
+
+    mouse {
+        // off
+        // natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+        // scroll-method "no-scroll"
+    }
+}
+
+output "HDMI-A-1" {
+    mode "1920x1080@120.030"
+    scale 1
+    transform "normal"
+    position x=1280 y=0
+}
+
+layout {
+    gaps 12
+    background-color "transparent"
+
+    // When to center a column when changing focus, options are:
+    // - "never", default behavior, focusing an off-screen column will keep at the left
+    //   or right edge of the screen.
+    // - "always", the focused column will always be centered.
+    // - "on-overflow", focusing a column will center it if it doesn't fit
+    //   together with the previously focused column.
+    center-focused-column "never"
+
+    // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
+    preset-column-widths {
+        // Proportion sets the width as a fraction of the output width, taking gaps into account.
+        // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
+        // The default preset widths are 1/3, 1/2 and 2/3 of the output.
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
+    // preset-window-heights { }
+
+    default-column-width { proportion 0.5; }
+    // If you leave the brackets empty, the windows themselves will decide their initial width.
+    // default-column-width {}
+
+    // By default focus ring and border are rendered as a solid background rectangle
+    // behind windows. That is, they will show up through semitransparent windows.
+    // This is because windows using client-side decorations can have an arbitrary shape.
+    //
+    // If you don't like that, you should uncomment `prefer-no-csd` below.
+    // Niri will draw focus ring and border *around* windows that agree to omit their
+    // client-side decorations.
+    //
+    // Alternatively, you can override it with a window rule called
+    // `draw-border-with-background`.
+
+    focus-ring {
+        off
+        width 1
+
+        // Colors can be set in a variety of ways:
+        // - CSS named colors: "red"
+        // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
+        // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
+
+        // Color of the ring on the active monitor.
+        active-color "#7fc8ff"
+
+        // Color of the ring on inactive monitors.
+        //
+        // The focus ring only draws around the active window, so the only place
+        // where you can see its inactive-color is on other monitors.
+        inactive-color "#505050"
+
+        // You can also use gradients. They take precedence over solid colors.
+        // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
+        // The angle is the same as in linear-gradient, and is optional,
+        // defaulting to 180 (top-to-bottom gradient).
+        // You can use any CSS linear-gradient tool on the web to set these up.
+        // Changing the color space is also supported, check the wiki for more info.
+        //
+        // active-gradient from="#80c8ff" to="#c7ff7f" angle=45
+
+        // You can also color the gradient relative to the entire view
+        // of the workspace, rather than relative to just the window itself.
+        // To do that, set relative-to="workspace-view".
+        //
+        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+    }
+
+    // shadow {
+    //     on
+    //     softness 25
+    //     spread 2
+    //     offset x=0 y=5
+    //     draw-behind-window true
+    // }
+
+    // padding
+    struts {
+        top 24
+    }
+}
+
+// startup processes
+spawn-at-startup "~/bin/launch-eww &"
+spawn-sh-at-startup "st tmux"
+spawn-sh-at-startup "sleep 5 && launch firefox"
+spawn-sh-at-startup "sleep 5 && launch obsidian"
+spawn-sh-at-startup "sleep 5 && launch Telegram"
+spawn-sh-at-startup "sway -m fit -i $HOME/dotfiles/img/jupiter.png"
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+
+gestures {
+    // disable overview gesture with mouse
+    hot-corners {
+        off
+    }
+}
+
+screenshot-path "~/Screenshots/%Y-%m-%d %H-%M-%S.png"
+
+// Uncomment this line to ask the clients to omit their client-side decorations if possible.
+// If the client will specifically ask for CSD, the request will be honored.
+// Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
+// This option will also fix border/focus ring drawing behind some semitransparent windows.
+// After enabling or disabling this, you need to restart the apps for this to take effect.
+prefer-no-csd
+
+
+animations {
+    // Uncomment to turn off all animations.
+    // off
+
+    // Slow down all animations by this factor. Values below 1 speed them up instead.
+    // slowdown 3.0
+}
+
+workspace "main"
+
+// set focus-ring for terminals only
+window-rule {
+    match app-id="St" is-focused=true
+    focus-ring {
+        on
+        width 2
+        active-color "#FFA066"
+    }
+}
+
+// open floating terminals outside of startup
+window-rule {
+    match title="st" at-startup=false
+    open-floating true
+    default-column-width { fixed 890; }
+    default-window-height { fixed 700; }
+    default-floating-position x=520 y=180 relative-to="top-left"
+}
+
+// startup window rules
+window-rule {
+    match title="st" at-startup=true
+    open-maximized false
+    open-on-workspace "dev"
+}
+
+window-rule {
+    match title="Firefox" at-startup=true
+    open-maximized true
+    open-on-workspace "main"
+    open-focused false
+}
+
+window-rule {
+    match title="Obsidian|TelegramDesktop" at-startup=true
+    open-maximized false
+    open-on-workspace "main"
+    open-focused false
+}
+
+// tui rules
+window-rule {
+    match title="(bluetui|wiremix|keyb)"
+    open-floating true
+    default-column-width { fixed 890; }
+    default-window-height { fixed 700; }
+    default-floating-position x=520 y=180 relative-to="top-left"
+    focus-ring {
+        off
+    }
+}
+
+window-rule {
+    // bspc rule -a btop -o desktop='VI' state=floating rectangle=1080x920+740+60 follow=off
+    // xdotool search -class btop >/dev/null || st -c btop btop
+    match title="btop"
+    default-column-width { fixed 890; }
+    default-window-height { fixed 700; }
+    default-floating-position x=520 y=180 relative-to="top-left"
+}
+
+// Open Firefox picture-in-picture player as floating by default.
+window-rule {
+    // This app-id regular expression will work for both:
+    // - host Firefox (app-id is "firefox")
+    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+window-rule {
+    match is-window-cast-target=true
+
+    focus-ring {
+        active-color "#f38ba8"
+    }
+}
+
+window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+
+    block-out-from "screen-capture"
+}
+
+// https://github.com/YaLTeR/niri/discussions/329
+// TODO scratchpads
+
+binds {
+    Mod+Return hotkey-overlay-title="st" { spawn "st"; }
+    Mod+t hotkey-overlay-title="telegram" { spawn "Telegram"; }
+
+    Mod+z hotkey-overlay-title="keyb" { spawn-sh "st keyb"; }
+    Mod+Shift+v hotkey-overlay-title="wiremix" { spawn-sh "st wiremix"; }
+    Mod+Shift+b hotkey-overlay-title="bluetui" { spawn-sh "st bluetui"; }
+    Mod+Shift+p hotkey-overlay-title=null { spawn-sh "eww open powermenu"; }
+    Mod+Shift+q hotkey-overlay-title=null { spawn-sh "eww close powermenu"; }
+    Mod+Shift+c { spawn-sh "$HOME/.config/eww/bin/iwd-rofi"; }
+
+    Mod+Space { spawn-sh "rofi -show drun -width -100"; }
+    Mod+Semicolon { spawn-sh "rofi -show window -width -100"; }
+    Mod+Shift+s { screenshot; }
+
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "pactl set-sink-volume @DEFAULT_SINK@ +1000"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "pactl set-sink-volume @DEFAULT_SINK@ -1000"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "pactl set-sink-mute @DEFAULT_SINK@ toggle"; }
+    // XF86AudioMicMute     allow-when-locked=true { spawn-sh "pactl set-source-mute
+    // @DEFAULT_SOURCE@ toggle"; }
+
+    XF86MonBrightnessUp allow-when-locked=true { spawn "xbacklight -inc 20"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "xbacklight -dec 20"; }
+
+    Mod+O repeat=false { toggle-overview; }
+    Mod+w repeat=false { close-window; }
+
+    Mod+h     { focus-column-left; }
+    Mod+j     { focus-window-down; }
+    Mod+k     { focus-window-up; }
+    Mod+l     { focus-column-right; }
+
+    Mod+Shift+h     { move-column-left; }
+    Mod+Shift+j     { move-window-down; }
+    Mod+Shift+k     { move-window-up; }
+    Mod+Shift+l     { move-column-right; }
+
+    Mod+g        { focus-column-first; }
+    Mod+Shift+g  { focus-column-last; }
+    Alt+g        { move-column-to-first; }
+    Alt+Shift+g  { move-column-to-last; }
+
+    Mod+BracketRight    { focus-workspace-down; }
+    Mod+BracketLeft     { focus-workspace-up; }
+
+    Mod+Shift+U         { move-workspace-down; }
+    Mod+Shift+I         { move-workspace-up; }
+
+    // You can refer to workspaces by index. However, keep in mind that
+    // niri is a dynamic workspace system, so these commands are kind of
+    // "best effort". Trying to refer to a workspace index bigger than
+    // the current workspace count will instead refer to the bottommost
+    // (empty) workspace.
+    //
+    // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
+    // will all refer to the 3rd workspace.
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Ctrl+9 { move-column-to-workspace 9; }
+
+    // # {focus, send node to} {1-6} desktop
+    // super + n : {_, super + } {1-6}
+    // 	bspc {desktop -f, node -d} '^{1-6}' --follow
+
+    // Alternatively, there are commands to move just a single window:
+    // Mod+Ctrl+1 { move-window-to-workspace 1; }
+
+    // Switches focus between the current and the previous workspace.
+    Mod+Tab { focus-workspace-previous; }
+
+    // The following binds move the focused window in and out of a column.
+    // If the window is alone, they will consume it into the nearby column to the side.
+    // If the window is already in a column, they will expel it out.
+    // Mod+BracketLeft  { consume-or-expel-window-left; }
+    // Mod+BracketRight { consume-or-expel-window-right; }
+
+    // Consume one window from the right to the bottom of the focused column.
+    // Mod+Comma  { consume-window-into-column; }
+    // Expel the bottom window from the focused column to the right.
+    // Mod+Period { expel-window-from-column; }
+
+    Mod+R { switch-preset-column-width; }
+    // Cycling through the presets in reverse order is also possible.
+    // Mod+R { switch-preset-column-width-back; }
+    // Mod+Shift+R { switch-preset-window-height; }
+    // Mod+Ctrl+R { reset-window-height; }
+    // Mod+F { maximize-column; }
+    // Mod+Shift+F { fullscreen-window; }
+
+    // Expand the focused column to space not taken up by other fully visible columns.
+    // Makes the column "fill the rest of the space".
+    Mod+Ctrl+F { expand-column-to-available-width; }
+
+    Mod+C { center-column; }
+
+    // Center all fully visible columns on screen.
+    Mod+Ctrl+C { center-visible-columns; }
+
+    // Finer width adjustments.
+    // This command can also:
+    // * set width in pixels: "1000"
+    // * adjust width in pixels: "-5" or "+5"
+    // * set width as a percentage of screen width: "25%"
+    // * adjust width as a percentage of screen width: "-10%" or "+10%"
+    // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
+    // set-column-width "100" will make the column occupy 200 physical screen pixels.
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+
+    // Finer height adjustments when in column with other windows.
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    // Move the focused window between the floating and the tiling layout.
+    Mod+s       { toggle-window-floating; }
+    // Mod+Shift+s { switch-focus-between-floating-and-tiling; }
+
+    // Toggle tabbed column display mode.
+    // Windows in this column will appear as vertical tabs,
+    // rather than stacked on top of each other.
+    // Mod+W { toggle-column-tabbed-display; }
+
+    // Actions to switch layouts.
+    // Note: if you uncomment these, make sure you do NOT have
+    // a matching layout switch hotkey configured in xkb options above.
+    // Having both at once on the same hotkey will break the switching,
+    // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
+    // Mod+Space       { switch-layout "next"; }
+    // Mod+Shift+Space { switch-layout "prev"; }
+
+    // Applications such as remote-desktop clients and software KVM switches may
+    // request that niri stops processing the keyboard shortcuts defined here
+    // so they may, for example, forward the key presses as-is to a remote machine.
+    // It's a good idea to bind an escape hatch to toggle the inhibitor,
+    // so a buggy application can't hold your session hostage.
+    //
+    // The allow-inhibiting=false property can be applied to other binds as well,
+    // which ensures niri always processes them, even when an inhibitor is active.
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    // The quit action will show a confirmation dialog to avoid accidental exits.
+    Mod+Shift+E { quit; }
+    // Ctrl+Alt+Delete { quit; }
+
+    // Powers off the monitors. To turn them back on, do any input like
+    // moving the mouse or pressing any other key.
+    Mod+Ctrl+P { power-off-monitors; }
+}
