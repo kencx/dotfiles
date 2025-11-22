@@ -146,5 +146,6 @@ function zvm_after_lazy_keybindings {
 
 # xorg
 if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]]; then
-   exec startx
+   # exec startx
+   exec niri --session
 fi

@@ -124,10 +124,10 @@ layout {
 // startup processes
 spawn-at-startup "~/bin/launch-eww &"
 spawn-sh-at-startup "st tmux"
-spawn-sh-at-startup "sleep 5 && launch firefox"
-spawn-sh-at-startup "sleep 5 && launch obsidian"
+spawn-sh-at-startup "swaybg -m fit -i $HOME/dotfiles/img/jupiter.png"
 spawn-sh-at-startup "sleep 5 && launch Telegram"
-spawn-sh-at-startup "sway -m fit -i $HOME/dotfiles/img/jupiter.png"
+spawn-sh-at-startup "sleep 5 && launch obsidian"
+spawn-sh-at-startup "sleep 5 && launch firefox"
 
 hotkey-overlay {
     skip-at-startup
@@ -135,6 +135,11 @@ hotkey-overlay {
 
 layer-rule {
     match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+
+layer-rule {
+    match namespace="eww"
     place-within-backdrop true
 }
 
@@ -354,7 +359,7 @@ binds {
     // Mod+R { switch-preset-column-width-back; }
     // Mod+Shift+R { switch-preset-window-height; }
     // Mod+Ctrl+R { reset-window-height; }
-    // Mod+F { maximize-column; }
+    Mod+F { maximize-column; }
     // Mod+Shift+F { fullscreen-window; }
 
     // Expand the focused column to space not taken up by other fully visible columns.

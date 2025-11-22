@@ -2,6 +2,6 @@
 
 eww kill
 
-eww daemon
+eww daemon --force-wayland
 eww open-many \
-	bar
+    bar
