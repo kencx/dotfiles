@@ -14,6 +14,7 @@ alias rmorphans="pacman -Qtdq | sudo pacman -Rns -"
 alias nr="nsxiv-rifle"
 alias k="kubectl"
 alias rg="rg --vimgrep"
+alias obsidian="obsidian --ozone-platform=wayland --enable-features=UseOzonePlatform"
 
 alias pbcopy="xclip -selection c"
 alias pbpaste="xclip -o -selection c"

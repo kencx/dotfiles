@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Obsidian
-Exec=obsidian %u
+Exec=obsidian --ozone-platform=wayland --enable-features=UseOzonePlatform %u
 Terminal=false
 Type=Application
 Categories=note

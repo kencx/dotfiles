@@ -25,15 +25,15 @@
 		:space-evenly false
 		:halign "start"
 		:spacing 30
-    (system :class "sxhkd"
-        :icon ""
-        :text {sxhkd_listen}
-        :visible true)
-	(workspaces)
+    ;; (system :class "sxhkd"
+    ;;     :icon ""
+    ;;     :text {sxhkd_listen}
+    ;;     :visible true)
+	;; (workspaces)
 	(music)))
 
-(defwidget workspaces []
-	(literal :content workspaces_listen))
+;; (defwidget workspaces []
+;; 	(literal :content workspaces_listen))
 
 (defwidget music []
 	(box :class "music"
@@ -129,11 +129,11 @@
                 :visible true))))
 
 ; variables
-(deflisten workspaces_listen
-	"./bin/workspaces")
+;; (deflisten workspaces_listen
+;; 	"./bin/workspaces")
 
-(deflisten sxhkd_listen :initial ""
-	"./bin/sxhkd-watcher")
+;; (deflisten sxhkd_listen :initial ""
+;; 	"./bin/sxhkd-watcher")
 
 (deflisten music :initial ""
 	"playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")

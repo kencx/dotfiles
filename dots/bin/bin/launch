@@ -1,3 +1,16 @@
 #!/usr/bin/env bash
 
-xdotool search -class "$1" >/dev/null || $1 &
+if [[ $XDG_SESSION_TYPE == "x11" ]]; then
+    xdotool search -class "$1" >/dev/null || $1 &
+
+elif [[ $XDG_SESSION_TYPE == "wayland" ]]; then
+    windows=$(niri msg --json windows)
+    selected_windows=$(echo "$windows" | jq --arg APPID "$1" '.[] | select(.app_id==$APPID)')
+
+    if [[ $(echo "$selected_windows" | jq '[.] | length') -eq 0 ]]; then
+        "$1" &
+    else
+        # focus first instance of existing window
+        niri msg action focus-window --id $(echo "$selected_windows" | jq '.id' | head -n 1)
+    fi
+fi
