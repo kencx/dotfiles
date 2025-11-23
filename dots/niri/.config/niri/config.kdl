@@ -76,11 +76,12 @@ layout {
 }
 
 // startup processes
-spawn-at-startup "~/bin/launch-eww &"
+spawn-sh-at-startup "eww daemon --force-wayland && eww open bar"
 spawn-sh-at-startup "st tmux"
 spawn-sh-at-startup "swaybg -m fit -i $HOME/dotfiles/img/jupiter.png"
 spawn-sh-at-startup "wlsunset -l 1.3 -L 103.9 -t 5000 -T 5700"
-spawn-sh-at-startup "launch Telegram && sleep 5 && launch obsidian && sleep 5 && launch firefox"
+spawn-sh-at-startup "launch Telegram && sleep 5 && launch obsidian --ozone-platform=wayland --enable-features=UseOzonePlatform && sleep 5 && launch firefox"
+spawn-sh-at-startup "st -c btop btop"
 
 hotkey-overlay {
     skip-at-startup
@@ -122,6 +123,7 @@ prefer-no-csd
 animations {}
 
 workspace "main"
+workspace "notes"
 workspace "misc"
 
 // set focus-ring for terminals only
@@ -154,14 +156,29 @@ window-rule {
     match title="Firefox" at-startup=true
     open-maximized true
     open-on-workspace "main"
+    open-focused true
+}
+
+window-rule {
+    match title="Obsidian" at-startup=true
+    open-maximized false
+    open-on-workspace "notes"
     open-focused false
 }
 
 window-rule {
-    match title="Obsidian|TelegramDesktop" at-startup=true
+    match title="Telegram" at-startup=true
     open-maximized false
     open-on-workspace "misc"
     open-focused false
+}
+
+window-rule {
+    match title="btop"
+    open-maximized false
+    open-floating false
+    open-focused false
+    open-on-workspace "misc"
 }
 
 // tui rules
@@ -176,14 +193,15 @@ window-rule {
     }
 }
 
-// TODO
 window-rule {
-    // bspc rule -a btop -o desktop='VI' state=floating rectangle=1080x920+740+60 follow=off
-    // xdotool search -class btop >/dev/null || st -c btop btop
-    match title="btop"
-    default-column-width { fixed 890; }
-    default-window-height { fixed 700; }
+    match app-id="pcmanfm"
+    open-floating true
+    default-column-width { fixed 690; }
+    default-window-height { fixed 600; }
     default-floating-position x=520 y=180 relative-to="top-left"
+    focus-ring {
+        off
+    }
 }
 
 // Open Firefox picture-in-picture player as floating by default.
@@ -264,6 +282,11 @@ binds {
     Mod+Shift+U         { move-workspace-down; }
     Mod+Shift+I         { move-workspace-up; }
 
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp   cooldown-ms=150 { focus-workspace-up; }
+    Mod+WheelScrollRight                { focus-column-right; }
+    Mod+WheelScrollLeft                 { focus-column-left; }
+
     // You can refer to workspaces by index. However, keep in mind that
     // niri is a dynamic workspace system, so these commands are kind of
     // "best effort". Trying to refer to a workspace index bigger than
@@ -332,12 +355,12 @@ binds {
     // * adjust width as a percentage of screen width: "-10%" or "+10%"
     // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
     // set-column-width "100" will make the column occupy 200 physical screen pixels.
-    Mod+Minus { set-column-width "-10%"; }
-    Mod+Equal { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-column-width "-10%"; }
+    Mod+Shift+Equal { set-column-width "+10%"; }
 
     // Finer height adjustments when in column with other windows.
-    Mod+Shift+Minus { set-window-height "-10%"; }
-    Mod+Shift+Equal { set-window-height "+10%"; }
+    Mod+Minus { set-window-height "-10%"; }
+    Mod+Equal { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
     Mod+s       { toggle-window-floating; }

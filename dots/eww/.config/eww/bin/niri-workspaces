@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# checks if list ($1) contains an element ($2)
+contains() {
+    for x in $1; do
+        [ "$x" == "$2" ] && echo 1 && return
+    done
+    echo 0
+}
+render_workspaces() {
+    out=""
+    while read -r ws; do
+        is_urgent="$(echo $ws | jq '[select(.is_urgent == true)] | length == 1')"
+        is_active="$(echo $ws | jq '[select(.is_active == true)] | length == 1')"
+        is_focused="$(echo $ws | jq '[select(.is_focused == true)] | length == 1')"
+
+        if [[ $is_urgent == true ]]; then
+            id="$(echo $ws | jq 'select(.is_urgent == true) | .id')"
+            icon=""
+            class="urgent"
+        elif [ $is_focused == true ]; then
+            id="$(echo $ws | jq 'select(.is_focused == true) | .id')"
+            icon=""
+            class="focused"
+        else
+            id="$(echo $ws | jq '.id')"
+            icon=""
+            class="empty"
+        fi
+
+        out="$out (box (button :class \"$class\" :onclick \"niri msg action focus-workspace '$id'\" \"$icon\"))"
+    done < <(niri msg --json workspaces | jq -c 'sort_by(.id) | .[]')
+
+    echo "(box :class \"workspaces\" :orientation \"h\" :halign \"start\" :space-evenly false :spacing 20 $out)"
+}
+
+niri msg --json event-stream | while read -r _; do
+    render_workspaces
+done

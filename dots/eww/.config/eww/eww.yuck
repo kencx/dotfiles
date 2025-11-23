@@ -29,11 +29,11 @@
     ;;     :icon ""
     ;;     :text {sxhkd_listen}
     ;;     :visible true)
-	;; (workspaces)
+	(workspaces)
 	(music)))
 
-;; (defwidget workspaces []
-;; 	(literal :content workspaces_listen))
+(defwidget workspaces []
+	(literal :content workspaces_listen))
 
 (defwidget music []
 	(box :class "music"
@@ -129,8 +129,8 @@
                 :visible true))))
 
 ; variables
-;; (deflisten workspaces_listen
-;; 	"./bin/workspaces")
+(deflisten workspaces_listen
+	"./bin/niri-workspaces")
 
 ;; (deflisten sxhkd_listen :initial ""
 ;; 	"./bin/sxhkd-watcher")
