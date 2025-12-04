@@ -66,6 +66,15 @@
                 :icon {battery_icon_poll}
                 :text {battery_poll}
                 :visible {battery_poll != "" ? true : false})
+		(system :class "temp"
+				:icon "󰍛"
+				:text "${round((EWW_TEMPS.IT8792_TEMP1 + EWW_TEMPS.IT8792_TEMP2 + EWW_TEMPS.IT8792_TEMP3)/3, 1)}°C"
+                :visible true
+                :tooltip "Core 1: ${EWW_TEMPS.IT8792_TEMP1}°C
+Core 2: ${EWW_TEMPS.IT8792_TEMP2}°C
+Core 3: ${EWW_TEMPS.IT8792_TEMP3}°C
+GPU Edge: ${EWW_TEMPS.AMDGPU_EDGE}°C
+GPU junction: ${EWW_TEMPS.AMDGPU_JUNCTION}°C")
 		(system :class "cpu"
 				:icon "󰍛"
 				:text "${round(EWW_CPU.avg, 0)}%"
@@ -80,12 +89,13 @@
 		(volume)
 		(power)))
 
-(defwidget system [icon ?class ?visible ?text]
+(defwidget system [icon ?class ?visible ?text ?tooltip]
 	(box :class "${class} system"
 		:orientation "h"
 		:halign "center"
 		:space-evenly false
 		:visible "${visible}"
+        :tooltip "${tooltip}"
 	(label :class "system_icon" :text "${icon} ${text}")
 	(children)))
 
