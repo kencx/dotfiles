@@ -1,22 +1,5 @@
 local M = {}
 
-M.setup = function()
-	-- disable virtual_text (inline) diagnostics and use floating window
-	vim.diagnostic.config({
-		virtual_text = false,
-		signs = true,
-		underline = true,
-		severity_sort = true,
-		float = {
-			border = "single",
-			focusable = false,
-			format = function(diagnostic)
-				return string.format("%s (%s)", diagnostic.message, diagnostic.source)
-			end,
-		},
-	})
-end
-
 local function attach_keymaps(bufnr)
 	local opts = { noremap = true, silent = true }
 	local function keymap(...)

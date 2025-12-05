@@ -5,15 +5,31 @@ end
 
 return {
 	cmd = lspcontainers.command("lua_ls"),
+	filetypes = { "lua" },
+	root_markers = {
+		".emmyrc.json",
+		".luarc.json",
+		".luarc.jsonc",
+		".luacheckrc",
+		".stylua.toml",
+		"stylua.toml",
+		"selene.toml",
+		"selene.yml",
+		".git",
+	},
 	settings = {
 		Lua = {
 			runtime = {
 				version = "LuaJIT",
 				path = "runtime_path",
 			},
+			hint = {
+				enable = true,
+				semicolon = "Disable",
+			},
 			diagnostics = {
-				-- recognize `vim` global
 				globals = { "vim" },
+				disable = { "missing-fields" },
 			},
 			workspace = {
 				-- make server aware of Neovim runtime files

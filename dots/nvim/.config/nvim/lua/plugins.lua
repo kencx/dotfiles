@@ -22,6 +22,13 @@ return require("lazy").setup({
 	},
 	"nvim-lua/plenary.nvim",
 
+	{
+		"nvzone/typr",
+		dependencies = "nvzone/volt",
+		opts = {},
+		cmd = { "Typr", "TyprStats" },
+	},
+
 	-- look
 	{ "romgrk/barbar.nvim", dependencies = "nvim-tree/nvim-web-devicons" },
 	{
@@ -59,7 +66,7 @@ return require("lazy").setup({
 	-- lsp support
 	{
 		"neovim/nvim-lspconfig",
-		version = "v2.3.0",
+		version = "v2.5.0",
 		lazy = true,
 		event = "BufEnter",
 		dependencies = {

@@ -33,25 +33,28 @@ local schemas = {
 	},
 
 	-- k8s
-	kubernetes = {"**/helm/*.{yml,yaml}"},
+	kubernetes = { "**/helm/*.{yml,yaml}" },
 	["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
 }
 
 if not lspcontainers_ok then
-    return {
-        root_dir = lspconfig_util.root_pattern(".git", vim.fn.getcwd()),
-        settings = {
-            yaml = {
-                schemas = schemas,
-                validate = true,
-                format = {
-                    enabled = false,
-                },
-                completion = true,
-                hover = true,
-            },
-        },
-    }
+	return {
+		root_dir = lspconfig_util.root_pattern(".git", vim.fn.getcwd()),
+		settings = {
+			redhat = {
+				telemetry = { enabled = false },
+			},
+			yaml = {
+				schemas = schemas,
+				validate = true,
+				format = {
+					enabled = false,
+				},
+				completion = true,
+				hover = true,
+			},
+		},
+	}
 end
 
 return {
@@ -63,5 +66,10 @@ return {
 		params.processId = vim.NIL
 	end,
 	root_dir = lspconfig_util.root_pattern(".git", vim.fn.getcwd()),
-	settings = { yaml = { schemas = schemas } },
+	settings = {
+		redhat = {
+			telemetry = { enabled = false },
+		},
+		yaml = { schemas = schemas },
+	},
 }

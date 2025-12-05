@@ -8,7 +8,10 @@ if not lspcontainers_ok then
 		single_file_support = true,
 		root_dir = lspconfig_util.root_pattern(".git", vim.fn.getcwd()),
 		settings = {
-			shellcheckArguments = "-o check-extra-masked-returns",
+			bashIde = {
+				globPattern = "*@(.sh|.inc|.bash|.command)",
+				shellcheckArguments = "-o check-extra-masked-returns",
+			},
 		},
 	}
 end
