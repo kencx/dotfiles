@@ -83,6 +83,7 @@ spawn-sh-at-startup "swaybg -m fit -i $HOME/dotfiles/img/jupiter.png"
 spawn-sh-at-startup "wlsunset -l 1.3 -L 103.9 -t 5000 -T 5700"
 spawn-sh-at-startup "launch Telegram && sleep 5 && launch obsidian --ozone-platform=wayland --enable-features=UseOzonePlatform && sleep 5 && launch firefox"
 spawn-sh-at-startup "st -c btop btop"
+spawn-sh-at-startup "swayidle -w timeout 900 'niri msg action power-off-monitors'"
 
 hotkey-overlay {
     skip-at-startup
