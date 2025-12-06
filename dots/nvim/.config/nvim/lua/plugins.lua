@@ -68,12 +68,28 @@ return require("lazy").setup({
 		"neovim/nvim-lspconfig",
 		version = "v2.5.0",
 		lazy = true,
-		event = "BufEnter",
+		event = { "BufEnter" },
 		dependencies = {
 			"lspcontainers/lspcontainers.nvim",
-			"nvimtools/none-ls.nvim",
-			"gbprod/none-ls-shellcheck.nvim",
 		},
+	},
+	{
+		"stevearc/conform.nvim",
+		version = "v9.1.0",
+		lazy = true,
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("config.conform")
+		end,
+	},
+	{
+		"mfussenegger/nvim-lint",
+		-- version = "v9.1.0",
+		lazy = true,
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("config.nvim-lint")
+		end,
 	},
 	{
 		"kosayoda/nvim-lightbulb",
@@ -127,7 +143,7 @@ return require("lazy").setup({
 	},
 	{
 		"nvim-telescope/telescope.nvim",
-		version = "0.1.8",
+		version = "0.2.0",
 		lazy = true,
 		keys = { "<leader>" },
 		config = function()

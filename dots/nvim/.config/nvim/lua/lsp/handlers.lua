@@ -51,9 +51,6 @@ M.on_attach = function(client, bufnr)
 	-- TODO
 	-- telescope code action picker with diff preview
 
-	-- autoformat
-	require("lsp.format").format_on_save(client, bufnr)
-
 	vim.o.updatetime = 250
 	vim.api.nvim_create_autocmd("CursorHold", {
 		pattern = "*",

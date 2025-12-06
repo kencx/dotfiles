@@ -1,5 +1,3 @@
-require("lsp.null-ls")
-
 -- disable virtual_text (inline) diagnostics and use floating window
 vim.diagnostic.config({
 	virtual_text = false,
