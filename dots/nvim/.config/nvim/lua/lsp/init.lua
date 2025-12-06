@@ -1,11 +1,13 @@
 -- disable virtual_text (inline) diagnostics and use floating window
 vim.diagnostic.config({
 	virtual_text = false,
+	virtual_lines = false,
 	signs = true,
 	underline = true,
 	severity_sort = true,
 	float = {
-		border = "single",
+		source = "if_many",
+		scope = "cursor",
 		format = function(diagnostic)
 			return string.format("%s (%s)", diagnostic.message, diagnostic.source)
 		end,

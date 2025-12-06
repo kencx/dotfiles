@@ -1,15 +1,27 @@
 local util = require("util")
 
-util.autocmd(
-	"highlightOnYank",
-	"TextYankPost",
-	"*",
-	"silent! lua vim.highlight.on_yank{higroup='IncSearch', timeout=700}"
-)
-util.autocmd("noNumberInTerminal", "TermOpen", "*", "setlocal nonumber norelativenumber")
+-- removes trailing whitespace on save
 util.autocmd("clearWhitespace", "BufWrite", "*", [[mark ' | silent! %s/\s\+$// | norm '']])
 util.autocmd("shTemplate", "BufNewFile", "*.sh", "0r ~/bin/templates/skeleton.sh")
 util.autocmd("composeTemplate", "BufNewFile", "docker-compose.yml", "0r ~/bin/templates/compose-skeleton.yml")
+util.autocmd("noNumberInTerminal", "TermOpen", "*", "setlocal nonumber norelativenumber")
+util.autocmd_callback("highlightOnYank", "TextYankPost", "*", function()
+	vim.highlight.on_yank({
+		higroup = "IncSearch",
+		timeout = 700,
+	})
+end)
+
+-- Close on "q"
+util.autocmd("closeOnQ", "FileType", {
+	"help",
+	"startuptime",
+	"qf",
+	"lspinfo",
+	"man",
+	"checkhealth",
+	"lazy",
+}, [[ nnoremap <buffer><silent> q :close<CR> nnoremap <buffer><silent> <ESC> :close<CR> set nobuflisted ]])
 
 local setFileGroup = vim.api.nvim_create_augroup("setFileType", { clear = true })
 local fileTypes = {

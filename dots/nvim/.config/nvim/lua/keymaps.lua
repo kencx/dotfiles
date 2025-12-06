@@ -53,6 +53,8 @@ bind("v", "<Leader>ex", [[:'<,'> d | new +put! " | b#<CR><CR>]], opts)
 -- toggle relativenumber
 bind("n", "<Leader>rnn", ":exec &rnu? 'se nornu!' : 'se rnu!'<CR>", opts)
 
+bind("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+
 -- bind("n", ";", ":", opts)
 
 -------------
