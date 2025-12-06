@@ -10,15 +10,20 @@ contains() {
 render_workspaces() {
     out=""
     while read -r ws; do
+        is_scratch="$(echo $ws | jq '[select(.name == "scratch")] | length == 1')"
         is_urgent="$(echo $ws | jq '[select(.is_urgent == true)] | length == 1')"
         is_active="$(echo $ws | jq '[select(.is_active == true)] | length == 1')"
         is_focused="$(echo $ws | jq '[select(.is_focused == true)] | length == 1')"
+
+        if [[ $is_scratch == true ]]; then
+            continue
+        fi
 
         if [[ $is_urgent == true ]]; then
             id="$(echo $ws | jq 'select(.is_urgent == true) | .id')"
             icon=""
             class="urgent"
-        elif [ $is_focused == true ]; then
+        elif [[ $is_focused == true ]]; then
             id="$(echo $ws | jq 'select(.is_focused == true) | .id')"
             icon=""
             class="focused"

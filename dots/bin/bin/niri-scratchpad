@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+SCRATCH_WIN_NAME="scratch"
+
+windows=$(niri msg -j windows | jq ".[] | select(.app_id == \"$SCRATCH_WIN_NAME\")")
+win_id=$(echo $windows | jq .id)
+
+if [[ -z $win_id ]]; then
+    notify-send -u critical 'Scratchpad Error' "There is no window id for: $SCRATCH_WIN_NAME" -t 5000
+    exit 1
+fi
+
+is_win_focused=$(echo $windows | jq .is_focused)
+
+if [[ $is_win_focused == "false" ]]; then
+    work_id=$(niri msg -j workspaces | jq '.[] | select(.is_focused == true)' | jq .idx)
+    niri msg action move-window-to-workspace --window-id $win_id $work_id
+    niri msg action move-window-to-floating --id $win_id
+    niri msg action focus-window --id $win_id
+else
+    niri msg action move-window-to-workspace --window-id $win_id "scratch" --focus=false
+    niri msg action move-window-to-tiling --id $win_id
+fi

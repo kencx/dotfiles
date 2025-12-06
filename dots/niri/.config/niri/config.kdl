@@ -77,6 +77,7 @@ layout {
 
 // startup processes
 spawn-sh-at-startup "eww daemon --force-wayland && eww open bar"
+spawn-sh-at-startup "st -c scratch"
 spawn-sh-at-startup "st tmux"
 spawn-sh-at-startup "swaybg -m fit -i $HOME/dotfiles/img/jupiter.png"
 spawn-sh-at-startup "wlsunset -l 1.3 -L 103.9 -t 5000 -T 5700"
@@ -125,6 +126,7 @@ animations {}
 workspace "main"
 workspace "notes"
 workspace "misc"
+workspace "scratch"
 
 // set focus-ring for terminals only
 window-rule {
@@ -229,12 +231,17 @@ window-rule {
     block-out-from "screen-capture"
 }
 
-// https://github.com/YaLTeR/niri/discussions/329
-// TODO scratchpads
+// scratchpad
+window-rule {
+    match app-id="scratch"
+    open-on-workspace "scratch"
+    open-floating true
+}
 
 binds {
     Mod+Return hotkey-overlay-title="st" { spawn "st"; }
     Mod+shift+t hotkey-overlay-title="telegram" { spawn-sh "launch Telegram"; }
+    Mod+u { spawn "niri-scratchpad"; }
 
     Mod+Slash hotkey-overlay-title="keyb" { spawn-sh "st keyb"; }
     Mod+z hotkey-overlay-title="configs" { spawn-sh "st $HOME/bin/configs"; }
