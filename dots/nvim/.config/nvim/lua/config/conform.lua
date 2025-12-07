@@ -5,17 +5,13 @@ end
 
 configs.setup({
 	formatters_by_ft = {
+		sh = { "shfmt" },
 		bash = { "shfmt" },
 		go = { "gofmt", "goimports" },
 		lua = { "stylua" },
-		python = { "isort", "black" },
+		python = { "ruff_format", "ruff_organize_imports" },
 		hcl = { "packer_fmt", "terraform_fmt" },
 		markdown = { "codespell" },
-	},
-	formatters = {
-		isort = {
-			args = { "--profile", "black" },
-		},
 	},
 	format_on_save = {
 		lsp_format = "fallback",
