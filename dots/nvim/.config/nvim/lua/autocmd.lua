@@ -26,7 +26,7 @@ util.autocmd("closeOnQ", "FileType", {
 local setFileGroup = vim.api.nvim_create_augroup("setFileType", { clear = true })
 local fileTypes = {
 	hcl = {
-		pattern = { "*.nomad", "*.tf", "*.tfvars" },
+		pattern = { "*.nomad", "*.tfvars" },
 		command = "set ft=hcl",
 	},
 	gomod = {
@@ -95,4 +95,13 @@ vim.api.nvim_create_autocmd("VimEnter", { group = "update-lead", callback = upda
 
 util.autocmd_callback("format-json", "BufRead", "*.json", function()
 	util.map("n", "<Leader>jq", ":%!jq<CR>", { noremap = true, silent = true })
+end)
+
+util.autocmd_callback("setLspFold", "LspAttach", "*", function(args)
+	local client = vim.lsp.get_client_by_id(args.data.client_id)
+	if client and client:supports_method("textDocument/foldingRange") then
+		local win = vim.api.nvim_get_current_win()
+		vim.wo[win][0].foldmethod = "expr"
+		vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
+	end
 end)

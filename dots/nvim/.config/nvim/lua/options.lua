@@ -32,6 +32,7 @@ set.listchars = {
 	tab = "⦙ ",
 }
 
+set.foldenable = true
 set.foldmethod = "indent"
 vim.cmd("set nofoldenable")
 set.foldlevel = 99
