@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+INTERFACE="wg0"
+
+help() {
+    cat <<EOF
+usage: $(basename $0) [on|off] [NUMBER]
+EOF
+}
+
+STATUS="$(networkctl status $INTERFACE --json=short --no-pager | jq -r '.OnlineState')"
+
+start() {
+    if [[ "$STATUS" == "offline" ]]; then
+        sudo networkctl up wg0
+        echo "$INTERFACE is up"
+    elif [[ "$STATUS" == "online" ]]; then
+        echo "$INTERFACE is already up"
+    else
+        echo "ERR: $INTERFACE in invalid state"
+    fi
+}
+
+stop() {
+    local time=""
+
+    if [[ "$STATUS" == "offline" ]]; then
+        echo "$INTERFACE is already down"
+    elif [[ "$STATUS" == "online" ]]; then
+        sudo networkctl down wg0
+        echo "$INTERFACE is down"
+    else
+        echo "ERR: $INTERFACE in invalid state"
+    fi
+
+    if [[ $# -gt 0 ]]; then
+        time=$*
+        echo "Starting $INTERFACE in $time"
+        sleep "$time"
+        start
+    fi
+}
+
+flags=${1:-}
+
+case $flags in
+"on")
+    start
+    ;;
+"off")
+    shift
+    stop "$@"
+    ;;
+"" | *)
+    help
+    exit 1
+    ;;
+esac
