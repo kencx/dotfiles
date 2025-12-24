@@ -39,6 +39,7 @@ stop() {
         time=$*
         echo "Starting $INTERFACE in $time"
         sleep "$time"
+        STATUS="$(networkctl status $INTERFACE --json=short --no-pager | jq -r '.OnlineState')"
         start
     fi
 }
