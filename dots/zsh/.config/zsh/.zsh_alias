@@ -135,9 +135,6 @@ alias bwl='export BW_SESSION='
 
 alias obs="glow -l $HOME/syncthing/sync/obsidian"
 
-alias wgon="sudo networkctl up wg0"
-alias wgoff="sudo networkctl down wg0"
-
 function zd {
     select=$(fd . "$HOME/dev" --type d --max-depth=1 | fzf)
     if [[ -n "$select" ]]; then
