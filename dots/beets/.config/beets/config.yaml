@@ -1,0 +1,5 @@
+directory: ~/syncthing/sync/music
+library: ~/syncthing/sync/music/beets.db
+
+import:
+  incremental: yes
