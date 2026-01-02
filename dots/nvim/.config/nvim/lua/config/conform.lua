@@ -12,6 +12,7 @@ configs.setup({
 		python = { "ruff_format", "ruff_organize_imports" },
 		hcl = { "packer_fmt", "terraform_fmt" },
 		markdown = { "codespell" },
+		templ = { "templ" },
 	},
 	format_on_save = {
 		lsp_format = "fallback",

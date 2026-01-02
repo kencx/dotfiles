@@ -23,35 +23,6 @@ util.autocmd("closeOnQ", "FileType", {
 	"lazy",
 }, [[ nnoremap <buffer><silent> q :close<CR> nnoremap <buffer><silent> <ESC> :close<CR> set nobuflisted ]])
 
-local setFileGroup = vim.api.nvim_create_augroup("setFileType", { clear = true })
-local fileTypes = {
-	hcl = {
-		pattern = { "*.nomad", "*.tfvars" },
-		command = "set ft=hcl",
-	},
-	gomod = {
-		pattern = { "go.mod" },
-		command = "set ft=gomod",
-	},
-	-- set ansible filetype for additional files
-	ansible = {
-		pattern = { "*/playbooks/*.yml", "*/playbooks/*.yaml" },
-		command = "set ft=yaml.ansible",
-	},
-	templ = {
-		pattern = { "*.templ" },
-		command = "set ft=templ",
-	},
-}
-
-for _, type in pairs(fileTypes) do
-	vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-		pattern = type.pattern,
-		group = setFileGroup,
-		command = type.command,
-	})
-end
-
 -- auto fstrings
 util.autocmd_callback("python-fstring", "InsertCharPre", "*.py", function()
 	if vim.v.char ~= "{" then

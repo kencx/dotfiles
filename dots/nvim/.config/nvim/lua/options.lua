@@ -82,3 +82,19 @@ vim.wo.colorcolumn = "99999" -- fixes highlighting bug with indent_blankline
 vim.g.tmux_navigator_disable_when_zoomed = 1
 
 vim.o.winborder = "single"
+
+-- filetypes
+vim.filetype.add({
+	extension = {
+		templ = "templ",
+		["nomad"] = "hcl",
+		["tfvars"] = "hcl",
+	},
+	filename = {
+		["go.mod"] = "gomod",
+	},
+	pattern = {
+		[".*/playbooks/.*%.yml"] = "yaml.ansible",
+		[".*/playbooks/.*%.yaml"] = "yaml.ansible",
+	},
+})
