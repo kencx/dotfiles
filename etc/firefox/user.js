@@ -90,7 +90,18 @@ user_pref("media.videocontrols.picture-in-picture.enabled", false);
 user_pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false);
 user_pref("full-screen-api.warning.timeout", 0);
 
-user_pref("browser.ml.chat.enabled", false)
+user_pref("browser.ml.enable", false);
+user_pref("browser.ml.chat.enabled", false);
+user_pref("browser.ml.chat.menu", false);
+user_pref("browser.ml.chat.page", false);
+user_pref("browser.ml.chat.page.footerBadge", false);
+user_pref("browser.ml.chat.page.menuBadge", false);
+user_pref("browser.ml.linkPreview.enabled", false);
+user_pref("browser.ml.pageAssist.enabled", false);
+user_pref("browser.tabs.groups.smart.enabled", false);
+user_pref("browser.tabs.groups.smart.userEnabled", false);
+user_pref("extensions.ml.enabled", false);
+user_pref("browser.search.visualSearch.featureGate", false);
 
 // user_pref("browser.startup.page", 3);
 // user_pref("browser.startup.homepage", "file:///home/kenc/.mozilla/startpage/index.html");
