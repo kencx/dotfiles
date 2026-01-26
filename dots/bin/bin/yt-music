@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+yt-dlp --no-playlist -x --audio-format mp3 --output "$HOME/Downloads/beets-import/%(title)s.%(ext)s" "$1"
