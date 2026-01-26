@@ -1,6 +1,10 @@
 directory: ~/syncthing/sync/music
 library: ~/syncthing/sync/music/beets.db
 
+plugins:
+  - musicbrainz
+  - fetchart
+
 import:
   incremental: yes
 
