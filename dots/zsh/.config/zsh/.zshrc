@@ -58,7 +58,7 @@ if [[ -e "/usr/share/zsh/functions/Prompts/prompt_pure_setup" ]]; then
     # pure
     autoload -U promptinit; promptinit
     prompt pure
-    PROMPT='%(?.%F{magenta}❯.%F{red}[%?] ❯)%f '
+    PROMPT='%(?.%F{magenta}.%F{red}[%?] )%f'$PROMPT
 else
     # default
     PS1='%F{blue}%~ %(?.%F{green}.%F{red}[%?])%#%f '
