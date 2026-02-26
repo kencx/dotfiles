@@ -41,7 +41,9 @@ if command_exists kubectl; then
 fi
 
 # aws autocomplete
-complete -C '/usr/bin/aws_completer' aws
+if command_exists aws; then
+    complete -C '/usr/bin/aws_completer' aws
+fi
 
 # source custom completion dir
 if [ -d "$ZDOTDIR/completions" ];then
