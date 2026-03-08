@@ -8,4 +8,4 @@
 // @grant         none
 // ==/UserScript==
 
-window.location.replace("https://l.opnxng.com/" + window.location.pathname + window.location.search);
+window.location.replace("https://redlib.catsarch.com/" + window.location.pathname + window.location.search);
