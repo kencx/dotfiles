@@ -1,77 +1,79 @@
-- name: bspwm
+- name: niri
   keybinds:
-    - name: float terminal
+    - name: terminal
       key: super + Return
-    - name: tiled terminal
-      key: super + shift + Return
     - name: program launcher
       key: super + space
-    - name: Show windows
+    - name: show windows
       key: super + semicolon
     - name: telegram
-      key: super + t
+      key: super + shift + t
     - name: Wifi
       key: super + shift + c
     - name: Bluetooth
       key: super + shift + b
     - name: Screenshot
       key: super + shift + s
-    - name: reload sxhkd
-      key: super + Escape
-    - name: '{quit, escape} bspwm'
-      key: super + alt + {q,r}
-    - name: '{close, kill} window'
-      key: super + {_, shift +} w
+    - name: close window
+      key: super + w
+    - name: toggle niri overlay
+      key: super + o
+    - name: exit niri
+      key: super + shift + e
+    - name: power off monitor
+      key: super + ctrl + p
+
+- name: niri (nodes)
+  keybinds:
     - name: toggle tiled and floating layout
       key: super + s
-    - name: set node to {pseudo_tiled, fullscreen}
-      key: super + shift + {t, f}
-    - name: toggle node to {locked, sticky}
-      key: super + ctrl + {l, s}
+    - name: Switch focus tiled and floating node
+      key: super + shift + ;
     - name: focus node in direction
       key: super + h,j,k,l
+    - name: move node in direction
+      key: super + shift + h,j,k,l
     - name: focus {prev, next} node
       key: super + (, )
-    - name: focus {next, prev} desktop
+    - name: focus {first, last} column
+      key: super + {g, shift + g}
+    - name: move to {first, last} column
+      key: alt + {g, shift + g}
+    - name: consume/expel window {left, right}
+      key: super + {comma , period}
+    - name: toggle tabbed column display
+      key: super + t
+
+- name: niri (node width)
+  keybinds:
+    - name: switch preset column width (33%, 50%, 66%)
+      key: super + r
+    - name: maximize column
+      key: super + f
+    - name: fullscreen node
+      key: super + shift + f
+    - name: expand node to remaining space
+      key: super + ctrl + f
+    - name: center column
+      key: super + c
+    - name: "{inc, dec} node width"
+      key: "super + shift + {minus, equals}"
+
+- name: niri (workspaces)
+  keybinds:
+    - name: focus {next, prev} workspace
       key: super + [, ]
-- name: bspwm (node mode)
-  prefix: super + n
-  keybinds:
-    - name: hide current window
-      key: super + h
-    - name: unhide window menu
-      key: super + shift + h
-    - name: toggle hide all windows in focused desktop
-      key: super + ctrl + h
-    - name: swap current node and biggest node
-      key: super + g
-    - name: rotate nodes {CW, ACW}
-      key: super + {q, e}
-    - name: flip nodes {vertical, horizontal}
-      key: super + {_, shift + } f
-    - name: focus or send to desktop {1-5}
-      key: '{_, super +} 1-5'
-- name: bspwm (preselect)
-  prefix: super + p
-  keybinds:
-    - name: preselect direction
-      key: super + {h,j,k,l}
-    - name: cancel preselection for focused node
-      key: super + space
-    - name: move window to chosen preselection
-      key: super + shift + m
-      ignore_prefix: true
-- name: bspwm (move, resize)
-  prefix: super + e
-  keybinds:
-    - name: expand window
-      key: '{h,j,k,l}'
-    - name: contract window
-      key: shift + {h,j,k,l}
-    - name: move floating window
-      key: '{←,↓,↑,→}'
-    - name: Equalize
-      key: super + e
+    - name: focus {n} workspace
+      key: super + {n}
+    - name: focus last workspace
+      key: super + tab
+    - name: move node to {n} workspace
+      key: super + ctrl + {n}
+    - name: reorder workspace {up, down}
+      key: super + shift + {i, u}
+    - name: move node to {next, prev} workspace
+      key: super + ctrl + {j, k}
+
 - name: tmux (copy)
   prefix: ctrl + a
   keybinds:
@@ -83,8 +85,11 @@
     - name: Copy highlighted selection
       key: ctrl + w
       ignore_prefix: true
+    - name: Extrakto
+      key: 'tab'
     - name: Paste
       key: ']'
+
 - name: tmux (panes)
   prefix: ctrl + a
   keybinds:
@@ -108,6 +113,7 @@
       key: Space
     - name: Resize pane
       key: ctrl + {←,↓,↑,→}
+
 - name: tmux (windows)
   prefix: ctrl + a
   keybinds:
@@ -131,6 +137,7 @@
       key: ">"
     - name: Shift window right
       key: "<"
+
 - name: nvim
   prefix: space
   keybinds:
@@ -142,6 +149,7 @@
       key: wl
     - name: colorizer toggle
       key: cc
+
 - name: nvim splits
   prefix: ctrl + w
   keybinds:
@@ -155,6 +163,7 @@
       key: q
     - name: close all other splits
       key: o
+
 - name: nvim telescope
   keybinds:
     - name: Enter insert mode
