@@ -85,7 +85,7 @@ spawn-sh-at-startup "sleep 3 && obsidian --ozone-platform=wayland --enable-featu
 spawn-sh-at-startup "Telegram"
 spawn-sh-at-startup "sleep 3 && firefox"
 spawn-sh-at-startup "st -c btop btop"
-spawn-sh-at-startup "swayidle -w timeout 900 'niri msg action power-off-monitors' resume 'eww reload'"
+// spawn-sh-at-startup "swayidle -w timeout 900 'niri msg action power-off-monitors' resume 'eww reload'"
 
 hotkey-overlay {
     skip-at-startup
