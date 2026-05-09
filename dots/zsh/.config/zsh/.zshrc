@@ -22,6 +22,7 @@ setopt hist_verify           # do not execute on history expansion
 export PATH="$HOME/.ghcup/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 
 export TERM="screen-256color"
 export EDITOR="nvim"
