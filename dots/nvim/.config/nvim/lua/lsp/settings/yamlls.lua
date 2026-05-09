@@ -1,5 +1,3 @@
-local lspcontainers_ok, lspcontainers = pcall(require, "lspcontainers")
-
 local lspconfig_util = require("lspconfig/util")
 
 local schemas = {
@@ -37,39 +35,20 @@ local schemas = {
 	["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
 }
 
-if not lspcontainers_ok then
-	return {
-		root_dir = lspconfig_util.root_pattern(".git", vim.fn.getcwd()),
-		settings = {
-			redhat = {
-				telemetry = { enabled = false },
-			},
-			yaml = {
-				schemas = schemas,
-				validate = true,
-				format = {
-					enabled = false,
-				},
-				completion = true,
-				hover = true,
-			},
-		},
-	}
-end
-
 return {
-	cmd = lspcontainers.command("yamlls", {
-		-- requires network access to access yaml schemas
-		network = "host",
-	}),
-	before_init = function(params)
-		params.processId = vim.NIL
-	end,
 	root_dir = lspconfig_util.root_pattern(".git", vim.fn.getcwd()),
 	settings = {
 		redhat = {
 			telemetry = { enabled = false },
 		},
-		yaml = { schemas = schemas },
+		yaml = {
+			schemas = schemas,
+			validate = true,
+			format = {
+				enabled = false,
+			},
+			completion = true,
+			hover = true,
+		},
 	},
 }

@@ -27,7 +27,7 @@ M.autocmd_callback = function(group_name, event, pattern, callback)
 end
 
 path.join = function(...)
-	return vim.fs.normalize(table.concat(vim.tbl_flatten({ ... }), "/"))
+	return vim.fs.normalize(table.concat({ ... }, "/"))
 end
 
 path.cwd = function()

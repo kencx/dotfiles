@@ -22,13 +22,6 @@ return require("lazy").setup({
 	},
 	"nvim-lua/plenary.nvim",
 
-	{
-		"nvzone/typr",
-		dependencies = "nvzone/volt",
-		opts = {},
-		cmd = { "Typr", "TyprStats" },
-	},
-
 	-- look
 	{ "romgrk/barbar.nvim", dependencies = "nvim-tree/nvim-web-devicons" },
 	{
@@ -57,16 +50,11 @@ return require("lazy").setup({
 		event = "InsertEnter",
 		dependencies = "kana/vim-textobj-user",
 	},
-	-- {
-	-- 	"pearofducks/ansible-vim",
-	-- 	lazy = true,
-	-- 	ft = { "yml", "yaml", "ansible.yaml", "ansible.yml" },
-	-- },
 
 	-- lsp support
 	{
 		"neovim/nvim-lspconfig",
-		version = "v2.5.0",
+		version = "v2.9.0",
 		lazy = true,
 		event = { "BufEnter" },
 		dependencies = {
@@ -84,7 +72,6 @@ return require("lazy").setup({
 	},
 	{
 		"mfussenegger/nvim-lint",
-		-- version = "v9.1.0",
 		lazy = true,
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
@@ -213,38 +200,49 @@ return require("lazy").setup({
 
 	-- tools
 	-- markdown previewer
-	{
-		"iamcco/markdown-preview.nvim",
-		build = function()
-			vim.fn["mkdp#util#install"]()
-		end,
-		init = function()
-			vim.g.mkdp_filetypes = { "markdown" }
-		end,
-		event = "BufEnter *.md",
-		ft = "markdown",
-		config = function()
-			require("config.markdown_preview")
-		end,
-	},
+	-- {
+	-- 	"iamcco/markdown-preview.nvim",
+	-- 	build = function()
+	-- 		vim.fn["mkdp#util#install"]()
+	-- 	end,
+	-- 	init = function()
+	-- 		vim.g.mkdp_filetypes = { "markdown" }
+	-- 	end,
+	-- 	event = "BufEnter *.md",
+	-- 	ft = "markdown",
+	-- 	config = function()
+	-- 		require("config.markdown_preview")
+	-- 	end,
+	-- },
 	-- obsidian
-	{
-		"epwalsh/obsidian.nvim",
-		config = function()
-			require("config.obsidian-nvim")
-		end,
-		cmd = { "ObsidianSearch", "ObsidianFollowLink" },
-	},
+	-- {
+	-- 	"epwalsh/obsidian.nvim",
+	-- 	config = function()
+	-- 		require("config.obsidian-nvim")
+	-- 	end,
+	-- 	cmd = { "ObsidianSearch", "ObsidianFollowLink" },
+	-- },
 
 	--{
 	--	"hkupty/iron.nvim",
 	--	version = "v3.0",
 	--	cmd = "IronRepl",
 	--},
-	{
-		"stevearc/oil.nvim",
-		config = function()
-			require("config.oil")
-		end,
-	},
+	-- {
+	-- 	"stevearc/oil.nvim",
+	-- 	config = function()
+	-- 		require("config.oil")
+	-- 	end,
+	-- },
+	-- {
+	-- 	"pearofducks/ansible-vim",
+	-- 	lazy = true,
+	-- 	ft = { "yml", "yaml", "ansible.yaml", "ansible.yml" },
+	-- },
+	-- {
+	-- 	"nvzone/typr",
+	-- 	dependencies = "nvzone/volt",
+	-- 	opts = {},
+	-- 	cmd = { "Typr", "TyprStats" },
+	-- },
 })

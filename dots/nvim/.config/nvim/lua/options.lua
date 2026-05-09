@@ -88,7 +88,7 @@ vim.filetype.add({
 	extension = {
 		templ = "templ",
 		["nomad"] = "hcl",
-		["tfvars"] = "hcl",
+		-- ["tfvars"] = "hcl",
 	},
 	filename = {
 		["go.mod"] = "gomod",

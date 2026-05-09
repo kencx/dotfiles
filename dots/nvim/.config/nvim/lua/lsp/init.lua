@@ -25,14 +25,14 @@ local servers = {
 	bashls = require("lsp.settings.bashls"),
 	dockerls = require("lsp.settings.dockerls"),
 	pylsp = require("lsp.settings.pythonls"),
+	hls = require("lsp.settings.hls"),
 	terraformls = require("lsp.settings.terraformls"),
 	tflint = require("lsp.settings.tflint"),
 	yamlls = require("lsp.settings.yamlls"),
 	-- solargraph = require("lsp.settings.solargraph"),
-	svelte = require("lsp.settings.svelte"),
-	templ = require("lsp.settings.templ"),
+	-- svelte = require("lsp.settings.svelte"),
 	-- tsserver = require("lsp.settings.tsserver"),
-	hls = require("lsp.settings.hls"),
+	-- templ = require("lsp.settings.templ"),
 }
 
 for server, settings in pairs(servers) do

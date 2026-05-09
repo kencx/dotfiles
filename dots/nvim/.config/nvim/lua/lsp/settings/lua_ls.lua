@@ -1,10 +1,5 @@
-local lspcontainers_ok, lspcontainers = pcall(require, "lspcontainers")
-if not lspcontainers_ok then
-	return
-end
-
 return {
-	cmd = lspcontainers.command("lua_ls"),
+	cmd = { "lua_ls" },
 	filetypes = { "lua" },
 	root_markers = {
 		".emmyrc.json",
