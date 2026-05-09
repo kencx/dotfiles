@@ -4,6 +4,7 @@ user_pref("browser.aboutConfig.showWarning", false);
 user_pref("extensions.pocket.enabled", false);
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);
 user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
+user_pref("browser.newtabpage.activity-stream.showSponsoredCheckboxes", false);
 
 // This does not block you from adding your own
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
@@ -46,6 +47,28 @@ user_pref("dom.private-attribution.submission.enabled", false);
 user_pref("breakpad.reportURL", "");
 user_pref("browser.tabs.crashReporting.sendReport", false);
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false);
+
+// captive portal detection
+user_pref("captivedetect.canonicalURL", "");
+user_pref("network.captive-portal-service.enabled", false);
+user_pref("network.connectivity-service.enabled", false);
+
+// prefetch
+user_pref("network.prefetch-next", false);
+user_pref("network.dns.disablePrefetch", true);
+user_pref("network.dns.disablePrefetchFromHTTPS", true);
+user_pref("network.http.speculative-parallel-limit", 0);
+user_pref("browser.places.speculativeConnect.enabled", false);
+user_pref("browser.urlbar.speculativeConnect.enabled", false);
+
+// loocatino bar
+user_pref("browser.urlbar.quicksuggest.enabled", false);
+user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
+user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
+user_pref("browser.urlbar.trending.featureGate", false);
+
+// webrtc
+user_pref("media.peerconnection.ice.default_address_only", true);
 
 // passwords
 user_pref("signon.autofillForms", false);
@@ -108,6 +131,9 @@ user_pref("browser.search.visualSearch.featureGate", false);
 user_pref("screenshots.browser.component.enabled", false);
 user_pref("browser.translations.select.enable", false);
 user_pref("privacy.query_stripping.strip_on_share.enabled", false);
+
+// privacy
+user_pref("privacy.donottrackheader.enabled", true)
 
 // user_pref("browser.startup.page", 3);
 // user_pref("browser.startup.homepage", "file:///home/kenc/.mozilla/startpage/index.html");
