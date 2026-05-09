@@ -33,14 +33,17 @@ return require("lazy").setup({
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
 		config = function()
 			require("config.treesitter")
 		end,
+		lazy = false,
 		build = ":TSUpdate",
 		event = "BufReadPre",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
-			"RRethy/nvim-treesitter-textsubjects",
+			-- does not support nvim-treesitter main branch
+			-- "RRethy/nvim-treesitter-textsubjects",
 		},
 	},
 	{
@@ -130,7 +133,7 @@ return require("lazy").setup({
 	},
 	{
 		"nvim-telescope/telescope.nvim",
-		version = "0.2.0",
+		version = "~0.2.0",
 		lazy = true,
 		keys = { "<leader>" },
 		config = function()
