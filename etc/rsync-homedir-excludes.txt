@@ -52,6 +52,7 @@ Downloads
 #.var/app/com.valvesoftware.Steam/.local/share/Steam
 .steam
 Steam
+steam
 #.minecraft
 #.technic
 #.PlayOnLinux
@@ -76,6 +77,7 @@ Steam
 #
 ## Python virtual environments
 #PycharmProjects/**/venv
+.venv
 #
 ## Maven local repository
 .m2
@@ -433,3 +435,18 @@ go/pkg/mod/cache
 
 # SC-Controller - socket file
 .config/scc/daemon.socket
+
+.terraform
+.local/share/nvim/*
+.terraform.d
+.aws
+.avidemux6
+.dotnet
+.java
+.anydesk
+.kube
+.docker
+.net
+.factorio
+Screenshots/*
+AnyDesk

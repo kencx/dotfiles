@@ -20,6 +20,8 @@ rsync -a --delete \
     --exclude='tmp' \
     --exclude='Downloads/*' \
     --exclude='dev/compose-stacks/qbittorrent/torrents/*' \
+    --exclude='dev/compose-stacks/media-server/media/*' \
+    --exclude='dev/compose-stacks/media-server/downloads/*' \
     "/home/kenc" "$MOUNT_POINT"
 
 echo "rsync to $MOUNT_POINT completed in ${SECONDS}s"
