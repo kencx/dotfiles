@@ -203,20 +203,23 @@ return require("lazy").setup({
 
 	-- tools
 	-- markdown previewer
-	-- {
-	-- 	"iamcco/markdown-preview.nvim",
-	-- 	build = function()
-	-- 		vim.fn["mkdp#util#install"]()
-	-- 	end,
-	-- 	init = function()
-	-- 		vim.g.mkdp_filetypes = { "markdown" }
-	-- 	end,
-	-- 	event = "BufEnter *.md",
-	-- 	ft = "markdown",
-	-- 	config = function()
-	-- 		require("config.markdown_preview")
-	-- 	end,
-	-- },
+	{
+		"selimacerbas/markdown-preview.nvim",
+		dependencies = { "selimacerbas/live-server.nvim" },
+		version = "v1.10.0",
+		event = "BufEnter *.md",
+		ft = "markdown",
+		config = function()
+			require("markdown_preview").setup({
+				-- all optional; sane defaults shown
+				instance_mode = "takeover", -- "takeover" (one tab) or "multi" (tab per instance)
+				port = 0, -- 0 = auto (8421 for takeover, OS-assigned for multi)
+				open_browser = true,
+				default_theme = "dark", -- "dark" or "light"; initial preview theme
+				debounce_ms = 300,
+			})
+		end,
+	},
 	-- obsidian
 	-- {
 	-- 	"epwalsh/obsidian.nvim",
