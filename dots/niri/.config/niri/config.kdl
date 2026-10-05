@@ -274,6 +274,9 @@ binds {
     Mod+Shift+q hotkey-overlay-title=null { spawn-sh "eww close powermenu"; }
     Mod+Shift+c { spawn-sh "$HOME/.config/eww/bin/iwd-rofi"; }
 
+    Mod+MouseMiddle repeat=false { spawn-sh "python3 $HOME/bin/niri_float_helper.py -o 1280 0 -d"; }
+    Mod+Shift+d repeat=false { spawn-sh "python3 $HOME/bin/niri_float_helper.py -o 1280 0 -d"; }
+
     Mod+Space { spawn-sh "rofi -show drun -width -100"; }
     Mod+Semicolon { spawn-sh "rofi -show window -width -100"; }
     Mod+Shift+s { screenshot; }
