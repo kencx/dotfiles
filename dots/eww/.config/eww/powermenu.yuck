@@ -35,12 +35,12 @@
         )
         (powermenu-entry
             :icon "󰌾"
-            :command "bsplock"
+            :command "niri msg action quit"
             :label "Lock"
         )
         (powermenu-entry
             :icon "󰍃"
-            :command "bspc quit"
+            :command "niri msg action quit"
             :label "Logout"
         )
     ))
