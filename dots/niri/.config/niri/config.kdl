@@ -26,13 +26,6 @@ input {
     }
 }
 
-output "HDMI-A-1" {
-    mode "1920x1080@120.030"
-    scale 1
-    transform "normal"
-    position x=1280 y=0
-}
-
 layout {
     gaps 12
     background-color "transparent"
@@ -54,7 +47,6 @@ layout {
         hide-when-single-tab
     }
 
-    // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
@@ -65,9 +57,6 @@ layout {
 
     focus-ring {
         off
-        width 1
-
-        active-color "#FFA066"
     }
 
     struts {
@@ -75,16 +64,53 @@ layout {
     }
 }
 
+output "HDMI-A-1" {
+    mode "1920x1080@60.0"
+    scale 1.0
+    transform "normal"
+    position x=0 y=420
+}
+
+output "DP-1" {
+    mode "1920x1080@60.000"
+    scale 1.0
+    transform "90"
+    position x=1920 y=0
+
+    layout {
+        always-center-single-column
+
+        default-column-display "normal"
+
+        preset-window-heights {
+            proportion 0.33333
+            proportion 0.5
+            proportion 0.66667
+            proportion 1.0
+        }
+
+        default-column-width { proportion 1.0; }
+
+        focus-ring {
+            on
+            width 2
+            active-color "#FFA066"
+        }
+
+        struts {}
+    }
+}
+
 // startup processes
-spawn-sh-at-startup "eww daemon --force-wayland && eww open bar"
 spawn-sh-at-startup "st -c pad"
 spawn-sh-at-startup "st tmux"
-spawn-sh-at-startup "swaybg -m fit -i $HOME/dotfiles/img/jupiter.png"
-spawn-sh-at-startup "wlsunset -l 1.3 -L 103.9 -t 5000 -T 5700"
-spawn-sh-at-startup "sleep 3 && obsidian --ozone-platform=wayland --enable-features=UseOzonePlatform"
 spawn-sh-at-startup "Telegram"
-spawn-sh-at-startup "sleep 3 && firefox"
+spawn-sh-at-startup "firefox"
+spawn-sh-at-startup "obsidian --ozone-platform=wayland --enable-features=UseOzonePlatform"
 spawn-sh-at-startup "st -c btop btop"
+spawn-sh-at-startup "eww daemon --force-wayland && eww open bar --screen 1"
+spawn-sh-at-startup "swaybg --mode fit --image $HOME/dotfiles/img/jupiter.png"
+spawn-sh-at-startup "wlsunset -l 1.3 -L 103.9 -t 5000 -T 5700"
 // spawn-sh-at-startup "swayidle -w timeout 900 'niri msg action power-off-monitors' resume 'eww reload'"
 
 hotkey-overlay {
@@ -126,10 +152,27 @@ prefer-no-csd
 
 animations {}
 
-workspace "main"
-workspace "notes"
-workspace "misc"
-workspace "scratch"
+workspace "main" {
+    open-on-output "HDMI-A-1"
+}
+workspace "notes" {
+    open-on-output "HDMI-A-1"
+}
+workspace "misc" {
+    open-on-output "HDMI-A-1"
+}
+workspace "scratch" {
+    open-on-output "HDMI-A-1"
+}
+
+workspace "vertical" {
+    open-on-output "DP-1"
+}
+
+window-rule {
+    match at-startup=true
+    open-on-output "HDMI-A-1"
+}
 
 // set focus-ring for terminals only
 window-rule {
@@ -270,7 +313,7 @@ binds {
 
     Mod+Shift+v hotkey-overlay-title="wiremix" { spawn-sh "st wiremix"; }
     Mod+Shift+b hotkey-overlay-title="bluetui" { spawn-sh "st bluetui"; }
-    Mod+Shift+p hotkey-overlay-title=null { spawn-sh "eww open powermenu"; }
+    Mod+Shift+p hotkey-overlay-title=null { spawn-sh "eww open powermenu --screen 1"; }
     Mod+Shift+q hotkey-overlay-title=null { spawn-sh "eww close powermenu"; }
     Mod+Shift+c { spawn-sh "$HOME/.config/eww/bin/iwd-rofi"; }
 
@@ -328,21 +371,27 @@ binds {
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
     Mod+9 { focus-workspace 9; }
-    Mod+Ctrl+1 { move-column-to-workspace 1; }
-    Mod+Ctrl+2 { move-column-to-workspace 2; }
-    Mod+Ctrl+3 { move-column-to-workspace 3; }
-    Mod+Ctrl+4 { move-column-to-workspace 4; }
-    Mod+Ctrl+5 { move-column-to-workspace 5; }
-    Mod+Ctrl+6 { move-column-to-workspace 6; }
-    Mod+Ctrl+7 { move-column-to-workspace 7; }
-    Mod+Ctrl+8 { move-column-to-workspace 8; }
-    Mod+Ctrl+9 { move-column-to-workspace 9; }
+    // Mod+Ctrl+1 { move-column-to-workspace 1; }
+    // Mod+Ctrl+2 { move-column-to-workspace 2; }
+    // Mod+Ctrl+3 { move-column-to-workspace 3; }
+    // Mod+Ctrl+4 { move-column-to-workspace 4; }
+    // Mod+Ctrl+5 { move-column-to-workspace 5; }
+    // Mod+Ctrl+6 { move-column-to-workspace 6; }
+    // Mod+Ctrl+7 { move-column-to-workspace 7; }
+    // Mod+Ctrl+8 { move-column-to-workspace 8; }
+    // Mod+Ctrl+9 { move-column-to-workspace 9; }
 
     Mod+Ctrl+j { move-window-to-workspace-down; }
     Mod+Ctrl+k { move-window-to-workspace-up; }
 
     Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-window-to-workspace-down; }
     Mod+Ctrl+WheelScrollUp cooldown-ms=150 { move-window-to-workspace-up; }
+
+    Mod+Ctrl+h { focus-monitor-left; }
+    Mod+Ctrl+l { focus-monitor-right; }
+
+    Mod+Alt+H { move-column-to-monitor-left; }
+    Mod+Alt+L { move-column-to-monitor-right; }
 
     Mod+Tab { focus-workspace-previous; }
 
@@ -355,8 +404,8 @@ binds {
     Mod+R { switch-preset-column-width; }
     // Cycling through the presets in reverse order is also possible.
     // Mod+R { switch-preset-column-width-back; }
-    // Mod+Shift+R { switch-preset-window-height; }
-    // Mod+Ctrl+R { reset-window-height; }
+    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R { reset-window-height; }
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
 

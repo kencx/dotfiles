@@ -1,23 +1,11 @@
 #!/bin/bash
 
-# checks if list ($1) contains an element ($2)
-contains() {
-    for x in $1; do
-        [ "$x" == "$2" ] && echo 1 && return
-    done
-    echo 0
-}
 render_workspaces() {
     out=""
     while read -r ws; do
-        is_scratch="$(echo $ws | jq '[select(.name == "scratch")] | length == 1')"
         is_urgent="$(echo $ws | jq '[select(.is_urgent == true)] | length == 1')"
         is_active="$(echo $ws | jq '[select(.is_active == true)] | length == 1')"
         is_focused="$(echo $ws | jq '[select(.is_focused == true)] | length == 1')"
-
-        if [[ $is_scratch == true ]]; then
-            continue
-        fi
 
         if [[ $is_urgent == true ]]; then
             id="$(echo $ws | jq 'select(.is_urgent == true) | .id')"
@@ -34,7 +22,7 @@ render_workspaces() {
         fi
 
         out="$out (box (button :class \"$class\" :onclick \"niri msg action focus-workspace '$id'\" \"$icon\"))"
-    done < <(niri msg --json workspaces | jq -c 'sort_by(.id) | .[]')
+    done < <(niri msg --json workspaces | jq -c 'sort_by(.id) | map(select(.name != "scratch" and .name != null)) | .[]')
 
     echo "(box :class \"workspaces\" :orientation \"h\" :halign \"start\" :space-evenly false :spacing 20 $out)"
 }
