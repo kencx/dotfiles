@@ -112,6 +112,7 @@ user_pref("ui.systemUsesDarkTheme", 1);
 user_pref("media.videocontrols.picture-in-picture.enabled", false);
 user_pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false);
 user_pref("full-screen-api.warning.timeout", 0);
+user_pref("sidebar.revamp", false);
 
 // AI
 user_pref("browser.ml.enable", false);

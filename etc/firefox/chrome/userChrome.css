@@ -314,11 +314,15 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 }
 
 #sidebar-splitter{ display: none }
+#main-window[sizemode="fullscreen"] #browser{ --uc-sidebar-width: 1px; }
 
 /* hide sidebar header */
+
 #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] #sidebar-header {
   display: none !important;
-	overflow: hidden;
+  overflow: hidden;
+  color: var(--chrome-color, inherit) !important;
+  padding-inline: 0 !important;
 }
 
 #sidebar-header::before,
